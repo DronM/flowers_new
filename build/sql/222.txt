@@ -1,0 +1,59 @@
+WITH d AS (SELECT 1021 AS doc)
+
+SELECT
+	sub.material_id,
+	sub.proc_date_time,
+	sub.proc_id,
+	sub.quant,
+	sum(sub.quant) OVER (PARTITION BY sub.material_id ORDER BY sub.proc_date_time),
+	CASE
+		WHEN sum(sub.quant) OVER (PARTITION BY sub.material_id ORDER BY sub.proc_date_time)<0 THEN sub.quant
+		WHEN sub.quant>sum(sub.quant) OVER (PARTITION BY sub.material_id ORDER BY sub.proc_date_time) THEN 
+			sub.quant-sum(sub.quant) OVER (PARTITION BY sub.material_id ORDER BY sub.proc_date_time)
+		ELSE
+			0
+	END AS quant_to_move,
+	CASE
+		WHEN sum(sub.quant) OVER (PARTITION BY sub.material_id ORDER BY sub.proc_date_time)<0 THEN sub.quant
+		WHEN sub.quant>sum(sub.quant) OVER (PARTITION BY sub.material_id ORDER BY sub.proc_date_time) THEN 
+			sub.quant-sum(sub.quant) OVER (PARTITION BY sub.material_id ORDER BY sub.proc_date_time)
+		ELSE
+			0
+	END*sub.price AS cost_to_move
+	
+FROM
+(
+(SELECT
+			b.material_id,
+			b.doc_procurement_id AS proc_id,
+			dp.date_time AS proc_date_time,
+			b.quant AS quant,
+			CASE
+				WHEN b.quant<>0 THEN ROUND(b.cost/b.quant,2)
+				ELSE 0
+			END AS price
+			
+		FROM rg_materials_balance(
+			'production',
+			(SELECT doc FROM d),
+			ARRAY[1],
+			ARRAY['main'::stock_types],
+			ARRAY(SELECT material_id FROM doc_productions_t_materials WHERE doc_id=(SELECT doc FROM d)),
+			'{}'
+			) AS b
+		LEFT JOIN doc_material_procurements AS dp ON dp.id=b.doc_procurement_id
+)	
+UNION
+
+(SELECT
+	t.material_id,
+	0 AS proc_id,
+	'1990-01-01' AS proc_date_time,
+	-t.quant AS bal_quant,
+	0 AS price
+	
+FROM doc_productions_t_materials AS t 
+WHERE t.doc_id=(SELECT doc FROM d)
+)
+
+) AS sub

@@ -1,0 +1,27 @@
+SELECT * FROM ra_materials WHERE material_id=324
+ORDER BY date_time
+
+SELECT * FROM rg_materials
+WHERE material_id=324 AND date_time='2014-08-01 00:00:00'
+ORDER BY date_time
+--
+
+SELECT
+doc_procurement_id,
+sum(
+CASE
+	WHEN deb THEN quant
+	ELSE -quant
+END
+)AS quant,
+
+sum(
+CASE
+	WHEN deb THEN cost
+	ELSE -cost
+END
+) AS cost
+
+FROM ra_materials
+WHERE date_time<'2014-09-01' AND material_id=324
+GROUP BY doc_procurement_id

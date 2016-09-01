@@ -56,16 +56,29 @@ class ViewBase extends ViewHTMLXSLT {
 			}			
 		}
 		<!-- custom vars-->
+		$this->getVarModel()->addField(new Field('def_store_id',DT_STRING));
+		$this->getVarModel()->addField(new Field('constrain_to_store',DT_STRING));
+		$this->getVarModel()->addField(new Field('role_id',DT_INT));
+		$this->getVarModel()->addField(new Field('cash_register',DT_INT));
+		$this->getVarModel()->addField(new Field('debug',DT_INT));
 		
 		$this->getVarModel()->insert();
 		$this->setVarValue('scriptId',$script_id);
 		$this->setVarValue('basePath',BASE_PATH);		
 		
-		<!-- custom vars
+		<!-- custom vars-->
 		if (isset($_SESSION['constrain_to_store'])){
 			$this->setVarValue('constrain_to_store',$_SESSION['constrain_to_store']);
 		}
-		-->
+		if (isset($_SESSION['def_store_id'])){
+			$this->setVarValue('def_store_id',$_SESSION['def_store_id']);
+		}
+		if (isset($_SESSION['role_id'])){
+			$this->setVarValue('role_id',$_SESSION['role_id']);
+		}
+		if (isset($_SESSION['cash_register'])){
+			$this->setVarValue('cash_register',$_SESSION['cash_register']);
+		}
 		
 		//Global Filters
 		<!--

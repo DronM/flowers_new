@@ -1,0 +1,17 @@
+-- View client_dialog
+
+--DROP VIEW client_dialog;
+
+CREATE OR REPLACE VIEW client_dialog AS 
+	SELECT
+		cl.id,
+		cl.name,
+		cl.name_full,
+		cl.phone_cel,
+		cl.email
+	FROM clients AS cl
+	ORDER BY cl.name;
+	;
+ALTER TABLE client_dialog
+  OWNER TO beton;
+  
