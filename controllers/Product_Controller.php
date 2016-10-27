@@ -167,7 +167,7 @@ class Product_Controller extends ControllerSQL{
 		$pm->addParam(new FieldExtInt('count'));
 		$pm->addParam(new FieldExtInt('ic'));
 		$pm->addParam(new FieldExtInt('mid'));
-		$pm->addParam(new FieldExtString('name'));		
+		$pm->addParam(new FieldExtString('price'));		
 		$this->addPublicMethod($pm);					
 		$this->setCompleteModelId('ProductList_Model');
 
@@ -179,7 +179,7 @@ class Product_Controller extends ControllerSQL{
 	
 		$opts['alias']='Наименование';		
 		$pm->addParam(new FieldExtString('name',$opts));
-				
+	
 			
 		$this->addPublicMethod($pm);
 
@@ -188,27 +188,29 @@ class Product_Controller extends ControllerSQL{
 		
 				
 	$opts=array();
-	
-		$opts['required']=TRUE;				
+					
 		$pm->addParam(new FieldExtString('cond_fields',$opts));
 	
 				
 	$opts=array();
-	
-		$opts['required']=TRUE;				
+					
 		$pm->addParam(new FieldExtString('cond_vals',$opts));
 	
 				
 	$opts=array();
-	
-		$opts['required']=TRUE;				
+					
 		$pm->addParam(new FieldExtString('cond_sgns',$opts));
 	
 				
 	$opts=array();
 					
 		$pm->addParam(new FieldExtString('cond_ic',$opts));
+		
 				
+	$opts=array();
+					
+		$pm->addParam(new FieldExtString('field_sep',$opts));
+			
 				
 	$opts=array();
 					
@@ -312,10 +314,15 @@ class Product_Controller extends ControllerSQL{
 		else{
 			$store_id = '1';
 		}
-		$model->setSelectQueryText(
-			sprintf("SELECT * FROM product_list_with_balance(%d)",
-			$store_id)
-		);
+		
+		$q = sprintf("SELECT * FROM product_list_with_balance(%d)",$store_id);
+			
+		if (!is_null($where)){
+			$q.=' '.$where->getSQL();
+		}
+		
+		$model->setSelectQueryText($q);
+		
 		$model->select(false,null,null,
 			null,null,null,null,null,TRUE);
 		//

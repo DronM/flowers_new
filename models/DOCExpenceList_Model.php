@@ -1,12 +1,12 @@
 <?php
 
-require_once(FRAME_WORK_PATH.'basic_classes/ModelSQLDOC.php');
+require_once(FRAME_WORK_PATH.'basic_classes/ModelSQLDOC20.php');
 require_once(FRAME_WORK_PATH.'basic_classes/FieldSQLInt.php');
 require_once(FRAME_WORK_PATH.'basic_classes/FieldSQLString.php');
 require_once(FRAME_WORK_PATH.'basic_classes/FieldSQLFloat.php');
 require_once(FRAME_WORK_PATH.'basic_classes/FieldSQLDateTime.php');
 
-class DOCExpenceList_Model extends ModelSQLDOC{
+class DOCExpenceList_Model extends ModelSQLDOC20{
 	
 	public function __construct($dbLink){
 		parent::__construct($dbLink);
@@ -44,6 +44,8 @@ class DOCExpenceList_Model extends ModelSQLDOC{
 		,"date_time"
 		,array(
 		
+			'alias'=>"Дата"
+		,
 			'id'=>"date_time"
 		,
 			'sysCol'=>TRUE
@@ -51,18 +53,6 @@ class DOCExpenceList_Model extends ModelSQLDOC{
 		
 		));
 		$this->addField($f_date_time);
-
-		$f_date_time_descr=new FieldSQlString($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"date_time_descr"
-		,array(
-		
-			'alias'=>"Дата"
-		,
-			'id'=>"date_time_descr"
-				
-		
-		));
-		$this->addField($f_date_time_descr);
 
 		$f_store_id=new FieldSQlInt($this->getDbLink(),$this->getDbName(),$this->getTableName()
 		,"store_id"
@@ -136,18 +126,6 @@ class DOCExpenceList_Model extends ModelSQLDOC{
 		
 		));
 		$this->addField($f_total);
-
-		$f_total_descr=new FieldSQlString($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"total_descr"
-		,array(
-		
-			'id'=>"total_descr"
-		,
-			'sysCol'=>TRUE
-				
-		
-		));
-		$this->addField($f_total_descr);
 
 		
 		

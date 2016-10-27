@@ -39,6 +39,7 @@ function ConstantList_Model(options){
 	var filed_options = {};
 	filed_options.primaryKey = false;
 	
+	filed_options.alias = 'Наименование';
 	
 	var field = new FieldString("name",filed_options);
 	
@@ -49,6 +50,7 @@ function ConstantList_Model(options){
 	var filed_options = {};
 	filed_options.primaryKey = false;
 	
+	filed_options.alias = 'Описание';
 	
 	var field = new FieldText("descr",filed_options);
 	
@@ -59,6 +61,7 @@ function ConstantList_Model(options){
 	var filed_options = {};
 	filed_options.primaryKey = false;
 	
+	filed_options.alias = 'Значение';
 	
 	var field = new FieldText("val_descr",filed_options);
 	

@@ -41,6 +41,7 @@ function ExpenceType_Model(options){
 	var filed_options = {};
 	filed_options.primaryKey = false;
 	
+	filed_options.alias = 'Наименование';
 	
 	var field = new FieldString("name",filed_options);
 	

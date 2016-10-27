@@ -1,13 +1,13 @@
 <?php
 
-require_once(FRAME_WORK_PATH.'basic_classes/ModelSQLDOC.php');
+require_once(FRAME_WORK_PATH.'basic_classes/ModelSQLDOC20.php');
 require_once(FRAME_WORK_PATH.'basic_classes/FieldSQLInt.php');
 require_once(FRAME_WORK_PATH.'basic_classes/FieldSQLText.php');
 require_once(FRAME_WORK_PATH.'basic_classes/FieldSQLDateTime.php');
 require_once(FRAME_WORK_PATH.'basic_classes/FieldSQLBool.php');
 require_once(FRAME_WORK_PATH.'basic_classes/ModelOrderSQL.php');
 
-class DOCProductDisposal_Model extends ModelSQLDOC{
+class DOCProductDisposal_Model extends ModelSQLDOC20{
 	
 	public function __construct($dbLink){
 		parent::__construct($dbLink);

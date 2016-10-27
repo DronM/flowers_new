@@ -78,8 +78,8 @@ extend(ReportVariant_Controller,ControllerDb);
 	var field;
 	var options;	
 	var pm = this.getUpdate();
-	options = {};
-	options.primaryKey = true;options.autoInc = true;options.required = true;
+	options = {"sendNulls":true};
+	options.primaryKey = true;options.autoInc = true;
 	var field = new FieldInt("id",options);
 	
 	pm.addField(field);
@@ -88,17 +88,17 @@ extend(ReportVariant_Controller,ControllerDb);
 	field = new FieldInt("old_id",{});
 	pm.addField(field);
 	
-	options = {};
+	options = {"sendNulls":true};
 	
 	var field = new FieldInt("user_id",options);
 	
 	pm.addField(field);
 	
 	
-	options = {};
-	options.required = true;	
+	options = {"sendNulls":true};
+		
 	options.enumValues = 'material_actions';
-	options.enumValues+= (options.enumValues!='')? '':',';
+	options.enumValues+= (options.enumValues=='')? '':',';
 	options.enumValues+= 'null';
 	
 	field = new FieldEnum("report_type",options);
@@ -106,14 +106,14 @@ extend(ReportVariant_Controller,ControllerDb);
 	pm.addField(field);
 	
 	
-	options = {};
+	options = {"sendNulls":true};
 	
 	var field = new FieldText("name",options);
 	
 	pm.addField(field);
 	
 	
-	options = {};
+	options = {"sendNulls":true};
 	
 	var field = new FieldText("data",options);
 	

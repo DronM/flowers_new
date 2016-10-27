@@ -100,29 +100,29 @@ class MaterialBalanceList_Model extends ModelSQL{
 		));
 		$this->addField($f_main_quant);
 
-		$f_main_toatl=new FieldSQlFloat($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"main_toatl"
+		$f_main_total=new FieldSQlFloat($this->getDbLink(),$this->getDbName(),$this->getTableName()
+		,"main_total"
 		,array(
 		
 			'alias'=>"Сумма"
 		,
-			'id'=>"main_toatl"
+			'id'=>"main_total"
 				
 		
 		));
-		$this->addField($f_main_toatl);
+		$this->addField($f_main_total);
 
-		$f_procur_avg_time_descr=new FieldSQlString($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"procur_avg_time_descr"
+		$f_procur_avg_time=new FieldSQlString($this->getDbLink(),$this->getDbName(),$this->getTableName()
+		,"procur_avg_time"
 		,array(
 		
 			'alias'=>"Время"
 		,
-			'id'=>"procur_avg_time_descr"
+			'id'=>"procur_avg_time"
 				
 		
 		));
-		$this->addField($f_procur_avg_time_descr);
+		$this->addField($f_procur_avg_time);
 
 		
 		

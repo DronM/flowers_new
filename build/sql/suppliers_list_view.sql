@@ -8,6 +8,7 @@ CREATE OR REPLACE VIEW suppliers_list_view AS
 	suppliers.tel,
 	suppliers.email
    FROM suppliers
+   ORDER BY suppliers.name
   ;
 
 ALTER TABLE suppliers_list_view

@@ -100,7 +100,7 @@ extend(DOCSaleDOCTProduct_Controller,ControllerDb);
 	var field;
 	var options;	
 	var pm = this.getUpdate();
-	options = {};
+	options = {"sendNulls":true};
 	options.primaryKey = true;
 	var field = new FieldInt("login_id",options);
 	
@@ -110,7 +110,7 @@ extend(DOCSaleDOCTProduct_Controller,ControllerDb);
 	field = new FieldInt("old_login_id",{});
 	pm.addField(field);
 	
-	options = {};
+	options = {"sendNulls":true};
 	options.primaryKey = true;
 	var field = new FieldInt("line_number",options);
 	
@@ -120,49 +120,49 @@ extend(DOCSaleDOCTProduct_Controller,ControllerDb);
 	field = new FieldInt("old_line_number",{});
 	pm.addField(field);
 	
-	options = {};
-	options.alias = "Поставка";options.required = true;
+	options = {"sendNulls":true};
+	options.alias = "Поставка";
 	var field = new FieldInt("doc_production_id",options);
 	
 	pm.addField(field);
 	
 	
-	options = {};
+	options = {"sendNulls":true};
 	options.alias = "Количество";
 	var field = new FieldFloat("quant",options);
 	
 	pm.addField(field);
 	
 	
-	options = {};
+	options = {"sendNulls":true};
 	options.alias = "Цена";
 	var field = new FieldFloat("price",options);
 	
 	pm.addField(field);
 	
 	
-	options = {};
+	options = {"sendNulls":true};
 	options.alias = "Сумма";
 	var field = new FieldFloat("total",options);
 	
 	pm.addField(field);
 	
 	
-	options = {};
+	options = {"sendNulls":true};
 	options.alias = "Скидка";
 	var field = new FieldFloat("disc_percent",options);
 	
 	pm.addField(field);
 	
 	
-	options = {};
+	options = {"sendNulls":true};
 	options.alias = "Цена без скидки";
 	var field = new FieldFloat("price_no_disc",options);
 	
 	pm.addField(field);
 	
 	
-	options = {};
+	options = {"sendNulls":true};
 	options.alias = "Сумма буз скидки";
 	var field = new FieldFloat("total_no_disc",options);
 	

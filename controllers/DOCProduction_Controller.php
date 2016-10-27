@@ -1,6 +1,6 @@
 <?php
 
-require_once(FRAME_WORK_PATH.'basic_classes/ControllerSQLDOC.php');
+require_once(FRAME_WORK_PATH.'basic_classes/ControllerSQLDOC20.php');
 
 require_once(FRAME_WORK_PATH.'basic_classes/FieldExtInt.php');
 require_once(FRAME_WORK_PATH.'basic_classes/FieldExtString.php');
@@ -20,10 +20,11 @@ require_once('common/barcodegen.1d-php5.v5.2.1/class/BCGColor.php');
 require_once('common/barcodegen.1d-php5.v5.2.1/class/BCGDrawing.php');
 require_once('common/barcodegen.1d-php5.v5.2.1/class/BCGean13.barcode.php');
 
+require_once(FRAME_WORK_PATH.'basic_classes/ControllerSQLDOC20.php');
 require_once(FRAME_WORK_PATH.'basic_classes/ModelVars.php');
 require_once(FRAME_WORK_PATH.'basic_classes/Field.php');
 
-class DOCProduction_Controller extends ControllerSQLDOC{
+class DOCProduction_Controller extends ControllerSQLDOC20{
 	public function __construct($dbLinkMaster=NULL){
 		parent::__construct($dbLinkMaster);
 			
@@ -222,16 +223,19 @@ class DOCProduction_Controller extends ControllerSQLDOC{
 		$this->setObjectModelId('DOCProductionList_Model');		
 
 			
-		$pm = new PublicMethod('before_open');
+			
+		$pm = new PublicMethod('get_doc');
 		
 				
 	$opts=array();
-					
-		$pm->addParam(new FieldExtInt('doc_id',$opts));
+			
+		$pm->addParam(new FieldExtInt('id',$opts));
 	
 			
 		$this->addPublicMethod($pm);
 
+			
+			
 			
 		$pm = new PublicMethod('fill_on_spec');
 		

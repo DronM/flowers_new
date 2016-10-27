@@ -10,7 +10,7 @@ require_once(FRAME_WORK_PATH.'basic_classes/ViewHTMLXSLT.php');
 require_once(FRAME_WORK_PATH.'basic_classes/ModelStyleSheet.php');
 require_once(FRAME_WORK_PATH.'basic_classes/ModelJavaScript.php');
 
-require_once(FRAME_WORK_PATH.'basic_classes/ModelTextOutput.php');
+require_once(FRAME_WORK_PATH.'basic_classes/ModelTemplate.php');
 require_once(USER_CONTROLLERS_PATH.'Constant_Controller.php');
 
 <xsl:apply-templates select="metadata/enums/enum[@id='role_types']"/>
@@ -60,6 +60,7 @@ class ViewBase extends ViewHTMLXSLT {
 		$this->getVarModel()->addField(new Field('constrain_to_store',DT_STRING));
 		$this->getVarModel()->addField(new Field('role_id',DT_INT));
 		$this->getVarModel()->addField(new Field('cash_register',DT_INT));
+		$this->getVarModel()->addField(new Field('multy_store',DT_STRING));
 		$this->getVarModel()->addField(new Field('debug',DT_INT));
 		
 		$this->getVarModel()->insert();
@@ -78,6 +79,9 @@ class ViewBase extends ViewHTMLXSLT {
 		}
 		if (isset($_SESSION['cash_register'])){
 			$this->setVarValue('cash_register',$_SESSION['cash_register']);
+		}
+		if (isset($_SESSION['multy_store'])){
+			$this->setVarValue('multy_store',$_SESSION['multy_store']);
 		}
 		
 		//Global Filters
@@ -103,7 +107,7 @@ class ViewBase extends ViewHTMLXSLT {
 			$tmpl = $_REQUEST['t']; 
 			if (file_exists($file = USER_VIEWS_PATH. $tmpl. '.html') ){
 				$text = $this->convToUtf8(file_get_contents($file));
-				$models[$tmpl.':view'] = new ModelTextOutput($tmpl.':view',$text);
+				$models[$tmpl] = new ModelTemplate($tmpl,$text);
 			}
 		}		
 		parent::write($models);
@@ -111,6 +115,9 @@ class ViewBase extends ViewHTMLXSLT {
 }	
 <![CDATA[?>]]>
 </xsl:template>
+			
+<xsl:template match="constants/constant[@autoload='TRUE']">
+<xsl:if test="position() &gt; 1">,</xsl:if>'<xsl:value-of select="@id"/>'</xsl:template>
 			
 <xsl:template match="enum/value">require_once('models/MainMenu_Model_<xsl:value-of select="@id"/>.php');</xsl:template>
 

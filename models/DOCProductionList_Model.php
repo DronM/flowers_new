@@ -1,14 +1,13 @@
 <?php
 
-require_once(FRAME_WORK_PATH.'basic_classes/ModelSQLDOC.php');
+require_once(FRAME_WORK_PATH.'basic_classes/ModelSQLDOC20.php');
 require_once(FRAME_WORK_PATH.'basic_classes/FieldSQLInt.php');
 require_once(FRAME_WORK_PATH.'basic_classes/FieldSQLString.php');
 require_once(FRAME_WORK_PATH.'basic_classes/FieldSQLText.php');
 require_once(FRAME_WORK_PATH.'basic_classes/FieldSQLFloat.php');
 require_once(FRAME_WORK_PATH.'basic_classes/FieldSQLDateTime.php');
-require_once(FRAME_WORK_PATH.'basic_classes/FieldSQLBool.php');
 
-class DOCProductionList_Model extends ModelSQLDOC{
+class DOCProductionList_Model extends ModelSQLDOC20{
 	
 	public function __construct($dbLink){
 		parent::__construct($dbLink);
@@ -30,6 +29,18 @@ class DOCProductionList_Model extends ModelSQLDOC{
 		));
 		$this->addField($f_id);
 
+		$f_tmp_id=new FieldSQlString($this->getDbLink(),$this->getDbName(),$this->getTableName()
+		,"tmp_id"
+		,array(
+		
+			'id'=>"tmp_id"
+		,
+			'sysCol'=>TRUE
+				
+		
+		));
+		$this->addField($f_tmp_id);
+
 		$f_number=new FieldSQlString($this->getDbLink(),$this->getDbName(),$this->getTableName()
 		,"number"
 		,array(
@@ -46,6 +57,8 @@ class DOCProductionList_Model extends ModelSQLDOC{
 		,"date_time"
 		,array(
 		
+			'alias'=>"Дата"
+		,
 			'id'=>"date_time"
 		,
 			'sysCol'=>TRUE
@@ -53,30 +66,6 @@ class DOCProductionList_Model extends ModelSQLDOC{
 		
 		));
 		$this->addField($f_date_time);
-
-		$f_date_time_descr=new FieldSQlString($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"date_time_descr"
-		,array(
-		
-			'alias'=>"Дата"
-		,
-			'id'=>"date_time_descr"
-				
-		
-		));
-		$this->addField($f_date_time_descr);
-
-		$f_on_norm=new FieldSQlBool($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"on_norm"
-		,array(
-		
-			'alias'=>"По норме"
-		,
-			'id'=>"on_norm"
-				
-		
-		));
-		$this->addField($f_on_norm);
 
 		$f_store_id=new FieldSQlInt($this->getDbLink(),$this->getDbName(),$this->getTableName()
 		,"store_id"
@@ -101,30 +90,6 @@ class DOCProductionList_Model extends ModelSQLDOC{
 		
 		));
 		$this->addField($f_store_descr);
-
-		$f_product_order_type=new FieldSQlString($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"product_order_type"
-		,array(
-		
-			'id'=>"product_order_type"
-		,
-			'sysCol'=>TRUE
-				
-		
-		));
-		$this->addField($f_product_order_type);
-
-		$f_product_order_type_descr=new FieldSQlString($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"product_order_type_descr"
-		,array(
-		
-			'id'=>"product_order_type_descr"
-		,
-			'sysCol'=>TRUE
-				
-		
-		));
-		$this->addField($f_product_order_type_descr);
 
 		$f_user_id=new FieldSQlInt($this->getDbLink(),$this->getDbName(),$this->getTableName()
 		,"user_id"
@@ -200,31 +165,31 @@ class DOCProductionList_Model extends ModelSQLDOC{
 		));
 		$this->addField($f_price);
 
-		$f_sum_descr=new FieldSQlFloat($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"sum_descr"
-		,array(
-		
-			'alias'=>"Сумма"
-		,
-			'length'=>15,
-			'id'=>"sum_descr"
-				
-		
-		));
-		$this->addField($f_sum_descr);
-
-		$f_mat_sum_descr=new FieldSQlFloat($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"mat_sum_descr"
+		$f_mat_sum=new FieldSQlFloat($this->getDbLink(),$this->getDbName(),$this->getTableName()
+		,"mat_sum"
 		,array(
 		
 			'alias'=>"Сумма материалов"
 		,
 			'length'=>15,
-			'id'=>"mat_sum_descr"
+			'id'=>"mat_sum"
 				
 		
 		));
-		$this->addField($f_mat_sum_descr);
+		$this->addField($f_mat_sum);
+
+		$f_mat_cost=new FieldSQlFloat($this->getDbLink(),$this->getDbName(),$this->getTableName()
+		,"mat_cost"
+		,array(
+		
+			'alias'=>"Себестоимость материалов"
+		,
+			'length'=>15,
+			'id'=>"mat_cost"
+				
+		
+		));
+		$this->addField($f_mat_cost);
 
 		$f_processed=new FieldSQlString($this->getDbLink(),$this->getDbName(),$this->getTableName()
 		,"processed"
@@ -238,18 +203,6 @@ class DOCProductionList_Model extends ModelSQLDOC{
 		));
 		$this->addField($f_processed);
 
-		$f_rest=new FieldSQlString($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"rest"
-		,array(
-		
-			'id'=>"rest"
-		,
-			'sysCol'=>TRUE
-				
-		
-		));
-		$this->addField($f_rest);
-
 		$f_florist_comment=new FieldSQlText($this->getDbLink(),$this->getDbName(),$this->getTableName()
 		,"florist_comment"
 		,array(
@@ -261,7 +214,7 @@ class DOCProductionList_Model extends ModelSQLDOC{
 		
 		));
 		$this->addField($f_florist_comment);
-
+$this->limitConstant = 'doc_per_page_count';
 		
 		
 		

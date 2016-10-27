@@ -80,7 +80,7 @@ function DOCMaterialProcurement_Model(options){
 	
 
 	options.fields.store_id = field;
-			
+
 			
 	var filed_options = {};
 	filed_options.primaryKey = false;
@@ -91,7 +91,7 @@ function DOCMaterialProcurement_Model(options){
 	
 
 	options.fields.user_id = field;
-						
+
 			
 	var filed_options = {};
 	filed_options.primaryKey = false;
@@ -104,7 +104,8 @@ function DOCMaterialProcurement_Model(options){
 	
 
 	options.fields.supplier_id = field;
-									
+
+			
 						
 			
 						

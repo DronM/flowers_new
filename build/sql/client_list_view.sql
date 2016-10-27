@@ -6,9 +6,10 @@ CREATE OR REPLACE VIEW client_list_view AS
 	SELECT
 		cl.id,
 		cl.name,
-		cl.phone_cel,
+		cl.tel,
 		cl.email
 	FROM clients AS cl
+	ORDER BY cl.name
 	;
 
 ALTER TABLE client_list_view OWNER TO bellagio;

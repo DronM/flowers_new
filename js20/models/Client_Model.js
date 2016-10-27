@@ -68,12 +68,12 @@ function Client_Model(options){
 	
 	filed_options.alias = 'Сотовый телефон';
 	
-	var field = new FieldString("phone_cel",filed_options);
+	var field = new FieldString("tel",filed_options);
 	
 		field.getValidator().setMaxLength('15');
 	
 
-	options.fields.phone_cel = field;
+	options.fields.tel = field;
 			
 			
 	var filed_options = {};

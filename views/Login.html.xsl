@@ -34,11 +34,11 @@
 				    </div>
 				    <div class="panel-body">				    	
 				        <form role="form">
-				        	<div id="Login:error"></div>
+				        	<div id="Login:error" class="windowMessage"></div>
 						<fieldset>
 							<div id="Login:user"/>
 							<div id="Login:pwd"/>
-					                <div id="Login:submit_login" class="btn btn-lg btn-success btn-block"/>
+					                <div id="Login:submit_login">Войти</div>
 						</fieldset>
 				        </form>
 				    </div>

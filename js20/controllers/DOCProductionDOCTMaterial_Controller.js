@@ -41,7 +41,7 @@ extend(DOCProductionDOCTMaterial_Controller,ControllerDb);
 	var pm = this.getInsert();
 	options = {};
 	options.primaryKey = true;
-	var field = new FieldInt("login_id",options);
+	var field = new FieldString("tmp_doc_id",options);
 	
 	pm.addField(field);
 	
@@ -59,19 +59,7 @@ extend(DOCProductionDOCTMaterial_Controller,ControllerDb);
 	
 	options = {};
 	options.alias = "Количество";
-	var field = new FieldFloat("quant_norm",options);
-	
-	pm.addField(field);
-	
-	options = {};
-	options.alias = "Количество";
 	var field = new FieldFloat("quant",options);
-	
-	pm.addField(field);
-	
-	options = {};
-	options.alias = "Количество";
-	var field = new FieldFloat("quant_waste",options);
 	
 	pm.addField(field);
 	
@@ -83,17 +71,17 @@ extend(DOCProductionDOCTMaterial_Controller,ControllerDb);
 	var field;
 	var options;	
 	var pm = this.getUpdate();
-	options = {};
+	options = {"sendNulls":true};
 	options.primaryKey = true;
-	var field = new FieldInt("login_id",options);
+	var field = new FieldString("tmp_doc_id",options);
 	
 	pm.addField(field);
 	
 	
-	field = new FieldInt("old_login_id",{});
+	field = new FieldString("old_tmp_doc_id",{});
 	pm.addField(field);
 	
-	options = {};
+	options = {"sendNulls":true};
 	options.primaryKey = true;
 	var field = new FieldInt("line_number",options);
 	
@@ -103,30 +91,16 @@ extend(DOCProductionDOCTMaterial_Controller,ControllerDb);
 	field = new FieldInt("old_line_number",{});
 	pm.addField(field);
 	
-	options = {};
-	options.alias = "Материал";options.required = true;
+	options = {"sendNulls":true};
+	options.alias = "Материал";
 	var field = new FieldInt("material_id",options);
 	
 	pm.addField(field);
 	
 	
-	options = {};
-	options.alias = "Количество";
-	var field = new FieldFloat("quant_norm",options);
-	
-	pm.addField(field);
-	
-	
-	options = {};
+	options = {"sendNulls":true};
 	options.alias = "Количество";
 	var field = new FieldFloat("quant",options);
-	
-	pm.addField(field);
-	
-	
-	options = {};
-	options.alias = "Количество";
-	var field = new FieldFloat("quant_waste",options);
 	
 	pm.addField(field);
 	
@@ -139,7 +113,7 @@ extend(DOCProductionDOCTMaterial_Controller,ControllerDb);
 	var options = {"required":true};
 	
 	var pm = this.getDelete();
-	pm.addField(new FieldInt("login_id",options));
+	pm.addField(new FieldString("tmp_doc_id",options));
 	pm.addField(new FieldInt("line_number",options));
 }
 
@@ -148,13 +122,11 @@ extend(DOCProductionDOCTMaterial_Controller,ControllerDb);
 	var options = {};
 	
 	var pm = this.getGetList();
+	pm.addField(new FieldInt("tmp_doc_id",options));
 	pm.addField(new FieldInt("line_number",options));
-	pm.addField(new FieldInt("login_id",options));
 	pm.addField(new FieldInt("material_id",options));
 	pm.addField(new FieldString("material_descr",options));
-	pm.addField(new FieldFloat("quant_norm",options));
 	pm.addField(new FieldFloat("quant",options));
-	pm.addField(new FieldFloat("quant_waste",options));
 }
 
 			DOCProductionDOCTMaterial_Controller.prototype.addGetObject = function(){
@@ -162,8 +134,8 @@ extend(DOCProductionDOCTMaterial_Controller,ControllerDb);
 	var options = {};
 	
 	var pm = this.getGetObject();
+	pm.addField(new FieldInt("tmp_doc_id",options));
 	pm.addField(new FieldInt("line_number",options));
-	pm.addField(new FieldInt("login_id",options));
 }
 
 			DOCProductionDOCTMaterial_Controller.prototype.add_get_florist_list = function(){

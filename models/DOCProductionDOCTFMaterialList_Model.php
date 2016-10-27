@@ -64,18 +64,6 @@ class DOCProductionDOCTFMaterialList_Model extends ModelSQL{
 		));
 		$this->addField($f_material_descr);
 
-		$f_quant_norm=new FieldSQlFloat($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"quant_norm"
-		,array(
-		
-			'alias'=>"Количество норма"
-		,
-			'id'=>"quant_norm"
-				
-		
-		));
-		$this->addField($f_quant_norm);
-
 		$f_quant=new FieldSQlFloat($this->getDbLink(),$this->getDbName(),$this->getTableName()
 		,"quant"
 		,array(
@@ -87,18 +75,6 @@ class DOCProductionDOCTFMaterialList_Model extends ModelSQL{
 		
 		));
 		$this->addField($f_quant);
-
-		$f_quant_waste=new FieldSQlFloat($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"quant_waste"
-		,array(
-		
-			'alias'=>"Количество с брака"
-		,
-			'id'=>"quant_waste"
-				
-		
-		));
-		$this->addField($f_quant_waste);
 
 		
 		

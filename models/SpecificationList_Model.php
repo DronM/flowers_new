@@ -3,6 +3,7 @@
 require_once(FRAME_WORK_PATH.'basic_classes/ModelSQL.php');
 require_once(FRAME_WORK_PATH.'basic_classes/FieldSQLInt.php');
 require_once(FRAME_WORK_PATH.'basic_classes/FieldSQLString.php');
+require_once(FRAME_WORK_PATH.'basic_classes/FieldSQLFloat.php');
 
 class SpecificationList_Model extends ModelSQL{
 	
@@ -58,13 +59,15 @@ class SpecificationList_Model extends ModelSQL{
 		,"material_descr"
 		,array(
 		
+			'alias'=>"Материал"
+		,
 			'id'=>"material_descr"
 				
 		
 		));
 		$this->addField($f_material_descr);
 
-		$f_product_quant=new FieldSQlString($this->getDbLink(),$this->getDbName(),$this->getTableName()
+		$f_product_quant=new FieldSQlInt($this->getDbLink(),$this->getDbName(),$this->getTableName()
 		,"product_quant"
 		,array(
 		
@@ -74,16 +77,19 @@ class SpecificationList_Model extends ModelSQL{
 		));
 		$this->addField($f_product_quant);
 
-		$f_material_quant=new FieldSQlString($this->getDbLink(),$this->getDbName(),$this->getTableName()
+		$f_material_quant=new FieldSQlFloat($this->getDbLink(),$this->getDbName(),$this->getTableName()
 		,"material_quant"
 		,array(
 		
+			'alias'=>"Количество"
+		,
+			'length'=>19,
 			'id'=>"material_quant"
 				
 		
 		));
 		$this->addField($f_material_quant);
-
+$this->limitConstant = 'doc_per_page_count';
 		
 		
 		

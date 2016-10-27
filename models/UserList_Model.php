@@ -29,6 +29,8 @@ class UserList_Model extends ModelSQL{
 		,"name"
 		,array(
 		
+			'alias'=>"Имя"
+		,
 			'id'=>"name"
 				
 		
@@ -39,11 +41,26 @@ class UserList_Model extends ModelSQL{
 		,"role_descr"
 		,array(
 		
+			'alias'=>"Роль"
+		,
 			'id'=>"role_descr"
 				
 		
 		));
 		$this->addField($f_role_descr);
+
+		$f_phone_cel=new FieldSQlString($this->getDbLink(),$this->getDbName(),$this->getTableName()
+		,"phone_cel"
+		,array(
+		
+			'alias'=>"Моб.телефон"
+		,
+			'length'=>11,
+			'id'=>"phone_cel"
+				
+		
+		));
+		$this->addField($f_phone_cel);
 
 		$f_constrain_to_store=new FieldSQlBool($this->getDbLink(),$this->getDbName(),$this->getTableName()
 		,"constrain_to_store"

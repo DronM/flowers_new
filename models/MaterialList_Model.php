@@ -76,7 +76,7 @@ class MaterialList_Model extends ModelSQL{
 		
 		));
 		$this->addField($f_material_group_id);
-
+$this->limitConstant = 'doc_per_page_count';
 		
 		
 		

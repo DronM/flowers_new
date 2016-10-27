@@ -29,6 +29,8 @@ class ConstantList_Model extends ModelSQL{
 		,"name"
 		,array(
 		
+			'alias'=>"Наименование"
+		,
 			'id'=>"name"
 				
 		
@@ -39,6 +41,8 @@ class ConstantList_Model extends ModelSQL{
 		,"descr"
 		,array(
 		
+			'alias'=>"Описание"
+		,
 			'id'=>"descr"
 				
 		
@@ -49,6 +53,8 @@ class ConstantList_Model extends ModelSQL{
 		,"val_descr"
 		,array(
 		
+			'alias'=>"Значение"
+		,
 			'id'=>"val_descr"
 				
 		

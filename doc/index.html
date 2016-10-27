@@ -109,6 +109,9 @@
 <a href="#MaterialGroup_Controller">MaterialGroup_Controller</a>
 </li>
 <li>
+<a href="#Message_Controller">Message_Controller</a>
+</li>
+<li>
 <a href="#PaymentTypeForSale_Controller">PaymentTypeForSale_Controller</a>
 </li>
 <li>
@@ -142,6 +145,9 @@
 <a href="#Supplier_Controller">Supplier_Controller</a>
 </li>
 <li>
+<a href="#TemplateParam_Controller">TemplateParam_Controller</a>
+</li>
+<li>
 <a href="#User_Controller">User_Controller</a>
 </li>
 </ul>
@@ -164,6 +170,9 @@
 </li>
 <li>
 <a href="#UserDialog_Model">UserDialog_Model</a>
+</li>
+<li>
+<a href="#UserProfile_Model">UserProfile_Model</a>
 </li>
 <li>
 <a href="#CashRegister_Model">CashRegister_Model</a>
@@ -486,6 +495,21 @@
 <li>
 <a href="#DeliveryHourList_Model">DeliveryHourList_Model</a>
 </li>
+<li>
+<a href="#Message_Model">Message_Model</a>
+</li>
+<li>
+<a href="#MessageHeaderList_Model">MessageHeaderList_Model</a>
+</li>
+<li>
+<a href="#MessageRecipient_Model">MessageRecipient_Model</a>
+</li>
+<li>
+<a href="#MessageView_Model">MessageView_Model</a>
+</li>
+<li>
+<a href="#TemplateParam_Model">TemplateParam_Model</a>
+</li>
 </ul>
 <div class="section-title">Перечисления</div>
 <ul>
@@ -521,6 +545,12 @@
 </li>
 <li>
 <a href="#client_order_states">client_order_states</a>
+</li>
+<li>
+<a href="#message_types">message_types</a>
+</li>
+<li>
+<a href="#def_date_types">def_date_types</a>
 </li>
 </ul>
 </div>
@@ -1157,17 +1187,8 @@
 <a href="#DOCProductionList_Model">Модель: DOCProductionList_Model</a>
 <h2>get_object</h2>
 <a href="#DOCProductionList_Model">Модель: DOCProductionList_Model</a>
-<h2>before_open</h2>
-<p>Параметры:</p>
-<div class="content_item content_item2">
-<h3>doc_id</h3>
-<p></p>
-<div class="content_item content_item3">
-<p>Тип:Int</p>
-<p>Обязательное:
-								Нет</p>
-</div>
-</div>
+<h2>get_doc</h2>
+<a href="#DOCProductionList_Model">Модель: DOCProductionList_Model</a>
 <h2>fill_on_spec</h2>
 <p>Параметры:</p>
 <div class="content_item content_item2">
@@ -1669,6 +1690,15 @@
 <a href="#MaterialGroup_Model">Модель: MaterialGroup_Model</a>
 </div>
 </div>
+<div id="Message_Controller" class="content_box">
+<h1>Message_Controller</h1>
+<div class="content_item">
+<p class="big"></p>
+<p>Методы:</p>
+<h2>get_headers</h2>
+<a href="#MessageHeaderList_Model">Модель: MessageHeaderList_Model</a>
+</div>
+</div>
 <div id="PaymentTypeForSale_Controller" class="content_box">
 <h1>PaymentTypeForSale_Controller</h1>
 <div class="content_item">
@@ -2165,6 +2195,40 @@
 <a href="#SupplierList_Model">Модель: SupplierList_Model</a>
 </div>
 </div>
+<div id="TemplateParam_Controller" class="content_box">
+<h1>TemplateParam_Controller</h1>
+<div class="content_item">
+<p class="big"></p>
+<p>Методы:</p>
+<h2>get_list</h2>
+<a href="#TemplateParamList_Model">Модель: TemplateParamList_Model</a>
+<h2>set_value</h2>
+<p>Параметры:</p>
+<div class="content_item content_item2">
+<h3>template</h3>
+<p></p>
+<div class="content_item content_item3">
+<p>Тип:String</p>
+<p>Обязательное:
+								Нет</p>
+</div>
+<h3>param</h3>
+<p></p>
+<div class="content_item content_item3">
+<p>Тип:String</p>
+<p>Обязательное:
+								Нет</p>
+</div>
+<h3>val</h3>
+<p></p>
+<div class="content_item content_item3">
+<p>Тип:Text</p>
+<p>Обязательное:
+								Нет</p>
+</div>
+</div>
+</div>
+</div>
 <div id="User_Controller" class="content_box">
 <h1>User_Controller</h1>
 <div class="content_item">
@@ -2180,6 +2244,8 @@
 <a href="#UserList_Model">Модель: UserList_Model</a>
 <h2>get_object</h2>
 <a href="#UserDialog_Model">Модель: UserDialog_Model</a>
+<h2>get_profile</h2>
+<a href="#UserProfile_Model">Модель: UserProfile_Model</a>
 <h2>complete</h2>
 <a href="#UserList_Model">Модель: UserList_Model</a>
 <h2>reset_pwd</h2>
@@ -2285,7 +2351,7 @@
 <div>Обязательное:</div>
 <div>Длина:</div>
 <div>Точность:</div>
-<h2>phone_cel</h2>
+<h2>tel</h2>
 <div>Тип:String</div>
 <div>Первичный ключ:</div>
 <div>Обязательное:FALSE</div>
@@ -2333,7 +2399,7 @@
 <div>Обязательное:TRUE</div>
 <div>Длина:</div>
 <div>Точность:</div>
-<h2>phone_cel</h2>
+<h2>tel</h2>
 <div>Тип:String</div>
 <div>Первичный ключ:</div>
 <div>Обязательное:</div>
@@ -2357,7 +2423,7 @@
 <div>Обязательное:TRUE</div>
 <div>Длина:100</div>
 <div>Точность:</div>
-<h2>phone_cel</h2>
+<h2>tel</h2>
 <div>Тип:String</div>
 <div>Первичный ключ:</div>
 <div>Обязательное:</div>
@@ -3359,12 +3425,6 @@
 <div>Обязательное:</div>
 <div>Длина:</div>
 <div>Точность:</div>
-<h2>date_time_descr</h2>
-<div>Тип:String</div>
-<div>Первичный ключ:</div>
-<div>Обязательное:</div>
-<div>Длина:</div>
-<div>Точность:</div>
 <h2>store_id</h2>
 <div>Тип:Int</div>
 <div>Первичный ключ:</div>
@@ -3401,12 +3461,6 @@
 <div>Обязательное:</div>
 <div>Длина:15</div>
 <div>Точность:2</div>
-<h2>total_descr</h2>
-<div>Тип:String</div>
-<div>Первичный ключ:</div>
-<div>Обязательное:</div>
-<div>Длина:</div>
-<div>Точность:</div>
 </div>
 </div>
 <div id="DOCMaterialDisposal_Model" class="content_box">
@@ -3605,12 +3659,6 @@
 <div>Обязательное:</div>
 <div>Длина:</div>
 <div>Точность:</div>
-<h2>date_time_descr</h2>
-<div>Тип:String</div>
-<div>Первичный ключ:</div>
-<div>Обязательное:</div>
-<div>Длина:</div>
-<div>Точность:</div>
 <h2>number</h2>
 <div>Тип:String</div>
 <div>Первичный ключ:</div>
@@ -3647,6 +3695,12 @@
 <div>Обязательное:</div>
 <div>Длина:</div>
 <div>Точность:</div>
+<h2>cost</h2>
+<div>Тип:Float</div>
+<div>Первичный ключ:</div>
+<div>Обязательное:</div>
+<div>Длина:15</div>
+<div>Точность:2</div>
 <h2>explanation</h2>
 <div>Тип:String</div>
 <div>Первичный ключ:</div>
@@ -5201,19 +5255,7 @@
 <div>Обязательное:TRUE</div>
 <div>Длина:</div>
 <div>Точность:</div>
-<h2>quant_norm</h2>
-<div>Тип:Float</div>
-<div>Первичный ключ:</div>
-<div>Обязательное:</div>
-<div>Длина:19</div>
-<div>Точность:3</div>
 <h2>quant</h2>
-<div>Тип:Float</div>
-<div>Первичный ключ:</div>
-<div>Обязательное:</div>
-<div>Длина:19</div>
-<div>Точность:3</div>
-<h2>quant_waste</h2>
 <div>Тип:Float</div>
 <div>Первичный ключ:</div>
 <div>Обязательное:</div>
@@ -5249,19 +5291,7 @@
 <div>Обязательное:</div>
 <div>Длина:</div>
 <div>Точность:</div>
-<h2>quant_norm</h2>
-<div>Тип:Float</div>
-<div>Первичный ключ:</div>
-<div>Обязательное:</div>
-<div>Длина:</div>
-<div>Точность:</div>
 <h2>quant</h2>
-<div>Тип:Float</div>
-<div>Первичный ключ:</div>
-<div>Обязательное:</div>
-<div>Длина:</div>
-<div>Точность:</div>
-<h2>quant_waste</h2>
 <div>Тип:Float</div>
 <div>Первичный ключ:</div>
 <div>Обязательное:</div>
@@ -5273,8 +5303,8 @@
 <h1>DOCProductionDOCTMaterial_Model</h1>
 <div class="content_item">
 <p>Поля:</p>
-<h2>login_id</h2>
-<div>Тип:Int</div>
+<h2>tmp_doc_id</h2>
+<div>Тип:String</div>
 <div>Первичный ключ:TRUE</div>
 <div>Обязательное:</div>
 <div>Длина:</div>
@@ -5291,19 +5321,7 @@
 <div>Обязательное:TRUE</div>
 <div>Длина:</div>
 <div>Точность:</div>
-<h2>quant_norm</h2>
-<div>Тип:Float</div>
-<div>Первичный ключ:</div>
-<div>Обязательное:</div>
-<div>Длина:19</div>
-<div>Точность:3</div>
 <h2>quant</h2>
-<div>Тип:Float</div>
-<div>Первичный ключ:</div>
-<div>Обязательное:</div>
-<div>Длина:19</div>
-<div>Точность:3</div>
-<h2>quant_waste</h2>
 <div>Тип:Float</div>
 <div>Первичный ключ:</div>
 <div>Обязательное:</div>
@@ -5315,13 +5333,13 @@
 <h1>DOCProductionDOCTMaterialList_Model</h1>
 <div class="content_item">
 <p>Поля:</p>
-<h2>line_number</h2>
+<h2>tmp_doc_id</h2>
 <div>Тип:Int</div>
 <div>Первичный ключ:TRUE</div>
 <div>Обязательное:</div>
 <div>Длина:</div>
 <div>Точность:</div>
-<h2>login_id</h2>
+<h2>line_number</h2>
 <div>Тип:Int</div>
 <div>Первичный ключ:TRUE</div>
 <div>Обязательное:</div>
@@ -5339,19 +5357,7 @@
 <div>Обязательное:</div>
 <div>Длина:</div>
 <div>Точность:</div>
-<h2>quant_norm</h2>
-<div>Тип:Float</div>
-<div>Первичный ключ:</div>
-<div>Обязательное:</div>
-<div>Длина:</div>
-<div>Точность:</div>
 <h2>quant</h2>
-<div>Тип:Float</div>
-<div>Первичный ключ:</div>
-<div>Обязательное:</div>
-<div>Длина:</div>
-<div>Точность:</div>
-<h2>quant_waste</h2>
 <div>Тип:Float</div>
 <div>Первичный ключ:</div>
 <div>Обязательное:</div>
@@ -5369,6 +5375,12 @@
 <div>Обязательное:</div>
 <div>Длина:</div>
 <div>Точность:</div>
+<h2>tmp_id</h2>
+<div>Тип:String</div>
+<div>Первичный ключ:</div>
+<div>Обязательное:</div>
+<div>Длина:</div>
+<div>Точность:</div>
 <h2>number</h2>
 <div>Тип:String</div>
 <div>Первичный ключ:</div>
@@ -5381,18 +5393,6 @@
 <div>Обязательное:</div>
 <div>Длина:</div>
 <div>Точность:</div>
-<h2>date_time_descr</h2>
-<div>Тип:String</div>
-<div>Первичный ключ:</div>
-<div>Обязательное:</div>
-<div>Длина:</div>
-<div>Точность:</div>
-<h2>on_norm</h2>
-<div>Тип:Bool</div>
-<div>Первичный ключ:</div>
-<div>Обязательное:</div>
-<div>Длина:</div>
-<div>Точность:</div>
 <h2>store_id</h2>
 <div>Тип:Int</div>
 <div>Первичный ключ:</div>
@@ -5400,18 +5400,6 @@
 <div>Длина:</div>
 <div>Точность:</div>
 <h2>store_descr</h2>
-<div>Тип:String</div>
-<div>Первичный ключ:</div>
-<div>Обязательное:</div>
-<div>Длина:</div>
-<div>Точность:</div>
-<h2>product_order_type</h2>
-<div>Тип:String</div>
-<div>Первичный ключ:</div>
-<div>Обязательное:</div>
-<div>Длина:</div>
-<div>Точность:</div>
-<h2>product_order_type_descr</h2>
 <div>Тип:String</div>
 <div>Первичный ключ:</div>
 <div>Обязательное:</div>
@@ -5453,25 +5441,19 @@
 <div>Обязательное:</div>
 <div>Длина:15</div>
 <div>Точность:2</div>
-<h2>sum_descr</h2>
+<h2>mat_sum</h2>
 <div>Тип:Float</div>
 <div>Первичный ключ:</div>
 <div>Обязательное:</div>
 <div>Длина:15</div>
 <div>Точность:2</div>
-<h2>mat_sum_descr</h2>
+<h2>mat_cost</h2>
 <div>Тип:Float</div>
 <div>Первичный ключ:</div>
 <div>Обязательное:</div>
 <div>Длина:15</div>
 <div>Точность:2</div>
 <h2>processed</h2>
-<div>Тип:String</div>
-<div>Первичный ключ:</div>
-<div>Обязательное:</div>
-<div>Длина:</div>
-<div>Точность:</div>
-<h2>rest</h2>
 <div>Тип:String</div>
 <div>Первичный ключ:</div>
 <div>Обязательное:</div>
@@ -6281,12 +6263,6 @@
 <div>Обязательное:</div>
 <div>Длина:</div>
 <div>Точность:</div>
-<h2>date_time_descr</h2>
-<div>Тип:String</div>
-<div>Первичный ключ:</div>
-<div>Обязательное:</div>
-<div>Длина:</div>
-<div>Точность:</div>
 <h2>number</h2>
 <div>Тип:String</div>
 <div>Первичный ключ:</div>
@@ -6737,13 +6713,13 @@
 <div>Обязательное:</div>
 <div>Длина:</div>
 <div>Точность:</div>
-<h2>main_toatl</h2>
+<h2>main_total</h2>
 <div>Тип:Float</div>
 <div>Первичный ключ:</div>
 <div>Обязательное:</div>
 <div>Длина:</div>
 <div>Точность:</div>
-<h2>procur_avg_time_descr</h2>
+<h2>procur_avg_time</h2>
 <div>Тип:String</div>
 <div>Первичный ключ:</div>
 <div>Обязательное:</div>
@@ -6805,6 +6781,180 @@
 <div>Точность:</div>
 <h2>material_group_id</h2>
 <div>Тип:String</div>
+<div>Первичный ключ:</div>
+<div>Обязательное:</div>
+<div>Длина:</div>
+<div>Точность:</div>
+</div>
+</div>
+<div id="Message_Model" class="content_box">
+<h1>Message_Model</h1>
+<div class="content_item">
+<p>Поля:</p>
+<h2>id</h2>
+<div>Тип:Int</div>
+<div>Первичный ключ:TRUE</div>
+<div>Обязательное:</div>
+<div>Длина:</div>
+<div>Точность:</div>
+<h2>message_type</h2>
+<div>Тип:Enum</div>
+<div>Первичный ключ:</div>
+<div>Обязательное:TRUE</div>
+<div>Длина:</div>
+<div>Точность:</div>
+<h2>user_id</h2>
+<div>Тип:Int</div>
+<div>Первичный ключ:</div>
+<div>Обязательное:TRUE</div>
+<div>Длина:</div>
+<div>Точность:</div>
+<h2>require_view</h2>
+<div>Тип:Boolean</div>
+<div>Первичный ключ:</div>
+<div>Обязательное:</div>
+<div>Длина:</div>
+<div>Точность:</div>
+<h2>subject</h2>
+<div>Тип:Text</div>
+<div>Первичный ключ:</div>
+<div>Обязательное:TRUE</div>
+<div>Длина:</div>
+<div>Точность:</div>
+<h2>content</h2>
+<div>Тип:Text</div>
+<div>Первичный ключ:</div>
+<div>Обязательное:</div>
+<div>Длина:</div>
+<div>Точность:</div>
+<h2>importance_level</h2>
+<div>Тип:Int</div>
+<div>Первичный ключ:</div>
+<div>Обязательное:</div>
+<div>Длина:</div>
+<div>Точность:</div>
+<h2>date_time</h2>
+<div>Тип:DateTime</div>
+<div>Первичный ключ:</div>
+<div>Обязательное:</div>
+<div>Длина:</div>
+<div>Точность:</div>
+</div>
+</div>
+<div id="MessageHeaderList_Model" class="content_box">
+<h1>MessageHeaderList_Model</h1>
+<div class="content_item">
+<p>Поля:</p>
+<h2>id</h2>
+<div>Тип:Int</div>
+<div>Первичный ключ:TRUE</div>
+<div>Обязательное:</div>
+<div>Длина:</div>
+<div>Точность:</div>
+<h2>message_type</h2>
+<div>Тип:Enum</div>
+<div>Первичный ключ:</div>
+<div>Обязательное:TRUE</div>
+<div>Длина:</div>
+<div>Точность:</div>
+<h2>user_id</h2>
+<div>Тип:Int</div>
+<div>Первичный ключ:</div>
+<div>Обязательное:TRUE</div>
+<div>Длина:</div>
+<div>Точность:</div>
+<h2>user_descr</h2>
+<div>Тип:String</div>
+<div>Первичный ключ:</div>
+<div>Обязательное:</div>
+<div>Длина:</div>
+<div>Точность:</div>
+<h2>require_view</h2>
+<div>Тип:Boolean</div>
+<div>Первичный ключ:</div>
+<div>Обязательное:</div>
+<div>Длина:</div>
+<div>Точность:</div>
+<h2>subject</h2>
+<div>Тип:Text</div>
+<div>Первичный ключ:</div>
+<div>Обязательное:TRUE</div>
+<div>Длина:</div>
+<div>Точность:</div>
+<h2>importance_level</h2>
+<div>Тип:Int</div>
+<div>Первичный ключ:</div>
+<div>Обязательное:</div>
+<div>Длина:</div>
+<div>Точность:</div>
+<h2>date_time</h2>
+<div>Тип:DateTime</div>
+<div>Первичный ключ:</div>
+<div>Обязательное:</div>
+<div>Длина:</div>
+<div>Точность:</div>
+</div>
+</div>
+<div id="MessageRecipient_Model" class="content_box">
+<h1>MessageRecipient_Model</h1>
+<div class="content_item">
+<p>Поля:</p>
+<h2>id</h2>
+<div>Тип:Int</div>
+<div>Первичный ключ:TRUE</div>
+<div>Обязательное:</div>
+<div>Длина:</div>
+<div>Точность:</div>
+<h2>message_id</h2>
+<div>Тип:Int</div>
+<div>Первичный ключ:</div>
+<div>Обязательное:TRUE</div>
+<div>Длина:</div>
+<div>Точность:</div>
+<h2>for_store_id</h2>
+<div>Тип:Int</div>
+<div>Первичный ключ:</div>
+<div>Обязательное:</div>
+<div>Длина:</div>
+<div>Точность:</div>
+<h2>for_role_id</h2>
+<div>Тип:Enum</div>
+<div>Первичный ключ:</div>
+<div>Обязательное:</div>
+<div>Длина:</div>
+<div>Точность:</div>
+<h2>for_user_id</h2>
+<div>Тип:Int</div>
+<div>Первичный ключ:</div>
+<div>Обязательное:</div>
+<div>Длина:</div>
+<div>Точность:</div>
+</div>
+</div>
+<div id="MessageView_Model" class="content_box">
+<h1>MessageView_Model</h1>
+<div class="content_item">
+<p>Поля:</p>
+<h2>id</h2>
+<div>Тип:Int</div>
+<div>Первичный ключ:TRUE</div>
+<div>Обязательное:</div>
+<div>Длина:</div>
+<div>Точность:</div>
+<h2>message_id</h2>
+<div>Тип:Int</div>
+<div>Первичный ключ:</div>
+<div>Обязательное:TRUE</div>
+<div>Длина:</div>
+<div>Точность:</div>
+<h2>user_id</h2>
+<div>Тип:Int</div>
+<div>Первичный ключ:</div>
+<div>Обязательное:</div>
+<div>Длина:</div>
+<div>Точность:</div>
+<h2>date_time</h2>
+<div>Тип:DateTime</div>
 <div>Первичный ключ:</div>
 <div>Обязательное:</div>
 <div>Длина:</div>
@@ -6899,6 +7049,12 @@
 <div>Обязательное:</div>
 <div>Длина:</div>
 <div>Точность:</div>
+<h2>code</h2>
+<div>Тип:String</div>
+<div>Первичный ключ:</div>
+<div>Обязательное:</div>
+<div>Длина:</div>
+<div>Точность:</div>
 <h2>name</h2>
 <div>Тип:String</div>
 <div>Первичный ключ:</div>
@@ -6967,12 +7123,6 @@
 <div>Точность:2</div>
 <h2>for_sale</h2>
 <div>Тип:Bool</div>
-<div>Первичный ключ:</div>
-<div>Обязательное:</div>
-<div>Длина:</div>
-<div>Точность:</div>
-<h2>for_sale_descr</h2>
-<div>Тип:String</div>
 <div>Первичный ключ:</div>
 <div>Обязательное:</div>
 <div>Длина:</div>
@@ -8004,17 +8154,17 @@
 <div>Длина:</div>
 <div>Точность:</div>
 <h2>product_quant</h2>
-<div>Тип:String</div>
+<div>Тип:Int</div>
 <div>Первичный ключ:</div>
 <div>Обязательное:</div>
 <div>Длина:</div>
 <div>Точность:</div>
 <h2>material_quant</h2>
-<div>Тип:String</div>
+<div>Тип:Float</div>
 <div>Первичный ключ:</div>
 <div>Обязательное:</div>
-<div>Длина:</div>
-<div>Точность:</div>
+<div>Длина:19</div>
+<div>Точность:3</div>
 </div>
 </div>
 <div id="Store_Model" class="content_box">
@@ -8119,6 +8269,42 @@
 <div>Точность:</div>
 </div>
 </div>
+<div id="TemplateParam_Model" class="content_box">
+<h1>TemplateParam_Model</h1>
+<div class="content_item">
+<p>Поля:</p>
+<h2>id</h2>
+<div>Тип:Int</div>
+<div>Первичный ключ:TRUE</div>
+<div>Обязательное:</div>
+<div>Длина:</div>
+<div>Точность:</div>
+<h2>template</h2>
+<div>Тип:String</div>
+<div>Первичный ключ:</div>
+<div>Обязательное:</div>
+<div>Длина:100</div>
+<div>Точность:</div>
+<h2>user_id</h2>
+<div>Тип:Int</div>
+<div>Первичный ключ:</div>
+<div>Обязательное:</div>
+<div>Длина:</div>
+<div>Точность:</div>
+<h2>param</h2>
+<div>Тип:String</div>
+<div>Первичный ключ:</div>
+<div>Обязательное:</div>
+<div>Длина:100</div>
+<div>Точность:</div>
+<h2>val</h2>
+<div>Тип:Text</div>
+<div>Первичный ключ:</div>
+<div>Обязательное:</div>
+<div>Длина:</div>
+<div>Точность:</div>
+</div>
+</div>
 <div id="User_Model" class="content_box">
 <h1>User_Model</h1>
 <div class="content_item">
@@ -8153,6 +8339,12 @@
 <div>Обязательное:</div>
 <div>Длина:32</div>
 <div>Точность:</div>
+<h2>phone_cel</h2>
+<div>Тип:String</div>
+<div>Первичный ключ:</div>
+<div>Обязательное:</div>
+<div>Длина:11</div>
+<div>Точность:</div>
 <h2>store_id</h2>
 <div>Тип:Int</div>
 <div>Первичный ключ:</div>
@@ -8168,7 +8360,7 @@
 <h2>cash_register_id</h2>
 <div>Тип:Int</div>
 <div>Первичный ключ:</div>
-<div>Обязательное:TRUE</div>
+<div>Обязательное:</div>
 <div>Длина:</div>
 <div>Точность:</div>
 </div>
@@ -8206,6 +8398,12 @@
 <div>Первичный ключ:</div>
 <div>Обязательное:</div>
 <div>Длина:</div>
+<div>Точность:</div>
+<h2>phone_cel</h2>
+<div>Тип:String</div>
+<div>Первичный ключ:</div>
+<div>Обязательное:</div>
+<div>Длина:11</div>
 <div>Точность:</div>
 <h2>store_descr</h2>
 <div>Тип:String</div>
@@ -8261,6 +8459,12 @@
 <div>Обязательное:</div>
 <div>Длина:</div>
 <div>Точность:</div>
+<h2>phone_cel</h2>
+<div>Тип:String</div>
+<div>Первичный ключ:</div>
+<div>Обязательное:</div>
+<div>Длина:11</div>
+<div>Точность:</div>
 <h2>constrain_to_store</h2>
 <div>Тип:Bool</div>
 <div>Первичный ключ:</div>
@@ -8281,6 +8485,36 @@
 <div>Точность:</div>
 </div>
 </div>
+<div id="UserProfile_Model" class="content_box">
+<h1>UserProfile_Model</h1>
+<div class="content_item">
+<p>Поля:</p>
+<h2>id</h2>
+<div>Тип:Int</div>
+<div>Первичный ключ:TRUE</div>
+<div>Обязательное:</div>
+<div>Длина:</div>
+<div>Точность:</div>
+<h2>name</h2>
+<div>Тип:String</div>
+<div>Первичный ключ:</div>
+<div>Обязательное:</div>
+<div>Длина:</div>
+<div>Точность:</div>
+<h2>email</h2>
+<div>Тип:String</div>
+<div>Первичный ключ:</div>
+<div>Обязательное:</div>
+<div>Длина:</div>
+<div>Точность:</div>
+<h2>phone_cel</h2>
+<div>Тип:String</div>
+<div>Первичный ключ:</div>
+<div>Обязательное:</div>
+<div>Длина:11</div>
+<div>Точность:</div>
+</div>
+</div>
 <div id="client_order_states" class="content_box">
 <h1>client_order_states</h1>
 <div class="content_item">
@@ -8294,6 +8528,25 @@
 <div>Описание:Забрал курьер</div>
 <h2>closed</h2>
 <div>Описание:Выполнен</div>
+</div>
+</div>
+<div id="def_date_types" class="content_box">
+<h1>def_date_types</h1>
+<div class="content_item">
+<p class="big"></p>
+<p>Значения:</p>
+<h2>cur_shift</h2>
+<div>Описание:Текущая смена</div>
+<h2>cur_date</h2>
+<div>Описание:Текущая дата</div>
+<h2>cur_week</h2>
+<div>Описание:Текущая неделя</div>
+<h2>cur_month</h2>
+<div>Описание:Текущий месяц</div>
+<h2>cur_quarter</h2>
+<div>Описание:Текущий квартал</div>
+<h2>cur_year</h2>
+<div>Описание:Текущий год</div>
 </div>
 </div>
 <div id="delivery_note_types" class="content_box">
@@ -8341,6 +8594,19 @@
 <div>Описание:Затраты</div>
 <h2>doc_client_order</h2>
 <div>Описание:Заказы покупателей</div>
+</div>
+</div>
+<div id="message_types" class="content_box">
+<h1>message_types</h1>
+<div class="content_item">
+<p class="big"></p>
+<p>Значения:</p>
+<h2>error</h2>
+<div>Описание:Ошибка</div>
+<h2>warning</h2>
+<div>Описание:Предупреждение</div>
+<h2>info</h2>
+<div>Описание:Информация</div>
 </div>
 </div>
 <div id="payment_types" class="content_box">

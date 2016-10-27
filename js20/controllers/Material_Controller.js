@@ -98,7 +98,7 @@ extend(Material_Controller,ControllerDb);
 	var field;
 	var options;	
 	var pm = this.getUpdate();
-	options = {};
+	options = {"sendNulls":true};
 	options.alias = "Код";options.primaryKey = true;options.autoInc = true;
 	var field = new FieldInt("id",options);
 	
@@ -108,43 +108,43 @@ extend(Material_Controller,ControllerDb);
 	field = new FieldInt("old_id",{});
 	pm.addField(field);
 	
-	options = {};
-	options.alias = "Наименование";options.required = true;
+	options = {"sendNulls":true};
+	options.alias = "Наименование";
 	var field = new FieldString("name",options);
 	
 	pm.addField(field);
 	
 	
-	options = {};
-	options.alias = "Описание";options.required = true;
+	options = {"sendNulls":true};
+	options.alias = "Описание";
 	var field = new FieldText("name_full",options);
 	
 	pm.addField(field);
 	
 	
-	options = {};
-	options.alias = "Розничная цена";options.required = true;
+	options = {"sendNulls":true};
+	options.alias = "Розничная цена";
 	var field = new FieldFloat("price",options);
 	
 	pm.addField(field);
 	
 	
-	options = {};
+	options = {"sendNulls":true};
 	options.alias = "Для продажи";
 	var field = new FieldBool("for_sale",options);
 	
 	pm.addField(field);
 	
 	
-	options = {};
+	options = {"sendNulls":true};
 	options.alias = "Наценка (%)";
 	var field = new FieldInt("margin_percent",options);
 	
 	pm.addField(field);
 	
 	
-	options = {};
-	options.alias = "Группа";options.required = true;
+	options = {"sendNulls":true};
+	options.alias = "Группа";
 	var field = new FieldInt("material_group_id",options);
 	
 	pm.addField(field);
@@ -199,23 +199,17 @@ extend(Material_Controller,ControllerDb);
 	
 	var options = {};
 	
-		options.required = true;
-	
 		pm.addField(new FieldString("cond_fields",options));
 	
 				
 	
 	var options = {};
 	
-		options.required = true;
-	
 		pm.addField(new FieldString("cond_vals",options));
 	
 				
 	
 	var options = {};
-	
-		options.required = true;
 	
 		pm.addField(new FieldString("cond_sgns",options));
 	
@@ -224,6 +218,12 @@ extend(Material_Controller,ControllerDb);
 	var options = {};
 	
 		pm.addField(new FieldString("cond_ic",options));
+	
+				
+	
+	var options = {};
+	
+		pm.addField(new FieldString("field_sep",options));
 	
 				
 	

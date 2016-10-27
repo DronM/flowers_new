@@ -88,7 +88,7 @@ extend(DOCMaterialOrder_Controller,ControllerDb);
 	var field;
 	var options;	
 	var pm = this.getUpdate();
-	options = {};
+	options = {"sendNulls":true};
 	options.primaryKey = true;options.autoInc = true;
 	var field = new FieldInt("id",options);
 	
@@ -98,35 +98,35 @@ extend(DOCMaterialOrder_Controller,ControllerDb);
 	field = new FieldInt("old_id",{});
 	pm.addField(field);
 	
-	options = {};
-	options.alias = "Дата";options.required = true;
+	options = {"sendNulls":true};
+	options.alias = "Дата";
 	var field = new FieldDateTime("date_time",options);
 	
 	pm.addField(field);
 	
 	
-	options = {};
+	options = {"sendNulls":true};
 	options.alias = "Номер";
 	var field = new FieldInt("number",options);
 	
 	pm.addField(field);
 	
 	
-	options = {};
+	options = {"sendNulls":true};
 	options.alias = "Проведен";
 	var field = new FieldBool("processed",options);
 	
 	pm.addField(field);
 	
 	
-	options = {};
+	options = {"sendNulls":true};
 	options.alias = "Магазин";
 	var field = new FieldInt("store_id",options);
 	
 	pm.addField(field);
 	
 	
-	options = {};
+	options = {"sendNulls":true};
 	options.alias = "Автор";
 	var field = new FieldInt("user_id",options);
 	

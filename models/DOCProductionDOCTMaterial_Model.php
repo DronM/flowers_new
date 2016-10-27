@@ -1,10 +1,11 @@
 <?php
 
-require_once(FRAME_WORK_PATH.'basic_classes/ModelSQLDOCT.php');
+require_once(FRAME_WORK_PATH.'basic_classes/ModelSQL.php');
 require_once(FRAME_WORK_PATH.'basic_classes/FieldSQLInt.php');
+require_once(FRAME_WORK_PATH.'basic_classes/FieldSQLString.php');
 require_once(FRAME_WORK_PATH.'basic_classes/FieldSQLFloat.php');
 
-class DOCProductionDOCTMaterial_Model extends ModelSQLDOCT{
+class DOCProductionDOCTMaterial_Model extends ModelSQL{
 	
 	public function __construct($dbLink){
 		parent::__construct($dbLink);
@@ -13,16 +14,16 @@ class DOCProductionDOCTMaterial_Model extends ModelSQLDOCT{
 		
 		$this->setTableName("doc_productions_t_tmp_materials");
 		
-		$f_login_id=new FieldSQlInt($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"login_id"
+		$f_tmp_doc_id=new FieldSQlString($this->getDbLink(),$this->getDbName(),$this->getTableName()
+		,"tmp_doc_id"
 		,array(
 		
 			'primaryKey'=>TRUE,
-			'id'=>"login_id"
+			'id'=>"tmp_doc_id"
 				
 		
 		));
-		$this->addField($f_login_id);
+		$this->addField($f_tmp_doc_id);
 
 		$f_line_number=new FieldSQlInt($this->getDbLink(),$this->getDbName(),$this->getTableName()
 		,"line_number"
@@ -47,19 +48,6 @@ class DOCProductionDOCTMaterial_Model extends ModelSQLDOCT{
 		));
 		$this->addField($f_material_id);
 
-		$f_quant_norm=new FieldSQlFloat($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"quant_norm"
-		,array(
-		
-			'alias'=>"Количество"
-		,
-			'length'=>19,
-			'id'=>"quant_norm"
-				
-		
-		));
-		$this->addField($f_quant_norm);
-
 		$f_quant=new FieldSQlFloat($this->getDbLink(),$this->getDbName(),$this->getTableName()
 		,"quant"
 		,array(
@@ -72,19 +60,6 @@ class DOCProductionDOCTMaterial_Model extends ModelSQLDOCT{
 		
 		));
 		$this->addField($f_quant);
-
-		$f_quant_waste=new FieldSQlFloat($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"quant_waste"
-		,array(
-		
-			'alias'=>"Количество"
-		,
-			'length'=>19,
-			'id'=>"quant_waste"
-				
-		
-		));
-		$this->addField($f_quant_waste);
 
 		
 		

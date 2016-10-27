@@ -28,7 +28,7 @@ class Client_Controller extends ControllerSQL{
 				'alias'=>'Полное наименование'
 			));
 		$pm->addParam($param);
-		$param = new FieldExtString('phone_cel'
+		$param = new FieldExtString('tel'
 				,array('required'=>FALSE,
 				'alias'=>'Сотовый телефон'
 			));
@@ -76,7 +76,7 @@ class Client_Controller extends ControllerSQL{
 				'alias'=>'Полное наименование'
 			));
 			$pm->addParam($param);
-		$param = new FieldExtString('phone_cel'
+		$param = new FieldExtString('tel'
 				,array(
 			
 				'alias'=>'Сотовый телефон'

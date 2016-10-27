@@ -18,7 +18,7 @@ class DOCProductionDOCTMaterial_Controller extends ControllerSQL{
 			
 		/* insert */
 		$pm = new PublicMethod('insert');
-		$param = new FieldExtInt('login_id'
+		$param = new FieldExtString('tmp_doc_id'
 				,array());
 		$pm->addParam($param);
 		$param = new FieldExtInt('line_number'
@@ -29,17 +29,7 @@ class DOCProductionDOCTMaterial_Controller extends ControllerSQL{
 				'alias'=>'Материал'
 			));
 		$pm->addParam($param);
-		$param = new FieldExtFloat('quant_norm'
-				,array(
-				'alias'=>'Количество'
-			));
-		$pm->addParam($param);
 		$param = new FieldExtFloat('quant'
-				,array(
-				'alias'=>'Количество'
-			));
-		$pm->addParam($param);
-		$param = new FieldExtFloat('quant_waste'
 				,array(
 				'alias'=>'Количество'
 			));
@@ -53,12 +43,12 @@ class DOCProductionDOCTMaterial_Controller extends ControllerSQL{
 		/* update */		
 		$pm = new PublicMethod('update');
 		
-		$pm->addParam(new FieldExtInt('old_login_id',array('required'=>TRUE)));
+		$pm->addParam(new FieldExtString('old_tmp_doc_id',array('required'=>TRUE)));
 		
 		$pm->addParam(new FieldExtInt('old_line_number',array('required'=>TRUE)));
 		
 		$pm->addParam(new FieldExtInt('obj_mode'));
-		$param = new FieldExtInt('login_id'
+		$param = new FieldExtString('tmp_doc_id'
 				,array(
 			));
 			$pm->addParam($param);
@@ -72,26 +62,14 @@ class DOCProductionDOCTMaterial_Controller extends ControllerSQL{
 				'alias'=>'Материал'
 			));
 			$pm->addParam($param);
-		$param = new FieldExtFloat('quant_norm'
-				,array(
-			
-				'alias'=>'Количество'
-			));
-			$pm->addParam($param);
 		$param = new FieldExtFloat('quant'
 				,array(
 			
 				'alias'=>'Количество'
 			));
 			$pm->addParam($param);
-		$param = new FieldExtFloat('quant_waste'
-				,array(
-			
-				'alias'=>'Количество'
-			));
-			$pm->addParam($param);
 		
-			$param = new FieldExtInt('login_id',array(
+			$param = new FieldExtString('tmp_doc_id',array(
 			));
 			$pm->addParam($param);
 		
@@ -107,7 +85,7 @@ class DOCProductionDOCTMaterial_Controller extends ControllerSQL{
 		/* delete */
 		$pm = new PublicMethod('delete');
 		
-		$pm->addParam(new FieldExtInt('login_id'
+		$pm->addParam(new FieldExtString('tmp_doc_id'
 		));		
 		
 		$pm->addParam(new FieldExtInt('line_number'
@@ -142,10 +120,10 @@ class DOCProductionDOCTMaterial_Controller extends ControllerSQL{
 		$pm = new PublicMethod('get_object');
 		$pm->addParam(new FieldExtInt('browse_mode'));
 		
-		$pm->addParam(new FieldExtInt('line_number'
+		$pm->addParam(new FieldExtInt('tmp_doc_id'
 		));
 		
-		$pm->addParam(new FieldExtInt('login_id'
+		$pm->addParam(new FieldExtInt('line_number'
 		));
 		
 		$this->addPublicMethod($pm);

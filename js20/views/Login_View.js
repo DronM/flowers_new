@@ -16,36 +16,32 @@ function Login_View(id,options){
 	
 	this.addElement(new ErrorControl(id+":error",{"app":options.app}));
 	
+	var check_for_enter = function(e){
+		e = EventHelper.fixKeyEvent(e);
+		if (e.keyCode==13){
+			self.login();
+		}
+	};
+					
 	this.addElement(new EditString(id+":user",{				
-		"placeholder":"Пользователь (email)",
+		"placeholder":this.CTRL_USER_LAB[options.app.getLang()],
 		"editContClassName":"form-group",
 		"focus":true,
-		"noClear":true,
+		"cmdClear":false,
+		"events":{"keydown":check_for_enter},
 		"app":options.app
 	}));	
 	
 	this.addElement(new EditPassword(id+":pwd",{
-		"placeholder":"Пароль",
+		"placeholder":this.CTRL_PWD_LAB[options.app.getLang()],
 		"editContClassName":"form-group",
+		"events":{"keydown":check_for_enter},
 		"app":options.app
 	}));	
 
 	this.addElement(new Button(id+":submit_login",{
-		"caption":"Войти",
-		"className":"btn btn-lg btn-success btn-block",
 		"onClick":function(){
-			self.execCommand("login",function(){
-				document.location.href = self.getApp().getHost();
-			},
-			function(resp,errCode,errStr){
-				if (errCode==100){
-					self.setError("Неправильный логин или пароль.");
-				}
-				else{
-					self.setError(errCode+" "+errStr);
-				}
-			}
-			);
+			self.login();
 		},
 		"app":options.app
 	}));
@@ -69,4 +65,20 @@ extend(Login_View,ViewAjx);
 
 Login_View.prototype.setError = function(s){
 	this.getElement("error").setValue(s);
+}
+
+Login_View.prototype.login = function(){
+	var self = this;
+	this.execCommand("login",function(){
+		document.location.href = self.getApp().getHost();
+	},
+	function(resp,errCode,errStr){
+		if (errCode==100){
+			self.setError(self.ER_LOGIN[self.getApp().getLang()]);
+		}
+		else{
+			self.setError(errCode+" "+errStr);
+		}
+	}
+	);
 }

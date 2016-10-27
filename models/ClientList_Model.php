@@ -36,16 +36,18 @@ class ClientList_Model extends ModelSQL{
 		));
 		$this->addField($f_name);
 
-		$f_phone_cel=new FieldSQlString($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"phone_cel"
+		$f_tel=new FieldSQlString($this->getDbLink(),$this->getDbName(),$this->getTableName()
+		,"tel"
 		,array(
 		
-			'id'=>"phone_cel"
+			'alias'=>"Телефон"
+		,
+			'id'=>"tel"
 				
 		
 		));
-		$this->addField($f_phone_cel);
-
+		$this->addField($f_tel);
+$this->limitConstant = 'doc_per_page_count';
 		
 		
 		

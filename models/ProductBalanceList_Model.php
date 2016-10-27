@@ -27,6 +27,18 @@ class ProductBalanceList_Model extends ModelSQL{
 		));
 		$this->addField($f_id);
 
+		$f_code=new FieldSQlString($this->getDbLink(),$this->getDbName(),$this->getTableName()
+		,"code"
+		,array(
+		
+			'alias'=>"Код"
+		,
+			'id'=>"code"
+				
+		
+		));
+		$this->addField($f_code);
+
 		$f_name=new FieldSQlString($this->getDbLink(),$this->getDbName(),$this->getTableName()
 		,"name"
 		,array(

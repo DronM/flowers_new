@@ -7,14 +7,12 @@ CREATE OR REPLACE VIEW doc_expences_list AS
 		doc.id,
 		doc.number,
 		doc.date_time,
-		date8_time8_descr(doc.date_time) AS date_time_descr,
 		doc.processed,
 		doc.store_id,
 		st.name AS store_descr,
 		doc.user_id,
 		u.name AS user_descr,
 		
-		format_money(doc_lines.total) AS total_descr,
 		COALESCE(doc_lines.total,0) AS total
 		
 	FROM doc_expences doc

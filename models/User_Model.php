@@ -72,6 +72,17 @@ class User_Model extends ModelSQL{
 		));
 		$this->addField($f_pwd);
 
+		$f_phone_cel=new FieldSQlString($this->getDbLink(),$this->getDbName(),$this->getTableName()
+		,"phone_cel"
+		,array(
+		
+			'length'=>11,
+			'id'=>"phone_cel"
+				
+		
+		));
+		$this->addField($f_phone_cel);
+
 		$f_store_id=new FieldSQlInt($this->getDbLink(),$this->getDbName(),$this->getTableName()
 		,"store_id"
 		,array(
@@ -99,7 +110,7 @@ class User_Model extends ModelSQL{
 		$f_cash_register_id=new FieldSQlInt($this->getDbLink(),$this->getDbName(),$this->getTableName()
 		,"cash_register_id"
 		,array(
-		'required'=>TRUE,
+		
 			'id'=>"cash_register_id"
 				
 		

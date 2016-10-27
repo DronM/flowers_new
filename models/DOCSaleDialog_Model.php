@@ -1,12 +1,12 @@
 <?php
 
-require_once(FRAME_WORK_PATH.'basic_classes/ModelSQLDOC.php');
+require_once(FRAME_WORK_PATH.'basic_classes/ModelSQLDOC20.php');
 require_once(FRAME_WORK_PATH.'basic_classes/FieldSQLInt.php');
 require_once(FRAME_WORK_PATH.'basic_classes/FieldSQLString.php');
 require_once(FRAME_WORK_PATH.'basic_classes/FieldSQLFloat.php');
 require_once(FRAME_WORK_PATH.'basic_classes/FieldSQLDateTime.php');
 
-class DOCSaleDialog_Model extends ModelSQLDOC{
+class DOCSaleDialog_Model extends ModelSQLDOC20{
 	
 	public function __construct($dbLink){
 		parent::__construct($dbLink);

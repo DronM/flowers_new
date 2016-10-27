@@ -78,7 +78,7 @@ extend(Specification_Controller,ControllerDb);
 	var field;
 	var options;	
 	var pm = this.getUpdate();
-	options = {};
+	options = {"sendNulls":true};
 	options.alias = "Код";options.primaryKey = true;options.autoInc = true;
 	var field = new FieldInt("id",options);
 	
@@ -88,29 +88,29 @@ extend(Specification_Controller,ControllerDb);
 	field = new FieldInt("old_id",{});
 	pm.addField(field);
 	
-	options = {};
-	options.alias = "Продукция";options.required = true;
+	options = {"sendNulls":true};
+	options.alias = "Продукция";
 	var field = new FieldInt("product_id",options);
 	
 	pm.addField(field);
 	
 	
-	options = {};
-	options.alias = "Материал";options.required = true;
+	options = {"sendNulls":true};
+	options.alias = "Материал";
 	var field = new FieldInt("material_id",options);
 	
 	pm.addField(field);
 	
 	
-	options = {};
+	options = {"sendNulls":true};
 	options.alias = "Кол.продукции";
 	var field = new FieldFloat("product_quant",options);
 	
 	pm.addField(field);
 	
 	
-	options = {};
-	options.alias = "Кол.материала";options.required = true;
+	options = {"sendNulls":true};
+	options.alias = "Кол.материала";
 	var field = new FieldFloat("material_quant",options);
 	
 	pm.addField(field);
@@ -137,8 +137,8 @@ extend(Specification_Controller,ControllerDb);
 	pm.addField(new FieldString("product_descr",options));
 	pm.addField(new FieldInt("material_id",options));
 	pm.addField(new FieldString("material_descr",options));
-	pm.addField(new FieldString("product_quant",options));
-	pm.addField(new FieldString("material_quant",options));
+	pm.addField(new FieldInt("product_quant",options));
+	pm.addField(new FieldFloat("material_quant",options));
 }
 
 			Specification_Controller.prototype.addGetObject = function(){

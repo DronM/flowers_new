@@ -47,22 +47,12 @@ function DOCExpenceList_Model(options){
 	var filed_options = {};
 	filed_options.primaryKey = false;
 	
+	filed_options.alias = 'Дата';
 	
 	var field = new FieldDateTime("date_time",filed_options);
 	
 
 	options.fields.date_time = field;
-
-			
-	var filed_options = {};
-	filed_options.primaryKey = false;
-	
-	filed_options.alias = 'Дата';
-	
-	var field = new FieldString("date_time_descr",filed_options);
-	
-
-	options.fields.date_time_descr = field;
 
 			
 	var filed_options = {};
@@ -128,16 +118,6 @@ function DOCExpenceList_Model(options){
 	
 
 	options.fields.total = field;
-
-			
-	var filed_options = {};
-	filed_options.primaryKey = false;
-	
-	
-	var field = new FieldString("total_descr",filed_options);
-	
-
-	options.fields.total_descr = field;
 
 			
 		DOCExpenceList_Model.superclass.constructor.call(this,id,options);

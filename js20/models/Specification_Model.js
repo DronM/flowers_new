@@ -48,7 +48,7 @@ function Specification_Model(options){
 	
 
 	options.fields.product_id = field;
-									
+
 			
 	var filed_options = {};
 	filed_options.primaryKey = false;
@@ -61,7 +61,7 @@ function Specification_Model(options){
 	
 
 	options.fields.material_id = field;
-						
+
 			
 	var filed_options = {};
 	filed_options.primaryKey = false;
@@ -74,7 +74,7 @@ function Specification_Model(options){
 	
 
 	options.fields.product_quant = field;
-						
+
 			
 	var filed_options = {};
 	filed_options.primaryKey = false;
@@ -89,7 +89,7 @@ function Specification_Model(options){
 	
 
 	options.fields.material_quant = field;
-						
+
 			
 						
 		Specification_Model.superclass.constructor.call(this,id,options);

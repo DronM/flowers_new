@@ -45,7 +45,7 @@ extend(ExpenceType_Controller,ControllerDb);
 	pm.addField(field);
 	
 	options = {};
-	options.required = true;
+	options.alias = "Наименование";options.required = true;
 	var field = new FieldString("name",options);
 	
 	pm.addField(field);
@@ -60,8 +60,8 @@ extend(ExpenceType_Controller,ControllerDb);
 	var field;
 	var options;	
 	var pm = this.getUpdate();
-	options = {};
-	options.primaryKey = true;options.autoInc = true;options.required = true;
+	options = {"sendNulls":true};
+	options.primaryKey = true;options.autoInc = true;
 	var field = new FieldInt("id",options);
 	
 	pm.addField(field);
@@ -70,8 +70,8 @@ extend(ExpenceType_Controller,ControllerDb);
 	field = new FieldInt("old_id",{});
 	pm.addField(field);
 	
-	options = {};
-	options.required = true;
+	options = {"sendNulls":true};
+	options.alias = "Наименование";
 	var field = new FieldString("name",options);
 	
 	pm.addField(field);

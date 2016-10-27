@@ -80,7 +80,7 @@ function DOCProductDisposal_Model(options){
 	
 
 	options.fields.store_id = field;
-			
+
 			
 	var filed_options = {};
 	filed_options.primaryKey = false;
@@ -91,7 +91,7 @@ function DOCProductDisposal_Model(options){
 	
 
 	options.fields.user_id = field;
-						
+
 			
 	var filed_options = {};
 	filed_options.primaryKey = false;
@@ -104,7 +104,7 @@ function DOCProductDisposal_Model(options){
 	
 
 	options.fields.doc_production_id = field;
-			
+
 			
 	var filed_options = {};
 	filed_options.primaryKey = false;
@@ -115,7 +115,8 @@ function DOCProductDisposal_Model(options){
 	
 
 	options.fields.explanation = field;
-						
+
+			
 						
 			
 			

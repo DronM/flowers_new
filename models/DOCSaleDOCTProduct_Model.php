@@ -1,10 +1,10 @@
 <?php
 
-require_once(FRAME_WORK_PATH.'basic_classes/ModelSQLDOCT.php');
+require_once(FRAME_WORK_PATH.'basic_classes/ModelSQL.php');
 require_once(FRAME_WORK_PATH.'basic_classes/FieldSQLInt.php');
 require_once(FRAME_WORK_PATH.'basic_classes/FieldSQLFloat.php');
 
-class DOCSaleDOCTProduct_Model extends ModelSQLDOCT{
+class DOCSaleDOCTProduct_Model extends ModelSQL{
 	
 	public function __construct($dbLink){
 		parent::__construct($dbLink);

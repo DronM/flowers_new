@@ -50,7 +50,7 @@ function Product_Model(options){
 	
 
 	options.fields.name = field;
-		
+
 			
 	var filed_options = {};
 	filed_options.primaryKey = false;
@@ -63,7 +63,7 @@ function Product_Model(options){
 	
 
 	options.fields.name_full = field;
-		
+
 			
 	var filed_options = {};
 	filed_options.primaryKey = false;
@@ -78,7 +78,7 @@ function Product_Model(options){
 	
 
 	options.fields.price = field;
-			
+
 			
 	var filed_options = {};
 	filed_options.primaryKey = false;

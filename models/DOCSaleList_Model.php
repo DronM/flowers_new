@@ -1,12 +1,12 @@
 <?php
 
-require_once(FRAME_WORK_PATH.'basic_classes/ModelSQLDOC.php');
+require_once(FRAME_WORK_PATH.'basic_classes/ModelSQLDOC20.php');
 require_once(FRAME_WORK_PATH.'basic_classes/FieldSQLInt.php');
 require_once(FRAME_WORK_PATH.'basic_classes/FieldSQLString.php');
 require_once(FRAME_WORK_PATH.'basic_classes/FieldSQLFloat.php');
 require_once(FRAME_WORK_PATH.'basic_classes/FieldSQLDateTime.php');
 
-class DOCSaleList_Model extends ModelSQLDOC{
+class DOCSaleList_Model extends ModelSQLDOC20{
 	
 	public function __construct($dbLink){
 		parent::__construct($dbLink);
@@ -32,25 +32,13 @@ class DOCSaleList_Model extends ModelSQLDOC{
 		,"date_time"
 		,array(
 		
-			'id'=>"date_time"
+			'alias'=>"Дата"
 		,
-			'sysCol'=>TRUE
+			'id'=>"date_time"
 				
 		
 		));
 		$this->addField($f_date_time);
-
-		$f_date_time_descr=new FieldSQlString($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"date_time_descr"
-		,array(
-		
-			'alias'=>"Дата"
-		,
-			'id'=>"date_time_descr"
-				
-		
-		));
-		$this->addField($f_date_time_descr);
 
 		$f_number=new FieldSQlString($this->getDbLink(),$this->getDbName(),$this->getTableName()
 		,"number"

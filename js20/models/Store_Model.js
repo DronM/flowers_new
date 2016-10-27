@@ -50,7 +50,7 @@ function Store_Model(options){
 	
 
 	options.fields.name = field;
-		
+
 		Store_Model.superclass.constructor.call(this,id,options);
 }
 extend(Store_Model,ModelXML);

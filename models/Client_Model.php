@@ -55,18 +55,18 @@ class Client_Model extends ModelSQL{
 		));
 		$this->addField($f_name_full);
 
-		$f_phone_cel=new FieldSQlString($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"phone_cel"
+		$f_tel=new FieldSQlString($this->getDbLink(),$this->getDbName(),$this->getTableName()
+		,"tel"
 		,array(
 		'required'=>FALSE,
 			'alias'=>"Сотовый телефон"
 		,
 			'length'=>15,
-			'id'=>"phone_cel"
+			'id'=>"tel"
 				
 		
 		));
-		$this->addField($f_phone_cel);
+		$this->addField($f_tel);
 
 		$f_manager_id=new FieldSQlInt($this->getDbLink(),$this->getDbName(),$this->getTableName()
 		,"manager_id"

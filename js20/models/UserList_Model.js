@@ -36,6 +36,7 @@ function UserList_Model(options){
 	var filed_options = {};
 	filed_options.primaryKey = false;
 	
+	filed_options.alias = 'Имя';
 	
 	var field = new FieldString("name",filed_options);
 	
@@ -46,11 +47,25 @@ function UserList_Model(options){
 	var filed_options = {};
 	filed_options.primaryKey = false;
 	
+	filed_options.alias = 'Роль';
 	
 	var field = new FieldString("role_descr",filed_options);
 	
 
 	options.fields.role_descr = field;
+
+			
+	var filed_options = {};
+	filed_options.primaryKey = false;
+	
+	filed_options.alias = 'Моб.телефон';
+	
+	var field = new FieldString("phone_cel",filed_options);
+	
+		field.getValidator().setMaxLength('11');
+	
+
+	options.fields.phone_cel = field;
 
 			
 	var filed_options = {};

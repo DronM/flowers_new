@@ -1,21 +1,20 @@
--- Function: product_list_with_balance(integer)
+-- Function: bellagio.product_list_with_balance(integer)
 
--- DROP FUNCTION product_list_with_balance(integer);
+ DROP FUNCTION product_list_with_balance(integer);
 
-CREATE OR REPLACE FUNCTION product_list_with_balance(
-	IN in_store_id integer)
+CREATE OR REPLACE FUNCTION product_list_with_balance(IN in_store_id integer)
   RETURNS TABLE(
-	code text,
-	id integer,
-	name text,
-	price text,
-	total text,
-	quant numeric,
-	order_quant numeric,
-	quant_descr text,
-	ord_quant_descr text,
-	after_production_time text
-	) AS
+  	code text,
+  	id integer,
+  	name text,
+  	price numeric,
+  	total numeric,
+  	quant numeric,
+  	order_quant numeric,
+  	quant_descr text,
+  	ord_quant_descr text,
+  	after_production_time text
+  ) AS
 $BODY$
 	WITH data AS (
 	SELECT 
@@ -52,8 +51,8 @@ $BODY$
 		data.code,
 		data.id,
 		data.name,
-		format_money(data.price),
-		format_money(data.total) AS total,
+		data.price,
+		data.total AS total,
 		data.quant,
 		data.order_quant,
 		data.quant_descr,
@@ -71,7 +70,7 @@ $BODY$
 		NULL,
 		NULL,
 		NULL,
-		format_money(SUM(agg.total)) AS total,
+		SUM(agg.total) AS total,
 		NULL,
 		NULL,
 		NULL,
@@ -85,5 +84,6 @@ $BODY$
   LANGUAGE sql VOLATILE
   COST 100
   ROWS 1000;
-ALTER FUNCTION product_list_with_balance(integer)
+ALTER FUNCTION bellagio.product_list_with_balance(integer)
   OWNER TO bellagio;
+

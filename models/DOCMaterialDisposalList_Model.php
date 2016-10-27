@@ -1,11 +1,12 @@
 <?php
 
-require_once(FRAME_WORK_PATH.'basic_classes/ModelSQLDOC.php');
+require_once(FRAME_WORK_PATH.'basic_classes/ModelSQLDOC20.php');
 require_once(FRAME_WORK_PATH.'basic_classes/FieldSQLInt.php');
 require_once(FRAME_WORK_PATH.'basic_classes/FieldSQLString.php');
+require_once(FRAME_WORK_PATH.'basic_classes/FieldSQLFloat.php');
 require_once(FRAME_WORK_PATH.'basic_classes/FieldSQLDateTime.php');
 
-class DOCMaterialDisposalList_Model extends ModelSQLDOC{
+class DOCMaterialDisposalList_Model extends ModelSQLDOC20{
 	
 	public function __construct($dbLink){
 		parent::__construct($dbLink);
@@ -31,6 +32,8 @@ class DOCMaterialDisposalList_Model extends ModelSQLDOC{
 		,"date_time"
 		,array(
 		
+			'alias'=>"Дата"
+		,
 			'id'=>"date_time"
 		,
 			'sysCol'=>TRUE
@@ -38,18 +41,6 @@ class DOCMaterialDisposalList_Model extends ModelSQLDOC{
 		
 		));
 		$this->addField($f_date_time);
-
-		$f_date_time_descr=new FieldSQlString($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"date_time_descr"
-		,array(
-		
-			'alias'=>"Дата"
-		,
-			'id'=>"date_time_descr"
-				
-		
-		));
-		$this->addField($f_date_time_descr);
 
 		$f_number=new FieldSQlString($this->getDbLink(),$this->getDbName(),$this->getTableName()
 		,"number"
@@ -122,6 +113,19 @@ class DOCMaterialDisposalList_Model extends ModelSQLDOC{
 		
 		));
 		$this->addField($f_user_descr);
+
+		$f_cost=new FieldSQlFloat($this->getDbLink(),$this->getDbName(),$this->getTableName()
+		,"cost"
+		,array(
+		
+			'alias'=>"Стоимость"
+		,
+			'length'=>15,
+			'id'=>"cost"
+				
+		
+		));
+		$this->addField($f_cost);
 
 		$f_explanation=new FieldSQlString($this->getDbLink(),$this->getDbName(),$this->getTableName()
 		,"explanation"

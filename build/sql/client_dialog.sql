@@ -7,11 +7,11 @@ CREATE OR REPLACE VIEW client_dialog AS
 		cl.id,
 		cl.name,
 		cl.name_full,
-		cl.phone_cel,
+		cl.tel,
 		cl.email
 	FROM clients AS cl
 	ORDER BY cl.name;
 	;
 ALTER TABLE client_dialog
-  OWNER TO beton;
+  OWNER TO bellagio;
   

@@ -65,7 +65,7 @@ class SupplierList_Model extends ModelSQL{
 		
 		));
 		$this->addField($f_email);
-
+$this->limitConstant = 'doc_per_page_count';
 		
 		
 		

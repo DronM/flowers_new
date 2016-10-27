@@ -1,11 +1,11 @@
 <?php
 
-require_once(FRAME_WORK_PATH.'basic_classes/ModelSQLDOC.php');
+require_once(FRAME_WORK_PATH.'basic_classes/ModelSQLDOC20.php');
 require_once(FRAME_WORK_PATH.'basic_classes/FieldSQLInt.php');
 require_once(FRAME_WORK_PATH.'basic_classes/FieldSQLString.php');
 require_once(FRAME_WORK_PATH.'basic_classes/FieldSQLDateTime.php');
 
-class DOCProductDisposalList_Model extends ModelSQLDOC{
+class DOCProductDisposalList_Model extends ModelSQLDOC20{
 	
 	public function __construct($dbLink){
 		parent::__construct($dbLink);
@@ -43,6 +43,8 @@ class DOCProductDisposalList_Model extends ModelSQLDOC{
 		,"date_time"
 		,array(
 		
+			'alias'=>"Дата"
+		,
 			'id'=>"date_time"
 		,
 			'sysCol'=>TRUE

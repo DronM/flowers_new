@@ -54,20 +54,7 @@ function DOCProductionDOCTFMaterial_Model(options){
 	
 
 	options.fields.material_id = field;
-			
-			
-	var filed_options = {};
-	filed_options.primaryKey = false;
-	
-	filed_options.alias = 'Количество';
-	
-	var field = new FieldFloat("quant_norm",filed_options);
-	
-		field.getValidator().setMaxLength('19');
-	
 
-	options.fields.quant_norm = field;
-			
 			
 	var filed_options = {};
 	filed_options.primaryKey = false;
@@ -80,19 +67,6 @@ function DOCProductionDOCTFMaterial_Model(options){
 	
 
 	options.fields.quant = field;
-
-			
-	var filed_options = {};
-	filed_options.primaryKey = false;
-	
-	filed_options.alias = 'Количество';
-	
-	var field = new FieldFloat("quant_waste",filed_options);
-	
-		field.getValidator().setMaxLength('19');
-	
-
-	options.fields.quant_waste = field;
 
 		DOCProductionDOCTFMaterial_Model.superclass.constructor.call(this,id,options);
 }

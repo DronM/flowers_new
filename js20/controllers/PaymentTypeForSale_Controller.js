@@ -73,8 +73,8 @@ extend(PaymentTypeForSale_Controller,ControllerDb);
 	var field;
 	var options;	
 	var pm = this.getUpdate();
-	options = {};
-	options.alias = "Код";options.primaryKey = true;options.autoInc = true;options.required = true;
+	options = {"sendNulls":true};
+	options.alias = "Код";options.primaryKey = true;options.autoInc = true;
 	var field = new FieldInt("id",options);
 	
 	pm.addField(field);
@@ -83,14 +83,14 @@ extend(PaymentTypeForSale_Controller,ControllerDb);
 	field = new FieldInt("old_id",{});
 	pm.addField(field);
 	
-	options = {};
-	options.alias = "Наименование";options.required = true;
+	options = {"sendNulls":true};
+	options.alias = "Наименование";
 	var field = new FieldString("name",options);
 	
 	pm.addField(field);
 	
 	
-	options = {};
+	options = {"sendNulls":true};
 	options.alias = "Вид оплаты из заказа";	
 	options.enumValues = 'cash,bank,yandex,trans_to_card,web_money';
 	
@@ -99,7 +99,7 @@ extend(PaymentTypeForSale_Controller,ControllerDb);
 	pm.addField(field);
 	
 	
-	options = {};
+	options = {"sendNulls":true};
 	options.alias = "Тип оплаты для ККМ";
 	var field = new FieldInt("kkm_type_close",options);
 	

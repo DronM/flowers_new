@@ -82,7 +82,7 @@ extend(DOCExpenceDOCTExpenceType_Controller,ControllerDb);
 	var field;
 	var options;	
 	var pm = this.getUpdate();
-	options = {};
+	options = {"sendNulls":true};
 	options.primaryKey = true;
 	var field = new FieldInt("login_id",options);
 	
@@ -92,7 +92,7 @@ extend(DOCExpenceDOCTExpenceType_Controller,ControllerDb);
 	field = new FieldInt("old_login_id",{});
 	pm.addField(field);
 	
-	options = {};
+	options = {"sendNulls":true};
 	options.primaryKey = true;
 	var field = new FieldInt("line_number",options);
 	
@@ -102,28 +102,28 @@ extend(DOCExpenceDOCTExpenceType_Controller,ControllerDb);
 	field = new FieldInt("old_line_number",{});
 	pm.addField(field);
 	
-	options = {};
-	options.alias = "Вид затрат";options.required = true;
+	options = {"sendNulls":true};
+	options.alias = "Вид затрат";
 	var field = new FieldInt("expence_type_id",options);
 	
 	pm.addField(field);
 	
 	
-	options = {};
+	options = {"sendNulls":true};
 	options.alias = "Сумма";
 	var field = new FieldFloat("total",options);
 	
 	pm.addField(field);
 	
 	
-	options = {};
+	options = {"sendNulls":true};
 	options.alias = "Комментарий";
 	var field = new FieldText("expence_comment",options);
 	
 	pm.addField(field);
 	
 	
-	options = {};
+	options = {"sendNulls":true};
 	options.alias = "Дата расхода";
 	var field = new FieldDate("expence_date",options);
 	

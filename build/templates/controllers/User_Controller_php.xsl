@@ -25,6 +25,8 @@ require_once(FRAME_WORK_PATH.'basic_classes/ModelWhereSQL.php');
 require_once(FRAME_WORK_PATH.'basic_classes/ParamsSQL.php');
 require_once(FRAME_WORK_PATH.'basic_classes/ModelVars.php');
 
+require_once('models/UserProfile_Model.php');
+
 require_once('common/PwdGen.php');
 require_once('common/SMSService.php');
 require_once('functions/CRMEmailSender.php');
@@ -102,6 +104,8 @@ class <xsl:value-of select="@id"/>_Controller extends ControllerSQL{
 		$_SESSION['def_store_id']	= $ar['store_id'];
 		$_SESSION['user_store_descr']	= $ar['store_descr'];
 		$_SESSION['cash_register']	= $ar['cash_register'];
+		$_SESSION['multy_store']	= $ar['multy_store'];
+		
 		
 		//global filters
 		if ($ar['constrain_to_store']){
@@ -180,7 +184,8 @@ class <xsl:value-of select="@id"/>_Controller extends ControllerSQL{
 					ELSE 0
 				END AS constrain_to_store,
 				st.name AS store_descr,
-				u.cash_register_id AS cash_register
+				u.cash_register_id AS cash_register,
+				(CASE WHEN (SELECT count(*) FROM stores)>1 THEN 1 ELSE 0 END) AS multy_store
 			FROM users AS u
 			LEFT JOIN stores AS st ON st.id=u.store_id
 			WHERE u.name=%s AND u.pwd=md5(%s)",
@@ -403,7 +408,21 @@ class <xsl:value-of select="@id"/>_Controller extends ControllerSQL{
 				)
 			)
 		);		
-	}	
+	}
+	
+	public function get_profile(){
+		if (!$_SESSION['user_id']){
+			throw new Exception(self::ER_USER_NOT_DEFIND);	
+		}
+		$m = new UserProfile_Model($this->getDbLink());		
+		$f = $m->getFieldById('id');
+		$f->setValue($_SESSION['user_id']);		
+		$where = new ModelWhereSQL();
+		$where->addField($f,'=');
+		$m->select(FALSE,$where,null,null,null,null,null,null,true);		
+		$this->addModel($m);
+	}
+		
 </xsl:template>
 
 </xsl:stylesheet>

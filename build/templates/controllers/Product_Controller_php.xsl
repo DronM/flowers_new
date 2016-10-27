@@ -41,10 +41,15 @@ class <xsl:value-of select="@id"/>_Controller extends ControllerSQL{
 		else{
 			$store_id = '1';
 		}
-		$model->setSelectQueryText(
-			sprintf("SELECT * FROM product_list_with_balance(%d)",
-			$store_id)
-		);
+		
+		$q = sprintf("SELECT * FROM product_list_with_balance(%d)",$store_id);
+			
+		if (!is_null($where)){
+			$q.=' '.$where->getSQL();
+		}
+		
+		$model->setSelectQueryText($q);
+		
 		$model->select(false,null,null,
 			null,null,null,null,null,TRUE);
 		//

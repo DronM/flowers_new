@@ -1,15 +1,15 @@
 -- View: user_view
 
--- DROP VIEW user_view;
+DROP VIEW user_view;
 
 CREATE OR REPLACE VIEW user_view AS 
 	SELECT
 		u.id,
 		u.name,
 		u.email,
+		u.phone_cel,
 		u.role_id,
 		u.constrain_to_store,
-		get_role_types_descr(u.role_id) AS role_descr,
 		u.store_id,
 		st.name AS store_descr,
 		u.cash_register_id,

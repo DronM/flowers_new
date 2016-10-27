@@ -36,6 +36,17 @@ function ProductBalanceList_Model(options){
 	var filed_options = {};
 	filed_options.primaryKey = false;
 	
+	filed_options.alias = 'Код';
+	
+	var field = new FieldString("code",filed_options);
+	
+
+	options.fields.code = field;
+
+			
+	var filed_options = {};
+	filed_options.primaryKey = false;
+	
 	filed_options.alias = 'Продукция';
 	
 	var field = new FieldString("name",filed_options);

@@ -30,10 +30,12 @@
 			<div id="page-wrapper">
 			    <div class="container-fluid">
 				<div class="row">
-				    <div class="col-lg-12">
+				    <div id="windowData" class="col-lg-12">
 				    	<xsl:apply-templates select="model[@templateId]"/>
 				    </div>
 				    <!-- /.col-lg-12 -->
+				    <div class="windowMessage hidden">
+				    </div>
 				</div>
 				<!-- /.row -->
 			    </div>
@@ -83,15 +85,19 @@
 		host:'<xsl:value-of select="$BASE_PATH"/>',
 		servVars:{
 			"version":'<xsl:value-of select="$VERSION"/>',
-			"roleId":'<xsl:value-of select="model[@id='ModelVars']/row/role_id"/>',
-			"roleDescr":'<xsl:value-of select="model[@id='ModelVars']/row/role_descr"/>',
-			"userId":'<xsl:value-of select="model[@id='ModelVars']/row/user_id"/>',
-			"userName":'<xsl:value-of select="model[@id='ModelVars']/row/user_name"/>'
+			"role_id":'<xsl:value-of select="model[@id='ModelVars']/row/role_id"/>',
+			"role_descr":'<xsl:value-of select="model[@id='ModelVars']/row/role_descr"/>',
+			"user_id":'<xsl:value-of select="model[@id='ModelVars']/row/user_id"/>',
+			"user_name":'<xsl:value-of select="model[@id='ModelVars']/row/user_name"/>',
+			"multy_store":'<xsl:value-of select="model[@id='ModelVars']/row/multy_store"/>'
 		},
-		"bsCol":("col-"+$('#users-device-size').find('div:visible').first().attr('id')+"-"),
+		"bsCol":("col-"+$('#users-device-size').find('div:visible').first().attr('id')+"-")
+		<xsl:if test="model[@id='ConstantValueList_Model']">
+		,
 		"constantXMLString":CommonHelper.longString(function () {/*
 				<xsl:copy-of select="model[@id='ConstantValueList_Model']"/>
-		*/})		
+		*/})
+		</xsl:if>
 	});
 </xsl:template>
 
@@ -121,7 +127,7 @@
 	    <!-- /.navbar-header -->
 
 	    <ul class="nav navbar-top-links navbar-right">
-                <!-- /.dropdown -->
+                <!-- /.dropdown 
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                         <i class="fa fa-bell fa-fw"></i>  <i class="fa fa-caret-down"></i>
@@ -152,15 +158,15 @@
                             </a>
                         </li>
                     </ul>
-                    <!-- /.dropdown-alerts -->
                 </li>
-	    
+	    	-->
+	    	
 		<li class="dropdown">
 		    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
 		        <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
 		    </a>
 		    <ul class="dropdown-menu dropdown-user">
-		        <li><a href="#"><i class="fa fa-user fa-fw"></i> Профиль пользователя</a>
+		        <li><a href="index.php?c=User_Controller&amp;f=get_profile&amp;t=UserProfile"><i class="fa fa-user fa-fw"></i> Профиль пользователя</a>
 		        </li>
 		        <li class="divider"></li>
 		        <li><a href="index.php?c=User_Controller&amp;f=logout_html"><i class="fa fa-sign-out fa-fw"></i> Выход</a>
@@ -188,6 +194,14 @@
 		        </li>
 		        -->
 		        <xsl:apply-templates select="/document/model[@id='MainMenu_Model']"/>
+		        
+			<li>
+			    <a href="index.php?c=User_Controller&amp;f=get_profile&amp;t=UserProfile"><i class="fa fa-fw"></i> Профиль пользователя </a>
+			</li>			
+		        
+			<li>
+			    <a href="index.php?c=User_Controller&amp;f=logout_html"><i class="fa fa-fw"></i> Выход </a>
+			</li>					        
 		    </ul>
 		</div>
 		<!-- /.sidebar-collapse -->
@@ -225,13 +239,48 @@
 </xsl:template>
 
 <xsl:template name="modelFromTemplate">
+	<xsl:variable name="template_params" select="/document/model[@id='TemplateParam_Model']"/>
+	<xsl:variable name="journ_dates" select="/document/model[@id='JournalDefDate_Model']"/>
+	
 	<xsl:for-each select="model[@templateId]">
 	<xsl:variable name="templateId" select="@templateId"/>
+	<xsl:variable name="templateModelId" select="div[1]/@modelId"/>
+	<!--
+	<xsl:variable name="modelContent">
+		<xsl:choose>
+			<xsl:when test="div[1]/@modelId">
+				<xsl:value-of select="/document/model[@id=concat(div[1]/@modelId,'_Model')]"/>
+			</xsl:when>
+			<xsl:otherwise>
+				<xsl:value-of select="/document/model[@id=concat($templateId,'_Model')]"/>
+			</xsl:otherwise>
+		</xsl:choose>
+	</xsl:variable>	
+	-->
+	/*modelId=<xsl:value-of select="div[1]/@modelId"/>*/
 	var v_<xsl:value-of select="$templateId"/> = new <xsl:value-of select="$templateId"/>_View("<xsl:value-of select="$templateId"/>",{
 		"app":application,
 		"modelDataStr":CommonHelper.longString(function () {/*
-		<xsl:copy-of select="/document/model[@id=concat($templateId,'_Model')]"/>
-		*/})					
+		<xsl:choose>
+			<xsl:when test="$templateModelId">
+				<xsl:copy-of select="/document/model[@id=$templateModelId]"/>
+			</xsl:when>
+			<xsl:otherwise>
+				<xsl:copy-of select="/document/model[@id=concat($templateId,'_Model')]"/>
+			</xsl:otherwise>
+		</xsl:choose>
+		*/})
+		
+		<xsl:if test="$template_params">
+		,"templateParamDataStr":CommonHelper.longString(function () {/*
+		<xsl:copy-of select="$template_params"/>
+		*/})
+		</xsl:if>
+		
+		<xsl:if test="$journ_dates">
+		,"journDateFrom":DateHelper.strtotime("<xsl:value-of select="$journ_dates/row/date_from"/>")
+		,"journDateTo":DateHelper.strtotime("<xsl:value-of select="$journ_dates/row/date_to"/>")
+		</xsl:if>
 		});
 	v_<xsl:value-of select="$templateId"/>.toDOM();				
 	</xsl:for-each>

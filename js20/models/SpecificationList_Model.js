@@ -66,6 +66,7 @@ function SpecificationList_Model(options){
 	var filed_options = {};
 	filed_options.primaryKey = false;
 	
+	filed_options.alias = 'Материал';
 	
 	var field = new FieldString("material_descr",filed_options);
 	
@@ -77,7 +78,7 @@ function SpecificationList_Model(options){
 	filed_options.primaryKey = false;
 	
 	
-	var field = new FieldString("product_quant",filed_options);
+	var field = new FieldInt("product_quant",filed_options);
 	
 
 	options.fields.product_quant = field;
@@ -86,8 +87,11 @@ function SpecificationList_Model(options){
 	var filed_options = {};
 	filed_options.primaryKey = false;
 	
+	filed_options.alias = 'Количество';
 	
-	var field = new FieldString("material_quant",filed_options);
+	var field = new FieldFloat("material_quant",filed_options);
+	
+		field.getValidator().setMaxLength('19');
 	
 
 	options.fields.material_quant = field;

@@ -24,6 +24,8 @@ require_once('common/barcodegen.1d-php5.v5.2.1/class/BCGean13.barcode.php');
 require_once(FRAME_WORK_PATH.'basic_classes/ModelVars.php');
 require_once(FRAME_WORK_PATH.'basic_classes/Field.php');
 
+require_once(FRAME_WORK_PATH.'basic_classes/ModelWhereSQL.php');
+
 class Material_Controller extends ControllerSQL{
 	public function __construct($dbLinkMaster=NULL){
 		parent::__construct($dbLinkMaster);
@@ -185,26 +187,28 @@ class Material_Controller extends ControllerSQL{
 		
 				
 	$opts=array();
-	
-		$opts['required']=TRUE;				
+					
 		$pm->addParam(new FieldExtString('cond_fields',$opts));
 	
 				
 	$opts=array();
-	
-		$opts['required']=TRUE;				
+					
 		$pm->addParam(new FieldExtString('cond_vals',$opts));
 	
 				
 	$opts=array();
-	
-		$opts['required']=TRUE;				
+					
 		$pm->addParam(new FieldExtString('cond_sgns',$opts));
 	
 				
 	$opts=array();
 					
 		$pm->addParam(new FieldExtString('cond_ic',$opts));
+	
+				
+	$opts=array();
+					
+		$pm->addParam(new FieldExtString('field_sep',$opts));
 	
 				
 	$opts=array();
@@ -468,11 +472,23 @@ class Material_Controller extends ControllerSQL{
 		$link = $this->getDbLink();		
 		$model = new MaterialBalanceList_Model($link);	
 		$where = $this->conditionFromParams($pm,$model);
-		$group_id = $where->getFieldValueForDb('material_group_id','=',0,'');
+		
+		if (!$where){
+			$where = new ModelWhereSQL();
+			$where->addField(new FieldSQLInt($link,NULL,NULL,NULL,'group_id'));
+			$where->addField(new FieldSQLDate($link,NULL,NULL,NULL,'date_time'),'=');
+		}
+		
+		$group_id = $where->getFieldValueForDb('material_group_id','=');		
+		if (is_null($group_id)){
+			$ar = $link->query_first("SELECT const_def_material_group_val() AS val");
+			$group_id = $ar['val'];
+		}
 		$date_time = $where->getFieldValueForDb('date_time','=',0,"'".date('Y-m-d H:i:s')."'");
 		$count = 0;
 		$from = 0;	
 		$limit = $this->limitFromParams($pm,$from,$count);
+		
 		if (isset($_SESSION['global_store_id'])){
 			$store_id = $_SESSION['global_store_id'];
 		}
@@ -481,11 +497,16 @@ class Material_Controller extends ControllerSQL{
 		}
 		else{
 			$store_id = '1';
-		}		
+		}
+		
+		$name = $where->getFieldValueForDb('name','LIKE');
+		$name_q = '';
+		if (!is_null($name)){
+			$name_q = ' WHERE lower(name) LIKE lower('.$name.')';
+		}
+				
 		$model->setSelectQueryText(
-			sprintf("SELECT *
-			FROM material_list_with_balance(%d,%d,%s)",
-			$store_id,$group_id,$date_time)
+			sprintf("SELECT * FROM material_list_with_balance(%d,%d,%s)%s",$store_id,$group_id,$date_time,$name_q)
 		);
 		$model->select(false,null,null,
 			$limit,null,null,null,null,TRUE);

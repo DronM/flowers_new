@@ -68,34 +68,12 @@ function DOCProductionDOCTFMaterialList_Model(options){
 	var filed_options = {};
 	filed_options.primaryKey = false;
 	
-	filed_options.alias = 'Количество норма';
-	
-	var field = new FieldFloat("quant_norm",filed_options);
-	
-
-	options.fields.quant_norm = field;
-
-			
-	var filed_options = {};
-	filed_options.primaryKey = false;
-	
 	filed_options.alias = 'Количество';
 	
 	var field = new FieldFloat("quant",filed_options);
 	
 
 	options.fields.quant = field;
-
-			
-	var filed_options = {};
-	filed_options.primaryKey = false;
-	
-	filed_options.alias = 'Количество с брака';
-	
-	var field = new FieldFloat("quant_waste",filed_options);
-	
-
-	options.fields.quant_waste = field;
 
 		DOCProductionDOCTFMaterialList_Model.superclass.constructor.call(this,id,options);
 }

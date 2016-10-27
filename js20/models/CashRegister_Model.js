@@ -41,6 +41,7 @@ function CashRegister_Model(options){
 	var filed_options = {};
 	filed_options.primaryKey = false;
 	
+	filed_options.alias = 'Наименование';
 	
 	var field = new FieldString("name",filed_options);
 	
@@ -55,6 +56,7 @@ function CashRegister_Model(options){
 	var filed_options = {};
 	filed_options.primaryKey = false;
 	
+	filed_options.alias = 'Порт';
 	
 	var field = new FieldInt("port",filed_options);
 	
@@ -65,6 +67,7 @@ function CashRegister_Model(options){
 	var filed_options = {};
 	filed_options.primaryKey = false;
 	
+	filed_options.alias = 'Скорость';
 	
 	var field = new FieldInt("baud_rate",filed_options);
 	

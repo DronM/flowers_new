@@ -12,79 +12,119 @@ descr="Справочники"
 >
 <menuItem
 
-viewId="StoreList_View"
-
 descr="Салоны"
+
+default="FALSE"
+
+c="Store_Controller"
+
+f="get_list"
+
+t="StoreList"
 
 ></menuItem>
 
 <menuItem
-
-viewId="ProductList_View"
 
 descr="Букеты"
 
+default="FALSE"
+
+c="Product_Controller"
+
+f="get_list"
+
+t="ProductList"
+
 ></menuItem>
 
 <menuItem
-
-viewId="MaterialGroup_View"
 
 descr="Группы материалов"
 
+default="FALSE"
+
+c="MaterialGroup_Controller"
+
+f="get_list"
+
+t="MaterialGroup"
+
 ></menuItem>
 
 <menuItem
-
-viewId="MaterialList_View"
 
 descr="Материалы"
 
+default="FALSE"
+
+c="Material_Controller"
+
+f="get_list"
+
+t="MaterialList"
+
+limit="TRUE"
+
 ></menuItem>
 
 <menuItem
-
-viewId="SupplierList_View"
 
 descr="Поставщики"
 
+default="FALSE"
+
+c="Supplier_Controller"
+
+f="get_list"
+
+t="SupplierList"
+
+limit="TRUE"
+
 ></menuItem>
 
 <menuItem
-
-viewId="ClientList_View"
 
 descr="Покупатели"
 
+default="FALSE"
+
+c="Client_Controller"
+
+f="get_list"
+
+t="ClientList"
+
+limit="TRUE"
+
 ></menuItem>
 
 <menuItem
-
-viewId="PaymentTypeForSale_View"
 
 descr="Типы оплаты"
 
+default="FALSE"
+
+c="PaymentTypeForSale_Controller"
+
+f="get_list"
+
+t="PaymentTypeForSale"
+
 ></menuItem>
 
 <menuItem
-
-viewId="CashRegister_View"
 
 descr="ККМ"
 
-></menuItem>
-</menuItem>
+default="FALSE"
 
-<menuItem
+c="CashRegister_Controller"
 
-descr="Заказы покупателей"
+f="get_list"
 
->
-<menuItem
-
-viewId="DOCClientOrderList_View"
-
-descr="Журнал"
+t="CashRegister"
 
 ></menuItem>
 </menuItem>
@@ -95,28 +135,44 @@ descr="Букеты"
 
 >
 <menuItem
-
-viewId="ProductBalanceList_View"
 
 descr="Остатки"
 
 default="TRUE"
 
+c="Product_Controller"
+
+f="get_list_with_balance"
+
+t="ProductBalanceList"
+
 ></menuItem>
 
 <menuItem
-
-viewId="DOCProductionList_View"
 
 descr="Комплектация"
 
+default="FALSE"
+
+c="DOCProduction_Controller"
+
+f="get_list"
+
+t="DOCProductionList"
+
 ></menuItem>
 
 <menuItem
 
-viewId="DOCProductDisposalList_View"
-
 descr="Списание"
+
+default="FALSE"
+
+c="DOCProductDisposal_Controller"
+
+f="get_list"
+
+t="DOCProductDisposalList"
 
 ></menuItem>
 </menuItem>
@@ -128,33 +184,41 @@ descr="Материалы"
 >
 <menuItem
 
-viewId="MaterialBalanceList_View"
-
 descr="Остатки"
 
-></menuItem>
+c="Material_Controller"
 
-<menuItem
+f="get_list_with_balance"
 
-viewId="DOCMaterialOrderList_View"
-
-descr="Заказы"
+t="MaterialBalanceList"
 
 ></menuItem>
 
 <menuItem
-
-viewId="DOCMaterialProcurementList_View"
 
 descr="Поступление"
 
+c="DOCMaterialProcurement_Controller"
+
+f="get_list"
+
+t="DOCMaterialProcurementList"
+
+limit="TRUE"
+
 ></menuItem>
 
 <menuItem
 
-viewId="DOCMaterialDisposalList_View"
-
 descr="Списание"
+
+c="DOCMaterialDisposal_Controller"
+
+f="get_list"
+
+t="DOCMaterialDisposalList"
+
+limit="TRUE"
 
 ></menuItem>
 </menuItem>
@@ -166,9 +230,15 @@ descr="Продажи"
 >
 <menuItem
 
-viewId="DOCSaleList_View"
-
 descr="Продажи"
+
+c="DOCSale_Controller"
+
+f="get_list"
+
+t="DOCSaleList"
+
+limit="TRUE"
 
 ></menuItem>
 </menuItem>
@@ -180,25 +250,35 @@ descr="Затраты"
 >
 <menuItem
 
-viewId="ExpenceTypeList_View"
-
 descr="Виды затрат"
+
+c="ExpenceType_Controller"
+
+f="get_list"
+
+t="ExpenceType"
 
 ></menuItem>
 
 <menuItem
-
-viewId="DOCExpenceList_View"
 
 descr="Журнал документов"
 
+c="DOCExpence_Controller"
+
+f="get_list"
+
+t="DOCExpenceList"
+
 ></menuItem>
 
 <menuItem
 
-viewId="RepBalance_View"
-
 descr="Баланс"
+
+c="RepBalance_Controller"
+
+t="RepBalance"
 
 ></menuItem>
 </menuItem>
@@ -256,25 +336,29 @@ descr="Администрирование"
 >
 <menuItem
 
-viewId="UserList_View"
-
 descr="Пользователи"
+
+default="FALSE"
+
+c="User_Controller"
+
+f="get_list"
+
+t="UserList"
 
 ></menuItem>
 
 <menuItem
-
-viewId="ConstantList_View"
 
 descr="Константы"
 
-></menuItem>
+default="FALSE"
 
-<menuItem
+c="Constant_Controller"
 
-viewId="UserNewPassword_View"
+f="get_list"
 
-descr="Сменить свой пароль"
+t="ConstantList"
 
 ></menuItem>
 </menuItem>

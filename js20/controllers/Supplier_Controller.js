@@ -79,7 +79,7 @@ extend(Supplier_Controller,ControllerDb);
 	var field;
 	var options;	
 	var pm = this.getUpdate();
-	options = {};
+	options = {"sendNulls":true};
 	options.alias = "Код";options.primaryKey = true;options.autoInc = true;
 	var field = new FieldInt("id",options);
 	
@@ -89,28 +89,28 @@ extend(Supplier_Controller,ControllerDb);
 	field = new FieldInt("old_id",{});
 	pm.addField(field);
 	
-	options = {};
-	options.alias = "Наименование";options.required = true;
+	options = {"sendNulls":true};
+	options.alias = "Наименование";
 	var field = new FieldString("name",options);
 	
 	pm.addField(field);
 	
 	
-	options = {};
-	options.alias = "Полное наименование";options.required = true;
+	options = {"sendNulls":true};
+	options.alias = "Полное наименование";
 	var field = new FieldText("name_full",options);
 	
 	pm.addField(field);
 	
 	
-	options = {};
+	options = {"sendNulls":true};
 	options.alias = "Телефон";
 	var field = new FieldString("tel",options);
 	
 	pm.addField(field);
 	
 	
-	options = {};
+	options = {"sendNulls":true};
 	options.alias = "Email";
 	var field = new FieldString("email",options);
 	

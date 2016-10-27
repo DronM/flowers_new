@@ -36,22 +36,12 @@ function DOCMaterialDisposalList_Model(options){
 	var filed_options = {};
 	filed_options.primaryKey = false;
 	
+	filed_options.alias = 'Дата';
 	
 	var field = new FieldDateTime("date_time",filed_options);
 	
 
 	options.fields.date_time = field;
-
-			
-	var filed_options = {};
-	filed_options.primaryKey = false;
-	
-	filed_options.alias = 'Дата';
-	
-	var field = new FieldString("date_time_descr",filed_options);
-	
-
-	options.fields.date_time_descr = field;
 
 			
 	var filed_options = {};
@@ -115,6 +105,19 @@ function DOCMaterialDisposalList_Model(options){
 	
 
 	options.fields.user_descr = field;
+
+			
+	var filed_options = {};
+	filed_options.primaryKey = false;
+	
+	filed_options.alias = 'Стоимость';
+	
+	var field = new FieldFloat("cost",filed_options);
+	
+		field.getValidator().setMaxLength('15');
+	
+
+	options.fields.cost = field;
 
 			
 	var filed_options = {};

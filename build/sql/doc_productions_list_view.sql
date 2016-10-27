@@ -7,14 +7,13 @@ CREATE OR REPLACE VIEW doc_productions_list_view AS
 		doc_p.id,
 		doc_p.number,
 		doc_p.date_time, 
-		date8_time8_descr(doc_p.date_time) AS date_time_descr, doc_p.processed, 
+		
+		doc_p.processed, 
 		
 		doc_p.store_id,
 		doc_p.on_norm,
 		
 		st.name AS store_descr, 
-		doc_p.product_order_type, 
-		get_product_order_types_descr(doc_p.product_order_type) AS product_order_type_descr, 
 		
 		doc_p.user_id,
 		u.name AS user_descr,
@@ -23,29 +22,26 @@ CREATE OR REPLACE VIEW doc_productions_list_view AS
 		p.name AS product_descr,
 		doc_p.quant,
 		ROUND(doc_p.price*doc_p.quant,2) AS price,
-		format_money(doc_p.price) AS price_descr,
-		format_money(doc_p.price*doc_p.quant) AS sum_descr,
 		
-		format_money(t_mat.sm) AS mat_sum_descr,
 		t_mat.sm AS mat_sum,
 		
-		format_money(t_mat.cost) AS mat_cost_descr,
 		t_mat.cost AS mat_cost,
 		
+		/*
 		COALESCE(
 		(SELECT (b.quant>0) FROM rg_products_balance(
 			ARRAY[doc_p.store_id],
 			ARRAY[doc_p.product_id],
 			ARRAY[doc_p.id]) AS b
 		),false) AS rest,
+		*/
 		
 		(doc_p.price*doc_p.quant)-t_mat.cost AS income,
-		format_money((doc_p.price*doc_p.quant)-t_mat.cost) AS income_descr,
 		ROUND((doc_p.price*doc_p.quant)/t_mat.cost*100-100,2) AS income_percent,
 		
 		doc_p.florist_comment,
 		
-		interval_descr(now()-doc_p.date_time) AS after_prod_interval
+		now()-doc_p.date_time AS after_prod_interval
 		
 	FROM doc_productions doc_p
 	LEFT JOIN products p ON p.id = doc_p.product_id
@@ -57,11 +53,11 @@ CREATE OR REPLACE VIEW doc_productions_list_view AS
 			SUM(m.price*t.quant) AS sm,
 			t.doc_id,
 			(SELECT SUM(ra.cost) FROM ra_materials ra WHERE ra.doc_id=t.doc_id AND ra.doc_type='production') AS cost
-	FROM doc_productions_t_materials as t
-	LEFT JOIN materials AS m ON m.id=t.material_id
-	LEFT JOIN doc_productions AS h ON h.id=t.doc_id
-	GROUP BY t.doc_id
-   ) t_mat ON t_mat.doc_id = doc_p.id
+		FROM doc_productions_t_materials as t
+		LEFT JOIN materials AS m ON m.id=t.material_id
+		LEFT JOIN doc_productions AS h ON h.id=t.doc_id
+		GROUP BY t.doc_id
+   	) t_mat ON t_mat.doc_id = doc_p.id
    
   ORDER BY doc_p.date_time;
 

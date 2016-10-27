@@ -19,10 +19,12 @@
 				}
 			}
 			function pageLoad(){				
-				<xsl:call-template name="initApp"/>
 				<!--
-				var application = window.opener.getApp();
+				<xsl:call-template name="initApp"/>
 				-->
+				var application = window.opener.getApp();
+				console.log("bsCol="+application.getBsCol());
+				
 				<xsl:call-template name="modelFromTemplate"/>
 				
 			}
@@ -30,12 +32,15 @@
 	</head>
 	
 	<body onload="pageLoad();" onbeforeunload="beforeUnload()">
+	
 	    <div class="container-fluid">
 
 		<div class="row">
-		    <div class="col-lg-12">
+		    <div id="windowData" class="col-lg-12">
 		    	<xsl:apply-templates select="model[@templateId]"/>
 		    </div>
+		    <div class="windowMessage hidden">
+		    </div>		    
 		    <!-- /.col-lg-12 -->
 		</div>
 		<!-- /.row -->

@@ -1,21 +1,26 @@
-/* Copyright (c) 2012 
+/* Copyright (c) 2016
 	Andrey Mikhalevich, Katren ltd.
 */
 /*	
 	Description
 */
 /** Requirements
- * @requires common/functions.js
+ * @requires core/extend.js
  * @requires core/ControllerDb.js
 */
-//ф
-/* constructor */
 
-function Client_Controller(servConnector){
-	options = {};
-	options["listModelId"] = "ClientList_Model";
-	options["objModelId"] = "ClientDialog_Model";
-	Client_Controller.superclass.constructor.call(this,"Client_Controller",servConnector,options);	
+/* constructor
+@param string id
+@param object options{
+
+}
+*/
+
+function Client_Controller(app,options){
+	options = options || {};
+	options.listModelId = "ClientList_Model";
+	options.objModelId = "ClientDialog_Model";
+	Client_Controller.superclass.constructor.call(this,app,options);	
 	
 	//methods
 	this.addInsert();
@@ -24,111 +29,118 @@ function Client_Controller(servConnector){
 	this.addGetList();
 	this.addGetObject();
 	this.addComplete();
-	
+		
 }
 extend(Client_Controller,ControllerDb);
 
 			Client_Controller.prototype.addInsert = function(){
 	Client_Controller.superclass.addInsert.call(this);
-	var param;
+	var field;
 	var options;
+	
 	var pm = this.getInsert();
 	options = {};
-	options["alias"]="Наименование";
-	var param = new FieldString("name",options);
+	options.alias = "Код";options.primaryKey = true;options.autoInc = true;
+	var field = new FieldInt("id",options);
 	
-	pm.addParam(param);
-	
-	options = {};
-	options["alias"]="Полное наименование";
-	var param = new FieldText("name_full",options);
-	
-	pm.addParam(param);
+	pm.addField(field);
 	
 	options = {};
-	options["alias"]="Сотовый телефон";
-	var param = new FieldString("phone_cel",options);
+	options.alias = "Наименование";options.required = true;
+	var field = new FieldString("name",options);
 	
-	pm.addParam(param);
-	
-	options = {};
-	options["alias"]="Менеджер";
-	var param = new FieldInt("manager_id",options);
-	
-	pm.addParam(param);
+	pm.addField(field);
 	
 	options = {};
+	options.alias = "Полное наименование";
+	var field = new FieldText("name_full",options);
 	
-	var param = new FieldDate("create_date",options);
+	pm.addField(field);
 	
-	pm.addParam(param);
+	options = {};
+	options.alias = "Сотовый телефон";
+	var field = new FieldString("tel",options);
+	
+	pm.addField(field);
+	
+	options = {};
+	options.alias = "Менеджер";
+	var field = new FieldInt("manager_id",options);
+	
+	pm.addField(field);
 	
 	options = {};
 	
-	var param = new FieldString("email",options);
+	var field = new FieldDate("create_date",options);
 	
-	pm.addParam(param);
+	pm.addField(field);
 	
-	pm.addParam(new FieldInt("ret_id",{}));
+	options = {};
+	
+	var field = new FieldString("email",options);
+	
+	pm.addField(field);
+	
+	pm.addField(new FieldInt("ret_id",{}));
 	
 	
 }
 
 			Client_Controller.prototype.addUpdate = function(){
 	Client_Controller.superclass.addUpdate.call(this);
-	var param;
+	var field;
 	var options;	
 	var pm = this.getUpdate();
-	options = {};
-	options["alias"]="Код";
-	var param = new FieldInt("id",options);
+	options = {"sendNulls":true};
+	options.alias = "Код";options.primaryKey = true;options.autoInc = true;
+	var field = new FieldInt("id",options);
 	
-	pm.addParam(param);
-	
-	
-	param = new FieldInt("old_id",{});
-	pm.addParam(param);
-	
-	options = {};
-	options["alias"]="Наименование";
-	var param = new FieldString("name",options);
-	
-	pm.addParam(param);
+	pm.addField(field);
 	
 	
-	options = {};
-	options["alias"]="Полное наименование";
-	var param = new FieldText("name_full",options);
+	field = new FieldInt("old_id",{});
+	pm.addField(field);
 	
-	pm.addParam(param);
+	options = {"sendNulls":true};
+	options.alias = "Наименование";
+	var field = new FieldString("name",options);
 	
-	
-	options = {};
-	options["alias"]="Сотовый телефон";
-	var param = new FieldString("phone_cel",options);
-	
-	pm.addParam(param);
+	pm.addField(field);
 	
 	
-	options = {};
-	options["alias"]="Менеджер";
-	var param = new FieldInt("manager_id",options);
+	options = {"sendNulls":true};
+	options.alias = "Полное наименование";
+	var field = new FieldText("name_full",options);
 	
-	pm.addParam(param);
-	
-	
-	options = {};
-	
-	var param = new FieldDate("create_date",options);
-	
-	pm.addParam(param);
+	pm.addField(field);
 	
 	
-	options = {};
+	options = {"sendNulls":true};
+	options.alias = "Сотовый телефон";
+	var field = new FieldString("tel",options);
 	
-	var param = new FieldString("email",options);
+	pm.addField(field);
 	
-	pm.addParam(param);
+	
+	options = {"sendNulls":true};
+	options.alias = "Менеджер";
+	var field = new FieldInt("manager_id",options);
+	
+	pm.addField(field);
+	
+	
+	options = {"sendNulls":true};
+	
+	var field = new FieldDate("create_date",options);
+	
+	pm.addField(field);
+	
+	
+	options = {"sendNulls":true};
+	
+	var field = new FieldString("email",options);
+	
+	pm.addField(field);
 	
 	
 	
@@ -139,7 +151,7 @@ extend(Client_Controller,ControllerDb);
 	var options = {"required":true};
 	
 	var pm = this.getDelete();
-	pm.addParam(new FieldInt("id",options));
+	pm.addField(new FieldInt("id",options));
 }
 
 			Client_Controller.prototype.addGetList = function(){
@@ -147,9 +159,9 @@ extend(Client_Controller,ControllerDb);
 	var options = {};
 	
 	var pm = this.getGetList();
-	pm.addParam(new FieldInt("id",options));
-	pm.addParam(new FieldString("name",options));
-	pm.addParam(new FieldString("phone_cel",options));
+	pm.addField(new FieldInt("id",options));
+	pm.addField(new FieldString("name",options));
+	pm.addField(new FieldString("tel",options));
 }
 
 			Client_Controller.prototype.addGetObject = function(){
@@ -157,7 +169,7 @@ extend(Client_Controller,ControllerDb);
 	var options = {};
 	
 	var pm = this.getGetObject();
-	pm.addParam(new FieldInt("id",options));
+	pm.addField(new FieldInt("id",options));
 }
 
 			Client_Controller.prototype.addComplete = function(){
@@ -166,8 +178,8 @@ extend(Client_Controller,ControllerDb);
 	var options = {};
 	
 	var pm = this.getComplete();
-	pm.addParam(new FieldString("name",options));
-	pm.getParamById(this.PARAM_ORD_FIELDS).setValue("name");
+	pm.addField(new FieldString("name",options));
+	pm.getField(this.PARAM_ORD_FIELDS).setValue("name");
 }
 
 		

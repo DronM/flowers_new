@@ -50,7 +50,7 @@ function User_Model(options){
 	
 
 	options.fields.name = field;
-		
+
 			
 	var filed_options = {};
 	filed_options.primaryKey = false;
@@ -63,7 +63,7 @@ function User_Model(options){
 	
 
 	options.fields.role_id = field;
-		
+
 			
 	var filed_options = {};
 	filed_options.primaryKey = false;
@@ -75,7 +75,7 @@ function User_Model(options){
 	
 
 	options.fields.email = field;
-		
+
 			
 	var filed_options = {};
 	filed_options.primaryKey = false;
@@ -87,6 +87,18 @@ function User_Model(options){
 	
 
 	options.fields.pwd = field;
+
+			
+	var filed_options = {};
+	filed_options.primaryKey = false;
+	
+	
+	var field = new FieldString("phone_cel",filed_options);
+	
+		field.getValidator().setMaxLength('11');
+	
+
+	options.fields.phone_cel = field;
 
 			
 	var filed_options = {};
@@ -116,8 +128,6 @@ function User_Model(options){
 	
 	
 	var field = new FieldInt("cash_register_id",filed_options);
-	
-		field.getValidator().setRequired(true);
 	
 
 	options.fields.cash_register_id = field;

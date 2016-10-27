@@ -66,8 +66,8 @@ extend(DeliveryHour_Controller,ControllerDb);
 	var field;
 	var options;	
 	var pm = this.getUpdate();
-	options = {};
-	options.primaryKey = true;options.autoInc = true;options.required = true;
+	options = {"sendNulls":true};
+	options.primaryKey = true;options.autoInc = true;
 	var field = new FieldInt("id",options);
 	
 	pm.addField(field);
@@ -76,14 +76,14 @@ extend(DeliveryHour_Controller,ControllerDb);
 	field = new FieldInt("old_id",{});
 	pm.addField(field);
 	
-	options = {};
+	options = {"sendNulls":true};
 	
 	var field = new FieldInt("h_from",options);
 	
 	pm.addField(field);
 	
 	
-	options = {};
+	options = {"sendNulls":true};
 	
 	var field = new FieldInt("h_to",options);
 	

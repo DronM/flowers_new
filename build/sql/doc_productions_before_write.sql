@@ -2,7 +2,7 @@
 
 -- DROP FUNCTION doc_productions_before_write(integer, integer);
 
-CREATE OR REPLACE FUNCTION doc_productions_before_write(in_login_id integer, in_doc_id integer)
+CREATE OR REPLACE FUNCTION doc_productions_before_write(in_tmp_doc_id varchar(32), in_doc_id integer)
   RETURNS void AS
 $BODY$
 BEGIN				
@@ -12,14 +12,13 @@ BEGIN
 	
 	--copy data from temp to fact table
 	INSERT INTO doc_productions_t_materials
-	(doc_id,line_number,material_id,quant_norm,quant,quant_waste)
-	(SELECT in_doc_id
-	,line_number,material_id,quant_norm,quant,quant_waste					
+	(doc_id,line_number,material_id,quant)
+	(SELECT in_doc_id ,line_number,material_id,quant
 	FROM doc_productions_t_tmp_materials
-	WHERE login_id=in_login_id AND (quant_norm>0 OR (quant+quant_waste)>0));
+	WHERE tmp_doc_id=in_tmp_doc_id);
 	
 	--clear temp table
-	DELETE FROM doc_productions_t_tmp_materials WHERE login_id=in_login_id;
+	DELETE FROM doc_productions_t_tmp_materials WHERE tmp_doc_id=in_tmp_doc_id;
 	
 END;
 $BODY$

@@ -25,10 +25,11 @@ require_once('common/barcodegen.1d-php5.v5.2.1/class/BCGColor.php');
 require_once('common/barcodegen.1d-php5.v5.2.1/class/BCGDrawing.php');
 require_once('common/barcodegen.1d-php5.v5.2.1/class/BCGean13.barcode.php');
 
+require_once(FRAME_WORK_PATH.'basic_classes/ControllerSQLDOC20.php');
 require_once(FRAME_WORK_PATH.'basic_classes/ModelVars.php');
 require_once(FRAME_WORK_PATH.'basic_classes/Field.php');
 
-class <xsl:value-of select="@id"/>_Controller extends ControllerSQLDOC{
+class <xsl:value-of select="@id"/>_Controller extends ControllerSQLDOC20{
 	public function __construct($dbLinkMaster=NULL){
 		parent::__construct($dbLinkMaster);<xsl:apply-templates/>
 	}

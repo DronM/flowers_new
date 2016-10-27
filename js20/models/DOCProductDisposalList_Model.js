@@ -47,6 +47,7 @@ function DOCProductDisposalList_Model(options){
 	var filed_options = {};
 	filed_options.primaryKey = false;
 	
+	filed_options.alias = 'Дата';
 	
 	var field = new FieldDateTime("date_time",filed_options);
 	

@@ -13,6 +13,7 @@
 function AppCRM(options){
 	options = options || {};
 	options.lang = "rus";
+	
 	AppCRM.superclass.constructor.call(this,"CRM",options);
 }
 extend(AppCRM,App);
@@ -29,4 +30,6 @@ extend(AppCRM,App);
 AppCRM.prototype.formatError = function(erCode,erStr){
 	return (erStr +( (erCode)? (", код:"+erCode):"" ) );
 }
-
+AppCRM.prototype.getJournalDateFormat = function(){
+	return "d/m/y, H:i:s";
+}

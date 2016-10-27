@@ -30,6 +30,8 @@ class CashRegister_Model extends ModelSQL{
 		,"name"
 		,array(
 		'required'=>TRUE,
+			'alias'=>"Наименование"
+		,
 			'length'=>200,
 			'id'=>"name"
 				
@@ -41,6 +43,8 @@ class CashRegister_Model extends ModelSQL{
 		,"port"
 		,array(
 		
+			'alias'=>"Порт"
+		,
 			'id'=>"port"
 				
 		
@@ -51,6 +55,8 @@ class CashRegister_Model extends ModelSQL{
 		,"baud_rate"
 		,array(
 		
+			'alias'=>"Скорость"
+		,
 			'id'=>"baud_rate"
 				
 		

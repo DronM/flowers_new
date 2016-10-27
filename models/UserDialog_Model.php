@@ -55,6 +55,8 @@ class UserDialog_Model extends ModelSQL{
 		,"role_descr"
 		,array(
 		
+			'alias'=>"Роль"
+		,
 			'id'=>"role_descr"
 				
 		
@@ -70,6 +72,19 @@ class UserDialog_Model extends ModelSQL{
 		
 		));
 		$this->addField($f_role_id);
+
+		$f_phone_cel=new FieldSQlString($this->getDbLink(),$this->getDbName(),$this->getTableName()
+		,"phone_cel"
+		,array(
+		
+			'alias'=>"Моб.телефон"
+		,
+			'length'=>11,
+			'id'=>"phone_cel"
+				
+		
+		));
+		$this->addField($f_phone_cel);
 
 		$f_store_descr=new FieldSQlString($this->getDbLink(),$this->getDbName(),$this->getTableName()
 		,"store_descr"

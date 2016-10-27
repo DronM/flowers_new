@@ -1,21 +1,26 @@
-/* Copyright (c) 2012 
+/* Copyright (c) 2016
 	Andrey Mikhalevich, Katren ltd.
 */
 /*	
 	Description
 */
 /** Requirements
- * @requires common/functions.js
+ * @requires core/extend.js
  * @requires core/ControllerDb.js
 */
-//ф
-/* constructor */
 
-function CashRegister_Controller(servConnector){
-	options = {};
-	options["listModelId"] = "CashRegister_Model";
-	options["objModelId"] = "CashRegister_Model";
-	CashRegister_Controller.superclass.constructor.call(this,"CashRegister_Controller",servConnector,options);	
+/* constructor
+@param string id
+@param object options{
+
+}
+*/
+
+function CashRegister_Controller(app,options){
+	options = options || {};
+	options.listModelId = "CashRegister_Model";
+	options.objModelId = "CashRegister_Model";
+	CashRegister_Controller.superclass.constructor.call(this,app,options);	
 	
 	//methods
 	this.addInsert();
@@ -23,72 +28,79 @@ function CashRegister_Controller(servConnector){
 	this.addDelete();
 	this.addGetList();
 	this.addGetObject();
-	
+		
 }
 extend(CashRegister_Controller,ControllerDb);
 
 			CashRegister_Controller.prototype.addInsert = function(){
 	CashRegister_Controller.superclass.addInsert.call(this);
-	var param;
+	var field;
 	var options;
+	
 	var pm = this.getInsert();
 	options = {};
+	options.primaryKey = true;options.autoInc = true;
+	var field = new FieldInt("id",options);
 	
-	var param = new FieldString("name",options);
-	
-	pm.addParam(param);
-	
-	options = {};
-	
-	var param = new FieldInt("port",options);
-	
-	pm.addParam(param);
+	pm.addField(field);
 	
 	options = {};
+	options.alias = "Наименование";options.required = true;
+	var field = new FieldString("name",options);
 	
-	var param = new FieldInt("baud_rate",options);
+	pm.addField(field);
 	
-	pm.addParam(param);
+	options = {};
+	options.alias = "Порт";
+	var field = new FieldInt("port",options);
 	
-	pm.addParam(new FieldInt("ret_id",{}));
+	pm.addField(field);
+	
+	options = {};
+	options.alias = "Скорость";
+	var field = new FieldInt("baud_rate",options);
+	
+	pm.addField(field);
+	
+	pm.addField(new FieldInt("ret_id",{}));
 	
 	
 }
 
 			CashRegister_Controller.prototype.addUpdate = function(){
 	CashRegister_Controller.superclass.addUpdate.call(this);
-	var param;
+	var field;
 	var options;	
 	var pm = this.getUpdate();
-	options = {};
+	options = {"sendNulls":true};
+	options.primaryKey = true;options.autoInc = true;
+	var field = new FieldInt("id",options);
 	
-	var param = new FieldInt("id",options);
-	
-	pm.addParam(param);
-	
-	
-	param = new FieldInt("old_id",{});
-	pm.addParam(param);
-	
-	options = {};
-	
-	var param = new FieldString("name",options);
-	
-	pm.addParam(param);
+	pm.addField(field);
 	
 	
-	options = {};
+	field = new FieldInt("old_id",{});
+	pm.addField(field);
 	
-	var param = new FieldInt("port",options);
+	options = {"sendNulls":true};
+	options.alias = "Наименование";
+	var field = new FieldString("name",options);
 	
-	pm.addParam(param);
+	pm.addField(field);
 	
 	
-	options = {};
+	options = {"sendNulls":true};
+	options.alias = "Порт";
+	var field = new FieldInt("port",options);
 	
-	var param = new FieldInt("baud_rate",options);
+	pm.addField(field);
 	
-	pm.addParam(param);
+	
+	options = {"sendNulls":true};
+	options.alias = "Скорость";
+	var field = new FieldInt("baud_rate",options);
+	
+	pm.addField(field);
 	
 	
 	
@@ -99,7 +111,7 @@ extend(CashRegister_Controller,ControllerDb);
 	var options = {"required":true};
 	
 	var pm = this.getDelete();
-	pm.addParam(new FieldInt("id",options));
+	pm.addField(new FieldInt("id",options));
 }
 
 			CashRegister_Controller.prototype.addGetList = function(){
@@ -107,11 +119,11 @@ extend(CashRegister_Controller,ControllerDb);
 	var options = {};
 	
 	var pm = this.getGetList();
-	pm.addParam(new FieldInt("id",options));
-	pm.addParam(new FieldString("name",options));
-	pm.addParam(new FieldInt("port",options));
-	pm.addParam(new FieldInt("baud_rate",options));
-	pm.getParamById(this.PARAM_ORD_FIELDS).setValue("name");
+	pm.addField(new FieldInt("id",options));
+	pm.addField(new FieldString("name",options));
+	pm.addField(new FieldInt("port",options));
+	pm.addField(new FieldInt("baud_rate",options));
+	pm.getField(this.PARAM_ORD_FIELDS).setValue("name");
 	
 }
 
@@ -120,7 +132,7 @@ extend(CashRegister_Controller,ControllerDb);
 	var options = {};
 	
 	var pm = this.getGetObject();
-	pm.addParam(new FieldInt("id",options));
+	pm.addField(new FieldInt("id",options));
 }
 
 		

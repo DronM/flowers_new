@@ -28,7 +28,7 @@ function DOCProduction_Controller(app,options){
 	this.addDelete();
 	this.addGetList();
 	this.addGetObject();
-	this.add_before_open();
+	this.add_get_doc();
 	this.add_fill_on_spec();
 	this.add_get_balance_list();
 	this.add_get_current_doc_cost();
@@ -130,7 +130,7 @@ extend(DOCProduction_Controller,ControllerDb);
 	var field;
 	var options;	
 	var pm = this.getUpdate();
-	options = {};
+	options = {"sendNulls":true};
 	options.primaryKey = true;options.autoInc = true;
 	var field = new FieldInt("id",options);
 	
@@ -140,49 +140,49 @@ extend(DOCProduction_Controller,ControllerDb);
 	field = new FieldInt("old_id",{});
 	pm.addField(field);
 	
-	options = {};
-	options.alias = "Дата";options.required = true;
+	options = {"sendNulls":true};
+	options.alias = "Дата";
 	var field = new FieldDateTime("date_time",options);
 	
 	pm.addField(field);
 	
 	
-	options = {};
+	options = {"sendNulls":true};
 	options.alias = "Номер";
 	var field = new FieldInt("number",options);
 	
 	pm.addField(field);
 	
 	
-	options = {};
+	options = {"sendNulls":true};
 	options.alias = "Проведен";
 	var field = new FieldBool("processed",options);
 	
 	pm.addField(field);
 	
 	
-	options = {};
+	options = {"sendNulls":true};
 	options.alias = "Магазин";
 	var field = new FieldInt("store_id",options);
 	
 	pm.addField(field);
 	
 	
-	options = {};
+	options = {"sendNulls":true};
 	options.alias = "Флорист";
 	var field = new FieldInt("user_id",options);
 	
 	pm.addField(field);
 	
 	
-	options = {};
-	options.alias = "Букет";options.required = true;
+	options = {"sendNulls":true};
+	options.alias = "Букет";
 	var field = new FieldInt("product_id",options);
 	
 	pm.addField(field);
 	
 	
-	options = {};
+	options = {"sendNulls":true};
 	options.alias = "Вид заявки";	
 	options.enumValues = 'sale,disposal,manual';
 	
@@ -191,28 +191,28 @@ extend(DOCProduction_Controller,ControllerDb);
 	pm.addField(field);
 	
 	
-	options = {};
+	options = {"sendNulls":true};
 	options.alias = "По норме";
 	var field = new FieldBool("on_norm",options);
 	
 	pm.addField(field);
 	
 	
-	options = {};
+	options = {"sendNulls":true};
 	options.alias = "Количество";
 	var field = new FieldFloat("quant",options);
 	
 	pm.addField(field);
 	
 	
-	options = {};
+	options = {"sendNulls":true};
 	options.alias = "Цена";
 	var field = new FieldFloat("price",options);
 	
 	pm.addField(field);
 	
 	
-	options = {};
+	options = {"sendNulls":true};
 	options.alias = "Комментарий";
 	var field = new FieldText("florist_comment",options);
 	
@@ -236,24 +236,20 @@ extend(DOCProduction_Controller,ControllerDb);
 	
 	var pm = this.getGetList();
 	pm.addField(new FieldInt("id",options));
+	pm.addField(new FieldString("tmp_id",options));
 	pm.addField(new FieldString("number",options));
 	pm.addField(new FieldDateTime("date_time",options));
-	pm.addField(new FieldString("date_time_descr",options));
-	pm.addField(new FieldBool("on_norm",options));
 	pm.addField(new FieldInt("store_id",options));
 	pm.addField(new FieldString("store_descr",options));
-	pm.addField(new FieldString("product_order_type",options));
-	pm.addField(new FieldString("product_order_type_descr",options));
 	pm.addField(new FieldInt("user_id",options));
 	pm.addField(new FieldString("user_descr",options));
 	pm.addField(new FieldInt("product_id",options));
 	pm.addField(new FieldString("product_descr",options));
 	pm.addField(new FieldFloat("quant",options));
 	pm.addField(new FieldFloat("price",options));
-	pm.addField(new FieldFloat("sum_descr",options));
-	pm.addField(new FieldFloat("mat_sum_descr",options));
+	pm.addField(new FieldFloat("mat_sum",options));
+	pm.addField(new FieldFloat("mat_cost",options));
 	pm.addField(new FieldString("processed",options));
-	pm.addField(new FieldString("rest",options));
 	pm.addField(new FieldText("florist_comment",options));
 }
 
@@ -265,19 +261,24 @@ extend(DOCProduction_Controller,ControllerDb);
 	pm.addField(new FieldInt("id",options));
 }
 
-			DOCProduction_Controller.prototype.add_before_open = function(){
-	var pm = new PublicMethod('before_open',{controller:this});
+			
+			DOCProduction_Controller.prototype.add_get_doc = function(){
+	var pm = new PublicMethod('get_doc',{controller:this});
 	this.addPublicMethod(pm);
 	
 				
 	
 	var options = {};
 	
-		pm.addField(new FieldInt("doc_id",options));
+		options.required = true;
+	
+		pm.addField(new FieldInt("id",options));
 	
 			
 }
 
+			
+			
 			DOCProduction_Controller.prototype.add_fill_on_spec = function(){
 	var pm = new PublicMethod('fill_on_spec',{controller:this});
 	this.addPublicMethod(pm);

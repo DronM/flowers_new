@@ -63,11 +63,12 @@ function ClientDialog_Model(options){
 	var filed_options = {};
 	filed_options.primaryKey = false;
 	
+	filed_options.alias = 'Телефон';
 	
-	var field = new FieldString("phone_cel",filed_options);
+	var field = new FieldString("tel",filed_options);
 	
 
-	options.fields.phone_cel = field;
+	options.fields.tel = field;
 
 		ClientDialog_Model.superclass.constructor.call(this,id,options);
 }

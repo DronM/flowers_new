@@ -36,6 +36,16 @@ function DOCProductionList_Model(options){
 	var filed_options = {};
 	filed_options.primaryKey = false;
 	
+	
+	var field = new FieldString("tmp_id",filed_options);
+	
+
+	options.fields.tmp_id = field;
+
+			
+	var filed_options = {};
+	filed_options.primaryKey = false;
+	
 	filed_options.alias = 'Номер';
 	
 	var field = new FieldString("number",filed_options);
@@ -47,33 +57,12 @@ function DOCProductionList_Model(options){
 	var filed_options = {};
 	filed_options.primaryKey = false;
 	
+	filed_options.alias = 'Дата';
 	
 	var field = new FieldDateTime("date_time",filed_options);
 	
 
 	options.fields.date_time = field;
-
-			
-	var filed_options = {};
-	filed_options.primaryKey = false;
-	
-	filed_options.alias = 'Дата';
-	
-	var field = new FieldString("date_time_descr",filed_options);
-	
-
-	options.fields.date_time_descr = field;
-
-			
-	var filed_options = {};
-	filed_options.primaryKey = false;
-	
-	filed_options.alias = 'По норме';
-	
-	var field = new FieldBool("on_norm",filed_options);
-	
-
-	options.fields.on_norm = field;
 
 			
 	var filed_options = {};
@@ -95,26 +84,6 @@ function DOCProductionList_Model(options){
 	
 
 	options.fields.store_descr = field;
-			
-			
-	var filed_options = {};
-	filed_options.primaryKey = false;
-	
-	
-	var field = new FieldString("product_order_type",filed_options);
-	
-
-	options.fields.product_order_type = field;
-
-			
-	var filed_options = {};
-	filed_options.primaryKey = false;
-	
-	
-	var field = new FieldString("product_order_type_descr",filed_options);
-	
-
-	options.fields.product_order_type_descr = field;
 			
 			
 	var filed_options = {};
@@ -188,27 +157,27 @@ function DOCProductionList_Model(options){
 	var filed_options = {};
 	filed_options.primaryKey = false;
 	
-	filed_options.alias = 'Сумма';
+	filed_options.alias = 'Сумма материалов';
 	
-	var field = new FieldFloat("sum_descr",filed_options);
+	var field = new FieldFloat("mat_sum",filed_options);
 	
 		field.getValidator().setMaxLength('15');
 	
 
-	options.fields.sum_descr = field;
+	options.fields.mat_sum = field;
 
 			
 	var filed_options = {};
 	filed_options.primaryKey = false;
 	
-	filed_options.alias = 'Сумма материалов';
+	filed_options.alias = 'Себестоимость материалов';
 	
-	var field = new FieldFloat("mat_sum_descr",filed_options);
+	var field = new FieldFloat("mat_cost",filed_options);
 	
 		field.getValidator().setMaxLength('15');
 	
 
-	options.fields.mat_sum_descr = field;
+	options.fields.mat_cost = field;
 
 			
 	var filed_options = {};
@@ -224,16 +193,6 @@ function DOCProductionList_Model(options){
 	var filed_options = {};
 	filed_options.primaryKey = false;
 	
-	
-	var field = new FieldString("rest",filed_options);
-	
-
-	options.fields.rest = field;
-
-			
-	var filed_options = {};
-	filed_options.primaryKey = false;
-	
 	filed_options.alias = 'Комментарий';
 	
 	var field = new FieldText("florist_comment",filed_options);
@@ -241,6 +200,7 @@ function DOCProductionList_Model(options){
 
 	options.fields.florist_comment = field;
 
+			
 			
 		DOCProductionList_Model.superclass.constructor.call(this,id,options);
 }

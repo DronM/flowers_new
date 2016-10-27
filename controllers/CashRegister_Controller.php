@@ -19,13 +19,19 @@ class CashRegister_Controller extends ControllerSQL{
 		/* insert */
 		$pm = new PublicMethod('insert');
 		$param = new FieldExtString('name'
-				,array('required'=>TRUE));
+				,array('required'=>TRUE,
+				'alias'=>'Наименование'
+			));
 		$pm->addParam($param);
 		$param = new FieldExtInt('port'
-				,array());
+				,array(
+				'alias'=>'Порт'
+			));
 		$pm->addParam($param);
 		$param = new FieldExtInt('baud_rate'
-				,array());
+				,array(
+				'alias'=>'Скорость'
+			));
 		$pm->addParam($param);
 		
 		$pm->addParam(new FieldExtInt('ret_id'));
@@ -47,14 +53,20 @@ class CashRegister_Controller extends ControllerSQL{
 			$pm->addParam($param);
 		$param = new FieldExtString('name'
 				,array(
+			
+				'alias'=>'Наименование'
 			));
 			$pm->addParam($param);
 		$param = new FieldExtInt('port'
 				,array(
+			
+				'alias'=>'Порт'
 			));
 			$pm->addParam($param);
 		$param = new FieldExtInt('baud_rate'
 				,array(
+			
+				'alias'=>'Скорость'
 			));
 			$pm->addParam($param);
 		

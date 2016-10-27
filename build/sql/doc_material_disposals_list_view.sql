@@ -1,21 +1,19 @@
 -- View: doc_material_disposals_list_view
 
--- DROP VIEW doc_material_disposals_list_view;
+DROP VIEW doc_material_disposals_list_view;
 
 CREATE OR REPLACE VIEW doc_material_disposals_list_view AS 
 	SELECT
 		doc.id,
 		doc.number,
 		doc.date_time,
-		date8_time8_descr(doc.date_time) AS date_time_descr,
 		doc.processed,
 		doc.store_id,
 		st.name AS store_descr,
 		doc.user_id,
 		u.name AS user_descr,
 		doc.explanation,
-		ra.cost AS cost,
-		format_money(ra.cost) AS cost_descr
+		ra.cost AS cost
 		
 	FROM doc_material_disposals doc
 	LEFT JOIN users u ON u.id = doc.user_id

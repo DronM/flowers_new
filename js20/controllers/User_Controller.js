@@ -28,6 +28,7 @@ function User_Controller(app,options){
 	this.addDelete();
 	this.addGetList();
 	this.addGetObject();
+	this.add_get_profile();
 	this.addComplete();
 	this.add_reset_pwd();
 	this.add_login();
@@ -76,6 +77,12 @@ extend(User_Controller,ControllerDb);
 	pm.addField(field);
 	
 	options = {};
+	
+	var field = new FieldString("phone_cel",options);
+	
+	pm.addField(field);
+	
+	options = {};
 	options.alias = "Магазин";
 	var field = new FieldInt("store_id",options);
 	
@@ -88,7 +95,7 @@ extend(User_Controller,ControllerDb);
 	pm.addField(field);
 	
 	options = {};
-	options.required = true;
+	
 	var field = new FieldInt("cash_register_id",options);
 	
 	pm.addField(field);
@@ -103,8 +110,8 @@ extend(User_Controller,ControllerDb);
 	var field;
 	var options;	
 	var pm = this.getUpdate();
-	options = {};
-	options.primaryKey = true;options.autoInc = true;options.required = true;
+	options = {"sendNulls":true};
+	options.primaryKey = true;options.autoInc = true;
 	var field = new FieldInt("id",options);
 	
 	pm.addField(field);
@@ -113,17 +120,17 @@ extend(User_Controller,ControllerDb);
 	field = new FieldInt("old_id",{});
 	pm.addField(field);
 	
-	options = {};
-	options.required = true;
+	options = {"sendNulls":true};
+	
 	var field = new FieldString("name",options);
 	
 	pm.addField(field);
 	
 	
-	options = {};
-	options.required = true;	
+	options = {"sendNulls":true};
+		
 	options.enumValues = 'admin,store_manager,florist,cashier';
-	options.enumValues+= (options.enumValues!='')? '':',';
+	options.enumValues+= (options.enumValues=='')? '':',';
 	options.enumValues+= 'null';
 	
 	field = new FieldEnum("role_id",options);
@@ -131,36 +138,43 @@ extend(User_Controller,ControllerDb);
 	pm.addField(field);
 	
 	
-	options = {};
+	options = {"sendNulls":true};
 	
 	var field = new FieldString("email",options);
 	
 	pm.addField(field);
 	
 	
-	options = {};
+	options = {"sendNulls":true};
 	
 	var field = new FieldPassword("pwd",options);
 	
 	pm.addField(field);
 	
 	
-	options = {};
+	options = {"sendNulls":true};
+	
+	var field = new FieldString("phone_cel",options);
+	
+	pm.addField(field);
+	
+	
+	options = {"sendNulls":true};
 	options.alias = "Магазин";
 	var field = new FieldInt("store_id",options);
 	
 	pm.addField(field);
 	
 	
-	options = {};
+	options = {"sendNulls":true};
 	options.alias = "Привязвывать к магазину";
 	var field = new FieldBool("constrain_to_store",options);
 	
 	pm.addField(field);
 	
 	
-	options = {};
-	options.required = true;
+	options = {"sendNulls":true};
+	
 	var field = new FieldInt("cash_register_id",options);
 	
 	pm.addField(field);
@@ -185,6 +199,7 @@ extend(User_Controller,ControllerDb);
 	pm.addField(new FieldInt("id",options));
 	pm.addField(new FieldString("name",options));
 	pm.addField(new FieldString("role_descr",options));
+	pm.addField(new FieldString("phone_cel",options));
 	pm.addField(new FieldBool("constrain_to_store",options));
 	pm.addField(new FieldInt("store_id",options));
 	pm.addField(new FieldString("store_descr",options));
@@ -196,6 +211,12 @@ extend(User_Controller,ControllerDb);
 	
 	var pm = this.getGetObject();
 	pm.addField(new FieldInt("id",options));
+}
+
+			User_Controller.prototype.add_get_profile = function(){
+	var pm = new PublicMethod('get_profile',{controller:this});
+	this.addPublicMethod(pm);
+	
 }
 
 			User_Controller.prototype.addComplete = function(){

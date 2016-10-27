@@ -103,10 +103,10 @@ function MaterialBalanceList_Model(options){
 	
 	filed_options.alias = 'Сумма';
 	
-	var field = new FieldFloat("main_toatl",filed_options);
+	var field = new FieldFloat("main_total",filed_options);
 	
 
-	options.fields.main_toatl = field;
+	options.fields.main_total = field;
 
 			
 	var filed_options = {};
@@ -114,10 +114,10 @@ function MaterialBalanceList_Model(options){
 	
 	filed_options.alias = 'Время';
 	
-	var field = new FieldString("procur_avg_time_descr",filed_options);
+	var field = new FieldString("procur_avg_time",filed_options);
 	
 
-	options.fields.procur_avg_time_descr = field;
+	options.fields.procur_avg_time = field;
 
 		MaterialBalanceList_Model.superclass.constructor.call(this,id,options);
 }

@@ -30,6 +30,8 @@ class ExpenceType_Model extends ModelSQL{
 		,"name"
 		,array(
 		'required'=>TRUE,
+			'alias'=>"Наименование"
+		,
 			'length'=>50,
 			'id'=>"name"
 				

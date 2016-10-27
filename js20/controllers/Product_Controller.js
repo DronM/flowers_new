@@ -95,7 +95,7 @@ extend(Product_Controller,ControllerDb);
 	var field;
 	var options;	
 	var pm = this.getUpdate();
-	options = {};
+	options = {"sendNulls":true};
 	options.alias = "Код";options.primaryKey = true;options.autoInc = true;
 	var field = new FieldInt("id",options);
 	
@@ -105,42 +105,42 @@ extend(Product_Controller,ControllerDb);
 	field = new FieldInt("old_id",{});
 	pm.addField(field);
 	
-	options = {};
-	options.alias = "Наименование";options.required = true;
+	options = {"sendNulls":true};
+	options.alias = "Наименование";
 	var field = new FieldString("name",options);
 	
 	pm.addField(field);
 	
 	
-	options = {};
-	options.alias = "Описание";options.required = true;
+	options = {"sendNulls":true};
+	options.alias = "Описание";
 	var field = new FieldText("name_full",options);
 	
 	pm.addField(field);
 	
 	
-	options = {};
-	options.alias = "Розничная цена";options.required = true;
+	options = {"sendNulls":true};
+	options.alias = "Розничная цена";
 	var field = new FieldFloat("price",options);
 	
 	pm.addField(field);
 	
 	
-	options = {};
+	options = {"sendNulls":true};
 	options.alias = "Для продажи";
 	var field = new FieldBool("for_sale",options);
 	
 	pm.addField(field);
 	
 	
-	options = {};
+	options = {"sendNulls":true};
 	options.alias = "Заказывать автоматически";
 	var field = new FieldBool("make_order",options);
 	
 	pm.addField(field);
 	
 	
-	options = {};
+	options = {"sendNulls":true};
 	options.alias = "Минимальный остаток";
 	var field = new FieldFloat("min_stock_quant",options);
 	
@@ -167,7 +167,6 @@ extend(Product_Controller,ControllerDb);
 	pm.addField(new FieldString("name",options));
 	pm.addField(new FieldFloat("price",options));
 	pm.addField(new FieldBool("for_sale",options));
-	pm.addField(new FieldString("for_sale_descr",options));
 }
 
 			Product_Controller.prototype.addGetObject = function(){
@@ -184,8 +183,8 @@ extend(Product_Controller,ControllerDb);
 	var options = {};
 	
 	var pm = this.getComplete();
-	pm.addField(new FieldString("name",options));
-	pm.getField(this.PARAM_ORD_FIELDS).setValue("name");
+	pm.addField(new FieldFloat("price",options));
+	pm.getField(this.PARAM_ORD_FIELDS).setValue("price");
 }
 
 			Product_Controller.prototype.add_complete_for_spec = function(){
@@ -197,7 +196,7 @@ extend(Product_Controller,ControllerDb);
 	var options = {};
 	
 		pm.addField(new FieldString("name",options));
-				
+	
 			
 }
 
@@ -209,23 +208,17 @@ extend(Product_Controller,ControllerDb);
 	
 	var options = {};
 	
-		options.required = true;
-	
 		pm.addField(new FieldString("cond_fields",options));
 	
 				
 	
 	var options = {};
 	
-		options.required = true;
-	
 		pm.addField(new FieldString("cond_vals",options));
 	
 				
 	
 	var options = {};
-	
-		options.required = true;
 	
 		pm.addField(new FieldString("cond_sgns",options));
 	
@@ -234,7 +227,13 @@ extend(Product_Controller,ControllerDb);
 	var options = {};
 	
 		pm.addField(new FieldString("cond_ic",options));
+		
 				
+	
+	var options = {};
+	
+		pm.addField(new FieldString("field_sep",options));
+			
 				
 	
 	var options = {};

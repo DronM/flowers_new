@@ -60,22 +60,12 @@ function ProductList_Model(options){
 	var filed_options = {};
 	filed_options.primaryKey = false;
 	
+	filed_options.alias = 'Для продажи';
 	
 	var field = new FieldBool("for_sale",filed_options);
 	
 
 	options.fields.for_sale = field;
-
-			
-	var filed_options = {};
-	filed_options.primaryKey = false;
-	
-	filed_options.alias = 'Для продажи';
-	
-	var field = new FieldString("for_sale_descr",filed_options);
-	
-
-	options.fields.for_sale_descr = field;
 
 		ProductList_Model.superclass.constructor.call(this,id,options);
 }

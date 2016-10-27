@@ -1,9 +1,18 @@
 -- Function: material_list_with_balance(integer, integer, timestamp without time zone)
 
--- DROP FUNCTION material_list_with_balance(integer, integer, timestamp without time zone);
+DROP FUNCTION material_list_with_balance(integer, integer, timestamp without time zone);
 
 CREATE OR REPLACE FUNCTION material_list_with_balance(IN in_store_id integer, IN in_group_id integer, IN in_date_time timestamp without time zone)
-  RETURNS TABLE(id integer, name text, material_group_id integer, material_group_descr text, price text, main_quant text, main_total text, main_quant_descr text, procur_avg_time_descr text) AS
+  RETURNS TABLE(
+  	id integer,
+  	name text,
+  	material_group_id integer,
+  	material_group_descr text,
+  	price numeric,
+  	main_quant numeric,
+  	main_total numeric,
+  	procur_avg_time interval
+  	) AS
 $BODY$
 		WITH data AS
 		(
@@ -24,37 +33,13 @@ $BODY$
 			m.name::text AS name,
 			mg.id AS material_group_id,
 			mg.name::text AS material_group_descr,
-			format_money(m.price) AS price,
+			m.price AS price,
 			
 			b_main.quant AS main_quant,
 			m.price*b_main.quant AS main_total,			
-			CASE 
-				WHEN b_main.quant IS NULL OR b_main.quant=0 THEN ''
-				ELSE round(b_main.quant)::text
-			END AS main_quant_descr,
-			/*
-			format_money(
-				(SELECT
-					CASE 
-						WHEN rg_material_costs.cost=0 THEN 0
-						ELSE rg_material_costs.cost/rg_material_costs.quant
-					END
-				FROM rg_material_costs WHERE store_id=in_store_id AND rg_material_costs.material_id=m.id AND rg_material_costs.date_time=reg_current_balance_time())
-				)  AS cost,
-				
-				(SELECT
-					CASE 
-						WHEN rg_material_costs.cost=0 THEN 0
-						ELSE rg_material_costs.cost/rg_material_costs.quant
-					END
-				FROM rg_material_costs
-				WHERE store_id=in_store_id AND rg_material_costs.material_id=m.id
-				AND rg_material_costs.date_time=reg_current_balance_time())*b_main.quant
-				AS cost_main_total,
-			*/	
+			
 				
 			--after procurement average time
-			(SELECT interval_descr(AVG(procur_interval)) FROM b_main_detail WHERE b_main_detail.material_id=m.id) AS procur_avg_time_descr,
 			(SELECT AVG(procur_interval) FROM b_main_detail WHERE b_main_detail.material_id=m.id) AS procur_avg_time
 		FROM materials AS m
 		LEFT JOIN 
@@ -72,23 +57,29 @@ $BODY$
 		($2=0 OR (($2>0) AND (m.material_group_id=$2)))
 		ORDER BY m.name
 		)
+		
 		SELECT 
-			data.id, data.name,
-			data.material_group_id,data.material_group_descr,
+			data.id,
+			data.name,
+			data.material_group_id,
+			data.material_group_descr,
 			data.price,
-			format_quant(data.main_quant),
-			format_money(data.main_total),
-			data.main_quant_descr,
-			data.procur_avg_time_descr
+			data.main_quant,
+			data.main_total,
+			data.procur_avg_time
 		FROM data
+		
 		UNION ALL
+		
 		SELECT
-			NULL AS id, NULL AS name, NULL AS material_group_id, NULL AS material_group_descr, NULL AS price,
+			NULL AS id,
+			NULL AS name,
+			NULL AS material_group_id,
+			NULL AS material_group_descr,
+			NULL AS price,
 			NULL AS main_quant,
-			--format_money(SUM(agg.main_total)) AS main_total,
-			round(SUM(agg.main_total),2)::text AS main_total,
-			NULL AS main_quant_descr,
-			interval_descr(AVG(agg.procur_avg_time)) AS procur_avg_time_descr
+			round(SUM(agg.main_total),2) AS main_total,
+			AVG(agg.procur_avg_time) AS procur_avg_time
 		FROM data AS agg;
 $BODY$
   LANGUAGE sql VOLATILE

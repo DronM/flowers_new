@@ -94,7 +94,7 @@ extend(DOCMaterialDisposal_Controller,ControllerDb);
 	var field;
 	var options;	
 	var pm = this.getUpdate();
-	options = {};
+	options = {"sendNulls":true};
 	options.primaryKey = true;options.autoInc = true;
 	var field = new FieldInt("id",options);
 	
@@ -104,42 +104,42 @@ extend(DOCMaterialDisposal_Controller,ControllerDb);
 	field = new FieldInt("old_id",{});
 	pm.addField(field);
 	
-	options = {};
-	options.alias = "Дата";options.required = true;
+	options = {"sendNulls":true};
+	options.alias = "Дата";
 	var field = new FieldDateTime("date_time",options);
 	
 	pm.addField(field);
 	
 	
-	options = {};
+	options = {"sendNulls":true};
 	options.alias = "Номер";
 	var field = new FieldInt("number",options);
 	
 	pm.addField(field);
 	
 	
-	options = {};
+	options = {"sendNulls":true};
 	options.alias = "Проведен";
 	var field = new FieldBool("processed",options);
 	
 	pm.addField(field);
 	
 	
-	options = {};
+	options = {"sendNulls":true};
 	options.alias = "Магазин";
 	var field = new FieldInt("store_id",options);
 	
 	pm.addField(field);
 	
 	
-	options = {};
+	options = {"sendNulls":true};
 	options.alias = "Флорист";
 	var field = new FieldInt("user_id",options);
 	
 	pm.addField(field);
 	
 	
-	options = {};
+	options = {"sendNulls":true};
 	options.alias = "Причина списания";
 	var field = new FieldText("explanation",options);
 	
@@ -164,13 +164,13 @@ extend(DOCMaterialDisposal_Controller,ControllerDb);
 	var pm = this.getGetList();
 	pm.addField(new FieldInt("id",options));
 	pm.addField(new FieldDateTime("date_time",options));
-	pm.addField(new FieldString("date_time_descr",options));
 	pm.addField(new FieldString("number",options));
 	pm.addField(new FieldString("processed",options));
 	pm.addField(new FieldInt("store_id",options));
 	pm.addField(new FieldString("store_descr",options));
 	pm.addField(new FieldInt("user_id",options));
 	pm.addField(new FieldString("user_descr",options));
+	pm.addField(new FieldFloat("cost",options));
 	pm.addField(new FieldString("explanation",options));
 }
 

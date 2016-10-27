@@ -57,26 +57,14 @@ class ProductList_Model extends ModelSQL{
 		,"for_sale"
 		,array(
 		
-			'id'=>"for_sale"
+			'alias'=>"Для продажи"
 		,
-			'sysCol'=>TRUE
+			'id'=>"for_sale"
 				
 		
 		));
 		$this->addField($f_for_sale);
-
-		$f_for_sale_descr=new FieldSQlString($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"for_sale_descr"
-		,array(
-		
-			'alias'=>"Для продажи"
-		,
-			'id'=>"for_sale_descr"
-				
-		
-		));
-		$this->addField($f_for_sale_descr);
-
+$this->limitConstant = 'doc_per_page_count';
 		
 		
 		

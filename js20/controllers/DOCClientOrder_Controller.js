@@ -200,8 +200,8 @@ extend(DOCClientOrder_Controller,ControllerDb);
 	var field;
 	var options;	
 	var pm = this.getUpdate();
-	options = {};
-	options.primaryKey = true;options.autoInc = true;options.required = true;
+	options = {"sendNulls":true};
+	options.primaryKey = true;options.autoInc = true;
 	var field = new FieldInt("id",options);
 	
 	pm.addField(field);
@@ -210,38 +210,38 @@ extend(DOCClientOrder_Controller,ControllerDb);
 	field = new FieldInt("old_id",{});
 	pm.addField(field);
 	
-	options = {};
+	options = {"sendNulls":true};
 	
 	var field = new FieldDateTime("date_time",options);
 	
 	pm.addField(field);
 	
 	
-	options = {};
+	options = {"sendNulls":true};
 	options.alias = "Номер";
 	var field = new FieldInt("number",options);
 	
 	pm.addField(field);
 	
 	
-	options = {};
+	options = {"sendNulls":true};
 	options.alias = "Номер с сайта";
 	var field = new FieldString("number_from_site",options);
 	
 	pm.addField(field);
 	
 	
-	options = {};
+	options = {"sendNulls":true};
 	options.alias = "Проведен";
 	var field = new FieldBool("processed",options);
 	
 	pm.addField(field);
 	
 	
-	options = {};
-	options.required = true;	
+	options = {"sendNulls":true};
+		
 	options.enumValues = 'courier,by_client';
-	options.enumValues+= (options.enumValues!='')? '':',';
+	options.enumValues+= (options.enumValues=='')? '':',';
 	options.enumValues+= 'null';
 	
 	field = new FieldEnum("delivery_type",options);
@@ -249,24 +249,24 @@ extend(DOCClientOrder_Controller,ControllerDb);
 	pm.addField(field);
 	
 	
-	options = {};
-	options.required = true;
+	options = {"sendNulls":true};
+	
 	var field = new FieldString("client_name",options);
 	
 	pm.addField(field);
 	
 	
-	options = {};
-	options.required = true;
+	options = {"sendNulls":true};
+	
 	var field = new FieldString("client_tel",options);
 	
 	pm.addField(field);
 	
 	
-	options = {};
-	options.required = true;	
+	options = {"sendNulls":true};
+		
 	options.enumValues = 'self,other';
-	options.enumValues+= (options.enumValues!='')? '':',';
+	options.enumValues+= (options.enumValues=='')? '':',';
 	options.enumValues+= 'null';
 	
 	field = new FieldEnum("recipient_type",options);
@@ -274,70 +274,70 @@ extend(DOCClientOrder_Controller,ControllerDb);
 	pm.addField(field);
 	
 	
-	options = {};
+	options = {"sendNulls":true};
 	
 	var field = new FieldString("recipient_name",options);
 	
 	pm.addField(field);
 	
 	
-	options = {};
+	options = {"sendNulls":true};
 	
 	var field = new FieldString("recipient_tel",options);
 	
 	pm.addField(field);
 	
 	
-	options = {};
+	options = {"sendNulls":true};
 	
 	var field = new FieldText("address",options);
 	
 	pm.addField(field);
 	
 	
-	options = {};
-	options.required = true;
+	options = {"sendNulls":true};
+	
 	var field = new FieldDate("delivery_date",options);
 	
 	pm.addField(field);
 	
 	
-	options = {};
-	options.required = true;
+	options = {"sendNulls":true};
+	
 	var field = new FieldInt("delivery_hour_id",options);
 	
 	pm.addField(field);
 	
 	
-	options = {};
+	options = {"sendNulls":true};
 	
 	var field = new FieldString("delivery_comment",options);
 	
 	pm.addField(field);
 	
 	
-	options = {};
+	options = {"sendNulls":true};
 	
 	var field = new FieldBool("card",options);
 	
 	pm.addField(field);
 	
 	
-	options = {};
+	options = {"sendNulls":true};
 	
 	var field = new FieldText("card_text",options);
 	
 	pm.addField(field);
 	
 	
-	options = {};
+	options = {"sendNulls":true};
 	
 	var field = new FieldBool("anonym_gift",options);
 	
 	pm.addField(field);
 	
 	
-	options = {};
+	options = {"sendNulls":true};
 		
 	options.enumValues = 'by_call,by_sms';
 	
@@ -346,14 +346,14 @@ extend(DOCClientOrder_Controller,ControllerDb);
 	pm.addField(field);
 	
 	
-	options = {};
+	options = {"sendNulls":true};
 	
 	var field = new FieldText("extra_comment",options);
 	
 	pm.addField(field);
 	
 	
-	options = {};
+	options = {"sendNulls":true};
 		
 	options.enumValues = 'cash,bank,yandex,trans_to_card,web_money';
 	
@@ -362,7 +362,7 @@ extend(DOCClientOrder_Controller,ControllerDb);
 	pm.addField(field);
 	
 	
-	options = {};
+	options = {"sendNulls":true};
 		
 	options.enumValues = 'to_noone,to_florist,to_courier,closed';
 	
@@ -371,14 +371,14 @@ extend(DOCClientOrder_Controller,ControllerDb);
 	pm.addField(field);
 	
 	
-	options = {};
+	options = {"sendNulls":true};
 	
 	var field = new FieldBool("payed",options);
 	
 	pm.addField(field);
 	
 	
-	options = {};
+	options = {"sendNulls":true};
 	
 	var field = new FieldFloat("total",options);
 	
