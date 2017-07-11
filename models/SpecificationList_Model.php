@@ -13,86 +13,65 @@ class SpecificationList_Model extends ModelSQL{
 		$this->setDbName("public");
 		
 		$this->setTableName("specifications_list_view");
+			
+		//*** Field id ***
+		$f_opts = array();
+		$f_opts['primaryKey'] = TRUE;
+		$f_opts['id']="id";
 		
-		$f_id=new FieldSQlInt($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"id"
-		,array(
-		
-			'primaryKey'=>TRUE,
-			'id'=>"id"
-				
-		
-		));
+		$f_id=new FieldSQLInt($this->getDbLink(),$this->getDbName(),$this->getTableName(),"id",$f_opts);
 		$this->addField($f_id);
-
-		$f_product_id=new FieldSQlInt($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"product_id"
-		,array(
+		//********************
+	
+		//*** Field product_id ***
+		$f_opts = array();
+		$f_opts['id']="product_id";
 		
-			'id'=>"product_id"
-				
-		
-		));
+		$f_product_id=new FieldSQLInt($this->getDbLink(),$this->getDbName(),$this->getTableName(),"product_id",$f_opts);
 		$this->addField($f_product_id);
-
-		$f_product_descr=new FieldSQlString($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"product_descr"
-		,array(
+		//********************
+	
+		//*** Field product_descr ***
+		$f_opts = array();
+		$f_opts['id']="product_descr";
 		
-			'id'=>"product_descr"
-				
-		
-		));
+		$f_product_descr=new FieldSQLString($this->getDbLink(),$this->getDbName(),$this->getTableName(),"product_descr",$f_opts);
 		$this->addField($f_product_descr);
-
-		$f_material_id=new FieldSQlInt($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"material_id"
-		,array(
+		//********************
+	
+		//*** Field material_id ***
+		$f_opts = array();
+		$f_opts['id']="material_id";
 		
-			'id'=>"material_id"
-				
-		
-		));
+		$f_material_id=new FieldSQLInt($this->getDbLink(),$this->getDbName(),$this->getTableName(),"material_id",$f_opts);
 		$this->addField($f_material_id);
-
-		$f_material_descr=new FieldSQlString($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"material_descr"
-		,array(
+		//********************
+	
+		//*** Field material_descr ***
+		$f_opts = array();
+		$f_opts['id']="material_descr";
 		
-			'alias'=>"Материал"
-		,
-			'id'=>"material_descr"
-				
-		
-		));
+		$f_material_descr=new FieldSQLString($this->getDbLink(),$this->getDbName(),$this->getTableName(),"material_descr",$f_opts);
 		$this->addField($f_material_descr);
-
-		$f_product_quant=new FieldSQlInt($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"product_quant"
-		,array(
+		//********************
+	
+		//*** Field product_quant ***
+		$f_opts = array();
+		$f_opts['id']="product_quant";
 		
-			'id'=>"product_quant"
-				
-		
-		));
+		$f_product_quant=new FieldSQLInt($this->getDbLink(),$this->getDbName(),$this->getTableName(),"product_quant",$f_opts);
 		$this->addField($f_product_quant);
-
-		$f_material_quant=new FieldSQlFloat($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"material_quant"
-		,array(
+		//********************
+	
+		//*** Field material_quant ***
+		$f_opts = array();
+		$f_opts['length']=19;
+		$f_opts['id']="material_quant";
 		
-			'alias'=>"Количество"
-		,
-			'length'=>19,
-			'id'=>"material_quant"
-				
-		
-		));
+		$f_material_quant=new FieldSQLFloat($this->getDbLink(),$this->getDbName(),$this->getTableName(),"material_quant",$f_opts);
 		$this->addField($f_material_quant);
-$this->limitConstant = 'doc_per_page_count';
-		
-		
-		
+		//********************
+$this->setLimitConstant('doc_per_page_count');
 	}
 
 }

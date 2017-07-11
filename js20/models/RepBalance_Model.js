@@ -22,123 +22,70 @@ function RepBalance_Model(options){
 	
 	options.fields = {};
 	
-			
+				
+	
 	var filed_options = {};
-	filed_options.primaryKey = false;
+	filed_options.primaryKey = false;	
+	filed_options.alias = 'Салон';options.fields.store_id = new FieldInt("store_id",filed_options);
 	
-	filed_options.alias = 'Салон';
+				
 	
-	var field = new FieldInt("store_id",filed_options);
-	
-
-	options.fields.store_id = field;
-
-			
 	var filed_options = {};
-	filed_options.primaryKey = false;
+	filed_options.primaryKey = false;	
+	filed_options.alias = 'Салон';options.fields.store_descr = new FieldString("store_descr",filed_options);
 	
-	filed_options.alias = 'Салон';
+				
 	
-	var field = new FieldString("store_descr",filed_options);
-	
-
-	options.fields.store_descr = field;
-
-			
 	var filed_options = {};
-	filed_options.primaryKey = false;
+	filed_options.primaryKey = false;	
+	filed_options.alias = 'Дата';options.fields.period = new FieldDate("period",filed_options);
 	
-	filed_options.alias = 'Дата';
+				
 	
-	var field = new FieldDate("period",filed_options);
-	
-
-	options.fields.period = field;
-
-			
 	var filed_options = {};
-	filed_options.primaryKey = false;
+	filed_options.primaryKey = false;	
+	filed_options.alias = 'Месяц';options.fields.mon = new FieldString("mon",filed_options);
+				
+				
 	
-	filed_options.alias = 'Месяц';
-	
-	var field = new FieldString("mon",filed_options);
-	
-
-	options.fields.mon = field;
-			
-			
 	var filed_options = {};
-	filed_options.primaryKey = false;
+	filed_options.primaryKey = false;	
+	options.fields.expence_type_id = new FieldInt("expence_type_id",filed_options);
 	
+				
 	
-	var field = new FieldInt("expence_type_id",filed_options);
-	
-
-	options.fields.expence_type_id = field;
-
-			
 	var filed_options = {};
-	filed_options.primaryKey = false;
+	filed_options.primaryKey = false;	
+	filed_options.alias = 'Вид затрат';options.fields.expence_type_descr = new FieldString("expence_type_descr",filed_options);
 	
-	filed_options.alias = 'Вид затрат';
+				
 	
-	var field = new FieldString("expence_type_descr",filed_options);
-	
-
-	options.fields.expence_type_descr = field;
-
-			
 	var filed_options = {};
-	filed_options.primaryKey = false;
+	filed_options.primaryKey = false;	
+	filed_options.alias = 'Сумма затрат';options.fields.total_expences = new FieldFloat("total_expences",filed_options);
+	options.fields.total_expences.getValidator().setMaxLength('12');
 	
-	filed_options.alias = 'Сумма затрат';
+				
 	
-	var field = new FieldFloat("total_expences",filed_options);
-	
-		field.getValidator().setMaxLength('12');
-	
-
-	options.fields.total_expences = field;
-
-			
 	var filed_options = {};
-	filed_options.primaryKey = false;
+	filed_options.primaryKey = false;	
+	filed_options.alias = 'Выручка';options.fields.total_sales = new FieldFloat("total_sales",filed_options);
+	options.fields.total_sales.getValidator().setMaxLength('12');
 	
-	filed_options.alias = 'Выручка';
+				
 	
-	var field = new FieldFloat("total_sales",filed_options);
-	
-		field.getValidator().setMaxLength('12');
-	
-
-	options.fields.total_sales = field;
-
-			
 	var filed_options = {};
-	filed_options.primaryKey = false;
+	filed_options.primaryKey = false;	
+	filed_options.alias = 'Списания материалов';options.fields.total_mat_disp = new FieldFloat("total_mat_disp",filed_options);
+	options.fields.total_mat_disp.getValidator().setMaxLength('12');
 	
-	filed_options.alias = 'Списания материалов';
+				
 	
-	var field = new FieldFloat("total_mat_disp",filed_options);
-	
-		field.getValidator().setMaxLength('12');
-	
-
-	options.fields.total_mat_disp = field;
-
-			
 	var filed_options = {};
-	filed_options.primaryKey = false;
+	filed_options.primaryKey = false;	
+	filed_options.alias = 'Себестоимость материалов';options.fields.total_mat_cost = new FieldFloat("total_mat_cost",filed_options);
+	options.fields.total_mat_cost.getValidator().setMaxLength('12');
 	
-	filed_options.alias = 'Себестоимость материалов';
-	
-	var field = new FieldFloat("total_mat_cost",filed_options);
-	
-		field.getValidator().setMaxLength('12');
-	
-
-	options.fields.total_mat_cost = field;
-
 		RepBalance_Model.superclass.constructor.call(this,id,options);
 }
 extend(RepBalance_Model,ModelXML);

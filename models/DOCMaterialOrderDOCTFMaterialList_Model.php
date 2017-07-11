@@ -13,64 +13,49 @@ class DOCMaterialOrderDOCTFMaterialList_Model extends ModelSQL{
 		$this->setDbName("public");
 		
 		$this->setTableName("doc_material_orders_t_materials_list_view");
+			
+		//*** Field doc_id ***
+		$f_opts = array();
+		$f_opts['primaryKey'] = TRUE;
+		$f_opts['id']="doc_id";
 		
-		$f_doc_id=new FieldSQlInt($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"doc_id"
-		,array(
-		
-			'primaryKey'=>TRUE,
-			'id'=>"doc_id"
-				
-		
-		));
+		$f_doc_id=new FieldSQLInt($this->getDbLink(),$this->getDbName(),$this->getTableName(),"doc_id",$f_opts);
 		$this->addField($f_doc_id);
-
-		$f_line_number=new FieldSQlInt($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"line_number"
-		,array(
+		//********************
+	
+		//*** Field line_number ***
+		$f_opts = array();
+		$f_opts['primaryKey'] = TRUE;
+		$f_opts['id']="line_number";
 		
-			'primaryKey'=>TRUE,
-			'alias'=>"№"
-		,
-			'id'=>"line_number"
-				
-		
-		));
+		$f_line_number=new FieldSQLInt($this->getDbLink(),$this->getDbName(),$this->getTableName(),"line_number",$f_opts);
 		$this->addField($f_line_number);
-
-		$f_material_id=new FieldSQlInt($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"material_id"
-		,array(
+		//********************
+	
+		//*** Field material_id ***
+		$f_opts = array();
+		$f_opts['id']="material_id";
 		
-			'id'=>"material_id"
-				
-		
-		));
+		$f_material_id=new FieldSQLInt($this->getDbLink(),$this->getDbName(),$this->getTableName(),"material_id",$f_opts);
 		$this->addField($f_material_id);
-
-		$f_material_descr=new FieldSQlString($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"material_descr"
-		,array(
+		//********************
+	
+		//*** Field material_descr ***
+		$f_opts = array();
+		$f_opts['id']="material_descr";
 		
-			'id'=>"material_descr"
-				
-		
-		));
+		$f_material_descr=new FieldSQLString($this->getDbLink(),$this->getDbName(),$this->getTableName(),"material_descr",$f_opts);
 		$this->addField($f_material_descr);
-
-		$f_quant=new FieldSQlFloat($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"quant"
-		,array(
+		//********************
+	
+		//*** Field quant ***
+		$f_opts = array();
+		$f_opts['id']="quant";
 		
-			'id'=>"quant"
-				
-		
-		));
+		$f_quant=new FieldSQLFloat($this->getDbLink(),$this->getDbName(),$this->getTableName(),"quant",$f_opts);
 		$this->addField($f_quant);
-
-		
-		
-		
+		//********************
+$this->setLimitConstant('doc_per_page_count');
 	}
 
 }

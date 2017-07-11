@@ -29,6 +29,8 @@ require_once(FRAME_WORK_PATH.'basic_classes/ControllerSQLDOC20.php');
 require_once(FRAME_WORK_PATH.'basic_classes/ModelVars.php');
 require_once(FRAME_WORK_PATH.'basic_classes/Field.php');
 
+require_once(FRAME_WORK_PATH.'basic_classes/ParamsSQL.php');
+
 class <xsl:value-of select="@id"/>_Controller extends ControllerSQLDOC20{
 	public function __construct($dbLinkMaster=NULL){
 		parent::__construct($dbLinkMaster);<xsl:apply-templates/>
@@ -37,7 +39,7 @@ class <xsl:value-of select="@id"/>_Controller extends ControllerSQLDOC20{
 	public function insert($pm){
 		//doc owner
 		$pm->setParamValue('user_id',$_SESSION['user_id']);		
-		parent::insert();		
+		parent::insert($pm);		
 		//SMS
 		$ar = $this->getDbLink()->query_first('SELECT const_cel_phone_for_sms_val() AS val');
 		send_service_sms($ar['val'],'Комплектация');				
@@ -111,16 +113,13 @@ class <xsl:value-of select="@id"/>_Controller extends ControllerSQLDOC20{
 		$this->addNewModel(
 			sprintf(
 			'SELECT number,
-			get_date_str_rus(date_time::date) AS date_time_descr,
-			store_descr,
-			user_descr,
-			product_id,
-			product_descr,
-			format_quant(quant) AS quant,
-			price_descr,
-			sum_descr,
-			mat_sum_descr,
-			on_norm
+				get_date_str_rus(date_time::date) AS date_time_descr,
+				store_descr,
+				user_descr,
+				product_id,
+				product_descr,
+				quant AS quant,
+				price
 			FROM doc_productions_list_view
 			WHERE id=%d',
 			$pm->getParamValue('doc_id')),
@@ -130,10 +129,9 @@ class <xsl:value-of select="@id"/>_Controller extends ControllerSQLDOC20{
 			'SELECT 
 			t.line_number,
 			m.name AS material_descr,
-			format_quant(t.quant) AS quant,
-			format_quant(t.quant_norm) AS quant_norm,
-			format_money(m.price) AS price_descr,
-			format_money(m.price*t.quant) AS total_descr
+			t.quant AS quant,
+			m.price AS price,
+			m.price*t.quant AS total
 			FROM doc_productions_t_materials AS t
 			LEFT JOIN materials AS m ON m.id=t.material_id
 			WHERE doc_id=%d
@@ -176,7 +174,7 @@ class <xsl:value-of select="@id"/>_Controller extends ControllerSQLDOC20{
 				store_descr,
 				user_descr,
 				product_descr,
-				sum_descr
+				price
 			FROM doc_productions_list_view
 			WHERE id=%d",
 			$pm->getParamValue('doc_id')
@@ -220,7 +218,7 @@ class <xsl:value-of select="@id"/>_Controller extends ControllerSQLDOC20{
 			new Field('store_descr',DT_STRING,array('value'=>$ar['store_descr'])),
 			new Field('user_descr',DT_STRING,array('value'=>$ar['user_descr'])),
 			new Field('product_descr',DT_STRING,array('value'=>$ar['product_descr'])),
-			new Field('sum_descr',DT_STRING,array('value'=>$ar['sum_descr'])),
+			new Field('price',DT_STRING,array('value'=>$ar['price'])),
 			//new Field('barcode',DT_STRING,array('value'=>$barcode)),
 			new Field('barcode_descr',DT_STRING,array('value'=>$barcode_descr)),
 			new Field('barcode_img_mime',DT_STRING,array('value'=>'image/png')),				
@@ -244,6 +242,88 @@ class <xsl:value-of select="@id"/>_Controller extends ControllerSQLDOC20{
 		't_materials');
 	}
 	
+	public function calc_mat_costs($pm){
+		$p = new ParamsSQL($pm,$this->getDbLink());
+		$p->addAll();
+		
+		$doc_id = $p->getVal('doc_id');
+		
+		if (!$doc_id){
+			$q = sprintf(
+				"SELECT
+					sum(coalesce(m.price,0)*t.quant) AS material_retail_cost,
+					sum(
+						CASE WHEN b.quant IS NOT NULL AND b.quant>0 THEN
+							round(b.cost/b.quant,2)*t.quant
+						ELSE 0
+						END
+					) AS material_cost
+			
+				FROM doc_productions_t_tmp_materials t
+				LEFT JOIN materials AS m ON m.id=t.material_id
+				LEFT JOIN (
+					SELECT
+						bl.material_id,
+						SUM(bl.quant) AS quant,
+						SUM(bl.cost) AS cost
+					FROM rg_materials_balance(
+						'{}',
+						ARRAY(SELECT t.material_id
+							FROM doc_productions_t_tmp_materials t
+							WHERE t.view_id=%s
+						)
+					) AS bl
+					GROUP BY bl.material_id					
+				) AS b
+				ON b.material_id=t.material_id
+		
+				WHERE t.view_id=%s",
+				
+			$p->getDbVal('view_id'),
+			$p->getDbVal('view_id')								
+			);		
+		}
+		else{
+			$q = sprintf(
+				"SELECT
+					sum(coalesce(m.price,0)*t.quant) AS material_retail_cost,
+					sum(
+						CASE WHEN b.quant IS NOT NULL AND b.quant>0 THEN
+							round(b.cost/b.quant,2)*t.quant
+						ELSE 0
+						END
+					) AS material_cost
+			
+				FROM doc_productions_t_tmp_materials t
+				LEFT JOIN materials AS m ON m.id=t.material_id
+				LEFT JOIN (
+					SELECT
+						bl.material_id,
+						SUM(bl.quant) AS quant,
+						SUM(bl.cost) AS cost
+					FROM rg_materials_balance(
+						'production',
+						%d,					
+						'{}',
+						ARRAY(SELECT t.material_id
+							FROM doc_productions_t_tmp_materials t
+							WHERE t.view_id=%s
+						)
+					) AS bl
+					GROUP BY bl.material_id					
+				) AS b
+				ON b.material_id=t.material_id
+		
+				WHERE t.view_id=%s",
+			$doc_id,
+			$p->getDbVal('view_id'),
+			$p->getDbVal('view_id')				
+			);				
+		}
+		
+		$this->addNewModel($q,'MatCosts_Model');
+		
+	}
 }
 <![CDATA[?>]]>
 </xsl:template>

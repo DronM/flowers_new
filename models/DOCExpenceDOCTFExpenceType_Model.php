@@ -13,68 +13,49 @@ class DOCExpenceDOCTFExpenceType_Model extends ModelSQL{
 		$this->setDbName("public");
 		
 		$this->setTableName("doc_expences_t_expence_types");
+			
+		//*** Field doc_id ***
+		$f_opts = array();
+		$f_opts['primaryKey'] = TRUE;
+		$f_opts['id']="doc_id";
 		
-		$f_doc_id=new FieldSQlInt($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"doc_id"
-		,array(
-		
-			'primaryKey'=>TRUE,
-			'id'=>"doc_id"
-				
-		
-		));
+		$f_doc_id=new FieldSQLInt($this->getDbLink(),$this->getDbName(),$this->getTableName(),"doc_id",$f_opts);
 		$this->addField($f_doc_id);
-
-		$f_line_number=new FieldSQlInt($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"line_number"
-		,array(
+		//********************
+	
+		//*** Field line_number ***
+		$f_opts = array();
+		$f_opts['primaryKey'] = TRUE;
+		$f_opts['id']="line_number";
 		
-			'primaryKey'=>TRUE,
-			'id'=>"line_number"
-				
-		
-		));
+		$f_line_number=new FieldSQLInt($this->getDbLink(),$this->getDbName(),$this->getTableName(),"line_number",$f_opts);
 		$this->addField($f_line_number);
-
-		$f_expence_type_id=new FieldSQlInt($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"expence_type_id"
-		,array(
-		'required'=>TRUE,
-			'alias'=>"Вид затрат"
-		,
-			'id'=>"expence_type_id"
-				
+		//********************
+	
+		//*** Field expence_type_id ***
+		$f_opts = array();
+		$f_opts['id']="expence_type_id";
 		
-		));
+		$f_expence_type_id=new FieldSQLInt($this->getDbLink(),$this->getDbName(),$this->getTableName(),"expence_type_id",$f_opts);
 		$this->addField($f_expence_type_id);
-
-		$f_expence_comment=new FieldSQlText($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"expence_comment"
-		,array(
+		//********************
+	
+		//*** Field expence_comment ***
+		$f_opts = array();
+		$f_opts['id']="expence_comment";
 		
-			'alias'=>"Комментарий"
-		,
-			'id'=>"expence_comment"
-				
-		
-		));
+		$f_expence_comment=new FieldSQLText($this->getDbLink(),$this->getDbName(),$this->getTableName(),"expence_comment",$f_opts);
 		$this->addField($f_expence_comment);
-
-		$f_expence_date=new FieldSQlDate($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"expence_date"
-		,array(
+		//********************
+	
+		//*** Field expence_date ***
+		$f_opts = array();
+		$f_opts['id']="expence_date";
 		
-			'alias'=>"Дата расхода"
-		,
-			'id'=>"expence_date"
-				
-		
-		));
+		$f_expence_date=new FieldSQLDate($this->getDbLink(),$this->getDbName(),$this->getTableName(),"expence_date",$f_opts);
 		$this->addField($f_expence_date);
-
-		
-		
-		
+		//********************
+$this->setLimitConstant('doc_per_page_count');
 	}
 
 }

@@ -19,8 +19,6 @@
 function Product_Form(options){
 	options = options || {};	
 	
-	options.width = 900;
-	options.height = 800;
 	options.formName = "Product";
 	options.method = "get_object";
 	

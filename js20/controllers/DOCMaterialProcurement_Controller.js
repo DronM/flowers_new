@@ -1,25 +1,22 @@
-/* Copyright (c) 2016
-	Andrey Mikhalevich, Katren ltd.
-*/
-/*	
-	Description
-*/
-/** Requirements
- * @requires core/extend.js
- * @requires core/ControllerDb.js
-*/
-
-/* constructor
-@param string id
-@param object options{
-
-}
-*/
+/**
+ * @author Andrey Mikhalevich <katrenplus@mail.ru>, 2017
+ 
+ * @class
+ * @classdesc controller
+ 
+ * @requires ../core/extend.js
+ * @requires ../core/ControllerDb.js 
+  
+ * @param {App} app - app instance
+ * @param {namespase} options
+ * @param {Model} options.listModel
+ * @param {Model} options.objModel 
+ */ 
 
 function DOCMaterialProcurement_Controller(app,options){
 	options = options || {};
-	options.listModelId = "DOCMaterialProcurementList_Model";
-	options.objModelId = "DOCMaterialProcurementList_Model";
+	options.listModel = DOCMaterialProcurementList_Model;
+	options.objModel = DOCMaterialProcurementList_Model;
 	DOCMaterialProcurement_Controller.superclass.constructor.call(this,app,options);	
 	
 	//methods
@@ -29,6 +26,7 @@ function DOCMaterialProcurement_Controller(app,options){
 	this.addGetList();
 	this.addGetObject();
 	this.add_before_open();
+	this.add_set_unprocessed();
 	this.add_get_actions();
 	this.add_get_print();
 	this.add_get_details();
@@ -39,46 +37,45 @@ extend(DOCMaterialProcurement_Controller,ControllerDb);
 			DOCMaterialProcurement_Controller.prototype.addInsert = function(){
 	DOCMaterialProcurement_Controller.superclass.addInsert.call(this);
 	var field;
-	var options;
 	
 	var pm = this.getInsert();
-	options = {};
+	var options = {};
 	options.primaryKey = true;options.autoInc = true;
 	var field = new FieldInt("id",options);
 	
 	pm.addField(field);
 	
-	options = {};
+	var options = {};
 	options.alias = "Дата";options.required = true;
 	var field = new FieldDateTime("date_time",options);
 	
 	pm.addField(field);
 	
-	options = {};
+	var options = {};
 	options.alias = "Номер";
 	var field = new FieldInt("number",options);
 	
 	pm.addField(field);
 	
-	options = {};
+	var options = {};
 	options.alias = "Проведен";
 	var field = new FieldBool("processed",options);
 	
 	pm.addField(field);
 	
-	options = {};
+	var options = {};
 	options.alias = "Магазин";
 	var field = new FieldInt("store_id",options);
 	
 	pm.addField(field);
 	
-	options = {};
+	var options = {};
 	options.alias = "Автор";
 	var field = new FieldInt("user_id",options);
 	
 	pm.addField(field);
 	
-	options = {};
+	var options = {};
 	options.alias = "Поставщик";options.required = true;
 	var field = new FieldInt("supplier_id",options);
 	
@@ -86,102 +83,125 @@ extend(DOCMaterialProcurement_Controller,ControllerDb);
 	
 	pm.addField(new FieldInt("ret_id",{}));
 	
+		var options = {};
+		options.required = true;		
+		pm.addField(new FieldString("view_id",options));
+	
 	
 }
 
 			DOCMaterialProcurement_Controller.prototype.addUpdate = function(){
 	DOCMaterialProcurement_Controller.superclass.addUpdate.call(this);
-	var field;
-	var options;	
+	var field;	
 	var pm = this.getUpdate();
-	options = {"sendNulls":true};
+	var options = {};
 	options.primaryKey = true;options.autoInc = true;
 	var field = new FieldInt("id",options);
 	
 	pm.addField(field);
 	
-	
 	field = new FieldInt("old_id",{});
 	pm.addField(field);
 	
-	options = {"sendNulls":true};
+	var options = {};
 	options.alias = "Дата";
 	var field = new FieldDateTime("date_time",options);
 	
 	pm.addField(field);
 	
-	
-	options = {"sendNulls":true};
+	var options = {};
 	options.alias = "Номер";
 	var field = new FieldInt("number",options);
 	
 	pm.addField(field);
 	
-	
-	options = {"sendNulls":true};
+	var options = {};
 	options.alias = "Проведен";
 	var field = new FieldBool("processed",options);
 	
 	pm.addField(field);
 	
-	
-	options = {"sendNulls":true};
+	var options = {};
 	options.alias = "Магазин";
 	var field = new FieldInt("store_id",options);
 	
 	pm.addField(field);
 	
-	
-	options = {"sendNulls":true};
+	var options = {};
 	options.alias = "Автор";
 	var field = new FieldInt("user_id",options);
 	
 	pm.addField(field);
 	
-	
-	options = {"sendNulls":true};
+	var options = {};
 	options.alias = "Поставщик";
 	var field = new FieldInt("supplier_id",options);
 	
 	pm.addField(field);
 	
+		var options = {};
+		options.required = true;		
+		pm.addField(new FieldString("view_id",options));
 	
 	
 }
 
 			DOCMaterialProcurement_Controller.prototype.addDelete = function(){
 	DOCMaterialProcurement_Controller.superclass.addDelete.call(this);
-	var options = {"required":true};
-	
 	var pm = this.getDelete();
+	var options = {"required":true};
+		
 	pm.addField(new FieldInt("id",options));
 }
 
 			DOCMaterialProcurement_Controller.prototype.addGetList = function(){
 	DOCMaterialProcurement_Controller.superclass.addGetList.call(this);
-	var options = {};
+	
+	
 	
 	var pm = this.getGetList();
-	pm.addField(new FieldInt("id",options));
-	pm.addField(new FieldString("number",options));
-	pm.addField(new FieldDateTime("date_time",options));
-	pm.addField(new FieldString("date_time_descr",options));
-	pm.addField(new FieldString("processed",options));
-	pm.addField(new FieldInt("store_id",options));
-	pm.addField(new FieldString("store_descr",options));
-	pm.addField(new FieldInt("user_id",options));
-	pm.addField(new FieldString("user_descr",options));
-	pm.addField(new FieldInt("supplier_id",options));
-	pm.addField(new FieldString("supplier_descr",options));
-	pm.addField(new FieldFloat("total",options));
+	var f_opts = {};
+	f_opts.alias = "Идентификатор";
+	pm.addField(new FieldInt("id",f_opts));
+	var f_opts = {};
+	f_opts.alias = "Номер";
+	pm.addField(new FieldString("number",f_opts));
+	var f_opts = {};
+	f_opts.alias = "Дата";
+	pm.addField(new FieldDateTime("date_time",f_opts));
+	var f_opts = {};
+	f_opts.alias = "Проведен";
+	pm.addField(new FieldString("processed",f_opts));
+	var f_opts = {};
+	f_opts.alias = "Салон";
+	pm.addField(new FieldInt("store_id",f_opts));
+	var f_opts = {};
+	f_opts.alias = "Салон";
+	pm.addField(new FieldString("store_descr",f_opts));
+	var f_opts = {};
+	f_opts.alias = "Автор";
+	pm.addField(new FieldInt("user_id",f_opts));
+	var f_opts = {};
+	f_opts.alias = "Автор";
+	pm.addField(new FieldString("user_descr",f_opts));
+	var f_opts = {};
+	f_opts.alias = "Поставщик";
+	pm.addField(new FieldInt("supplier_id",f_opts));
+	var f_opts = {};
+	f_opts.alias = "Поставщик";
+	pm.addField(new FieldString("supplier_descr",f_opts));
+	var f_opts = {};
+	f_opts.alias = "Сумма";
+	pm.addField(new FieldFloat("total",f_opts));
 }
 
 			DOCMaterialProcurement_Controller.prototype.addGetObject = function(){
 	DOCMaterialProcurement_Controller.superclass.addGetObject.call(this);
-	var options = {};
 	
 	var pm = this.getGetObject();
-	pm.addField(new FieldInt("id",options));
+	var f_opts = {};
+	f_opts.alias = "Идентификатор";	
+	pm.addField(new FieldInt("id",f_opts));
 }
 
 			DOCMaterialProcurement_Controller.prototype.add_before_open = function(){
@@ -194,9 +214,34 @@ extend(DOCMaterialProcurement_Controller,ControllerDb);
 	
 		pm.addField(new FieldInt("doc_id",options));
 	
+				
+	
+	var options = {};
+	
+		options.required = true;
+	
+		options.maxlength = "32";
+	
+		pm.addField(new FieldString("view_id",options));
+	
 			
 }
 
+			DOCMaterialProcurement_Controller.prototype.add_set_unprocessed = function(){
+	var pm = new PublicMethod('set_unprocessed',{controller:this});
+	this.addPublicMethod(pm);
+	
+				
+	
+	var options = {};
+	
+		options.required = true;
+	
+		pm.addField(new FieldInt("doc_id",options));
+	
+			
+}
+			
 			DOCMaterialProcurement_Controller.prototype.add_get_actions = function(){
 	var pm = new PublicMethod('get_actions',{controller:this});
 	this.addPublicMethod(pm);
@@ -219,6 +264,12 @@ extend(DOCMaterialProcurement_Controller,ControllerDb);
 	var options = {};
 	
 		pm.addField(new FieldInt("doc_id",options));
+	
+				
+	
+	var options = {};
+	
+		pm.addField(new FieldString("templ",options));
 	
 			
 }
@@ -285,3 +336,15 @@ extend(DOCMaterialProcurement_Controller,ControllerDb);
 }
 									
 		
+	
+DOCMaterialProcurement_Controller.prototype.getPrintList = function(){
+	return  [
+		new PrintObj({
+			"caption":this.PRINT_OBJ_CAP,
+			"publicMethod":this.getPublicMethod("get_print"),
+			"templ":"DOCMaterialProcurementPrint",
+			"publicMethodKeyIds":["doc_id"]
+		})
+	];
+}
+	

@@ -19,7 +19,6 @@
 function SupplierList_Form(options){
 	options = options || {};	
 	
-	options.width = 900;
 	options.formName = "SupplierList";
 	options.controller = "Supplier_Controller";
 	options.method = "get_list";

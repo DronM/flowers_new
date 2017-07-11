@@ -1,25 +1,22 @@
-/* Copyright (c) 2016
-	Andrey Mikhalevich, Katren ltd.
-*/
-/*	
-	Description
-*/
-/** Requirements
- * @requires core/extend.js
- * @requires core/ControllerDb.js
-*/
-
-/* constructor
-@param string id
-@param object options{
-
-}
-*/
+/**
+ * @author Andrey Mikhalevich <katrenplus@mail.ru>, 2017
+ 
+ * @class
+ * @classdesc controller
+ 
+ * @requires ../core/extend.js
+ * @requires ../core/ControllerDb.js 
+  
+ * @param {App} app - app instance
+ * @param {namespase} options
+ * @param {Model} options.listModel
+ * @param {Model} options.objModel 
+ */ 
 
 function Material_Controller(app,options){
 	options = options || {};
-	options.listModelId = "MaterialList_Model";
-	options.objModelId = "Material_Model";
+	options.listModel = MaterialList_Model;
+	options.objModel = Material_Model;
 	Material_Controller.superclass.constructor.call(this,app,options);	
 	
 	//methods
@@ -43,46 +40,45 @@ extend(Material_Controller,ControllerDb);
 			Material_Controller.prototype.addInsert = function(){
 	Material_Controller.superclass.addInsert.call(this);
 	var field;
-	var options;
 	
 	var pm = this.getInsert();
-	options = {};
+	var options = {};
 	options.alias = "Код";options.primaryKey = true;options.autoInc = true;
 	var field = new FieldInt("id",options);
 	
 	pm.addField(field);
 	
-	options = {};
+	var options = {};
 	options.alias = "Наименование";options.required = true;
 	var field = new FieldString("name",options);
 	
 	pm.addField(field);
 	
-	options = {};
+	var options = {};
 	options.alias = "Описание";options.required = true;
 	var field = new FieldText("name_full",options);
 	
 	pm.addField(field);
 	
-	options = {};
+	var options = {};
 	options.alias = "Розничная цена";options.required = true;
 	var field = new FieldFloat("price",options);
 	
 	pm.addField(field);
 	
-	options = {};
+	var options = {};
 	options.alias = "Для продажи";
 	var field = new FieldBool("for_sale",options);
 	
 	pm.addField(field);
 	
-	options = {};
+	var options = {};
 	options.alias = "Наценка (%)";
 	var field = new FieldInt("margin_percent",options);
 	
 	pm.addField(field);
 	
-	options = {};
+	var options = {};
 	options.alias = "Группа";options.required = true;
 	var field = new FieldInt("material_group_id",options);
 	
@@ -95,99 +91,103 @@ extend(Material_Controller,ControllerDb);
 
 			Material_Controller.prototype.addUpdate = function(){
 	Material_Controller.superclass.addUpdate.call(this);
-	var field;
-	var options;	
+	var field;	
 	var pm = this.getUpdate();
-	options = {"sendNulls":true};
+	var options = {};
 	options.alias = "Код";options.primaryKey = true;options.autoInc = true;
 	var field = new FieldInt("id",options);
 	
 	pm.addField(field);
 	
-	
 	field = new FieldInt("old_id",{});
 	pm.addField(field);
 	
-	options = {"sendNulls":true};
+	var options = {};
 	options.alias = "Наименование";
 	var field = new FieldString("name",options);
 	
 	pm.addField(field);
 	
-	
-	options = {"sendNulls":true};
+	var options = {};
 	options.alias = "Описание";
 	var field = new FieldText("name_full",options);
 	
 	pm.addField(field);
 	
-	
-	options = {"sendNulls":true};
+	var options = {};
 	options.alias = "Розничная цена";
 	var field = new FieldFloat("price",options);
 	
 	pm.addField(field);
 	
-	
-	options = {"sendNulls":true};
+	var options = {};
 	options.alias = "Для продажи";
 	var field = new FieldBool("for_sale",options);
 	
 	pm.addField(field);
 	
-	
-	options = {"sendNulls":true};
+	var options = {};
 	options.alias = "Наценка (%)";
 	var field = new FieldInt("margin_percent",options);
 	
 	pm.addField(field);
 	
-	
-	options = {"sendNulls":true};
+	var options = {};
 	options.alias = "Группа";
 	var field = new FieldInt("material_group_id",options);
 	
 	pm.addField(field);
 	
 	
-	
 }
 
 			Material_Controller.prototype.addDelete = function(){
 	Material_Controller.superclass.addDelete.call(this);
-	var options = {"required":true};
-	
 	var pm = this.getDelete();
+	var options = {"required":true};
+	options.alias = "Код";	
 	pm.addField(new FieldInt("id",options));
 }
 
 			Material_Controller.prototype.addGetList = function(){
 	Material_Controller.superclass.addGetList.call(this);
-	var options = {};
+	
+	
 	
 	var pm = this.getGetList();
-	pm.addField(new FieldInt("id",options));
-	pm.addField(new FieldString("name",options));
-	pm.addField(new FieldFloat("price",options));
-	pm.addField(new FieldBool("for_sale",options));
-	pm.addField(new FieldString("material_group_id",options));
+	var f_opts = {};
+	
+	pm.addField(new FieldInt("id",f_opts));
+	var f_opts = {};
+	f_opts.alias = "Наименование";
+	pm.addField(new FieldString("name",f_opts));
+	var f_opts = {};
+	f_opts.alias = "Розничная цена";
+	pm.addField(new FieldFloat("price",f_opts));
+	var f_opts = {};
+	f_opts.alias = "Для продажи";
+	pm.addField(new FieldBool("for_sale",f_opts));
+	var f_opts = {};
+	
+	pm.addField(new FieldString("material_group_id",f_opts));
 }
 
 			Material_Controller.prototype.addGetObject = function(){
 	Material_Controller.superclass.addGetObject.call(this);
-	var options = {};
 	
 	var pm = this.getGetObject();
-	pm.addField(new FieldInt("id",options));
+	var f_opts = {};
+	f_opts.alias = "Код";	
+	pm.addField(new FieldInt("id",f_opts));
 }
 
 			Material_Controller.prototype.addComplete = function(){
 	Material_Controller.superclass.addComplete.call(this);
 	
-	var options = {};
-	
+	var f_opts = {};
+	f_opts.alias = "";
 	var pm = this.getComplete();
-	pm.addField(new FieldString("name",options));
+	pm.addField(new FieldString("name",f_opts));
 	pm.getField(this.PARAM_ORD_FIELDS).setValue("name");
 }
 
@@ -420,6 +420,12 @@ extend(Material_Controller,ControllerDb);
 	
 		pm.addField(new FieldString("ord_directs",options));
 								
+				
+	
+	var options = {};
+	
+		pm.addField(new FieldString("field_sep",options));
+	
 			
 }
 			
@@ -468,7 +474,13 @@ extend(Material_Controller,ControllerDb);
 	var options = {};
 	
 		pm.addField(new FieldString("ord_directs",options));
-								
+	
+				
+	
+	var options = {};
+	
+		pm.addField(new FieldString("field_sep",options));
+	
 			
 }
 						
@@ -518,6 +530,12 @@ extend(Material_Controller,ControllerDb);
 	
 		pm.addField(new FieldString("ord_directs",options));
 								
+				
+	
+	var options = {};
+	
+		pm.addField(new FieldString("field_sep",options));
+	
 			
 }
 									
@@ -531,7 +549,25 @@ extend(Material_Controller,ControllerDb);
 	
 		pm.addField(new FieldInt("material_id",options));
 	
+				
+	
+	var options = {};
+	
+		pm.addField(new FieldString("templ",options));
+	
 			
 }
 			
 		
+	
+Material_Controller.prototype.getPrintList = function(){
+	return  [
+		new PrintObj({
+			"caption":"Этикетка",
+			"publicMethod":this.getPublicMethod("print_barcode"),
+			"templ":"MaterialBarcode",
+			"publicMethodKeyIds":["material_id"]
+		})
+	];
+}
+	

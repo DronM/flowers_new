@@ -22,154 +22,90 @@ function DOCMaterialDisposalMaterialList_Model(options){
 	
 	options.fields = {};
 	
-			
+				
+	
 	var filed_options = {};
-	filed_options.primaryKey = true;
+	filed_options.primaryKey = true;	
+	options.fields.id = new FieldInt("id",filed_options);
 	
+				
 	
-	var field = new FieldInt("id",filed_options);
-	
-
-	options.fields.id = field;
-
-			
 	var filed_options = {};
-	filed_options.primaryKey = false;
+	filed_options.primaryKey = false;	
+	options.fields.date_time = new FieldDateTime("date_time",filed_options);
 	
+				
 	
-	var field = new FieldDateTime("date_time",filed_options);
-	
-
-	options.fields.date_time = field;
-
-			
 	var filed_options = {};
-	filed_options.primaryKey = false;
+	filed_options.primaryKey = false;	
+	filed_options.alias = 'Дата';options.fields.date_time_descr = new FieldString("date_time_descr",filed_options);
 	
-	filed_options.alias = 'Дата';
+				
 	
-	var field = new FieldString("date_time_descr",filed_options);
-	
-
-	options.fields.date_time_descr = field;
-
-			
 	var filed_options = {};
-	filed_options.primaryKey = false;
+	filed_options.primaryKey = false;	
+	filed_options.alias = 'Номер';options.fields.number = new FieldString("number",filed_options);
 	
-	filed_options.alias = 'Номер';
+				
 	
-	var field = new FieldString("number",filed_options);
-	
-
-	options.fields.number = field;
-
-			
 	var filed_options = {};
-	filed_options.primaryKey = false;
+	filed_options.primaryKey = false;	
+	options.fields.store_id = new FieldInt("store_id",filed_options);
 	
+				
 	
-	var field = new FieldInt("store_id",filed_options);
-	
-
-	options.fields.store_id = field;
-
-			
 	var filed_options = {};
-	filed_options.primaryKey = false;
+	filed_options.primaryKey = false;	
+	filed_options.alias = 'Салон';options.fields.store_descr = new FieldString("store_descr",filed_options);
+							
+				
 	
-	filed_options.alias = 'Салон';
-	
-	var field = new FieldString("store_descr",filed_options);
-	
-
-	options.fields.store_descr = field;
-						
-			
 	var filed_options = {};
-	filed_options.primaryKey = false;
+	filed_options.primaryKey = false;	
+	options.fields.user_id = new FieldInt("user_id",filed_options);
 	
+				
 	
-	var field = new FieldInt("user_id",filed_options);
-	
-
-	options.fields.user_id = field;
-
-			
 	var filed_options = {};
-	filed_options.primaryKey = false;
+	filed_options.primaryKey = false;	
+	filed_options.alias = 'Автор';options.fields.user_descr = new FieldString("user_descr",filed_options);
 	
-	filed_options.alias = 'Автор';
+				
 	
-	var field = new FieldString("user_descr",filed_options);
-	
-
-	options.fields.user_descr = field;
-
-			
 	var filed_options = {};
-	filed_options.primaryKey = false;
+	filed_options.primaryKey = false;	
+	filed_options.alias = 'Причина';options.fields.explanation = new FieldString("explanation",filed_options);
 	
-	filed_options.alias = 'Причина';
+				
 	
-	var field = new FieldString("explanation",filed_options);
-	
-
-	options.fields.explanation = field;
-
-			
 	var filed_options = {};
-	filed_options.primaryKey = false;
+	filed_options.primaryKey = false;	
+	options.fields.material_id = new FieldInt("material_id",filed_options);
 	
+				
 	
-	var field = new FieldInt("material_id",filed_options);
-	
-
-	options.fields.material_id = field;
-
-			
 	var filed_options = {};
-	filed_options.primaryKey = false;
+	filed_options.primaryKey = false;	
+	filed_options.alias = 'Материал';options.fields.material_descr = new FieldString("material_descr",filed_options);
 	
-	filed_options.alias = 'Материал';
+				
 	
-	var field = new FieldString("material_descr",filed_options);
-	
-
-	options.fields.material_descr = field;
-
-			
 	var filed_options = {};
-	filed_options.primaryKey = false;
+	filed_options.primaryKey = false;	
+	options.fields.material_group_id = new FieldInt("material_group_id",filed_options);
 	
+				
 	
-	var field = new FieldInt("material_group_id",filed_options);
-	
-
-	options.fields.material_group_id = field;
-
-			
 	var filed_options = {};
-	filed_options.primaryKey = false;
+	filed_options.primaryKey = false;	
+	filed_options.alias = 'Группа';options.fields.material_group_descr = new FieldString("material_group_descr",filed_options);
 	
-	filed_options.alias = 'Группа';
+				
 	
-	var field = new FieldString("material_group_descr",filed_options);
-	
-
-	options.fields.material_group_descr = field;
-
-			
 	var filed_options = {};
-	filed_options.primaryKey = false;
+	filed_options.primaryKey = false;	
+	filed_options.alias = 'Количество';options.fields.quant = new FieldFloat("quant",filed_options);
 	
-	filed_options.alias = 'Количество';
-	
-	var field = new FieldFloat("quant",filed_options);
-	
-
-	options.fields.quant = field;
-
 			
 		DOCMaterialDisposalMaterialList_Model.superclass.constructor.call(this,id,options);
 }

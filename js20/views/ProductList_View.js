@@ -14,33 +14,30 @@ function ProductList_View(id,options){
 	
 	var model = new ProductList_Model({"data":options.modelDataStr});
 	var contr = new Product_Controller(options.app);
+
+	var constants = {"grid_refresh_interval":null,"doc_per_page_count":0};
+	options.app.getConstantManager().get(constants);
+	
+	var popup_menu = new PopUpMenu();
 	
 	this.addElement(new GridAjx(id+":grid",{
 		"model":model,
 		"controller":contr,
 		"editInline":false,
 		"editWinClass":Product_Form,
-		"commands":new GridCommandsAjx(id+":grid:cmd",{
-			"cmdFilter":true,
-			"filters":{"name":{
-					"binding":new CommandBinding({
-						"control":new ProductNameEdit(id+":filter-ctrl-name",{"app":options.app}),
-						"field":new FieldString("name")}),
-					"sign":"lk",
-					"lwcards":true,
-					"rwcards":true,
-					"icase":true
-					}
-			},
+		"popUpMenu":popup_menu,
+		"commands":new GridCmdContainerAjx(id+":grid:cmd",{
+			"popUpMenu":popup_menu,
+			"colTemplate":"ProductList",
 			"app":options.app
-		}),
+		}),				
 		"head":new GridHead(id+"-grid:head",{
 			"elements":[
 				new GridRow(id+":grid:head:row0",{
 					"elements":[
 						new GridCellHead(id+":grid:head:name",{
 							"columns":[
-								new GridColumn({"field":model.getField("name")})
+								new GridColumn("name",{"field":model.getField("name")})
 							],
 							"sortable":true,
 							"sort":"asc"							
@@ -48,14 +45,14 @@ function ProductList_View(id,options){
 						new GridCellHead(id+":grid:head:price",{
 							"colAttrs":{"align":"right"},
 							"columns":[
-								new GridColumnFloat({"field":model.getField("price")})
+								new GridColumnFloat("price",{"field":model.getField("price")})
 							],
 							"sortable":true
 						}),
 						new GridCellHead(id+":grid:head:for_sale",{
 							"colAttrs":{"align":"center"},
 							"columns":[
-								new GridColumnBool({"field":model.getField("for_sale")})
+								new GridColumnBool("for_sale",{"field":model.getField("for_sale")})
 							],
 							"sortable":true
 						})
@@ -65,6 +62,10 @@ function ProductList_View(id,options){
 			]
 		}),
 		"autoRefresh":false,
+		"refreshInterval":constants.grid_refresh_interval.getValue()*1000,
+		"pagination":new GridPagination(id+"_page",
+			{"countPerPage":constants.doc_per_page_count,"app":options.app}),				
+		"rowSelect":false,
 		"focus":true,
 		"app":options.app
 	}));	

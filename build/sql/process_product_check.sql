@@ -53,7 +53,7 @@ BEGIN
 			) AS b
 			ON b.product_id=doct.product_id
 		LEFT JOIN products AS p ON p.id=doct.product_id
-		WHERE doct.doc_id='|| in_doc_id ||' AND coalesce(b.balance,0)-doct.quant<0';			
+		WHERE doct.doc_id='|| in_doc_id ||' AND coalesce(b.balance,0)<0';			
 	ELSE
 		v_sql = 
 		'SELECT
@@ -77,14 +77,16 @@ BEGIN
 			) AS b
 			ON b.product_id=doct.product_id
 		LEFT JOIN products AS p ON p.id=doct.product_id
-		WHERE doct.doc_id='|| in_doc_id ||' AND coalesce(b.balance,0)-doct.quant<0';					
+		WHERE doct.doc_id='|| in_doc_id ||' AND coalesce(b.balance,0)<0';					
 	END IF;
 	
+	v_error = '';
+	--RAISE '%',v_sql;
 	FOR item_row IN EXECUTE v_sql LOOP
 		IF v_error<>'' THEN
 			v_error = v_error || ', ';
 		END IF;
-		v_error = v_error || 'букет: ' || item_row.name || ' остаток: ' || item_row.balance || ' затребовано ' || item_row.quant;
+		v_error = v_error || 'букет: ' || item_row.name || ' остаток: ' || (item_row.balance+item_row.quant) || ' затребовано ' || item_row.quant;
 	END LOOP;
 
 	IF v_error<>'' THEN

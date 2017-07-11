@@ -1,6 +1,6 @@
 <?php
 
-require_once(FRAME_WORK_PATH.'basic_classes/ControllerSQLDOC.php');
+require_once(FRAME_WORK_PATH.'basic_classes/ControllerSQLDOC20.php');
 
 require_once(FRAME_WORK_PATH.'basic_classes/FieldExtInt.php');
 require_once(FRAME_WORK_PATH.'basic_classes/FieldExtString.php');
@@ -16,6 +16,9 @@ class DOCMaterialOrder_Controller extends ControllerSQLDOC{
 	public function __construct($dbLinkMaster=NULL){
 		parent::__construct($dbLinkMaster);
 			
+		$this->setProcessable(TRUE);
+		
+		
 		/* insert */
 		$pm = new PublicMethod('insert');
 		$param = new FieldExtDateTime('date_time'

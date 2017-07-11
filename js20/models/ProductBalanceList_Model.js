@@ -22,103 +22,84 @@ function ProductBalanceList_Model(options){
 	
 	options.fields = {};
 	
-			
+				
+	
 	var filed_options = {};
-	filed_options.primaryKey = true;
+	filed_options.primaryKey = true;	
+	options.fields.id = new FieldInt("id",filed_options);
 	
+				
 	
-	var field = new FieldInt("id",filed_options);
-	
-
-	options.fields.id = field;
-
-			
 	var filed_options = {};
-	filed_options.primaryKey = false;
+	filed_options.primaryKey = false;	
+	filed_options.alias = 'Код';options.fields.code = new FieldString("code",filed_options);
 	
-	filed_options.alias = 'Код';
+				
 	
-	var field = new FieldString("code",filed_options);
-	
-
-	options.fields.code = field;
-
-			
 	var filed_options = {};
-	filed_options.primaryKey = false;
+	filed_options.primaryKey = false;	
+	filed_options.alias = 'Продукция';options.fields.name = new FieldString("name",filed_options);
 	
-	filed_options.alias = 'Продукция';
+				
 	
-	var field = new FieldString("name",filed_options);
-	
-
-	options.fields.name = field;
-
-			
 	var filed_options = {};
-	filed_options.primaryKey = false;
+	filed_options.primaryKey = false;	
+	filed_options.alias = 'Цена';options.fields.price = new FieldFloat("price",filed_options);
 	
-	filed_options.alias = 'Цена';
+				
 	
-	var field = new FieldFloat("price",filed_options);
-	
-
-	options.fields.price = field;
-
-			
 	var filed_options = {};
-	filed_options.primaryKey = false;
+	filed_options.primaryKey = false;	
+	filed_options.alias = 'Сумма';options.fields.total = new FieldFloat("total",filed_options);
 	
-	filed_options.alias = 'Сумма';
+				
 	
-	var field = new FieldFloat("total",filed_options);
-	
-
-	options.fields.total = field;
-
-			
 	var filed_options = {};
-	filed_options.primaryKey = false;
+	filed_options.primaryKey = false;	
+	filed_options.alias = 'Кол-во';options.fields.quant = new FieldFloat("quant",filed_options);
 	
-	filed_options.alias = 'Кол-во';
+				
 	
-	var field = new FieldFloat("quant",filed_options);
-	
-
-	options.fields.quant = field;
-
-			
 	var filed_options = {};
-	filed_options.primaryKey = false;
+	filed_options.primaryKey = false;	
+	filed_options.alias = 'Кол-во заказано';options.fields.order_quant = new FieldFloat("order_quant",filed_options);
 	
-	filed_options.alias = 'Кол-во заказано';
+				
 	
-	var field = new FieldFloat("order_quant",filed_options);
-	
-
-	options.fields.order_quant = field;
-
-			
 	var filed_options = {};
-	filed_options.primaryKey = false;
+	filed_options.primaryKey = false;	
+	options.fields.store_id = new FieldInt("store_id",filed_options);
 	
+				
 	
-	var field = new FieldInt("store_id",filed_options);
-	
-
-	options.fields.store_id = field;
-
-			
 	var filed_options = {};
-	filed_options.primaryKey = false;
+	filed_options.primaryKey = false;	
+	filed_options.alias = 'Магазин';options.fields.store_descr = new FieldString("store_descr",filed_options);
 	
-	filed_options.alias = 'Время изготовления';
+				
 	
-	var field = new FieldString("after_production_time",filed_options);
+	var filed_options = {};
+	filed_options.primaryKey = false;	
+	filed_options.alias = 'Время изготовления';options.fields.after_production_time = new FieldString("after_production_time",filed_options);
 	
-
-	options.fields.after_production_time = field;
-
+				
+	
+	var filed_options = {};
+	filed_options.primaryKey = false;	
+	filed_options.alias = 'Документ комплектации';options.fields.doc_production_id = new FieldInt("doc_production_id",filed_options);
+	
+				
+	
+	var filed_options = {};
+	filed_options.primaryKey = false;	
+	filed_options.alias = 'Номер документа комплектации';options.fields.doc_production_number = new FieldInt("doc_production_number",filed_options);
+	
+				
+	
+	var filed_options = {};
+	filed_options.primaryKey = false;	
+	filed_options.alias = 'Дата документа комплектации';options.fields.doc_production_date_time = new FieldDateTime("doc_production_date_time",filed_options);
+	
 		ProductBalanceList_Model.superclass.constructor.call(this,id,options);
 }
 extend(ProductBalanceList_Model,ModelXML);

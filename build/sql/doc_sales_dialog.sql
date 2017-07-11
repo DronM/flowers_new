@@ -1,6 +1,6 @@
 -- View: doc_sales_dialog
 
---DROP VIEW doc_sales_dialog;
+DROP VIEW doc_sales_dialog;
 
 CREATE OR REPLACE VIEW doc_sales_dialog AS 
 	 SELECT
@@ -20,6 +20,7 @@ CREATE OR REPLACE VIEW doc_sales_dialog AS
 		
 		doc.client_id,
 		cl.name AS client_descr,
+		to_json(clients_ref(cl)) AS client_ref,
 		
 		doc.doc_client_order_id,
 		doc_descr('doc_client_order'::doc_types, clo.number::text, clo.date_time)

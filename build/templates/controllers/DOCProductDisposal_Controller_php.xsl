@@ -17,7 +17,7 @@
 
 <xsl:template match="controller"><![CDATA[<?php]]>
 <xsl:call-template name="add_requirements"/>
-class <xsl:value-of select="@id"/>_Controller extends ControllerSQLDOC{
+class <xsl:value-of select="@id"/>_Controller extends ControllerSQLDOC20{
 	public function __construct($dbLinkMaster=NULL){
 		parent::__construct($dbLinkMaster);<xsl:apply-templates/>
 	}
@@ -25,7 +25,7 @@ class <xsl:value-of select="@id"/>_Controller extends ControllerSQLDOC{
 	public function insert($pm){
 		//doc owner
 		$pm->setParamValue('user_id',$_SESSION['user_id']);		
-		parent::insert();		
+		parent::insert($pm);		
 	}
 	public function fill_on_spec($pm){
 		$link = $this->getDbLinkMaster();		
@@ -39,28 +39,31 @@ class <xsl:value-of select="@id"/>_Controller extends ControllerSQLDOC{
 	}	
 	
 	public function get_print($pm){
-		$this->addNewModel(
-			sprintf(
-			'SELECT number,
-			product_descr,
-			doc_production_descr,
-			get_date_str_rus(date_time::date) AS date_time_descr,
-			store_descr,
-			user_descr,
-			explanation
+		$this->addNewModel(sprintf("SELECT
+				number,
+				product_descr,
+				get_date_str_rus(date_time::date) AS date_time_descr,
+				store_descr,
+				user_descr,
+				explanation,
+				price,
+				doc_production_number,
+				date8_descr(doc_production_date_time::date) AS doc_production_date_time
+				
 			FROM doc_product_disposals_list_view
-			WHERE id=%d',
+			WHERE id=%d",
 			$pm->getParamValue('doc_id')),
 		'head');
-		$this->addNewModel(
-			sprintf(
-			'SELECT 
-			m.name AS material_descr,
-			format_quant(ra.quant) AS quant
+		$this->addNewModel(sprintf(
+			"SELECT 
+				m.name AS material_descr,
+				ra.quant AS quant,
+				m.price AS price,
+				m.price*ra.quant AS total
 			FROM ra_materials AS ra
 			LEFT JOIN materials AS m ON m.id=ra.material_id
 			WHERE doc_id=%d
-			ORDER BY material_descr',
+			ORDER BY material_descr",
 			$pm->getParamValue('doc_id')),
 		'materials');		
 	}

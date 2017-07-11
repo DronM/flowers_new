@@ -25,151 +25,75 @@ function DOCProduction_Model(options){
 			
 				
 			
-			
+				
+	
 	var filed_options = {};
-	filed_options.primaryKey = true;
+	filed_options.primaryKey = true;	
+	options.fields.id = new FieldInt("id",filed_options);
 	
+				
 	
-	var field = new FieldInt("id",filed_options);
-	
-
-	options.fields.id = field;
-
-			
 	var filed_options = {};
-	filed_options.primaryKey = false;
+	filed_options.primaryKey = false;	
+	filed_options.alias = 'Дата';options.fields.date_time = new FieldDateTime("date_time",filed_options);
+	options.fields.date_time.getValidator().setRequired(true);
 	
-	filed_options.alias = 'Дата';
+				
 	
-	var field = new FieldDateTime("date_time",filed_options);
-	
-		field.getValidator().setRequired(true);
-	
-
-	options.fields.date_time = field;
-
-			
 	var filed_options = {};
-	filed_options.primaryKey = false;
+	filed_options.primaryKey = false;	
+	filed_options.alias = 'Номер';options.fields.number = new FieldInt("number",filed_options);
 	
-	filed_options.alias = 'Номер';
+				
 	
-	var field = new FieldInt("number",filed_options);
-	
-
-	options.fields.number = field;
-
-			
 	var filed_options = {};
-	filed_options.primaryKey = false;
+	filed_options.primaryKey = false;	
+	filed_options.alias = 'Проведен';options.fields.processed = new FieldBool("processed",filed_options);
 	
-	filed_options.alias = 'Проведен';
+				
 	
-	var field = new FieldBool("processed",filed_options);
-	
-
-	options.fields.processed = field;
-
-			
 	var filed_options = {};
-	filed_options.primaryKey = false;
+	filed_options.primaryKey = false;	
+	filed_options.alias = 'Магазин';options.fields.store_id = new FieldInt("store_id",filed_options);
 	
-	filed_options.alias = 'Магазин';
+				
 	
-	var field = new FieldInt("store_id",filed_options);
-	
-
-	options.fields.store_id = field;
-
-			
 	var filed_options = {};
-	filed_options.primaryKey = false;
+	filed_options.primaryKey = false;	
+	filed_options.alias = 'Флорист';options.fields.user_id = new FieldInt("user_id",filed_options);
 	
-	filed_options.alias = 'Флорист';
+				
 	
-	var field = new FieldInt("user_id",filed_options);
-	
-
-	options.fields.user_id = field;
-
-			
 	var filed_options = {};
-	filed_options.primaryKey = false;
+	filed_options.primaryKey = false;	
+	filed_options.alias = 'Букет';options.fields.product_id = new FieldInt("product_id",filed_options);
+	options.fields.product_id.getValidator().setRequired(true);
 	
-	filed_options.alias = 'Букет';
+				
 	
-	var field = new FieldInt("product_id",filed_options);
-	
-		field.getValidator().setRequired(true);
-	
-
-	options.fields.product_id = field;
-
-			
 	var filed_options = {};
-	filed_options.primaryKey = false;
+	filed_options.primaryKey = false;	
+	filed_options.defValue = true;
+	filed_options.alias = 'Количество';options.fields.quant = new FieldFloat("quant",filed_options);
+	options.fields.quant.getValidator().setMaxLength('19');
 	
-	filed_options.alias = 'Вид заявки';
+				
 	
-	var field = new FieldEnum("product_order_type",filed_options);
-	filed_options.enumValues = 'sale,disposal,manual';
-	
-
-	options.fields.product_order_type = field;
-
-			
 	var filed_options = {};
-	filed_options.primaryKey = false;
+	filed_options.primaryKey = false;	
+	filed_options.alias = 'Цена';options.fields.price = new FieldFloat("price",filed_options);
+	options.fields.price.getValidator().setMaxLength('15');
 	
-	filed_options.alias = 'По норме';
+				
 	
-	var field = new FieldBool("on_norm",filed_options);
-	
-
-	options.fields.on_norm = field;
-
-			
 	var filed_options = {};
-	filed_options.primaryKey = false;
+	filed_options.primaryKey = false;	
+	filed_options.alias = 'Комментарий';options.fields.florist_comment = new FieldText("florist_comment",filed_options);
 	
-	filed_options.alias = 'Количество';
-	
-	var field = new FieldFloat("quant",filed_options);
-	
-		field.getValidator().setMaxLength('19');
-	
-
-	options.fields.quant = field;
-
-			
-	var filed_options = {};
-	filed_options.primaryKey = false;
-	
-	filed_options.alias = 'Цена';
-	
-	var field = new FieldFloat("price",filed_options);
-	
-		field.getValidator().setMaxLength('15');
-	
-
-	options.fields.price = field;
-
-			
-	var filed_options = {};
-	filed_options.primaryKey = false;
-	
-	filed_options.alias = 'Комментарий';
-	
-	var field = new FieldText("florist_comment",filed_options);
-	
-
-	options.fields.florist_comment = field;
-
 						
 			
 			
 			
-				
 				
 				
 			

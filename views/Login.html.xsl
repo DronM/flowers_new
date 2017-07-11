@@ -23,7 +23,7 @@
 		
 	</head>
 	<body onload="pageLoad();">
-		<xsl:apply-templates select="model[@id='ModelServResponse']/row"/>		
+		<!--<xsl:apply-templates select="model[@id='ModelServResponse']/row"/>-->
 
 		    <div id ="Login" class="container">
 			<div class="row">				
@@ -50,7 +50,7 @@
 	<script>
 			var n = document.getElementById("Login:user");
 			if (n){
-				if (document.activeElement.id!="Login:pwd"){
+				if (document.activeElement &amp;&amp; document.activeElement.id!="Login:pwd"){
 					n.focus();
 				}
 			}

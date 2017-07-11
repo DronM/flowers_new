@@ -17,7 +17,7 @@
 
 <xsl:template match="controller"><![CDATA[<?php]]>
 <xsl:call-template name="add_requirements"/>
-class <xsl:value-of select="@id"/>_Controller extends ControllerSQLDOC{
+class <xsl:value-of select="@id"/>_Controller extends ControllerSQLDOC20{
 	public function __construct($dbLinkMaster=NULL){
 		parent::__construct($dbLinkMaster);<xsl:apply-templates/>
 	}
@@ -25,8 +25,9 @@ class <xsl:value-of select="@id"/>_Controller extends ControllerSQLDOC{
 	public function insert($pm){
 		//doc owner
 		$pm->setParamValue('user_id',$_SESSION['user_id']);
-		parent::insert();		
+		parent::insert($pm);		
 	}
+
 	public function get_details($pm){		
 		$model = new DOCMaterialProcurementMaterialList_Model($this->getDbLink());	
 		$from = null; $count = null;
@@ -68,10 +69,9 @@ class <xsl:value-of select="@id"/>_Controller extends ControllerSQLDOC{
 		$this->addNewModel(
 			sprintf(
 			'SELECT line_number,material_descr,
-			format_quant(quant) AS quant,
-			format_money(price) AS price_descr,
-			total,
-			format_money(total) AS total_descr
+			quant AS quant,
+			price AS price,
+			total
 			FROM doc_material_procurements_t_materials_list_view
 			WHERE doc_id=%d
 			ORDER BY line_number',

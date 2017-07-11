@@ -2,8 +2,8 @@
 
 require_once(FRAME_WORK_PATH.'basic_classes/ModelSQL.php');
 require_once(FRAME_WORK_PATH.'basic_classes/FieldSQLInt.php');
-require_once(FRAME_WORK_PATH.'basic_classes/FieldSQLString.php');
 require_once(FRAME_WORK_PATH.'basic_classes/FieldSQLText.php');
+require_once(FRAME_WORK_PATH.'basic_classes/ModelOrderSQL.php');
 
 class TemplateParam_Model extends ModelSQL{
 	
@@ -13,66 +13,48 @@ class TemplateParam_Model extends ModelSQL{
 		$this->setDbName("public");
 		
 		$this->setTableName("template_params");
+			
+		//*** Field id ***
+		$f_opts = array();
+		$f_opts['primaryKey'] = TRUE;
+		$f_opts['autoInc']=TRUE;
+		$f_opts['id']="id";
 		
-		$f_id=new FieldSQlInt($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"id"
-		,array(
-		
-			'primaryKey'=>TRUE,
-			'autoInc'=>TRUE,
-			'id'=>"id"
-				
-		
-		));
+		$f_id=new FieldSQLInt($this->getDbLink(),$this->getDbName(),$this->getTableName(),"id",$f_opts);
 		$this->addField($f_id);
-
-		$f_template=new FieldSQlString($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"template"
-		,array(
+		//********************
+	
+		//*** Field template ***
+		$f_opts = array();
+		$f_opts['id']="template";
 		
-			'length'=>100,
-			'id'=>"template"
-				
-		
-		));
+		$f_template=new FieldSQLText($this->getDbLink(),$this->getDbName(),$this->getTableName(),"template",$f_opts);
 		$this->addField($f_template);
-
-		$f_user_id=new FieldSQlInt($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"user_id"
-		,array(
+		//********************
+	
+		//*** Field param ***
+		$f_opts = array();
+		$f_opts['id']="param";
 		
-			'alias'=>"Пользователь"
-		,
-			'id'=>"user_id"
-				
-		
-		));
-		$this->addField($f_user_id);
-
-		$f_param=new FieldSQlString($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"param"
-		,array(
-		
-			'length'=>100,
-			'id'=>"param"
-				
-		
-		));
+		$f_param=new FieldSQLText($this->getDbLink(),$this->getDbName(),$this->getTableName(),"param",$f_opts);
 		$this->addField($f_param);
+		//********************
+	
+		//*** Field param_type ***
+		$f_opts = array();
+		$f_opts['id']="param_type";
+		
+		$f_param_type=new FieldSQLText($this->getDbLink(),$this->getDbName(),$this->getTableName(),"param_type",$f_opts);
+		$this->addField($f_param_type);
+		//********************
 
-		$f_val=new FieldSQlText($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"val"
-		,array(
+		$order = new ModelOrderSQL();		
+		$this->setDefaultModelOrder($order);		
 		
-			'id'=>"val"
-				
-		
-		));
-		$this->addField($f_val);
+		$order->addField($f_template);
 
-		
-		
-		
+		$order->addField($f_param);
+$this->setLimitConstant('doc_per_page_count');
 	}
 
 }

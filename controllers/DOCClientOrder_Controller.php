@@ -1,6 +1,5 @@
 <?php
-
-require_once(FRAME_WORK_PATH.'basic_classes/ControllerSQLDOC.php');
+require_once(FRAME_WORK_PATH.'basic_classes/ControllerSQLDOC20.php');
 
 require_once(FRAME_WORK_PATH.'basic_classes/FieldExtInt.php');
 require_once(FRAME_WORK_PATH.'basic_classes/FieldExtString.php');
@@ -12,12 +11,17 @@ require_once(FRAME_WORK_PATH.'basic_classes/FieldExtDate.php');
 require_once(FRAME_WORK_PATH.'basic_classes/FieldExtTime.php');
 require_once(FRAME_WORK_PATH.'basic_classes/FieldExtPassword.php');
 require_once(FRAME_WORK_PATH.'basic_classes/FieldExtBool.php');
+require_once(FRAME_WORK_PATH.'basic_classes/FieldExtInterval.php');
+require_once(FRAME_WORK_PATH.'basic_classes/ControllerSQLDOC20.php');
 require_once(FRAME_WORK_PATH.'basic_classes/ParamsSQL.php');
 
-class DOCClientOrder_Controller extends ControllerSQLDOC{
+class DOCClientOrder_Controller extends ControllerSQLDOC20{
 	public function __construct($dbLinkMaster=NULL){
 		parent::__construct($dbLinkMaster);
 			
+		$this->setProcessable(TRUE);
+		
+		
 		/* insert */
 		$pm = new PublicMethod('insert');
 		$param = new FieldExtDateTime('date_time'
@@ -91,17 +95,31 @@ class DOCClientOrder_Controller extends ControllerSQLDOC{
 				,array());
 		$pm->addParam($param);
 		
-				$param = new FieldExtEnum('client_order_state',',','to_noone,to_florist,to_courier,closed'
+				$param = new FieldExtEnum('client_order_state',',','to_noone,checked,to_florist,to_courier,closed'
 				,array());
 		$pm->addParam($param);
 		$param = new FieldExtBool('payed'
 				,array());
 		$pm->addParam($param);
 		$param = new FieldExtFloat('total'
-				,array());
+				,array(
+				'alias'=>'Сумма'
+			));
+		$pm->addParam($param);
+		$param = new FieldExtInt('store_id'
+				,array(
+				'alias'=>'Магазин'
+			));
 		$pm->addParam($param);
 		
 		$pm->addParam(new FieldExtInt('ret_id'));
+		
+			$f_params = array();
+			
+				$f_params['required']=TRUE;
+			$param = new FieldExtString('view_id'
+			,$f_params);
+		$pm->addParam($param);		
 		
 		
 		$this->addPublicMethod($pm);
@@ -209,7 +227,7 @@ class DOCClientOrder_Controller extends ControllerSQLDOC{
 			));
 			$pm->addParam($param);
 		
-				$param = new FieldExtEnum('client_order_state',',','to_noone,to_florist,to_courier,closed'
+				$param = new FieldExtEnum('client_order_state',',','to_noone,checked,to_florist,to_courier,closed'
 				,array(
 			));
 			$pm->addParam($param);
@@ -219,12 +237,27 @@ class DOCClientOrder_Controller extends ControllerSQLDOC{
 			$pm->addParam($param);
 		$param = new FieldExtFloat('total'
 				,array(
+			
+				'alias'=>'Сумма'
+			));
+			$pm->addParam($param);
+		$param = new FieldExtInt('store_id'
+				,array(
+			
+				'alias'=>'Магазин'
 			));
 			$pm->addParam($param);
 		
 			$param = new FieldExtInt('id',array(
 			));
 			$pm->addParam($param);
+		
+			$f_params = array();
+			
+				$f_params['required']=TRUE;
+			$param = new FieldExtString('view_id'
+			,$f_params);
+		$pm->addParam($param);		
 		
 		
 			$this->addPublicMethod($pm);
@@ -280,6 +313,11 @@ class DOCClientOrder_Controller extends ControllerSQLDOC{
 					
 		$pm->addParam(new FieldExtInt('doc_id',$opts));
 	
+				
+	$opts=array();
+					
+		$pm->addParam(new FieldExtString('templ',$opts));
+	
 			
 		$this->addPublicMethod($pm);
 												
@@ -288,12 +326,31 @@ class DOCClientOrder_Controller extends ControllerSQLDOC{
 		
 				
 	$opts=array();
+	
+		$opts['length']=32;
+		$opts['required']=TRUE;				
+		$pm->addParam(new FieldExtString('view_id',$opts));
+	
+				
+	$opts=array();
 					
 		$pm->addParam(new FieldExtInt('doc_id',$opts));
 	
 			
 		$this->addPublicMethod($pm);
 
+			
+		$pm = new PublicMethod('set_unprocessed');
+		
+				
+	$opts=array();
+	
+		$opts['required']=TRUE;				
+		$pm->addParam(new FieldExtInt('doc_id',$opts));
+	
+			
+		$this->addPublicMethod($pm);
+			
 			
 		$pm = new PublicMethod('get_actions');
 		
@@ -305,17 +362,102 @@ class DOCClientOrder_Controller extends ControllerSQLDOC{
 			
 		$this->addPublicMethod($pm);
 			
+			
+		$pm = new PublicMethod('get_print');
+		
+				
+	$opts=array();
+					
+		$pm->addParam(new FieldExtInt('doc_id',$opts));
+	
+				
+	$opts=array();
+					
+		$pm->addParam(new FieldExtString('templ',$opts));
+	
+			
+		$this->addPublicMethod($pm);
+			
+			
+		$pm = new PublicMethod('set_state');
+		
+				
+	$opts=array();
+					
+		$pm->addParam(new FieldExtInt('doc_id',$opts));
+	
+				
+	$opts=array();
+					
+		$pm->addParam(new FieldExtString('state',$opts));
+	
+			
+		$this->addPublicMethod($pm);
+			
+			
+		$pm = new PublicMethod('set_payed');
+		
+				
+	$opts=array();
+					
+		$pm->addParam(new FieldExtInt('doc_id',$opts));
+	
+			
+		$this->addPublicMethod($pm);
+			
+			
 		
 	}	
+	
+	public function set_state($pm){
+		$p = new ParamsSQL($pm,$this->getDbLink());
+		$p->addAll();
+		
+		$this->getDbLinkMaster()->query(sprintf(
+		"UPDATE doc_client_orders
+		SET client_order_state=%s
+		WHERE id=%d",
+		$p->getDbVal('state'),
+		$p->getDbVal('doc_id')
+		));
+	}
+
+	public function set_payed($pm){
+		$p = new ParamsSQL($pm,$this->getDbLink());
+		$p->addAll();
+		
+		$this->getDbLinkMaster()->query(sprintf(
+		"UPDATE doc_client_orders
+		SET payed=TRUE
+		WHERE id=%d",
+		$p->getDbVal('doc_id')
+		));
+	}
 	
 	public function get_print($pm){
 		$p = new ParamsSQL($pm,$this->getDbLink());
 		$p->set('doc_id',DT_INT,array('required'=>TRUE));
+		
 		$this->addNewModel(sprintf(
-			"SELECT * FROM doc_client_orders_list
+			"SELECT *,
+				get_date_str_rus(date_time::date) AS date_time_descr
+			FROM doc_client_orders_list
 			WHERE id=%d",
 		$p->getParamById('doc_id')),
 		'head');		
+		
+		$this->addNewModel(sprintf(
+			"SELECT * FROM doc_client_orders_t_materials_list
+			WHERE doc_id=%d",
+		$p->getParamById('doc_id')),
+		'materials');		
+		
+		$this->addNewModel(sprintf(
+			"SELECT * FROM doc_client_orders_t_products_list
+			WHERE doc_id=%d",
+		$p->getParamById('doc_id')),
+		'products');		
+		
 	}
 
 }

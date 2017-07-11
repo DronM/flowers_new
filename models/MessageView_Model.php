@@ -12,60 +12,41 @@ class MessageView_Model extends ModelSQL{
 		$this->setDbName("public");
 		
 		$this->setTableName("message_views");
+			
+		//*** Field id ***
+		$f_opts = array();
+		$f_opts['primaryKey'] = TRUE;
+		$f_opts['autoInc']=TRUE;
+		$f_opts['id']="id";
 		
-		$f_id=new FieldSQlInt($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"id"
-		,array(
-		
-			'primaryKey'=>TRUE,
-			'autoInc'=>TRUE,
-			'alias'=>"Код"
-		,
-			'id'=>"id"
-				
-		
-		));
+		$f_id=new FieldSQLInt($this->getDbLink(),$this->getDbName(),$this->getTableName(),"id",$f_opts);
 		$this->addField($f_id);
-
-		$f_message_id=new FieldSQlInt($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"message_id"
-		,array(
-		'required'=>TRUE,
-			'alias'=>"Сообщение"
-		,
-			'id'=>"message_id"
-				
+		//********************
+	
+		//*** Field message_id ***
+		$f_opts = array();
+		$f_opts['id']="message_id";
 		
-		));
+		$f_message_id=new FieldSQLInt($this->getDbLink(),$this->getDbName(),$this->getTableName(),"message_id",$f_opts);
 		$this->addField($f_message_id);
-
-		$f_user_id=new FieldSQlInt($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"user_id"
-		,array(
+		//********************
+	
+		//*** Field user_id ***
+		$f_opts = array();
+		$f_opts['id']="user_id";
 		
-			'alias'=>"Пользователь"
-		,
-			'id'=>"user_id"
-				
-		
-		));
+		$f_user_id=new FieldSQLInt($this->getDbLink(),$this->getDbName(),$this->getTableName(),"user_id",$f_opts);
 		$this->addField($f_user_id);
-
-		$f_date_time=new FieldSQlDateTime($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"date_time"
-		,array(
+		//********************
+	
+		//*** Field date_time ***
+		$f_opts = array();
+		$f_opts['id']="date_time";
 		
-			'alias'=>"Время просмотра"
-		,
-			'id'=>"date_time"
-				
-		
-		));
+		$f_date_time=new FieldSQLDateTime($this->getDbLink(),$this->getDbName(),$this->getTableName(),"date_time",$f_opts);
 		$this->addField($f_date_time);
-
-		
-		
-		
+		//********************
+$this->setLimitConstant('doc_per_page_count');
 	}
 
 }

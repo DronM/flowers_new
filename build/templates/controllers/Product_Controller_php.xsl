@@ -56,6 +56,13 @@ class <xsl:value-of select="@id"/>_Controller extends ControllerSQL{
 		$this->addModel($model);		
 	}
 	public function get_list_for_sale($pm){
+		if (isset($_SESSION['user_id'])){
+			$user_id = $_SESSION['user_id'];
+		}
+		if (!isset($user_id)){
+			throw new Exception('Пустое значение пользователя!');
+		}
+	
 		$store_id = NULL;
 		if (isset($_SESSION['global_store_id'])){
 			$store_id = $_SESSION['global_store_id'];
@@ -66,6 +73,35 @@ class <xsl:value-of select="@id"/>_Controller extends ControllerSQL{
 		$this->addNewModel(
 		sprintf('SELECT * FROM product_list_for_sale(%d)',$store_id),
 		'get_list_for_sale');		
+		
+		//selected items
+		$this->addNewModel(
+		sprintf('SELECT * FROM receipts_list_view WHERE user_id=%d',$user_id),
+		'ReceiptList_Model');		
+		
+		//selected head
+		$this->addNewModel(
+		sprintf(
+			"SELECT
+				h.*,
+				cl.name AS client_descr,
+				d.name||'('||d.percent||'%%)' AS discount_descr,
+				o.number_from_site||' '||date8_descr(o.date_time::date) AS doc_client_order_descr
+			FROM receipt_head h
+			LEFT JOIN clients cl ON cl.id=h.client_id
+			LEFT JOIN discounts d ON d.id=h.discount_id
+			LEFT JOIN doc_client_orders o ON o.id=h.doc_client_order_id
+			WHERE h.user_id=%d",$user_id),
+		'ReceiptHeadList_Model');				
+
+		//payment type
+		$this->addNewModel(sprintf("SELECT * FROM receipt_payment_types_list WHERE user_id=%d",$user_id),
+		'ReceiptPaymentTypeList_Model');				
+
+		//payment types
+		$this->addNewModel("SELECT * FROM payment_types_for_sale ORDER BY name",
+		'PaymentTypeForSale_Model');				
+		
 	}
 	public function get_price($pm){
 		$product_id = $pm->getParamValue('product_id');

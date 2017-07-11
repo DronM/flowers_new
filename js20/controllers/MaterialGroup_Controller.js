@@ -1,25 +1,22 @@
-/* Copyright (c) 2016
-	Andrey Mikhalevich, Katren ltd.
-*/
-/*	
-	Description
-*/
-/** Requirements
- * @requires core/extend.js
- * @requires core/ControllerDb.js
-*/
-
-/* constructor
-@param string id
-@param object options{
-
-}
-*/
+/**
+ * @author Andrey Mikhalevich <katrenplus@mail.ru>, 2017
+ 
+ * @class
+ * @classdesc controller
+ 
+ * @requires ../core/extend.js
+ * @requires ../core/ControllerDb.js 
+  
+ * @param {App} app - app instance
+ * @param {namespase} options
+ * @param {Model} options.listModel
+ * @param {Model} options.objModel 
+ */ 
 
 function MaterialGroup_Controller(app,options){
 	options = options || {};
-	options.listModelId = "MaterialGroup_Model";
-	options.objModelId = "MaterialGroup_Model";
+	options.listModel = MaterialGroup_Model;
+	options.objModel = MaterialGroup_Model;
 	MaterialGroup_Controller.superclass.constructor.call(this,app,options);	
 	
 	//methods
@@ -37,22 +34,21 @@ extend(MaterialGroup_Controller,ControllerDb);
 			MaterialGroup_Controller.prototype.addInsert = function(){
 	MaterialGroup_Controller.superclass.addInsert.call(this);
 	var field;
-	var options;
 	
 	var pm = this.getInsert();
-	options = {};
+	var options = {};
 	options.primaryKey = true;options.autoInc = true;
 	var field = new FieldInt("id",options);
 	
 	pm.addField(field);
 	
-	options = {};
+	var options = {};
 	options.alias = "Наименование";options.required = true;
 	var field = new FieldString("name",options);
 	
 	pm.addField(field);
 	
-	options = {};
+	var options = {};
 	options.alias = "Для флориста";
 	var field = new FieldBool("for_florist",options);
 	
@@ -65,71 +61,75 @@ extend(MaterialGroup_Controller,ControllerDb);
 
 			MaterialGroup_Controller.prototype.addUpdate = function(){
 	MaterialGroup_Controller.superclass.addUpdate.call(this);
-	var field;
-	var options;	
+	var field;	
 	var pm = this.getUpdate();
-	options = {"sendNulls":true};
+	var options = {};
 	options.primaryKey = true;options.autoInc = true;
 	var field = new FieldInt("id",options);
 	
 	pm.addField(field);
 	
-	
 	field = new FieldInt("old_id",{});
 	pm.addField(field);
 	
-	options = {"sendNulls":true};
+	var options = {};
 	options.alias = "Наименование";
 	var field = new FieldString("name",options);
 	
 	pm.addField(field);
 	
-	
-	options = {"sendNulls":true};
+	var options = {};
 	options.alias = "Для флориста";
 	var field = new FieldBool("for_florist",options);
 	
 	pm.addField(field);
 	
 	
-	
 }
 
 			MaterialGroup_Controller.prototype.addDelete = function(){
 	MaterialGroup_Controller.superclass.addDelete.call(this);
-	var options = {"required":true};
-	
 	var pm = this.getDelete();
+	var options = {"required":true};
+		
 	pm.addField(new FieldInt("id",options));
 }
 
 			MaterialGroup_Controller.prototype.addGetList = function(){
 	MaterialGroup_Controller.superclass.addGetList.call(this);
-	var options = {};
+	
+	
 	
 	var pm = this.getGetList();
-	pm.addField(new FieldInt("id",options));
-	pm.addField(new FieldString("name",options));
-	pm.addField(new FieldBool("for_florist",options));
+	var f_opts = {};
+	
+	pm.addField(new FieldInt("id",f_opts));
+	var f_opts = {};
+	f_opts.alias = "Наименование";
+	pm.addField(new FieldString("name",f_opts));
+	var f_opts = {};
+	f_opts.alias = "Для флориста";
+	pm.addField(new FieldBool("for_florist",f_opts));
 	pm.getField(this.PARAM_ORD_FIELDS).setValue("name");
 	
 }
 
 			MaterialGroup_Controller.prototype.addGetObject = function(){
 	MaterialGroup_Controller.superclass.addGetObject.call(this);
-	var options = {};
 	
 	var pm = this.getGetObject();
-	pm.addField(new FieldInt("id",options));
+	var f_opts = {};
+		
+	pm.addField(new FieldInt("id",f_opts));
 }
 
 			MaterialGroup_Controller.prototype.addComplete = function(){
 	MaterialGroup_Controller.superclass.addComplete.call(this);
 	
-	var options = {};
-	
+	var f_opts = {};
+	f_opts.alias = "";
 	var pm = this.getComplete();
-	pm.addField(new FieldString("name",options));
+	pm.addField(new FieldString("name",f_opts));
 	pm.getField(this.PARAM_ORD_FIELDS).setValue("name");
 }
 

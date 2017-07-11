@@ -17,6 +17,7 @@ CREATE OR REPLACE VIEW doc_product_disposals_list_view AS
 		
 		doc_prod.product_id,
 		p.name AS product_descr,
+		p.price,
 		
 		doc_p.explanation,
 		

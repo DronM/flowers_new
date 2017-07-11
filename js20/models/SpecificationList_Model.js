@@ -22,80 +22,49 @@ function SpecificationList_Model(options){
 	
 	options.fields = {};
 	
-			
+				
+	
 	var filed_options = {};
-	filed_options.primaryKey = true;
+	filed_options.primaryKey = true;	
+	options.fields.id = new FieldInt("id",filed_options);
 	
+				
 	
-	var field = new FieldInt("id",filed_options);
-	
-
-	options.fields.id = field;
-
-			
 	var filed_options = {};
-	filed_options.primaryKey = false;
+	filed_options.primaryKey = false;	
+	options.fields.product_id = new FieldInt("product_id",filed_options);
 	
+				
 	
-	var field = new FieldInt("product_id",filed_options);
-	
-
-	options.fields.product_id = field;
-
-			
 	var filed_options = {};
-	filed_options.primaryKey = false;
+	filed_options.primaryKey = false;	
+	options.fields.product_descr = new FieldString("product_descr",filed_options);
 	
+				
 	
-	var field = new FieldString("product_descr",filed_options);
-	
-
-	options.fields.product_descr = field;
-
-			
 	var filed_options = {};
-	filed_options.primaryKey = false;
+	filed_options.primaryKey = false;	
+	options.fields.material_id = new FieldInt("material_id",filed_options);
 	
+				
 	
-	var field = new FieldInt("material_id",filed_options);
-	
-
-	options.fields.material_id = field;
-
-			
 	var filed_options = {};
-	filed_options.primaryKey = false;
+	filed_options.primaryKey = false;	
+	filed_options.alias = 'Материал';options.fields.material_descr = new FieldString("material_descr",filed_options);
 	
-	filed_options.alias = 'Материал';
+				
 	
-	var field = new FieldString("material_descr",filed_options);
-	
-
-	options.fields.material_descr = field;
-
-			
 	var filed_options = {};
-	filed_options.primaryKey = false;
+	filed_options.primaryKey = false;	
+	options.fields.product_quant = new FieldInt("product_quant",filed_options);
 	
+				
 	
-	var field = new FieldInt("product_quant",filed_options);
-	
-
-	options.fields.product_quant = field;
-
-			
 	var filed_options = {};
-	filed_options.primaryKey = false;
+	filed_options.primaryKey = false;	
+	filed_options.alias = 'Количество';options.fields.material_quant = new FieldFloat("material_quant",filed_options);
+	options.fields.material_quant.getValidator().setMaxLength('19');
 	
-	filed_options.alias = 'Количество';
-	
-	var field = new FieldFloat("material_quant",filed_options);
-	
-		field.getValidator().setMaxLength('19');
-	
-
-	options.fields.material_quant = field;
-
 		SpecificationList_Model.superclass.constructor.call(this,id,options);
 }
 extend(SpecificationList_Model,ModelXML);

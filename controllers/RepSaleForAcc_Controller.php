@@ -1,5 +1,4 @@
 <?php
-
 require_once(FRAME_WORK_PATH.'basic_classes/ControllerSQL.php');
 
 require_once(FRAME_WORK_PATH.'basic_classes/FieldExtInt.php');
@@ -12,12 +11,21 @@ require_once(FRAME_WORK_PATH.'basic_classes/FieldExtDate.php');
 require_once(FRAME_WORK_PATH.'basic_classes/FieldExtTime.php');
 require_once(FRAME_WORK_PATH.'basic_classes/FieldExtPassword.php');
 require_once(FRAME_WORK_PATH.'basic_classes/FieldExtBool.php');
+require_once(FRAME_WORK_PATH.'basic_classes/FieldExtInterval.php');
 
 require_once(FRAME_WORK_PATH.'basic_classes/CondParamsSQL.php');
 
 class RepSaleForAcc_Controller extends ControllerSQL{
 	public function __construct($dbLinkMaster=NULL){
 		parent::__construct($dbLinkMaster);
+			
+		/* get_object */
+		$pm = new PublicMethod('get_object');
+		$pm->addParam(new FieldExtInt('browse_mode'));
+		
+		$this->addPublicMethod($pm);
+		$this->setObjectModelId('_Model');		
+
 			
 		$pm = new PublicMethod('report');
 		
@@ -56,11 +64,19 @@ class RepSaleForAcc_Controller extends ControllerSQL{
 					
 		$pm->addParam(new FieldExtString('ord_directs',$opts));
 												
+				
+	$opts=array();
+					
+		$pm->addParam(new FieldExtString('field_sep',$opts));
+	
 			
 		$this->addPublicMethod($pm);
 									
 		
 	}	
+	
+	public function get_object($pm){
+	}
 	
 	public function report($pm){
 		$cond = new CondParamsSQL($pm,$this->getDbLink());

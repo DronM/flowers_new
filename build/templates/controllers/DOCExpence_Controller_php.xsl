@@ -17,7 +17,7 @@
 
 <xsl:template match="controller"><![CDATA[<?php]]>
 <xsl:call-template name="add_requirements"/>
-class <xsl:value-of select="@id"/>_Controller extends ControllerSQLDOC{
+class <xsl:value-of select="@id"/>_Controller extends ControllerSQLDOC20{
 	public function __construct($dbLinkMaster=NULL){
 		parent::__construct($dbLinkMaster);<xsl:apply-templates/>
 	}	
@@ -30,7 +30,7 @@ class <xsl:value-of select="@id"/>_Controller extends ControllerSQLDOC{
 	public function insert($pm){
 		//doc owner
 		$pm->setParamValue('user_id',$_SESSION['user_id']);
-		parent::insert();		
+		parent::insert($pm);		
 	}
 	public function get_details($pm){		
 		$model = new DOCExpenceExpenceTypeList_Model($this->getDbLink());	

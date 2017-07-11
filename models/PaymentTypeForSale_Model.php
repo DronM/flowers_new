@@ -14,66 +14,47 @@ class PaymentTypeForSale_Model extends ModelSQL{
 		$this->setDbName("public");
 		
 		$this->setTableName("payment_types_for_sale");
+			
+		//*** Field id ***
+		$f_opts = array();
+		$f_opts['primaryKey'] = TRUE;
+		$f_opts['autoInc']=TRUE;
+		$f_opts['id']="id";
 		
-		$f_id=new FieldSQlInt($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"id"
-		,array(
-		'required'=>TRUE,
-			'primaryKey'=>TRUE,
-			'autoInc'=>TRUE,
-			'alias'=>"Код"
-		,
-			'id'=>"id"
-				
-		
-		));
+		$f_id=new FieldSQLInt($this->getDbLink(),$this->getDbName(),$this->getTableName(),"id",$f_opts);
 		$this->addField($f_id);
-
-		$f_name=new FieldSQlString($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"name"
-		,array(
-		'required'=>TRUE,
-			'alias'=>"Наименование"
-		,
-			'length'=>100,
-			'id'=>"name"
-				
+		//********************
+	
+		//*** Field name ***
+		$f_opts = array();
+		$f_opts['length']=100;
+		$f_opts['id']="name";
 		
-		));
+		$f_name=new FieldSQLString($this->getDbLink(),$this->getDbName(),$this->getTableName(),"name",$f_opts);
 		$this->addField($f_name);
-
-		$f_client_order_payment_type=new FieldSQlEnum($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"client_order_payment_type"
-		,array(
+		//********************
+	
+		//*** Field client_order_payment_type ***
+		$f_opts = array();
+		$f_opts['id']="client_order_payment_type";
 		
-			'alias'=>"Вид оплаты из заказа"
-		,
-			'id'=>"client_order_payment_type"
-				
-		
-		));
+		$f_client_order_payment_type=new FieldSQLEnum($this->getDbLink(),$this->getDbName(),$this->getTableName(),"client_order_payment_type",$f_opts);
 		$this->addField($f_client_order_payment_type);
-
-		$f_kkm_type_close=new FieldSQlInt($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"kkm_type_close"
-		,array(
+		//********************
+	
+		//*** Field kkm_type_close ***
+		$f_opts = array();
+		$f_opts['id']="kkm_type_close";
 		
-			'alias'=>"Тип оплаты для ККМ"
-		,
-			'id'=>"kkm_type_close"
-				
-		
-		));
+		$f_kkm_type_close=new FieldSQLInt($this->getDbLink(),$this->getDbName(),$this->getTableName(),"kkm_type_close",$f_opts);
 		$this->addField($f_kkm_type_close);
+		//********************
 
 		$order = new ModelOrderSQL();		
 		$this->setDefaultModelOrder($order);		
 		
 		$order->addField($f_name);
-
-		
-		
-		
+$this->setLimitConstant('doc_per_page_count');
 	}
 
 }

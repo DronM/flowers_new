@@ -18,27 +18,27 @@ function PaymentTypeForSale_View(id,options){
 	var constants = {"doc_per_page_count":null};
 	options.app.getConstantManager().get(constants);
 	
+	var popup_menu = new PopUpMenu();
+	
 	this.addElement(new GridAjx(id+":grid",{
 		"model":model,
 		"controller":contr,
+		"keyIds":["id"],
 		"editInline":true,
 		"editWinClass":null,
-		"commands":new GridCommandsAjx(),
+		"popUpMenu":popup_menu,
+		"commands":new GridCmdContainerAjx(id+":grid:cmd",{
+			"popUpMenu":popup_menu,
+			"colTemplate":"PaymentTypeForSale",
+			"app":options.app
+		}),		
 		"head":new GridHead(id+"-grid:head",{
 			"elements":[
 				new GridRow(id+":grid:head:row0",{
 					"elements":[
-						/*
-						new GridCellHead(id+":grid:head:id",{
-							"columns":[
-								new GridColumn({"field":model.getField("id")})
-							],
-							"sortable":true
-						}),
-						*/
 						new GridCellHead(id+":grid:head:name",{
 							"columns":[
-								new GridColumn({"field":model.getField("name")})
+								new GridColumn("name",{"field":model.getField("name")})
 							],
 							"sortable":true,
 							"sort":"asc"							
@@ -46,7 +46,7 @@ function PaymentTypeForSale_View(id,options){
 						new GridCellHead(id+":grid:head:kkm_type_close",{
 							"colAttrs":{"align":"center"},
 							"columns":[
-								new GridColumn({"field":model.getField("kkm_type_close")})
+								new GridColumn("kkm_type_close",{"field":model.getField("kkm_type_close")})
 							]
 						})
 					]
@@ -55,6 +55,7 @@ function PaymentTypeForSale_View(id,options){
 		}),
 		"pagination":null,		
 		"autoRefresh":false,
+		"rowSelect":false,
 		"focus":true,
 		"app":options.app
 	}));	

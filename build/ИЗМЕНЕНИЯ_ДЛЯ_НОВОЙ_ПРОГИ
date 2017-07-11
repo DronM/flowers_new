@@ -1,1 +1,2 @@
-doc_productions_list_view.sql
+КАК Работает нарушение границы
+из удаления проведения вызывается seq_viol_materials_set_on_doc которая меняет границу если надо

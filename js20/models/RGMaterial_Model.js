@@ -25,105 +25,53 @@ function RGMaterial_Model(options){
 			
 				
 			
-			
+				
+	
 	var filed_options = {};
-	filed_options.primaryKey = true;
+	filed_options.primaryKey = true;	
+	filed_options.alias = 'Код';options.fields.id = new FieldInt("id",filed_options);
 	
-	filed_options.alias = 'Код';
+				
 	
-	var field = new FieldInt("id",filed_options);
-	
-
-	options.fields.id = field;
-
-			
 	var filed_options = {};
-	filed_options.primaryKey = false;
+	filed_options.primaryKey = false;	
+	filed_options.alias = 'Период';options.fields.date_time = new FieldDateTime("date_time",filed_options);
+	options.fields.date_time.getValidator().setRequired(true);
 	
-	filed_options.alias = 'Период';
+				
 	
-	var field = new FieldDateTime("date_time",filed_options);
-	
-		field.getValidator().setRequired(true);
-	
-
-	options.fields.date_time = field;
-
-			
 	var filed_options = {};
-	filed_options.primaryKey = false;
+	filed_options.primaryKey = false;	
+	filed_options.alias = 'Магазин';options.fields.store_id = new FieldInt("store_id",filed_options);
 	
-	filed_options.alias = 'Магазин';
+				
 	
-	var field = new FieldInt("store_id",filed_options);
-	
-
-	options.fields.store_id = field;
-
-			
 	var filed_options = {};
-	filed_options.primaryKey = false;
+	filed_options.primaryKey = false;	
+	filed_options.alias = 'Материал';options.fields.material_id = new FieldInt("material_id",filed_options);
 	
-	filed_options.alias = 'Склад';
+				
 	
-	var field = new FieldEnum("stock_type",filed_options);
-	filed_options.enumValues = 'main,waste';
-	
-		field.getValidator().setRequired(true);
-	
-
-	options.fields.stock_type = field;
-									
-			
 	var filed_options = {};
-	filed_options.primaryKey = false;
+	filed_options.primaryKey = false;	
+	filed_options.alias = 'Поставка';options.fields.doc_procurement_id = new FieldInt("doc_procurement_id",filed_options);
+	options.fields.doc_procurement_id.getValidator().setRequired(true);
 	
-	filed_options.alias = 'Материал';
+				
 	
-	var field = new FieldInt("material_id",filed_options);
-	
-
-	options.fields.material_id = field;
-
-			
 	var filed_options = {};
-	filed_options.primaryKey = false;
+	filed_options.primaryKey = false;	
+	filed_options.alias = 'Количество';options.fields.quant = new FieldFloat("quant",filed_options);
+	options.fields.quant.getValidator().setMaxLength('19');
 	
-	filed_options.alias = 'Поставка';
+				
 	
-	var field = new FieldInt("doc_procurement_id",filed_options);
-	
-		field.getValidator().setRequired(true);
-	
-
-	options.fields.doc_procurement_id = field;
-						
-			
 	var filed_options = {};
-	filed_options.primaryKey = false;
+	filed_options.primaryKey = false;	
+	filed_options.alias = 'Стоимость';options.fields.cost = new FieldFloat("cost",filed_options);
+	options.fields.cost.getValidator().setMaxLength('15');
 	
-	filed_options.alias = 'Количество';
-	
-	var field = new FieldFloat("quant",filed_options);
-	
-		field.getValidator().setMaxLength('19');
-	
-
-	options.fields.quant = field;
-
 			
-	var filed_options = {};
-	filed_options.primaryKey = false;
-	
-	filed_options.alias = 'Стоимость';
-	
-	var field = new FieldFloat("cost",filed_options);
-	
-		field.getValidator().setMaxLength('15');
-	
-
-	options.fields.cost = field;
-
 						
 												
 									

@@ -13,168 +13,113 @@ class RepMaterialAction_Model extends ModelReportSQL{
 		$this->setDbName("public");
 		
 		$this->setTableName("rep_material_actions");
+			
+		//*** Field store_id ***
+		$f_opts = array();
+		$f_opts['id']="store_id";
 		
-		$f_store_id=new FieldSQlInt($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"store_id"
-		,array(
-		
-			'alias'=>"Салон"
-		,
-			'id'=>"store_id"
-				
-		
-		));
+		$f_store_id=new FieldSQLInt($this->getDbLink(),$this->getDbName(),$this->getTableName(),"store_id",$f_opts);
 		$this->addField($f_store_id);
-
-		$f_store_descr=new FieldSQlString($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"store_descr"
-		,array(
+		//********************
+	
+		//*** Field store_descr ***
+		$f_opts = array();
+		$f_opts['id']="store_descr";
 		
-			'alias'=>"Салон"
-		,
-			'id'=>"store_descr"
-				
-		
-		));
+		$f_store_descr=new FieldSQLString($this->getDbLink(),$this->getDbName(),$this->getTableName(),"store_descr",$f_opts);
 		$this->addField($f_store_descr);
-
-		$f_doc_procurement_id=new FieldSQlInt($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"doc_procurement_id"
-		,array(
+		//********************
+	
+		//*** Field doc_procurement_id ***
+		$f_opts = array();
+		$f_opts['id']="doc_procurement_id";
 		
-			'alias'=>"Поставка"
-		,
-			'id'=>"doc_procurement_id"
-				
-		
-		));
+		$f_doc_procurement_id=new FieldSQLInt($this->getDbLink(),$this->getDbName(),$this->getTableName(),"doc_procurement_id",$f_opts);
 		$this->addField($f_doc_procurement_id);
-
-		$f_doc_procurement_descr=new FieldSQlString($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"doc_procurement_descr"
-		,array(
+		//********************
+	
+		//*** Field doc_procurement_descr ***
+		$f_opts = array();
+		$f_opts['id']="doc_procurement_descr";
 		
-			'alias'=>"Поставка"
-		,
-			'id'=>"doc_procurement_descr"
-				
-		
-		));
+		$f_doc_procurement_descr=new FieldSQLString($this->getDbLink(),$this->getDbName(),$this->getTableName(),"doc_procurement_descr",$f_opts);
 		$this->addField($f_doc_procurement_descr);
-
-		$f_material_group_id=new FieldSQlInt($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"material_group_id"
-		,array(
+		//********************
+	
+		//*** Field material_group_id ***
+		$f_opts = array();
+		$f_opts['id']="material_group_id";
 		
-			'alias'=>"Группа материалов"
-		,
-			'id'=>"material_group_id"
-				
-		
-		));
+		$f_material_group_id=new FieldSQLInt($this->getDbLink(),$this->getDbName(),$this->getTableName(),"material_group_id",$f_opts);
 		$this->addField($f_material_group_id);
-
-		$f_material_group_descr=new FieldSQlString($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"material_group_descr"
-		,array(
+		//********************
+	
+		//*** Field material_group_descr ***
+		$f_opts = array();
+		$f_opts['id']="material_group_descr";
 		
-			'alias'=>"Группа материалов"
-		,
-			'id'=>"material_group_descr"
-				
-		
-		));
+		$f_material_group_descr=new FieldSQLString($this->getDbLink(),$this->getDbName(),$this->getTableName(),"material_group_descr",$f_opts);
 		$this->addField($f_material_group_descr);
-
-		$f_material_id=new FieldSQlInt($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"material_id"
-		,array(
+		//********************
+	
+		//*** Field material_id ***
+		$f_opts = array();
+		$f_opts['id']="material_id";
 		
-			'alias'=>"Материал"
-		,
-			'id'=>"material_id"
-				
-		
-		));
+		$f_material_id=new FieldSQLInt($this->getDbLink(),$this->getDbName(),$this->getTableName(),"material_id",$f_opts);
 		$this->addField($f_material_id);
-
-		$f_material_group_descr=new FieldSQlString($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"material_group_descr"
-		,array(
+		//********************
+	
+		//*** Field material_group_descr ***
+		$f_opts = array();
+		$f_opts['id']="material_group_descr";
 		
-			'alias'=>"Материал"
-		,
-			'id'=>"material_group_descr"
-				
-		
-		));
+		$f_material_group_descr=new FieldSQLString($this->getDbLink(),$this->getDbName(),$this->getTableName(),"material_group_descr",$f_opts);
 		$this->addField($f_material_group_descr);
-
-		$f_ra_doc_id=new FieldSQlInt($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"ra_doc_id"
-		,array(
+		//********************
+	
+		//*** Field ra_doc_id ***
+		$f_opts = array();
+		$f_opts['id']="ra_doc_id";
 		
-			'alias'=>"Документ движения"
-		,
-			'id'=>"ra_doc_id"
-				
-		
-		));
+		$f_ra_doc_id=new FieldSQLInt($this->getDbLink(),$this->getDbName(),$this->getTableName(),"ra_doc_id",$f_opts);
 		$this->addField($f_ra_doc_id);
-
-		$f_ra_doc_type=new FieldSQlString($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"ra_doc_type"
-		,array(
+		//********************
+	
+		//*** Field ra_doc_type ***
+		$f_opts = array();
+		$f_opts['id']="ra_doc_type";
 		
-			'alias'=>"Документ движения"
-		,
-			'id'=>"ra_doc_type"
-				
-		
-		));
+		$f_ra_doc_type=new FieldSQLString($this->getDbLink(),$this->getDbName(),$this->getTableName(),"ra_doc_type",$f_opts);
 		$this->addField($f_ra_doc_type);
-
-		$f_ra_doc_descr=new FieldSQlString($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"ra_doc_descr"
-		,array(
+		//********************
+	
+		//*** Field ra_doc_descr ***
+		$f_opts = array();
+		$f_opts['id']="ra_doc_descr";
 		
-			'alias'=>"Документ движения"
-		,
-			'id'=>"ra_doc_descr"
-				
-		
-		));
+		$f_ra_doc_descr=new FieldSQLString($this->getDbLink(),$this->getDbName(),$this->getTableName(),"ra_doc_descr",$f_opts);
 		$this->addField($f_ra_doc_descr);
-
-		$f_quant=new FieldSQlFloat($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"quant"
-		,array(
+		//********************
+	
+		//*** Field quant ***
+		$f_opts = array();
+		$f_opts['length']=19;
+		$f_opts['id']="quant";
 		
-			'alias'=>"Количество"
-		,
-			'length'=>19,
-			'id'=>"quant"
-				
-		
-		));
+		$f_quant=new FieldSQLFloat($this->getDbLink(),$this->getDbName(),$this->getTableName(),"quant",$f_opts);
 		$this->addField($f_quant);
-
-		$f_cost=new FieldSQlFloat($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"cost"
-		,array(
+		//********************
+	
+		//*** Field cost ***
+		$f_opts = array();
+		$f_opts['length']=15;
+		$f_opts['id']="cost";
 		
-			'alias'=>"Стоимость"
-		,
-			'length'=>15,
-			'id'=>"cost"
-				
-		
-		));
+		$f_cost=new FieldSQLFloat($this->getDbLink(),$this->getDbName(),$this->getTableName(),"cost",$f_opts);
 		$this->addField($f_cost);
-
-		
-		
-		
+		//********************
+$this->setLimitConstant('doc_per_page_count');
 	}
 
 }

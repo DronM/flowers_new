@@ -18,14 +18,14 @@
 <xsl:template match="controller"><![CDATA[<?php]]>
 <xsl:call-template name="add_requirements"/>
 require_once('functions/SMS.php');
-class <xsl:value-of select="@id"/>_Controller extends ControllerSQLDOC{
+class <xsl:value-of select="@id"/>_Controller extends ControllerSQLDOC20{
 	public function __construct($dbLinkMaster=NULL){
 		parent::__construct($dbLinkMaster);<xsl:apply-templates/>
 	}	
 	public function insert($pm){
 		//doc owner
 		$pm->setParamValue('user_id',$_SESSION['user_id']);		
-		parent::insert();		
+		parent::insert($pm);		
 		
 		//SMS
 		$ar = $this->getDbLink()->query_first('SELECT const_cel_phone_for_sms_val() AS val');
@@ -49,38 +49,37 @@ class <xsl:value-of select="@id"/>_Controller extends ControllerSQLDOC{
 
 <xsl:template name="extra_methods">
 	public function get_print($pm){
-		$this->addNewModel(
-			sprintf(
+		$this->addNewModel(sprintf(
 			'SELECT number,
-			get_date_str_rus(date_time::date) AS date_time_descr,
-			store_descr,
-			user_descr,
-			payment_type_descr,
-			format_money(total) AS total_descr
+				get_date_str_rus(date_time::date) AS date_time_descr,
+				store_descr,
+				user_descr,
+				total,
+				payment_type_for_sale_descr
 			FROM doc_sales_list_view
 			WHERE id=%d',
 			$pm->getParamValue('doc_id')),
 		'head');
-		$this->addNewModel(
-			sprintf(
+		
+		$this->addNewModel(sprintf(
 			'SELECT line_number,
-			material_descr,
-			quant,
-			format_money(price) AS price_descr,
-			format_money(total) AS total_descr,
-			total
+				material_descr,
+				quant,
+				price_no_disc AS price,
+				disc_percent,
+				total
 			FROM doc_sales_t_materials_list_view
 			WHERE doc_id=%d
 			ORDER BY line_number',
 			$pm->getParamValue('doc_id')),
 		'materials');		
-		$this->addNewModel(
-			sprintf(
+		$this->addNewModel(sprintf(
 			'SELECT line_number,
-			product_descr,
-			quant,
-			format_money(price) AS price_descr,
-			format_money(total) AS total_descr
+				product_descr,
+				quant,
+				price_no_disc AS price,
+				disc_percent,
+				total AS total
 			FROM doc_sales_t_products_list_view
 			WHERE doc_id=%d
 			ORDER BY line_number',

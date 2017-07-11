@@ -19,7 +19,6 @@
 function ProductList_Form(options){
 	options = options || {};	
 	
-	options.width = 900;
 	options.formName = "ProductList";
 	options.controller = "Product_Controller";
 	options.method = "get_list";

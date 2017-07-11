@@ -1,5 +1,4 @@
 <?php
-
 require_once(FRAME_WORK_PATH.'basic_classes/ControllerSQL.php');
 
 require_once(FRAME_WORK_PATH.'basic_classes/FieldExtInt.php');
@@ -12,18 +11,20 @@ require_once(FRAME_WORK_PATH.'basic_classes/FieldExtDate.php');
 require_once(FRAME_WORK_PATH.'basic_classes/FieldExtTime.php');
 require_once(FRAME_WORK_PATH.'basic_classes/FieldExtPassword.php');
 require_once(FRAME_WORK_PATH.'basic_classes/FieldExtBool.php');
+require_once(FRAME_WORK_PATH.'basic_classes/FieldExtInterval.php');
 require_once(FRAME_WORK_PATH.'basic_classes/ParamsSQL.php');
 class ReportVariant_Controller extends ControllerSQL{
 	public function __construct($dbLinkMaster=NULL){
 		parent::__construct($dbLinkMaster);
 			
+		
 		/* insert */
 		$pm = new PublicMethod('insert');
 		$param = new FieldExtInt('user_id'
 				,array());
 		$pm->addParam($param);
 		
-				$param = new FieldExtEnum('report_type',',','material_actions'
+				$param = new FieldExtEnum('report_type',',','material_actions,filter_variants'
 				,array('required'=>TRUE));
 		$pm->addParam($param);
 		$param = new FieldExtText('name'
@@ -38,6 +39,11 @@ class ReportVariant_Controller extends ControllerSQL{
 		
 		$this->addPublicMethod($pm);
 		$this->setInsertModelId('ReportVariant_Model');
+
+			
+		$pm = new PublicMethod('upsert');
+		
+		$this->addPublicMethod($pm);
 
 			
 		/* update */		
@@ -55,7 +61,7 @@ class ReportVariant_Controller extends ControllerSQL{
 			));
 			$pm->addParam($param);
 		
-				$param = new FieldExtEnum('report_type',',','material_actions'
+				$param = new FieldExtEnum('report_type',',','material_actions,filter_variants'
 				,array(
 			));
 			$pm->addParam($param);
@@ -110,6 +116,11 @@ class ReportVariant_Controller extends ControllerSQL{
 			,$f_params);
 		$pm->addParam($param);		
 		
+			$f_params = array();
+			$param = new FieldExtString('name'
+			,$f_params);
+		$pm->addParam($param);		
+		
 		$this->addPublicMethod($pm);
 		
 			
@@ -130,6 +141,20 @@ class ReportVariant_Controller extends ControllerSQL{
 		$pm->setParamValue("user_id",$_SESSION['user_id']);
 		parent::insert($pm);
 	}
+	
+	public function upsert($pm){
+		$params = new ParamsSQL($pm,$this->getDbLink());
+		$params->addAll();
+	
+		$this->getDbLinkMaster()->query(sprintf(
+		"SELECT report_variants_upsert(%d,%s::report_types,%s,%s)",
+		$_SESSION['user_id'],
+		$params->getDbVal("report_type"),
+		$params->getDbVal("name"),
+		$params->getDbVal("data")
+		));
+	}
+	
 	public function get_list($pm){
 		$params = new ParamsSQL($pm,$this->getDbLink());
 		$params->addAll();

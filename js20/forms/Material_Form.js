@@ -19,7 +19,6 @@
 function Material_Form(options){
 	options = options || {};	
 	
-	options.width = 900;
 	options.formName = "Material";
 	options.method = "get_object";
 	

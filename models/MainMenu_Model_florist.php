@@ -12,23 +12,17 @@ descr="Справочники"
 >
 <menuItem
 
-viewId="MaterialList_View"
-
 descr="Материалы"
 
-></menuItem>
-</menuItem>
+default="FALSE"
 
-<menuItem
+c="Material_Controller"
 
-descr="Заказы покупателей"
+f="get_list"
 
->
-<menuItem
+t="MaterialList"
 
-viewId="DOCClientOrderList_View"
-
-descr="Журнал"
+limit="TRUE"
 
 ></menuItem>
 </menuItem>
@@ -40,39 +34,43 @@ descr="Букеты"
 >
 <menuItem
 
-viewId="ProductBalanceList_View"
-
 descr="Остатки"
+
+default="TRUE"
+
+c="Product_Controller"
+
+f="get_list_with_balance"
+
+t="ProductBalanceList"
 
 ></menuItem>
 
 <menuItem
-
-viewId="DOCProductionList_View"
 
 descr="Комплектация"
 
+default="FALSE"
+
+c="DOCProduction_Controller"
+
+f="get_list"
+
+t="DOCProductionList"
+
 ></menuItem>
 
 <menuItem
-
-viewId="DOCProductDisposalList_View"
 
 descr="Списание"
 
-></menuItem>
-</menuItem>
+default="FALSE"
 
-<menuItem
+c="DOCProductDisposal_Controller"
 
-descr="Администрирование"
+f="get_list"
 
->
-<menuItem
-
-viewId="UserNewPassword_View"
-
-descr="Сменить свой пароль"
+t="DOCProductDisposalList"
 
 ></menuItem>
 </menuItem>

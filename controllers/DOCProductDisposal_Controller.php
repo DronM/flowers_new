@@ -1,6 +1,5 @@
 <?php
-
-require_once(FRAME_WORK_PATH.'basic_classes/ControllerSQLDOC.php');
+require_once(FRAME_WORK_PATH.'basic_classes/ControllerSQLDOC20.php');
 
 require_once(FRAME_WORK_PATH.'basic_classes/FieldExtInt.php');
 require_once(FRAME_WORK_PATH.'basic_classes/FieldExtString.php');
@@ -12,10 +11,14 @@ require_once(FRAME_WORK_PATH.'basic_classes/FieldExtDate.php');
 require_once(FRAME_WORK_PATH.'basic_classes/FieldExtTime.php');
 require_once(FRAME_WORK_PATH.'basic_classes/FieldExtPassword.php');
 require_once(FRAME_WORK_PATH.'basic_classes/FieldExtBool.php');
-class DOCProductDisposal_Controller extends ControllerSQLDOC{
+require_once(FRAME_WORK_PATH.'basic_classes/FieldExtInterval.php');
+class DOCProductDisposal_Controller extends ControllerSQLDOC20{
 	public function __construct($dbLinkMaster=NULL){
 		parent::__construct($dbLinkMaster);
 			
+		$this->setProcessable(TRUE);
+		
+		
 		/* insert */
 		$pm = new PublicMethod('insert');
 		$param = new FieldExtDateTime('date_time'
@@ -165,17 +168,6 @@ class DOCProductDisposal_Controller extends ControllerSQLDOC{
 		$this->setObjectModelId('DOCProductDisposalList_Model');		
 
 			
-		$pm = new PublicMethod('before_open');
-		
-				
-	$opts=array();
-					
-		$pm->addParam(new FieldExtInt('doc_id',$opts));
-	
-			
-		$this->addPublicMethod($pm);
-
-			
 		$pm = new PublicMethod('get_actions');
 		
 				
@@ -187,6 +179,19 @@ class DOCProductDisposal_Controller extends ControllerSQLDOC{
 		$this->addPublicMethod($pm);
 
 			
+		$pm = new PublicMethod('set_unprocessed');
+		
+				
+	$opts=array();
+	
+		$opts['required']=TRUE;				
+		$pm->addParam(new FieldExtInt('doc_id',$opts));
+	
+			
+		$this->addPublicMethod($pm);
+
+			
+			
 		$pm = new PublicMethod('get_print');
 		
 				
@@ -194,65 +199,21 @@ class DOCProductDisposal_Controller extends ControllerSQLDOC{
 					
 		$pm->addParam(new FieldExtInt('doc_id',$opts));
 	
+				
+	$opts=array();
+					
+		$pm->addParam(new FieldExtString('templ',$opts));
+	
 			
 		$this->addPublicMethod($pm);
 
-			
-		$pm = new PublicMethod('get_details');
-		
-				
-	$opts=array();
-	
-		$opts['required']=TRUE;				
-		$pm->addParam(new FieldExtString('cond_fields',$opts));
-	
-				
-	$opts=array();
-	
-		$opts['required']=TRUE;				
-		$pm->addParam(new FieldExtString('cond_vals',$opts));
-	
-				
-	$opts=array();
-	
-		$opts['required']=TRUE;				
-		$pm->addParam(new FieldExtString('cond_sgns',$opts));
-	
-				
-	$opts=array();
-					
-		$pm->addParam(new FieldExtString('cond_ic',$opts));
-				
-				
-	$opts=array();
-					
-		$pm->addParam(new FieldExtInt('from',$opts));
-	
-				
-	$opts=array();
-					
-		$pm->addParam(new FieldExtInt('count',$opts));
-				
-				
-	$opts=array();
-					
-		$pm->addParam(new FieldExtString('ord_fields',$opts));
-				
-				
-	$opts=array();
-					
-		$pm->addParam(new FieldExtString('ord_directs',$opts));
-								
-			
-		$this->addPublicMethod($pm);
-									
 		
 	}
 	
 	public function insert($pm){
 		//doc owner
 		$pm->setParamValue('user_id',$_SESSION['user_id']);		
-		parent::insert();		
+		parent::insert($pm);		
 	}
 	public function fill_on_spec($pm){
 		$link = $this->getDbLinkMaster();		
@@ -266,28 +227,31 @@ class DOCProductDisposal_Controller extends ControllerSQLDOC{
 	}	
 	
 	public function get_print($pm){
-		$this->addNewModel(
-			sprintf(
-			'SELECT number,
-			product_descr,
-			doc_production_descr,
-			get_date_str_rus(date_time::date) AS date_time_descr,
-			store_descr,
-			user_descr,
-			explanation
+		$this->addNewModel(sprintf("SELECT
+				number,
+				product_descr,
+				get_date_str_rus(date_time::date) AS date_time_descr,
+				store_descr,
+				user_descr,
+				explanation,
+				price,
+				doc_production_number,
+				date8_descr(doc_production_date_time::date) AS doc_production_date_time
+				
 			FROM doc_product_disposals_list_view
-			WHERE id=%d',
+			WHERE id=%d",
 			$pm->getParamValue('doc_id')),
 		'head');
-		$this->addNewModel(
-			sprintf(
-			'SELECT 
-			m.name AS material_descr,
-			format_quant(ra.quant) AS quant
+		$this->addNewModel(sprintf(
+			"SELECT 
+				m.name AS material_descr,
+				ra.quant AS quant,
+				m.price AS price,
+				m.price*ra.quant AS total
 			FROM ra_materials AS ra
 			LEFT JOIN materials AS m ON m.id=ra.material_id
 			WHERE doc_id=%d
-			ORDER BY material_descr',
+			ORDER BY material_descr",
 			$pm->getParamValue('doc_id')),
 		'materials');		
 	}

@@ -8,7 +8,7 @@ $BODY$
 BEGIN
 	IF (TG_WHEN='BEFORE' AND TG_OP='INSERT') THEN
 		SELECT coalesce(MAX(t.line_number),0)+1 INTO NEW.line_number FROM doc_productions_t_tmp_materials AS t
-		WHERE t.tmp_doc_id = NEW.tmp_doc_id;
+		WHERE t.view_id = NEW.view_id;
 		RETURN NEW;
 	ELSIF (TG_WHEN='AFTER' AND TG_OP='INSERT') THEN
 		RETURN NEW;
@@ -21,7 +21,7 @@ BEGIN
 	ELSIF (TG_WHEN='AFTER' AND TG_OP='DELETE') THEN
 		UPDATE doc_productions_t_tmp_materials
 		SET line_number = line_number - 1
-		WHERE tmp_doc_id=OLD.tmp_doc_id AND line_number>OLD.line_number;
+		WHERE view_id=OLD.view_id AND line_number>OLD.line_number;
 		RETURN OLD;
 	END IF;
 END;

@@ -1,0 +1,78 @@
+*************************************************************************************
+*************************************************************************************
+РЕГИСТРЫ
+*************************************************************************************
+
+timestamp rg_period(reg_types, timestamp)
+Возврашает период по регистру на дату. На конец данного периода хранятся остатки
+2016-01-01
+
+timestamp rg_period_balance(reg_types, timestamp)
+Возврашает дату хранения остатков по определенной дате
+2016-01-31 23:59:59.999999
+
+timestamp rg_calc_period(reg_types)
+Возврашает период расчитанных остатков по регистру. На конец данного периода хранятся остатки
+2016-01-01 Остатки на 2016-01-31
+
+****timestamp rg_calc_period_end(reg_types, timestamp)
+УСТАРЕЛА
+Возвращает конец периода расчета остатков по дате. На эту дату фактически и хранятся остатки
+
+****timestamp rg_calc_period_start(reg_types, timestamp)
+УСТАРЕЛА
+Дублирует функцию rg_period(reg_types, timestamp)
+
+interval rg_calc_interval(reg_types)
+Возвращает интервал итогов по регистру
+'1 month'
+
+timestamp rg_current_balance_time()
+3000-01-01- 00:00:00
+
+УСТАРЕЛА
+rg_materials_open_period(in_date_time timestamp without time zone)
+
+ДЛЯ КОНКРЕТНЫХ РЕГИСТРОВ
+ra_materials_process()
+ra_products_add_act()
+ra_products_remove_acts()
+
+rg_materials_balance()
+rg_materials_balance(IN in_date_time timestamp without time zone)
+rg_materials_balance(IN in_doc_type doc_types, IN in_doc_id integer)
+rg_materials_set_period(timstamp)
+rg_total_recalc_materials()
+
+
+*******************
+Нужна функция, короторая вернет меньшую из rg_calc_period() из всех регистров документа
+Будет вызываться из get_list журналов для определения того что документа НЕТ В УЧЕТЕ!!!
+
+
+
+*************************************************************************************
+*************************************************************************************
+ДОКУМЕНТЫ
+*************************************************************************************
+doc_productions_act
+doc_productions_del_act
+doc_productions_process
+doc_productions_before_open
+doc_productions_before_write
+
+
+
+*********************************************************************************
+rg_total_recalc()
+rg_total_recalc_products()
+
+**********************************************************
+
+seq_viol_materials_set_on_doc
+
+seq_violations_set_on_doc()
+
+
+doc_log_insert
+doc_log_update

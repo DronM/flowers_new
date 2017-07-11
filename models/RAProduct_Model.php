@@ -16,124 +16,87 @@ class RAProduct_Model extends ModelSQL{
 		$this->setDbName("public");
 		
 		$this->setTableName("ra_products");
+			
+		//*** Field id ***
+		$f_opts = array();
+		$f_opts['primaryKey'] = TRUE;
+		$f_opts['autoInc']=TRUE;
+		$f_opts['id']="id";
 		
-		$f_id=new FieldSQlInt($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"id"
-		,array(
-		'required'=>FALSE,
-			'primaryKey'=>TRUE,
-			'autoInc'=>TRUE,
-			'alias'=>"Код"
-		,
-			'id'=>"id"
-				
-		
-		));
+		$f_id=new FieldSQLInt($this->getDbLink(),$this->getDbName(),$this->getTableName(),"id",$f_opts);
 		$this->addField($f_id);
-
-		$f_date_time=new FieldSQlDateTime($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"date_time"
-		,array(
+		//********************
+	
+		//*** Field date_time ***
+		$f_opts = array();
+		$f_opts['id']="date_time";
 		
-			'alias'=>"Дата"
-		,
-			'id'=>"date_time"
-				
-		
-		));
+		$f_date_time=new FieldSQLDateTime($this->getDbLink(),$this->getDbName(),$this->getTableName(),"date_time",$f_opts);
 		$this->addField($f_date_time);
-
-		$f_doc_type=new FieldSQlEnum($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"doc_type"
-		,array(
+		//********************
+	
+		//*** Field doc_type ***
+		$f_opts = array();
+		$f_opts['id']="doc_type";
 		
-			'alias'=>"Вид документа"
-		,
-			'id'=>"doc_type"
-				
-		
-		));
+		$f_doc_type=new FieldSQLEnum($this->getDbLink(),$this->getDbName(),$this->getTableName(),"doc_type",$f_opts);
 		$this->addField($f_doc_type);
-
-		$f_doc_id=new FieldSQlInt($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"doc_id"
-		,array(
+		//********************
+	
+		//*** Field doc_id ***
+		$f_opts = array();
+		$f_opts['id']="doc_id";
 		
-			'id'=>"doc_id"
-				
-		
-		));
+		$f_doc_id=new FieldSQLInt($this->getDbLink(),$this->getDbName(),$this->getTableName(),"doc_id",$f_opts);
 		$this->addField($f_doc_id);
-
-		$f_deb=new FieldSQlBool($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"deb"
-		,array(
+		//********************
+	
+		//*** Field deb ***
+		$f_opts = array();
+		$f_opts['id']="deb";
 		
-			'alias'=>"Дебет"
-		,
-			'id'=>"deb"
-				
-		
-		));
+		$f_deb=new FieldSQLBool($this->getDbLink(),$this->getDbName(),$this->getTableName(),"deb",$f_opts);
 		$this->addField($f_deb);
-
-		$f_store_id=new FieldSQlInt($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"store_id"
-		,array(
+		//********************
+	
+		//*** Field store_id ***
+		$f_opts = array();
+		$f_opts['id']="store_id";
 		
-			'alias'=>"Магазин"
-		,
-			'id'=>"store_id"
-				
-		
-		));
+		$f_store_id=new FieldSQLInt($this->getDbLink(),$this->getDbName(),$this->getTableName(),"store_id",$f_opts);
 		$this->addField($f_store_id);
-
-		$f_product_id=new FieldSQlInt($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"product_id"
-		,array(
+		//********************
+	
+		//*** Field product_id ***
+		$f_opts = array();
+		$f_opts['id']="product_id";
 		
-			'alias'=>"Букет"
-		,
-			'id'=>"product_id"
-				
-		
-		));
+		$f_product_id=new FieldSQLInt($this->getDbLink(),$this->getDbName(),$this->getTableName(),"product_id",$f_opts);
 		$this->addField($f_product_id);
-
-		$f_doc_production_id=new FieldSQlInt($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"doc_production_id"
-		,array(
+		//********************
+	
+		//*** Field doc_production_id ***
+		$f_opts = array();
+		$f_opts['id']="doc_production_id";
 		
-			'alias'=>"Комплектация"
-		,
-			'id'=>"doc_production_id"
-				
-		
-		));
+		$f_doc_production_id=new FieldSQLInt($this->getDbLink(),$this->getDbName(),$this->getTableName(),"doc_production_id",$f_opts);
 		$this->addField($f_doc_production_id);
-
-		$f_quant=new FieldSQlFloat($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"quant"
-		,array(
+		//********************
+	
+		//*** Field quant ***
+		$f_opts = array();
+		$f_opts['length']=19;
+		$f_opts['id']="quant";
 		
-			'alias'=>"Количество"
-		,
-			'length'=>19,
-			'id'=>"quant"
-				
-		
-		));
+		$f_quant=new FieldSQLFloat($this->getDbLink(),$this->getDbName(),$this->getTableName(),"quant",$f_opts);
 		$this->addField($f_quant);
+		//********************
 
 		$order = new ModelOrderSQL();		
 		$this->setDefaultModelOrder($order);		
 		
 		$order->addField($f_date_time);
-
-		
-		
-		
+$this->setLimitConstant('doc_per_page_count');
 	}
 
 }

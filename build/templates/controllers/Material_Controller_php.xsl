@@ -43,7 +43,7 @@ class <xsl:value-of select="@id"/>_Controller extends ControllerSQL{
 		
 		if (!$where){
 			$where = new ModelWhereSQL();
-			$where->addField(new FieldSQLInt($link,NULL,NULL,NULL,'group_id'));
+			$where->addField(new FieldSQLInt($link,NULL,NULL,NULL,'group_id'),'=');
 			$where->addField(new FieldSQLDate($link,NULL,NULL,NULL,'date_time'),'=');
 		}
 		
@@ -52,6 +52,7 @@ class <xsl:value-of select="@id"/>_Controller extends ControllerSQL{
 			$ar = $link->query_first("SELECT const_def_material_group_val() AS val");
 			$group_id = $ar['val'];
 		}
+		//throw new Exception('group_id='.$group_id);
 		$date_time = $where->getFieldValueForDb('date_time','=',0,"'".date('Y-m-d H:i:s')."'");
 		$count = 0;
 		$from = 0;	
@@ -81,7 +82,15 @@ class <xsl:value-of select="@id"/>_Controller extends ControllerSQL{
 		//
 		$this->addModel($model);		
 	}
+	
 	public function get_list_for_sale($pm){
+		if (isset($_SESSION['user_id'])){
+			$user_id = $_SESSION['user_id'];
+		}
+		if (!isset($user_id)){
+			throw new Exception('Пустое значение пользователя!');
+		}
+	
 		$link = $this->getDbLink();		
 		$model = new ModelSQL($link,array('id'=>'get_list_with_balance'));	
 		$model->addField(new FieldSQLInt($link,null,null,"group_id",DT_INT));
@@ -98,6 +107,35 @@ class <xsl:value-of select="@id"/>_Controller extends ControllerSQL{
 			WHERE group_id=%d",
 			$store_id,$group_id)		
 		,'get_list_for_sale');	
+		
+		//selected items
+		$this->addNewModel(
+		sprintf('SELECT * FROM receipts_list_view WHERE user_id=%d',$user_id),
+		'ReceiptList_Model');		
+
+		//selected head
+		$this->addNewModel(
+		sprintf(
+			"SELECT
+				h.*,
+				cl.name AS client_descr,
+				d.name||'('||d.percent||'%%)' AS discount_descr,
+				o.number_from_site||' '||date8_descr(o.date_time::date) AS doc_client_order_descr
+			FROM receipt_head h
+			LEFT JOIN clients cl ON cl.id=h.client_id
+			LEFT JOIN discounts d ON d.id=h.discount_id
+			LEFT JOIN doc_client_orders o ON o.id=h.doc_client_order_id
+			WHERE h.user_id=%d",$user_id),
+		'ReceiptHeadList_Model');				
+
+		//payment type
+		$this->addNewModel(sprintf("SELECT * FROM receipt_payment_types_list WHERE user_id=%d",$user_id),
+		'ReceiptPaymentTypeList_Model');				
+
+		//payment types
+		$this->addNewModel("SELECT * FROM payment_types_for_sale ORDER BY name",
+		'PaymentTypeForSale_Model');				
+		
 	}
 	public function get_balance_list($pm){
 		$link = $this->getDbLink();		

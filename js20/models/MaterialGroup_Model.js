@@ -25,42 +25,27 @@ function MaterialGroup_Model(options){
 			
 				
 			
-			
+				
+	
 	var filed_options = {};
-	filed_options.primaryKey = true;
+	filed_options.primaryKey = true;	
+	options.fields.id = new FieldInt("id",filed_options);
 	
+				
 	
-	var field = new FieldInt("id",filed_options);
-	
-
-	options.fields.id = field;
-
-			
 	var filed_options = {};
-	filed_options.primaryKey = false;
+	filed_options.primaryKey = false;	
+	filed_options.alias = 'Наименование';options.fields.name = new FieldString("name",filed_options);
+	options.fields.name.getValidator().setRequired(true);
+	options.fields.name.getValidator().setMaxLength('100');
 	
-	filed_options.alias = 'Наименование';
+				
 	
-	var field = new FieldString("name",filed_options);
-	
-		field.getValidator().setRequired(true);
-	
-		field.getValidator().setMaxLength('100');
-	
-
-	options.fields.name = field;
-
-			
 	var filed_options = {};
-	filed_options.primaryKey = false;
+	filed_options.primaryKey = false;	
+	filed_options.defValue = true;
+	filed_options.alias = 'Для флориста';options.fields.for_florist = new FieldBool("for_florist",filed_options);
 	
-	filed_options.alias = 'Для флориста';
-	
-	var field = new FieldBool("for_florist",filed_options);
-	
-
-	options.fields.for_florist = field;
-
 						
 		MaterialGroup_Model.superclass.constructor.call(this,id,options);
 }

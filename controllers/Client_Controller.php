@@ -1,5 +1,4 @@
 <?php
-
 require_once(FRAME_WORK_PATH.'basic_classes/ControllerSQL.php');
 
 require_once(FRAME_WORK_PATH.'basic_classes/FieldExtInt.php');
@@ -12,10 +11,12 @@ require_once(FRAME_WORK_PATH.'basic_classes/FieldExtDate.php');
 require_once(FRAME_WORK_PATH.'basic_classes/FieldExtTime.php');
 require_once(FRAME_WORK_PATH.'basic_classes/FieldExtPassword.php');
 require_once(FRAME_WORK_PATH.'basic_classes/FieldExtBool.php');
+require_once(FRAME_WORK_PATH.'basic_classes/FieldExtInterval.php');
 class Client_Controller extends ControllerSQL{
 	public function __construct($dbLinkMaster=NULL){
 		parent::__construct($dbLinkMaster);
 			
+		
 		/* insert */
 		$pm = new PublicMethod('insert');
 		$param = new FieldExtString('name'
@@ -43,6 +44,11 @@ class Client_Controller extends ControllerSQL{
 		$pm->addParam($param);
 		$param = new FieldExtString('email'
 				,array('required'=>FALSE));
+		$pm->addParam($param);
+		$param = new FieldExtInt('disc_card_id'
+				,array(
+				'alias'=>'Диск.карта'
+			));
 		$pm->addParam($param);
 		
 		$pm->addParam(new FieldExtInt('ret_id'));
@@ -94,6 +100,12 @@ class Client_Controller extends ControllerSQL{
 			$pm->addParam($param);
 		$param = new FieldExtString('email'
 				,array(
+			));
+			$pm->addParam($param);
+		$param = new FieldExtInt('disc_card_id'
+				,array(
+			
+				'alias'=>'Диск.карта'
 			));
 			$pm->addParam($param);
 		
@@ -158,7 +170,7 @@ class Client_Controller extends ControllerSQL{
 		$pm->addParam(new FieldExtInt('mid'));
 		$pm->addParam(new FieldExtString('name'));		
 		$this->addPublicMethod($pm);					
-		$this->setCompleteModelId('Client_Model');
+		$this->setCompleteModelId('ClientList_Model');
 
 		
 	}	

@@ -1,6 +1,5 @@
 <?php
-
-require_once(FRAME_WORK_PATH.'basic_classes/ControllerSQLDOC.php');
+require_once(FRAME_WORK_PATH.'basic_classes/ControllerSQLDOC20.php');
 
 require_once(FRAME_WORK_PATH.'basic_classes/FieldExtInt.php');
 require_once(FRAME_WORK_PATH.'basic_classes/FieldExtString.php');
@@ -12,10 +11,14 @@ require_once(FRAME_WORK_PATH.'basic_classes/FieldExtDate.php');
 require_once(FRAME_WORK_PATH.'basic_classes/FieldExtTime.php');
 require_once(FRAME_WORK_PATH.'basic_classes/FieldExtPassword.php');
 require_once(FRAME_WORK_PATH.'basic_classes/FieldExtBool.php');
-class DOCMaterialProcurement_Controller extends ControllerSQLDOC{
+require_once(FRAME_WORK_PATH.'basic_classes/FieldExtInterval.php');
+class DOCMaterialProcurement_Controller extends ControllerSQLDOC20{
 	public function __construct($dbLinkMaster=NULL){
 		parent::__construct($dbLinkMaster);
 			
+		$this->setProcessable(TRUE);
+		
+		
 		/* insert */
 		$pm = new PublicMethod('insert');
 		$param = new FieldExtDateTime('date_time'
@@ -50,6 +53,13 @@ class DOCMaterialProcurement_Controller extends ControllerSQLDOC{
 		$pm->addParam($param);
 		
 		$pm->addParam(new FieldExtInt('ret_id'));
+		
+			$f_params = array();
+			
+				$f_params['required']=TRUE;
+			$param = new FieldExtString('view_id'
+			,$f_params);
+		$pm->addParam($param);		
 		
 		
 		$this->addPublicMethod($pm);
@@ -107,6 +117,13 @@ class DOCMaterialProcurement_Controller extends ControllerSQLDOC{
 			));
 			$pm->addParam($param);
 		
+			$f_params = array();
+			
+				$f_params['required']=TRUE;
+			$param = new FieldExtString('view_id'
+			,$f_params);
+		$pm->addParam($param);		
+		
 		
 			$this->addPublicMethod($pm);
 			$this->setUpdateModelId('DOCMaterialProcurement_Model');
@@ -161,9 +178,28 @@ class DOCMaterialProcurement_Controller extends ControllerSQLDOC{
 					
 		$pm->addParam(new FieldExtInt('doc_id',$opts));
 	
+				
+	$opts=array();
+	
+		$opts['length']=32;
+		$opts['required']=TRUE;				
+		$pm->addParam(new FieldExtString('view_id',$opts));
+	
 			
 		$this->addPublicMethod($pm);
 
+			
+		$pm = new PublicMethod('set_unprocessed');
+		
+				
+	$opts=array();
+	
+		$opts['required']=TRUE;				
+		$pm->addParam(new FieldExtInt('doc_id',$opts));
+	
+			
+		$this->addPublicMethod($pm);
+			
 			
 		$pm = new PublicMethod('get_actions');
 		
@@ -182,6 +218,11 @@ class DOCMaterialProcurement_Controller extends ControllerSQLDOC{
 	$opts=array();
 					
 		$pm->addParam(new FieldExtInt('doc_id',$opts));
+	
+				
+	$opts=array();
+					
+		$pm->addParam(new FieldExtString('templ',$opts));
 	
 			
 		$this->addPublicMethod($pm);
@@ -241,8 +282,9 @@ class DOCMaterialProcurement_Controller extends ControllerSQLDOC{
 	public function insert($pm){
 		//doc owner
 		$pm->setParamValue('user_id',$_SESSION['user_id']);
-		parent::insert();		
+		parent::insert($pm);		
 	}
+
 	public function get_details($pm){		
 		$model = new DOCMaterialProcurementMaterialList_Model($this->getDbLink());	
 		$from = null; $count = null;
@@ -284,10 +326,9 @@ class DOCMaterialProcurement_Controller extends ControllerSQLDOC{
 		$this->addNewModel(
 			sprintf(
 			'SELECT line_number,material_descr,
-			format_quant(quant) AS quant,
-			format_money(price) AS price_descr,
-			total,
-			format_money(total) AS total_descr
+			quant AS quant,
+			price AS price,
+			total
 			FROM doc_material_procurements_t_materials_list_view
 			WHERE doc_id=%d
 			ORDER BY line_number',

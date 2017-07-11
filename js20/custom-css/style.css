@@ -1,0 +1,150 @@
+#waiting{	
+	position:fixed;
+	top:40%;
+	left:50%;
+	margin:0 0 0 -100px;
+	z-index=99999;
+}
+
+span.grid-sort{
+	margin-left:5px;
+}
+
+tr.for_select{
+	cursor:pointer;
+}
+th.sortable{
+	cursor:pointer;
+}
+th[disabled="disabled"]{
+	cursor:not-allowed;
+}
+tfoot{
+	font-weight:bolder;
+	font-size:120%;
+}
+
+tr.grid_foot{
+	font-size:bigger;
+	font-weight:bolder;
+}
+
+.pagination-pages{
+	margin-left:15px;;
+}
+.pagination-page{
+	cursor:pointer;
+	margin:5px 5px;
+}
+
+.pagination-page-cur{
+	font-size:110%;
+	cursor:default;
+}
+
+.flashit{
+	-webkit-animation: flash linear 1s infinite;
+	animation: flash linear 1s infinite;
+}
+@-webkit-keyframes flash {
+	0% { opacity: 1; } 
+	50% { opacity: .1; } 
+	100% { opacity: 1; }
+}
+@keyframes flash {
+	0% { opacity: 1; } 
+	50% { opacity: .1; } 
+	100% { opacity: 1; }
+}
+/* Pulse class and keyframe animation */
+.pulseit{
+	-webkit-animation: pulse linear .5s infinite;
+	animation: pulse linear .5s infinite;
+}
+@-webkit-keyframes pulse {
+	0% { width:200px; } 
+	50% { width:240px; } 
+	100% { width:200px; }
+}
+@keyframes pulse {
+	0% { width:200px; } 
+	50% { width:240px; } 
+	100% { width:200px; }
+}
+
+.null-ref{
+	color:red;
+	font-weight:bolder;
+}
+
+.modal {
+  text-align: center;
+}
+@media screen and (min-width: 768px) {
+    .modal:before {
+      display: inline-block;
+      vertical-align: middle;
+      content: " ";
+      height: 100%;
+    }
+}
+.modal-dialog {
+  display: inline-block;
+  text-align: left;
+  vertical-align: middle;
+}
+
+
+.item_row{
+	display:block;
+}
+
+.item_col{
+	display:inline;
+	float:left;
+	background-color:#33FF66;/*yellow;*/
+	padding:5px 5px;
+	margin:5px 5px;
+	cursor:pointer;
+	width:130px;
+	height:105px;
+	border:1px solid black;
+}
+
+.not_in_stock{
+	background-color:grey;
+	cursor:not-allowed;
+}
+.item_group{
+	font-weight: bolder;
+	font-size:bigger;
+}
+
+.receipt_totals{
+	font-weight: bold;
+	font-size:300%;
+	
+}
+.payment_type_grid{
+	font-size:200%;
+}
+
+#DOCClientOrderList\:grid td[order_state="to_noone"]{
+	background:#ff4000;
+}
+#DOCClientOrderList\:grid td[order_state="checked"]{
+	background:#ffbf00;
+}
+#DOCClientOrderList\:grid td[order_state="to_florist"]{
+	background:#ffff00;
+}
+#DOCClientOrderList\:grid td[order_state="to_courier"]{
+	background:#bfff00;
+}
+#DOCClientOrderList\:grid td[order_state="closed"]{
+	background:#00ff40;
+}
+
+.forSelect:hover{
+	text-decoration:underline;
+}

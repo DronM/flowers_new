@@ -22,46 +22,30 @@ function DeliveryHourList_Model(options){
 	
 	options.fields = {};
 	
-			
+				
+	
 	var filed_options = {};
-	filed_options.primaryKey = true;
+	filed_options.primaryKey = true;	
+	options.fields.id = new FieldInt("id",filed_options);
 	
+				
 	
-	var field = new FieldInt("id",filed_options);
-	
-
-	options.fields.id = field;
-
-			
 	var filed_options = {};
-	filed_options.primaryKey = false;
+	filed_options.primaryKey = false;	
+	options.fields.h_from = new FieldInt("h_from",filed_options);
 	
+				
 	
-	var field = new FieldInt("h_from",filed_options);
-	
-
-	options.fields.h_from = field;
-
-			
 	var filed_options = {};
-	filed_options.primaryKey = false;
+	filed_options.primaryKey = false;	
+	options.fields.h_to = new FieldInt("h_to",filed_options);
 	
+				
 	
-	var field = new FieldInt("h_to",filed_options);
-	
-
-	options.fields.h_to = field;
-
-			
 	var filed_options = {};
-	filed_options.primaryKey = false;
+	filed_options.primaryKey = false;	
+	options.fields.descr = new FieldString("descr",filed_options);
 	
-	
-	var field = new FieldString("descr",filed_options);
-	
-
-	options.fields.descr = field;
-
 		DeliveryHourList_Model.superclass.constructor.call(this,id,options);
 }
 extend(DeliveryHourList_Model,ModelXML);

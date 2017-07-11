@@ -1,93 +1,177 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata owner="bellagio" debug="TRUE" dataSchema="public">
 	<versions>
-	<version dateOpen="2016-09-01 08:00:00">2.001<lastBuild>2016-10-18 15:21:17</lastBuild></version>
-	</versions>
+	<lastBuild>2017-07-11 09:16:25</lastBuild>
+	<version dateOpen="2016-09-01 08:00:00" dateClose="2016-11-24 12:11:52">2.001</version>
+	<version dateOpen="2016-11-24 12:11:53" dateClose="2016-11-24 23:11:38">2.002</version>
+	<version dateOpen="2016-11-24 23:11:39" dateClose="2016-11-25 16:11:10">2.003</version>
+	<version dateOpen="2016-11-25 16:11:10" dateClose="2016-11-30 12:11:13">2.004</version>
+	<version dateOpen="2016-11-30 12:11:13" dateClose="2016-12-06 13:12:02">2.005</version>
+	<version dateOpen="2016-12-07 00:12:57" dateClose="2016-12-07 00:12:59">2.006</version>
+	<version dateOpen="2016-12-09 17:12:57" dateClose="2016-12-09 17:12:58">2.007</version><version dateOpen="2016-12-12 15:12:13" dateClose="2016-12-12 15:12:14">2.008</version><version dateOpen="2016-12-12 15:12:49" dateClose="2016-12-12 15:12:49">2.009</version>
+	<version dateOpen="2016-12-23 14:12:58" dateClose="2016-12-23 15:12:00">2.0010</version><version dateOpen="2016-12-23 22:12:21" dateClose="2016-12-23 22:12:22">2.0011</version><version dateOpen="2016-12-24 00:12:27" dateClose="2016-12-24 00:12:27">2.0012</version><version dateOpen="2016-12-24 01:12:34" dateClose="2016-12-24 01:12:34">2.0013</version><version dateOpen="2016-12-27 11:12:18" dateClose="2016-12-27 11:12:19">2.0014</version><version dateOpen="2016-12-27 23:12:16" dateClose="2016-12-27 23:12:51">2.0015</version><version dateOpen="2016-12-29 01:12:08" dateClose="2016-12-29 01:12:09">2.0016</version><version dateOpen="2017-07-01 11:07:45">2.0017</version></versions>
 	
 	<globalFilters>
 		<field id="store_id"/>
 	</globalFilters>
 	<enums>
 		<enum id="role_types">
-			<value id="admin" descr="Администратор"/>
-			<value id="store_manager" descr="Администратор салона"/>
-			<value id="florist" descr="Флорист"/>
-			<value id="cashier" descr="Продавец"/>
-		</enum>
-		<enum id="product_order_types">
-			<value id="sale" descr="Продажа"/>
-			<value id="disposal" descr="Списание"/>
-			<value id="manual" descr="Вручную"/>
+			<value id="admin">
+				<ru descr="Администратор"/>
+			</value>
+			<value id="store_manager">
+				<ru descr="Администратор салона"/>
+			</value>			
+			<value id="florist">
+				<ru descr="Флорист"/>
+			</value>
+			<value id="cashier">
+				<ru descr="Продавец"/>
+			</value>			
 		</enum>
 		<enum id="doc_types">
-			<value id="production" descr="Комплектация"/>
-			<value id="product_disposal" descr="Разукомплектация"/>
-			<value id="material_procurement" descr="Поступление материалов"/>
-			<value id="material_disposal" descr="Списание материалов"/>
-			<value id="sale" descr="Продажа"/>
-			<value id="product_order" descr="Заказ на производство"/>
-			<value id="material_order" descr="Заказ материалов"/>
-			<value id="expence" descr="Затраты"/>
-			<value id="doc_client_order" descr="Заказы покупателей"/>			
+			<value id="production">
+				<ru descr="Комплектация"/>
+			</value>						
+			<value id="product_disposal">
+				<ru descr="Разукомплектация"/>
+			</value>									
+			<value id="material_procurement">
+				<ru descr="Поступление материалов"/>
+			</value>												
+			<value id="material_disposal">
+				<ru descr="Списание материалов"/>
+			</value>															
+			<value id="sale" descr="Продажа">
+				<ru descr="Продажа"/>
+			</value>																		
+			<value id="expence" descr="Затраты">
+				<ru descr="Затраты"/>
+			</value>																					
+			<value id="doc_client_order">
+				<ru descr="Заказы покупателей"/>
+			</value>																								
 		</enum>
 		<enum id="reg_types">
-			<value id="material" descr="Учет материалов"/>
-			<value id="product" descr="Учет продукции"/>
-			<value id="product_order" descr="Учет заказов"/>
-			<value id="material_cost" descr="Себестоимость материалов"/>
-			<value id="material_sale" descr="Продажи материалов"/>
-			<value id="product_sale" descr="Продажи букетов"/>
-		</enum>
-		<enum id="stock_types">
-			<value id="main" descr="Основной"/>
-			<value id="waste" descr="Брак"/>
+			<value id="material">
+				<ru descr="Учет материалов"/>
+			</value>																											
+			<value id="product">
+				<ru descr="Учет продукции"/>
+			</value>																														
+			<value id="client_order">
+				<ru descr="Учет заказов клиентов"/>
+			</value>																														
 		</enum>
 		<enum id="payment_types">
-			<value id="cash" descr="Наличными"/>
-			<value id="bank" descr="Банковской картой"/>
-			<value id="yandex" descr="Яндекс деньги"/>
-			<value id="trans_to_card" descr="Перевод на карту"/>
-			<value id="web_money" descr="Web money"/>
+			<value id="cash">
+				<ru descr="Наличными"/>
+			</value>																																	
+			<value id="bank" descr="Банковской картой">
+				<ru descr="Банковской картой"/>
+			</value>																																				
+			<value id="yandex">
+				<ru descr="Яндекс деньги"/>
+			</value>																																							
+			<value id="trans_to_card">
+				<ru descr="Перевод на карту"/>
+			</value>																																										
+			<value id="web_money">
+				<ru descr="Web money"/>
+			</value>																																													
 		</enum>		
 		<enum id="report_types">
-			<value id="material_actions" descr="Движение материалов"/>
+			<value id="material_actions">
+				<ru descr="Движение материалов"/>
+			</value>
+			<value id="filter_variants">
+				<ru descr="Настройки отборов"/>
+			</value>
 		</enum>		
 		<enum id="delivery_types">
-			<value id="courier" descr="курьер"/>
-			<value id="by_client" descr="самовывоз"/>
+			<value id="courier">
+				<ru descr="курьер"/>
+			</value>																																																			
+			<value id="by_client">
+				<ru descr="самовывоз"/>
+			</value>																																																			
 		</enum>		
 		<enum id="recipient_types">
-			<value id="self" descr="я получатель"/>
-			<value id="other" descr="другой человек"/>
+			<value id="self">
+				<ru descr="я получатель"/>
+			</value>																																																
+			
+			<value id="other">
+				<ru descr="другой человек"/>
+			</value>
 		</enum>		
 		<enum id="delivery_note_types">
-			<value id="by_call" descr="звонок"/>
-			<value id="by_sms" descr="SMS"/>			
+			<value id="by_call">
+				<ru descr="звонок"/>
+			</value>
+			<value id="by_sms">
+				<ru descr="SMS"/>
+			</value>																																																			
 		</enum>		
 		<enum id="client_order_states">
-			<value id="to_noone" descr="Не обработан"/>
-			<value id="to_florist" descr="Букет составлен"/>
-			<value id="to_courier" descr="Забрал курьер"/>
-			<value id="closed" descr="Выполнен"/>
+			<value id="to_noone">
+				<ru descr="Не обработан"/>
+			</value>			
+			<value id="checked">
+				<ru descr="Проверен"/>
+			</value>						
+			
+			<value id="to_florist">
+				<ru descr="Букет составлен"/>
+			</value>						
+			<value id="to_courier">
+				<ru descr="Забрал курьер"/>
+			</value>						
+			<value id="closed">
+				<ru descr="Выполнен"/>
+			</value>						
 		</enum>		
 		
 		<enum id="message_types">
-			<value id="error" descr="Ошибка"/>
-			<value id="warning" descr="Предупреждение"/>
-			<value id="info" descr="Информация"/>
+			<value id="error">
+				<ru descr="Ошибка"/>
+			</value>						
+			<value id="warning">
+				<ru descr="Предупреждение"/>
+			</value>						
+			<value id="info">
+				<ru descr="Информация"/>
+			</value>						
 		</enum>						
 
 		<enum id="def_date_types">
-			<value id="cur_shift" descr="Текущая смена"/>
-			<value id="cur_date" descr="Текущая дата"/>
-			<value id="cur_week" descr="Текущая неделя"/>
-			<value id="cur_month" descr="Текущий месяц"/>
-			<value id="cur_quarter" descr="Текущий квартал"/>
-			<value id="cur_year" descr="Текущий год"/>
+			<value id="cur_shift">
+				<ru descr="Текущая смена"/>
+			</value>									
+			<value id="cur_date">
+				<ru descr="Текущая дата"/>
+			</value>									
+			<value id="cur_week">
+				<ru descr="Текущая неделя"/>
+			</value>									
+			<value id="cur_month">
+				<ru descr="Текущий месяц"/>
+			</value>									
+			<value id="cur_quarter">
+				<ru descr="Текущий квартал"/>
+			</value>									
+			<value id="cur_year">
+				<ru descr="Текущий год"/>
+			</value>									
 		</enum>						
+		<enum id="doc_sequences">
+			<value id="materials">
+				<ru descr="Учет материалов"/>
+			</value>			
+		</enum>		
 		
 	</enums>
-	<models>
+	<models limitConstant="doc_per_page_count">
 		<model id="Store" parent="ModelSQL" dataTable="stores" virtual="FALSE">
 			<defaultOrder>
 				<field id="id"/>
@@ -108,6 +192,8 @@
 			<field id="name" dataType="String" alias="Наименование"/>
 			<field id="descr" dataType="Text" alias="Описание"/>
 			<field id="val_descr" dataType="Text" alias="Значение"/>
+			<field id="val_type" dataType="Text" alias="Имя значения"/>
+			<field id="val_id" dataType="Int"/>
 		</model>
 		<model id="User" parent="ModelSQL" dataTable="users" virtual="FALSE">
 			<defaultOrder>
@@ -161,8 +247,42 @@
 			</defaultOrder>
 			<field id="id" dataType="Int" primaryKey="TRUE" autoInc="TRUE" required="TRUE"/>
 			<field id="name" dataType="String" length="200" required="TRUE" alias="Наименование"/>
-			<field id="port" dataType="Int" alias="Порт"/>
-			<field id="baud_rate" dataType="Int" alias="Скорость"/>
+			<field id="port" dataType="Int" alias="Порт оборудования"/>
+			<field id="baud_rate" dataType="Int" alias="Скорость оборудования"/>
+			<field id="eq_server" dataType="String" length="20" alias="Сервер"/>
+			<field id="eq_port" dataType="Int" alias="Порт сервера"/>
+			<field id="eq_id" dataType="String" length="20" alias="Идентификатор оборуд."/>
+		</model>
+		
+		<model id="Discount" parent="ModelSQL" dataTable="discounts" virtual="FALSE">
+			<defaultOrder>
+				<field id="name"/>
+			</defaultOrder>				
+		
+			<field id="id" dataType="Int" primaryKey="TRUE" autoInc="TRUE"/>
+			<field id="name" dataType="String" length="150" alias="Наименование"/>
+			<field id="percent" dataType="Int" alias="Процент"/>
+			
+			<index id="discounts_name_idx">
+				<field id="name"/>
+			</index>															
+		</model>		
+		
+		<model id="DiscountList" parent="ModelSQL" virtual="TRUE" dataTable="discounts_list">
+			<field id="id" dataType="Int" primaryKey="TRUE"/>
+			<field id="descr" dataType="String"/>
+			<field id="percent" dataType="Int"/>
+		</model>		
+
+		
+		<model id="DiscCard" parent="ModelSQL" dataTable="disc_cards" virtual="FALSE">
+			<field id="id" dataType="Int" primaryKey="TRUE" autoInc="TRUE" required="FALSE" alias="Код"/>
+			<field id="discount_id" dataType="Int" refTable="discounts" refField="id" alias="Вид скидки"/>
+			<field id="barcode" dataType="Text" alias="Штрихкод"/>
+			
+			<index id="disc_cards_barcode_idx">
+				<field id="barcode"/>
+			</index>			
 		</model>
 		
 		<model id="Client" parent="ModelSQL" dataTable="clients" virtual="FALSE">
@@ -175,21 +295,33 @@
 			<field id="tel" dataType="String" required="FALSE" length="15" alias="Сотовый телефон"/>			
 			<field id="manager_id" dataType="Int" refTable="users" refField="id" alias="Менеджер"/>
 			<field id="create_date" dataType="Date"/>
-			<field id="email" dataType="String" required="FALSE" length="50"/>			
+			<field id="email" dataType="String" required="FALSE" length="50"/>
+			<field id="disc_card_id" dataType="Int" refTable="disc_cards" refField="id" alias="Диск.карта"/>
+			
 			<index id="clients_name_index">
 				<expression>lower(name)</expression>
+			</index>
+			<index id="clients_disc_card_id_idx" unique="TRUE">
+				<field id="disc_card_id"/>
 			</index>			
+						
 		</model>
 		<model id="ClientList" parent="ModelSQL" dataTable="client_list_view" virtual="TRUE" limitConstant="doc_per_page_count">
 			<field id="id" dataType="Int" primaryKey="TRUE" autoInc="TRUE" required="FALSE"/>
 			<field id="name" dataType="String" required="TRUE" length="100" display="TRUE"/>
 			<field id="tel" dataType="String" alias="Телефон"/>
+			<field id="disc_card_percent" dataType="String" alias="Скидка, %"/>
+			<field id="disc_card_id" dataType="Int"/>
+			<field id="discount_id" dataType="Int"/>
 		</model>
 		<model id="ClientDialog" parent="ModelSQL" dataTable="client_dialog" virtual="TRUE">
 			<field id="id" dataType="Int" primaryKey="TRUE" autoInc="TRUE" required="FALSE"/>
 			<field id="name" dataType="String" required="TRUE" length="100" display="TRUE"/>
-			<field id="name_full" dataType="Text" required="TRUE" alias="Полное наименование"/>
+			<field id="name_full" dataType="Text" required="FALSE" alias="Полное наименование"/>
 			<field id="tel" dataType="String" alias="Телефон"/>
+			<field id="email" dataType="String" alias="Email"/>
+			<field id="disc_card_barcode" dataType="String" alias="Диск.карта"/>
+			<field id="disc_card_id" dataType="Int"/>
 		</model>
 		
 		<model id="Product" parent="ModelSQL" dataTable="products" virtual="FALSE">
@@ -225,7 +357,11 @@
 			<field id="quant" dataType="Float" alias="Кол-во"/>
 			<field id="order_quant" dataType="Float" alias="Кол-во заказано" sysCol="TRUE"/>
 			<field id="store_id" dataType="Int" sysCol="TRUE"/>
+			<field id="store_descr" dataType="String" alias="Магазин"/>
 			<field id="after_production_time" dataType="String" alias="Время изготовления"/>
+			<field id="doc_production_id" dataType="Int" alias="Документ комплектации"/>
+			<field id="doc_production_number" dataType="Int" alias="Номер документа комплектации"/>
+			<field id="doc_production_date_time" dataType="DateTime" alias="Дата документа комплектации"/>
 		</model>					
 		<model id="MaterialGroup" parent="ModelSQL" dataTable="material_groups" virtual="FALSE">
 			<defaultOrder>
@@ -277,6 +413,8 @@
 			<field id="main_quant" dataType="Float" alias="Кол-во"/>
 			<field id="main_total" dataType="Float" alias="Сумма"/>
 			<field id="procur_avg_time" dataType="String" alias="Время"/>
+			<field id="store_id" dataType="Int" sysCol="TRUE"/>
+			<field id="store_descr" dataType="String" alias="Магазин"/>
 		</model>			
 		<model id="Supplier" parent="ModelSQL" dataTable="suppliers" virtual="FALSE">
 			<defaultOrder>
@@ -331,19 +469,17 @@
 			<field id="kkm_type_close" dataType="Int" alias="Тип оплаты для ККМ"/>
 		</model>
 		
-		<model id="DOCProduction" parent="ModelSQLDOC20" dataTable="doc_productions" virtual="FALSE" modelType="DOC" docTypeId="production">
+		<model id="DOCProduction" parent="ModelSQL" dataTable="doc_productions" virtual="FALSE" modelType="DOC" docTypeId="production" lastRowSelectOnInit="TRUE">
 			<defaultOrder>
 				<field id="date_time"/>
 			</defaultOrder>
 			<field id="id" dataType="Int" primaryKey="TRUE" autoInc="TRUE"/>
 			<field id="date_time" dataType="DateTime" required="TRUE" alias="Дата"/>
 			<field id="number" dataType="Int" alias="Номер"/>
-			<field id="processed" dataType="Bool" alias="Проведен" default="false"/>
+			<field id="processed" dataType="Bool" alias="Проведен" default="FALSE"/>
 			<field id="store_id" dataType="Int" alias="Магазин" refTable="stores" refField="id"/>
 			<field id="user_id" dataType="Int" alias="Флорист" refTable="users" refField="id"/>
 			<field id="product_id" dataType="Int" alias="Букет" refTable="products" refField="id" required="TRUE"/>
-			<field id="product_order_type" dataType="Enum" enumId="product_order_types" alias="Вид заявки" defaultValue="manual"/>
-			<field id="on_norm" dataType="Bool" alias="По норме"/>
 			<field id="quant" dataType="Float" alias="Количество" length="19" precision="3" defaultValue="1"/>
 			<field id="price" dataType="Float" alias="Цена" length="15" precision="2"/>
 			<field id="florist_comment" dataType="Text" alias="Комментарий"/>
@@ -357,56 +493,60 @@
 			<globalFilter id="store_id"/>
 			<registerAtcs>
 				<register id="RAProduct"/>
-				<register id="RAProductOrder"/>
 				<register id="RAMaterial"/>
 			</registerAtcs>
 		</model>
 		<model id="DOCProductionMaterialList" parent="ModelSQL" dataTable="doc_productions_materials_list_view" virtual="TRUE">
 			<field id="id" dataType="Int" primaryKey="TRUE" sysCol="TRUE"/>
 			<field id="date_time" dataType="DateTime" sysCol="TRUE"/>
-			<field id="date_time_descr" dataType="String" alias="Дата"/>
 			<field id="number" dataType="String" alias="Номер"/>
 			<field id="store_id" dataType="Int" sysCol="TRUE"/>
 			<field id="store_descr" dataType="String" alias="Салон"/>			
 			<field id="user_id" dataType="Int" sysCol="TRUE"/>
 			<field id="user_descr" dataType="String" alias="Автор"/>
-			<field id="on_norm" dataType="String" alias="По норме"/>
 			<field id="material_id" dataType="Int" sysCol="TRUE"/>
 			<field id="material_descr" dataType="String" alias="Материал"/>
 			<field id="quant" dataType="Float" alias="Количество"/>
-			<field id="quant_norm" dataType="Float" alias="Количество по норме"/>
-			<field id="material_sum_descr" dataType="String" sysCol="TRUE"/>
-			<field id="material_cost_descr" dataType="String" sysCol="TRUE"/>
+			<field id="material_sum" dataType="String" sysCol="TRUE"/>
+			<field id="material_cost" dataType="String" sysCol="TRUE"/>
 			<globalFilter id="store_id"/>
-		</model>						
-		<model id="DOCProductionList" parent="ModelSQLDOC20" dataTable="doc_productions_list_view" virtual="TRUE" modelType="DOC" limitConstant="doc_per_page_count">
+		</model>
+		<model id="DOCProductionList" parent="ModelSQL" dataTable="doc_productions_list_view" virtual="TRUE" modelType="DOC" limitConstant="doc_per_page_count" lastRowSelectOnInit="TRUE">
 			<field id="id" dataType="Int" primaryKey="TRUE" sysCol="TRUE"/>
-			<field id="tmp_id" dataType="String" sysCol="TRUE"/>
 			<field id="number" dataType="String" alias="Номер"/>
 			<field id="date_time" dataType="DateTime" sysCol="TRUE" alias="Дата"/>
+			<field id="processed" dataType="String" alias="Проведен"/>
+			<field id="on_norm" dataType="Bool" alias="По норме"/>
 			<field id="store_id" dataType="Int" sysCol="TRUE"/>
 			<field id="store_descr" dataType="String" alias="Салон"/>			
 			<field id="user_id" dataType="Int" sysCol="TRUE"/>
 			<field id="user_descr" dataType="String" alias="Автор"/>
 			<field id="product_id" dataType="Int" sysCol="TRUE"/>
 			<field id="product_descr" dataType="String" alias="Продукция"/>
+			
 			<field id="quant" dataType="Float" precision="3" length="19" alias="Количество"/>
 			<field id="price" dataType="Float" precision="2" length="15" alias="Цена"/>
-			<field id="mat_sum" dataType="Float" precision="2" length="15" alias="Сумма материалов"/>
-			<field id="mat_cost" dataType="Float" precision="2" length="15" alias="Себестоимость материалов"/>
-			<field id="processed" dataType="String" sysCol="TRUE"/>
+			<field id="material_retail_cost" dataType="Float" precision="2" length="15" alias="Сумма материалов"/>
+			<field id="material_cost" dataType="Float" precision="2" length="15" alias="Себестоимость материалов"/>
+			<field id="income_percent" dataType="Float" precision="2" length="15" alias="Наценка,%"/>
+			<field id="income" dataType="Float" precision="2" length="15" alias="Наценка,руб"/>			
 			<field id="florist_comment" dataType="Text" alias="Комментарий"/>
+			<field id="after_prod_interval" dataType="Text" alias="Период после продажи"/>
+			<field id="doc_descr" dataType="String" alias="Представление документа"/>
 			
 			<globalFilter id="store_id"/>
 		</model>
-		<model id="DOCProductionDOCTMaterial" parent="ModelSQL" dataTable="doc_productions_t_tmp_materials" virtual="FALSE" modelType="DOCT" masterModel="DOCProduction">
-			<field id="tmp_doc_id" dataType="String" primaryKey="TRUE"/>
+		
+		<model id="DOCProductionDOCTMaterial" parent="ModelSQLDOCT20" dataTable="doc_productions_t_tmp_materials" virtual="FALSE" modelType="DOCT" masterModel="DOCProduction">
+			<field id="view_id" dataType="String" length="32" primaryKey="TRUE"/>
+			<field id="login_id" dataType="Int"/>
 			<field id="line_number" dataType="Int" primaryKey="TRUE"/>
 			<field id="material_id" dataType="Int" alias="Материал" refTable="materials" refField="id" required="TRUE"/>
-			<field id="quant" dataType="Float" alias="Количество" length="19" precision="3"/>
+			<field id="quant" dataType="Float" alias="Количество" length="19" precision="3"/>			
 		</model>		
-		<model id="DOCProductionDOCTMaterialList" parent="ModelSQL" dataTable="doc_productions_t_tmp_materials_list_view" virtual="TRUE">
-			<field id="tmp_doc_id" dataType="Int" primaryKey="TRUE"/>
+		<model id="DOCProductionDOCTMaterialList" parent="ModelSQLDOCT20" dataTable="doc_productions_t_tmp_materials_list_view" virtual="TRUE">
+			<field id="view_id" dataType="String" length="32" primaryKey="TRUE"/>
+			<field id="login_id" dataType="Int"/>
 			<field id="line_number" dataType="Int" alias="№" primaryKey="TRUE"/>			
 			<field id="material_id" dataType="Int"/>
 			<field id="material_descr" dataType="String" alias="Материал"/>
@@ -425,7 +565,7 @@
 			<field id="material_descr" dataType="String" alias="Материал"/>
 			<field id="quant" dataType="Float" alias="Количество"/>
 		</model>
-		<model id="DOCProductDisposal" parent="ModelSQLDOC20" dataTable="doc_product_disposals" virtual="FALSE" modelType="DOC" docTypeId="product_disposal">
+		<model id="DOCProductDisposal" parent="ModelSQL" dataTable="doc_product_disposals" virtual="FALSE" modelType="DOC" docTypeId="product_disposal" lastRowSelectOnInit="TRUE">
 			<defaultOrder>
 				<field id="date_time"/>
 			</defaultOrder>
@@ -448,7 +588,6 @@
 			<globalFilter id="store_id"/>
 			<registerAtcs>
 				<register id="RAProduct"/>
-				<register id="RAProductOrder"/>
 				<register id="RAMaterial"/>
 			</registerAtcs>			
 		</model>
@@ -469,12 +608,12 @@
 			<field id="quant" dataType="Float" alias="Количество"/>
 			<globalFilter id="store_id"/>
 		</model>				
-		<model id="DOCProductDisposalList" parent="ModelSQLDOC20" dataTable="doc_product_disposals_list_view" virtual="TRUE">
+		<model id="DOCProductDisposalList" parent="ModelSQL" dataTable="doc_product_disposals_list_view" virtual="TRUE" limitConstant="doc_per_page_count" lastRowSelectOnInit="TRUE">
 			<field id="id" dataType="Int" primaryKey="TRUE" sysCol="TRUE"/>
 			<field id="number" dataType="String" alias="Номер"/>
 			<field id="date_time" dataType="DateTime" sysCol="TRUE" alias="Дата"/>
 			<field id="date_time_descr" dataType="String" alias="Дата"/>			
-			<field id="processed" dataType="String" sysCol="TRUE"/>
+			<field id="processed" dataType="String" alias="Проведен"/>
 			<field id="store_id" dataType="Int" sysCol="TRUE"/>
 			<field id="store_descr" dataType="String" alias="Салон"/>
 			<field id="user_id" dataType="Int" sysCol="TRUE"/>
@@ -483,40 +622,12 @@
 			<field id="product_descr" dataType="String" alias="Продукция"/>			
 			<field id="explanation" dataType="String" alias="Причина списания"/>
 			<field id="doc_production_descr" dataType="String" alias="Поставка"/>
-			<field id="doc_production_id" dataType="Int" sysCol="TRUE"/>			
+			<field id="doc_production_id" dataType="Int" sysCol="TRUE"/>
+			<field id="doc_production_number" dataType="String" alias="Номер комеплектации"/>
+			<field id="doc_production_date_time" dataType="DateTime" alias="Дата комеплектации"/>						
 			<globalFilter id="store_id"/>
 		</model>
-		<model id="DOCProductDisposalDOCTMaterial" parent="ModelSQL" dataTable="doc_product_disposals_t_tmp_materials" virtual="FALSE" modelType="DOCT" masterModel="DOCProductDisposal">
-			<field id="login_id" dataType="Int" refTable="logins" refField="id" primaryKey="TRUE"/>
-			<field id="line_number" dataType="Int" primaryKey="TRUE"/>
-			<field id="material_id" dataType="Int" alias="Материал" refTable="materials" refField="id" required="TRUE">
-			</field>			
-			<field id="quant" dataType="Float" alias="Количество" length="19" precision="3">
-			</field>			
-		</model>		
-		<model id="DOCProductDisposalDOCTMaterialList" parent="ModelSQL" dataTable="doc_product_disposals_t_tmp_materials_list_view" virtual="TRUE">
-			<field id="login_id" dataType="Int" primaryKey="TRUE"/>
-			<field id="line_number" dataType="Int" alias="№" primaryKey="TRUE"/>
-			<field id="material_id" dataType="Int"/>
-			<field id="material_descr" dataType="String"/>			
-			<field id="quant" dataType="Float"/>
-		</model>
-		<model id="DOCProductDisposalDOCTFMaterial" parent="ModelSQL" dataTable="doc_product_disposals_t_materials" virtual="FALSE" modelType="DOCTF" masterModel="DOCProductDisposal">
-			<field id="doc_id" dataType="Int" refTable="doc_product_disposals" refField="id" primaryKey="TRUE"/>
-			<field id="line_number" dataType="Int" primaryKey="TRUE"/>
-			<field id="material_id" dataType="Int" alias="Материал" refTable="materials" refField="id" required="TRUE">
-			</field>			
-			<field id="quant" dataType="Float" alias="Количество" length="19" precision="3">
-			</field>			
-		</model>		
-		<model id="DOCProductDisposalDOCTFMaterialList" parent="ModelSQL" dataTable="doc_product_disposals_t_materials_list_view" virtual="TRUE">
-			<field id="doc_id" dataType="Int" primaryKey="TRUE"/>
-			<field id="line_number" dataType="Int" alias="№" primaryKey="TRUE"/>
-			<field id="material_id" dataType="Int"/>
-			<field id="material_descr" dataType="String"/>			
-			<field id="quant" dataType="Float"/>
-		</model>
-		<model id="DOCMaterialProcurement" parent="ModelSQLDOC20" dataTable="doc_material_procurements" virtual="FALSE" modelType="DOC" docTypeId="material_procurement">
+		<model id="DOCMaterialProcurement" parent="ModelSQL" dataTable="doc_material_procurements" virtual="FALSE" modelType="DOC" docTypeId="material_procurement" lastRowSelectOnInit="TRUE">
 			<defaultOrder>
 				<field id="date_time"/>
 			</defaultOrder>
@@ -543,11 +654,13 @@
 				<register id="RAMaterial"/>
 			</registerAtcs>						
 		</model>
-		<model id="DOCMaterialProcurementList" parent="ModelSQLDOC20" dataTable="doc_material_procurements_list_view" virtual="TRUE">
+		<model id="DOCMaterialProcurementList" parent="ModelSQL" dataTable="doc_material_procurements_list_view" virtual="TRUE" limitConstant="doc_per_page_count" lastRowSelectOnInit="TRUE">
+			<aggFunctions>
+				<aggFunction alias="total_total" expr="sum(total)"/>
+			</aggFunctions>
 			<field id="id" sysCol="TRUE" dataType="Int" primaryKey="TRUE" alias="Идентификатор"/>
 			<field id="number" dataType="String" alias="Номер"/>
 			<field id="date_time" sysCol="TRUE" dataType="DateTime" alias="Дата"/>
-			<field id="date_time_descr" dataType="String" alias="Дата"/>			
 			<field id="processed" sysCol="TRUE" dataType="String" alias="Проведен"/>
 			<field id="store_id" sysCol="TRUE" dataType="Int" alias="Салон"/>
 			<field id="store_descr" dataType="String" alias="Салон"/>
@@ -580,38 +693,31 @@
 			<field id="total_descr" dataType="String" sysCol="TRUE"/>			
 			<globalFilter id="store_id"/>
 		</model>		
-		<model id="DOCMaterialProcurementDOCTMaterial" parent="ModelSQL" dataTable="doc_material_procurements_t_tmp_materials" virtual="FALSE" modelType="DOCT" masterModel="DOCMaterialProcurement">
-			<field id="login_id" dataType="Int" refTable="logins" refField="id" primaryKey="TRUE"/>
+		<model id="DOCMaterialProcurementDOCTMaterial" parent="ModelSQLDOCT20" dataTable="doc_material_procurements_t_tmp_materials" virtual="FALSE" modelType="DOCT" masterModel="DOCMaterialProcurement">
+			<field id="view_id" dataType="String" length="32" primaryKey="TRUE"/>			
 			<field id="line_number" dataType="Int" primaryKey="TRUE"/>
-			<field id="material_id" dataType="Int" alias="Материал" refTable="materials" refField="id" required="TRUE">
-			</field>			
-			<field id="quant" dataType="Float" alias="Количество" length="19" precision="3">
-			</field>			
-			<field id="price" dataType="Float" alias="Цена" length="19" precision="2">
-			</field>
-			<field id="total" dataType="Float" alias="Сумма" length="19" precision="2">
-			</field>									
+			<field id="login_id" dataType="Int" refTable="logins" refField="id"/>
+			<field id="material_id" dataType="Int" alias="Материал" refTable="materials" refField="id" required="TRUE"/>
+			<field id="quant" dataType="Float" alias="Количество" length="19" precision="3"/>
+			<field id="price" dataType="Float" alias="Цена" length="19" precision="2"/>
+			<field id="total" dataType="Float" alias="Сумма" length="19" precision="2"/>
 		</model>				
-		<model id="DOCMaterialProcurementDOCTMaterialList" parent="ModelSQL" dataTable="doc_material_procurements_t_tmp_materials_list_view" virtual="TRUE">
-			<field id="login_id" dataType="Int" primaryKey="TRUE"/>
+		<model id="DOCMaterialProcurementDOCTMaterialList" parent="ModelSQLDOCT20" dataTable="doc_material_procurements_t_tmp_materials_list_view" virtual="TRUE">
+			<field id="view_id" dataType="String" length="32" primaryKey="TRUE"/>
 			<field id="line_number" dataType="Int" alias="№" primaryKey="TRUE"/>
 			<field id="material_id" dataType="Int"/>
-			<field id="material_descr" dataType="String"/>			
-			<field id="quant" dataType="Float"/>
-			<field id="price" dataType="Float"/>
-			<field id="total" dataType="Float"/>
+			<field id="material_descr" dataType="String" alias="Материал"/>			
+			<field id="quant" dataType="Float" alias="Количество"/>
+			<field id="price" dataType="Float" alias="Цена"/>
+			<field id="total" dataType="Float" alias="Сумма"/>
 		</model>
 		<model id="DOCMaterialProcurementDOCTFMaterial" parent="ModelSQL" dataTable="doc_material_procurements_t_materials" virtual="FALSE" modelType="DOCTF" masterModel="DOCMaterialProcurement">
 			<field id="doc_id" dataType="Int" refTable="doc_material_procurements" refField="id" primaryKey="TRUE"/>
 			<field id="line_number" dataType="Int" primaryKey="TRUE"/>
-			<field id="material_id" dataType="Int" alias="Материал" refTable="materials" refField="id" required="TRUE">
-			</field>			
-			<field id="quant" dataType="Float" alias="Количество" length="19" precision="3">
-			</field>			
-			<field id="price" dataType="Float" alias="Цена" length="19" precision="2">
-			</field>
-			<field id="total" dataType="Float" alias="Сумма" length="19" precision="2">
-			</field>									
+			<field id="material_id" dataType="Int" alias="Материал" refTable="materials" refField="id" required="TRUE"/>
+			<field id="quant" dataType="Float" alias="Количество" length="19" precision="3"/>
+			<field id="price" dataType="Float" alias="Цена" length="19" precision="2"/>
+			<field id="total" dataType="Float" alias="Сумма" length="19" precision="2"/>
 		</model>				
 		<model id="DOCMaterialProcurementDOCTFMaterialList" parent="ModelSQL" dataTable="doc_material_procurements_t_materials_list_view" virtual="TRUE">
 			<field id="doc_id" dataType="Int" primaryKey="TRUE"/>
@@ -622,21 +728,16 @@
 			<field id="price" dataType="Float"/>
 			<field id="total" dataType="Float"/>
 		</model>
-		<model id="DOCMaterialOrder" parent="ModelSQLDOC20" dataTable="doc_material_orders" virtual="FALSE" modelType="DOC" docTypeId="material_order">
+		<model id="DOCMaterialOrder" parent="ModelSQL" dataTable="doc_material_orders" virtual="FALSE" modelType="DOC" docTypeId="material_order" lastRowSelectOnInit="TRUE">
 			<defaultOrder>
 				<field id="date_time"/>
 			</defaultOrder>
-			<field id="id" dataType="Int" primaryKey="TRUE" autoInc="TRUE">
-			</field>
-			<field id="date_time" dataType="DateTime" required="TRUE" alias="Дата">
-			</field>
-			<field id="number" dataType="Int" alias="Номер">
-			</field>
+			<field id="id" dataType="Int" primaryKey="TRUE" autoInc="TRUE"/>
+			<field id="date_time" dataType="DateTime" required="TRUE" alias="Дата"/>
+			<field id="number" dataType="Int" alias="Номер"/>
 			<field id="processed" dataType="Bool" alias="Проведен" default="false"/>
-			<field id="store_id" dataType="Int" alias="Магазин" refTable="stores" refField="id">
-			</field>			
-			<field id="user_id" dataType="Int" alias="Автор" refTable="users" refField="id">
-			</field>						
+			<field id="store_id" dataType="Int" alias="Магазин" refTable="stores" refField="id"/>
+			<field id="user_id" dataType="Int" alias="Автор" refTable="users" refField="id"/>
 			<index id="doc_material_orders_date_time_index">
 				<field id="date_time"/>
 			</index>			
@@ -646,7 +747,7 @@
 			</index>
 			<globalFilter id="store_id"/>
 		</model>
-		<model id="DOCMaterialOrderList" parent="ModelSQLDOC20" dataTable="doc_material_orders_list_view" virtual="TRUE">
+		<model id="DOCMaterialOrderList" parent="ModelSQL" dataTable="doc_material_orders_list_view" virtual="TRUE" limitConstant="doc_per_page_count" lastRowSelectOnInit="TRUE">
 			<field id="id" dataType="Int" primaryKey="TRUE"/>
 			<field id="date_time" dataType="DateTime"/>
 			<field id="date_time_descr" dataType="String"/>
@@ -658,7 +759,7 @@
 			<field id="user_descr" dataType="String"/>
 			<globalFilter id="store_id"/>
 		</model>
-		<model id="DOCMaterialOrderMaterialList" parent="ModelSQLDOC20" dataTable="doc_material_orders_materials_list_view" virtual="TRUE">
+		<model id="DOCMaterialOrderMaterialList" parent="ModelSQL" dataTable="doc_material_orders_materials_list_view" virtual="TRUE" lastRowSelectOnInit="TRUE">
 			<field id="id" dataType="Int" primaryKey="TRUE"/>
 			<field id="date_time" dataType="DateTime"/>
 			<field id="date_time_descr" dataType="String"/>
@@ -705,80 +806,7 @@
 			<field id="quant" dataType="Float"/>
 		</model>
 		
-		<model id="DOCMaterialToWaste" parent="ModelSQLDOC20" dataTable="doc_material_to_wastes" virtual="FALSE" modelType="DOC" docTypeId="material_to_waste">
-			<defaultOrder>
-				<field id="date_time"/>
-			</defaultOrder>
-			<field id="id" dataType="Int" primaryKey="TRUE" autoInc="TRUE">
-			</field>
-			<field id="date_time" dataType="DateTime" required="TRUE" alias="Дата">
-			</field>
-			<field id="number" dataType="Int" alias="Номер">
-			</field>
-			<field id="processed" dataType="Bool" alias="Проведен" default="false"/>
-			<field id="store_id" dataType="Int" alias="Магазин" refTable="stores" refField="id">
-			</field>			
-			<field id="user_id" dataType="Int" alias="Автор" refTable="users" refField="id">
-			</field>						
-			<field id="explanation" dataType="Text" alias="Причина списания">
-			</field>									
-			<index id="doc_material_to_wastes_date_time_index">
-				<field id="date_time"/>
-			</index>			
-			<index id="doc_material_to_wastes_store_number_index" unique="TRUE">
-				<field id="store_id"/>
-				<field id="number"/>
-			</index>
-			<globalFilter id="store_id"/>
-			<registerAtcs>
-				<register id="RAMaterial"/>
-			</registerAtcs>						
-		</model>
-		<model id="DOCMaterialToWasteList" parent="ModelSQLDOC20" dataTable="doc_material_to_wastes_list_view" virtual="TRUE">
-			<field id="id" dataType="Int" primaryKey="TRUE"/>
-			<field id="date_time" dataType="DateTime"/>
-			<field id="date_time_descr" dataType="String"/>
-			<field id="number" dataType="String"/>
-			<field id="processed" dataType="String"/>
-			<field id="store_id" dataType="Int"/>
-			<field id="store_descr" dataType="String"/>			
-			<field id="user_id" dataType="Int"/>
-			<field id="user_descr" dataType="String"/>
-			<field id="explanation" dataType="String"/>
-			<globalFilter id="store_id"/>
-		</model>
-		<model id="DOCMaterialToWasteDOCTMaterial" parent="ModelSQL" dataTable="doc_material_to_wastes_t_tmp_materials" virtual="FALSE" modelType="DOCT" masterModel="DOCMaterialToWaste">
-			<field id="login_id" dataType="Int" refTable="logins" refField="id" primaryKey="TRUE"/>
-			<field id="line_number" dataType="Int" primaryKey="TRUE"/>
-			<field id="material_id" dataType="Int" alias="Материал" refTable="materials" refField="id" required="TRUE">
-			</field>			
-			<field id="quant" dataType="Float" alias="Количество" length="19" precision="3">
-			</field>			
-		</model>				
-		<model id="DOCMaterialToWasteDOCTMaterialList" parent="ModelSQL" dataTable="doc_material_to_wastes_t_tmp_materials_list_view" virtual="TRUE">
-			<field id="login_id" dataType="Int"/>
-			<field id="line_number" dataType="Int" alias="№" primaryKey="TRUE"/>
-			<field id="material_id" dataType="Int"/>
-			<field id="material_descr" dataType="String"/>			
-			<field id="quant" dataType="Float"/>
-		</model>
-		<model id="DOCMaterialToWasteDOCTFMaterial" parent="ModelSQL" dataTable="doc_material_to_wastes_t_materials" virtual="FALSE" modelType="DOCTF" masterModel="DOCMaterialToWaste">
-			<field id="doc_id" dataType="Int" refTable="doc_material_to_wastes" refField="id" primaryKey="TRUE"/>
-			<field id="line_number" dataType="Int" primaryKey="TRUE"/>
-			<field id="material_id" dataType="Int" alias="Материал" refTable="materials" refField="id" required="TRUE">
-			</field>			
-			<field id="quant" dataType="Float" alias="Количество" length="19" precision="3">
-			</field>			
-		</model>				
-		<model id="DOCMaterialToWasteDOCTFMaterialList" parent="ModelSQL" dataTable="doc_material_to_wastes_t_materials_list_view" virtual="TRUE">
-			<field id="doc_id" dataType="Int" primaryKey="TRUE"/>
-			<field id="line_number" dataType="Int" alias="№" primaryKey="TRUE"/>
-			<field id="material_id" dataType="Int"/>
-			<field id="material_descr" dataType="String"/>			
-			<field id="quant" dataType="Float"/>
-		</model>
-		
-		<model id="DOCMaterialDisposal" parent="ModelSQLDOC20" dataTable="doc_material_disposals" virtual="FALSE" modelType="DOC" docTypeId="material_disposal">
+		<model id="DOCMaterialDisposal" parent="ModelSQL" dataTable="doc_material_disposals" virtual="FALSE" modelType="DOC" docTypeId="material_disposal" lastRowSelectOnInit="TRUE">
 			<defaultOrder>
 				<field id="date_time"/>
 			</defaultOrder>
@@ -802,11 +830,11 @@
 				<register id="RAMaterial"/>
 			</registerAtcs>						
 		</model>
-		<model id="DOCMaterialDisposalList" parent="ModelSQLDOC20" dataTable="doc_material_disposals_list_view" virtual="TRUE">
+		<model id="DOCMaterialDisposalList" parent="ModelSQL" dataTable="doc_material_disposals_list_view" virtual="TRUE" lastRowSelectOnInit="TRUE">
 			<field id="id" dataType="Int" primaryKey="TRUE" sysCol="TRUE"/>
 			<field id="date_time" dataType="DateTime" sysCol="TRUE" alias="Дата"/>
 			<field id="number" dataType="String" alias="Номер"/>
-			<field id="processed" dataType="String" sysCol="TRUE"/>
+			<field id="processed" dataType="String" alias="Проведен"/>
 			<field id="store_id" dataType="Int" sysCol="TRUE"/>
 			<field id="store_descr" dataType="String" alias="Салон"/>			
 			<field id="user_id" dataType="Int" sysCol="TRUE"/>
@@ -833,20 +861,20 @@
 			<globalFilter id="store_id"/>
 		</model>		
 		
-		<model id="DOCMaterialDisposalDOCTMaterial" parent="ModelSQL" dataTable="doc_material_disposals_t_tmp_materials" virtual="FALSE" modelType="DOCT" masterModel="DOCMaterialDisposal">
-			<field id="login_id" dataType="Int" refTable="logins" refField="id" primaryKey="TRUE"/>
+		<model id="DOCMaterialDisposalDOCTMaterial" parent="ModelSQLDOCT20" dataTable="doc_material_disposals_t_tmp_materials" virtual="FALSE" modelType="DOCT" masterModel="DOCMaterialDisposal">			
+			<field id="view_id" dataType="String" length="32" primaryKey="TRUE"/>
 			<field id="line_number" dataType="Int" primaryKey="TRUE"/>
-			<field id="material_id" dataType="Int" alias="Материал" refTable="materials" refField="id" required="TRUE">
-			</field>			
-			<field id="quant" dataType="Float" alias="Количество" length="19" precision="3">
-			</field>
+			<field id="login_id" dataType="Int" refTable="logins" refField="id"/>
+			<field id="material_id" dataType="Int" alias="Материал" refTable="materials" refField="id" required="TRUE"/>
+			<field id="quant" dataType="Float" alias="Количество" length="19" precision="3"/>
 		</model>		
-		<model id="DOCMaterialDisposalDOCTMaterialList" parent="ModelSQL" dataTable="doc_material_disposals_t_tmp_materials_list_view" virtual="TRUE">
-			<field id="login_id" dataType="Int" primaryKey="TRUE"/>
+		<model id="DOCMaterialDisposalDOCTMaterialList" parent="ModelSQLDOCT20" dataTable="doc_material_disposals_t_tmp_materials_list_view" virtual="TRUE">
+			<field id="view_id" dataType="String" length="32" primaryKey="TRUE"/>			
 			<field id="line_number" dataType="Int" alias="№" primaryKey="TRUE"/>
-			<field id="material_id" dataType="Int"/>
-			<field id="material_descr" dataType="String"/>			
-			<field id="quant" dataType="Float"/>
+			<field id="login_id" dataType="Int"/>
+			<field id="material_id" dataType="Int" sysCol="TRUE"/>
+			<field id="material_descr" dataType="String" alias="Материал"/>
+			<field id="quant" dataType="Float" alias="Количество"/>
 		</model>
 		<model id="DOCMaterialDisposalDOCTFMaterial" parent="ModelSQL" dataTable="doc_material_disposals_t_materials" virtual="FALSE" modelType="DOCTF" masterModel="DOCMaterialDisposal">
 			<field id="doc_id" dataType="Int" refTable="doc_material_disposals" refField="id" primaryKey="TRUE"/>
@@ -863,7 +891,7 @@
 			<field id="material_descr" dataType="String"/>			
 			<field id="quant" dataType="Float"/>
 		</model>
-		<model id="DOCClientOrder" parent="ModelSQLDOC20" dataTable="doc_client_orders" virtual="FALSE" modelType="DOC" docTypeId="doc_client_order">
+		<model id="DOCClientOrder" parent="ModelSQL" dataTable="doc_client_orders" virtual="FALSE" modelType="DOC" docTypeId="doc_client_order" lastRowSelectOnInit="TRUE">
 			<defaultOrder>
 				<field id="date_time"/>
 			</defaultOrder>
@@ -890,62 +918,86 @@
 			<field id="payment_type" dataType="Enum" enumId="payment_types"/>
 			<field id="client_order_state" dataType="Enum" enumId="client_order_states" defaultValue="to_noone"/>
 			<field id="payed" dataType="Bool" defaultValue="FALSE"/>
-			<field id="total" dataType="Float" length="15" precision="2"/>
+			<field id="total" dataType="Float" length="15" precision="2" alias="Сумма"/>
+			<field id="store_id" dataType="Int" alias="Магазин" refTable="stores" refField="id"/>
+			
 			<index id="doc_client_orders_date_time_index">
 				<field id="date_time"/>
 			</index>			
 			<index id="doc_client_orders_delivery_date_index">
 				<field id="delivery_date"/>
 			</index>
-			<index id="doc_client_orders_index" unique="TRUE">
+			<index id="doc_client_orders_index">
 				<field id="number"/>
 			</index>			
+			<index id="doc_client_orders_client_order_state_idx">
+				<field id="client_order_state"/>
+			</index>						
+			<index id="doc_client_order_store_number_idx" unique="TRUE">
+				<field id="store_id"/>
+				<field id="number"/>
+			</index>
+			<globalFilter id="store_id"/>
+			
 		</model>
-		<model id="DOCClientOrderList" parent="ModelSQL" dataTable="doc_client_orders_list" virtual="TRUE">
+		<model id="DOCClientOrderList" parent="ModelSQL" dataTable="doc_client_orders_list" virtual="TRUE" limitConstant="doc_per_page_count" lastRowSelectOnInit="TRUE">
+			<aggFunctions>
+				<aggFunction alias="total_total" expr="sum(total)"/>
+			</aggFunctions>		
 			<field id="id" dataType="Int" primaryKey="TRUE"/>
 			<field id="date_time" dataType="DateTime"/>
-			<field id="date_time_descr" dataType="String"/>
+			<field id="processed" dataType="Bool" alias="Проведен"/>
 			<field id="number" dataType="String"/>
+			<field id="number_from_site" dataType="String" length="10" alias="Номер с сайта"/>
 			<field id="delivery_type" dataType="String"/>
-			<field id="delivery_type_descr" dataType="String"/>
 			<field id="client_name" dataType="String"/>
 			<field id="client_tel" dataType="String"/>
+			<field id="client_id" dataType="Int"/>
+			<field id="client_descr" dataType="String" alias="Покупатель из справочника"/>
 			<field id="recipient_type" dataType="String"/>
-			<field id="recipient_type_descr" dataType="String"/>
 			<field id="recipient_name" dataType="String"/>
 			<field id="recipient_tel" dataType="String"/>
 			<field id="address" dataType="Text"/>
 			<field id="delivery_date" dataType="Date"/>
-			<field id="delivery_date_descr" dataType="String"/>
 			<field id="delivery_hour_id" dataType="Int"/>
 			<field id="delivery_hour_descr" dataType="String"/>
 			<field id="card" dataType="Bool"/>
 			<field id="card_text" dataType="Text"/>
 			<field id="anonym_gift" dataType="Bool"/>
-			<field id="delivery_note_type_descr" dataType="String"/>
+			<field id="delivery_note_type" dataType="String"/>
 			<field id="extra_comment" dataType="Text"/>
+			<field id="delivery_comment" dataType="Text"/>
 			<field id="payment_type" dataType="String"/>
-			<field id="payment_type_descr" dataType="String"/>
 			<field id="client_order_state" dataType="String"/>
-			<field id="client_order_state_descr" dataType="String"/>
+			<field id="payed" dataType="Bool"/>
 			<field id="total" dataType="Float" length="15" precision="2"/>
+			<field id="store_id" dataType="Int"/>
+			<field id="store_descr" dataType="String" alias="Проведен"/>
+			<field id="doc_client_order_descr" dataType="String"/>
+			<field id="total" dataType="Float" length="15" precision="2" alias="Сумма"/>
 		</model>
-		<model id="DOCClientOrderDOCTMaterial" parent="ModelSQL" dataTable="doc_client_orders_t_tmp_materials" virtual="FALSE" masterModel="DOCClientOrder" modelType="DOCT">
-			<field id="login_id" dataType="Int" refTable="logins" refField="id" primaryKey="TRUE"/>
+		<model id="DOCClientOrderDOCTMaterial" parent="ModelSQLDOCT20" dataTable="doc_client_orders_t_tmp_materials" virtual="FALSE" masterModel="DOCClientOrder" modelType="DOCT">
+			<field id="view_id" dataType="String" length="32" primaryKey="TRUE"/>
 			<field id="line_number" dataType="Int" primaryKey="TRUE"/>
+			<field id="login_id" dataType="Int" refTable="logins" refField="id"/>
 			<field id="material_id" dataType="Int" alias="Материал" refTable="materials" refField="id" required="TRUE"/>
 			<field id="quant" dataType="Float" alias="Количество" length="19" precision="3"/>
 			<field id="price" dataType="Float" alias="Цена" length="15" precision="2"/>
+			<field id="disc_percent" dataType="Float" length="15" precision="2"/>
+			<field id="price_no_disc" dataType="Float" length="15" precision="2"/>									
 			<field id="total" dataType="Float" alias="Сумма" length="15" precision="2"/>
 		</model>
-		<model id="DOCClientOrderDOCTMaterialList" parent="ModelSQL" dataTable="doc_client_orders_t_tmp_materials_list" virtual="TRUE">
-			<field id="login_id" dataType="Int" primaryKey="TRUE"/>
+		<model id="DOCClientOrderDOCTMaterialList" parent="ModelSQLDOCT20" dataTable="doc_client_orders_t_tmp_materials_list" virtual="TRUE">
+			<field id="view_id" dataType="String" length="32" primaryKey="TRUE"/>			
 			<field id="line_number" dataType="Int" alias="№" primaryKey="TRUE"/>
+			<field id="login_id" dataType="Int"/>
 			<field id="material_id" dataType="Int"/>
-			<field id="material_descr" dataType="String"/>			
-			<field id="quant" dataType="Float"/>
-			<field id="price" dataType="Float"/>
-			<field id="total" dataType="Float"/>
+			<field id="material_descr" dataType="String" alias="Материал"/>			
+			<field id="quant" dataType="Float" alias="Количество"/>
+			<field id="price" dataType="Float" alias="Цена"/>
+			<field id="disc_percent" dataType="Float" length="15" precision="2" alias="Скидка,%"/>
+			<field id="price_no_disc" dataType="Float" length="15" precision="2" alias="Цена"/>
+			<field id="total" dataType="Float" alias="Всего"/>
 		</model>		
 		<model id="DOCClientOrderDOCTFMaterial" parent="ModelSQL" dataTable="doc_client_orders_t_materials" virtual="FALSE" masterModel="DOCClientOrder" modelType="DOCTF">
 			<field id="doc_id" dataType="Int" refTable="doc_sales" refField="id" primaryKey="TRUE"/>
@@ -953,6 +1005,8 @@
 			<field id="material_id" dataType="Int" alias="Материал" refTable="materials" refField="id" required="TRUE"/>
 			<field id="quant" dataType="Float" alias="Количество" length="19" precision="3"/>
 			<field id="price" dataType="Float" alias="Цена" length="15" precision="2"/>
+			<field id="disc_percent" dataType="Float" length="15" precision="2"/>
+			<field id="price_no_disc" dataType="Float" length="15" precision="2"/>						
 			<field id="total" dataType="Float" alias="Сумма" length="15" precision="2"/>
 		</model>
 		<model id="DOCClientOrderDOCTFMaterialList" parent="ModelSQL" dataTable="doc_client_orders_t_materials_list" virtual="TRUE">
@@ -962,24 +1016,32 @@
 			<field id="material_descr" dataType="String"/>			
 			<field id="quant" dataType="Float"/>
 			<field id="price" dataType="Float"/>
+			<field id="disc_percent" dataType="Float" length="15" precision="2"/>
+			<field id="price_no_disc" dataType="Float" length="15" precision="2"/>						
 			<field id="total" dataType="Float"/>
 		</model>		
-		<model id="DOCClientOrderDOCTProduct" parent="ModelSQL" dataTable="doc_client_orders_t_tmp_products" virtual="FALSE" masterModel="DOCClientOrder" modelType="DOCT">
-			<field id="login_id" dataType="Int" refTable="logins" refField="id" primaryKey="TRUE"/>
+		<model id="DOCClientOrderDOCTProduct" parent="ModelSQLDOCT20" dataTable="doc_client_orders_t_tmp_products" virtual="FALSE" masterModel="DOCClientOrder" modelType="DOCT">
+			<field id="view_id" dataType="String" length="32" primaryKey="TRUE"/>
 			<field id="line_number" dataType="Int" primaryKey="TRUE"/>
+			<field id="login_id" dataType="Int" refTable="logins" refField="id"/>
 			<field id="product_id" dataType="Int" alias="Букет" refTable="products" refField="id" required="TRUE"/>
 			<field id="quant" dataType="Float" alias="Количество" length="19" precision="3"/>
 			<field id="price" dataType="Float" alias="Цена" length="15" precision="2"/>
+			<field id="disc_percent" dataType="Float" length="15" precision="2"/>
+			<field id="price_no_disc" dataType="Float" length="15" precision="2"/>			
 			<field id="total" dataType="Float" alias="Сумма" length="15" precision="2"/>
 		</model>				
-		<model id="DOCClientOrderDOCTProductList" parent="ModelSQL" dataTable="doc_client_orders_t_tmp_products_list" virtual="TRUE">
-			<field id="login_id" dataType="Int" primaryKey="TRUE"/>
+		<model id="DOCClientOrderDOCTProductList" parent="ModelSQLDOCT20" dataTable="doc_client_orders_t_tmp_products_list" virtual="TRUE">
+			<field id="view_id" dataType="String" length="32" primaryKey="TRUE"/>			
 			<field id="line_number" dataType="Int" alias="№" primaryKey="TRUE"/>
+			<field id="login_id" dataType="Int"/>
 			<field id="product_id" dataType="Int"/>
-			<field id="product_descr" dataType="String"/>			
-			<field id="quant" dataType="Float"/>
-			<field id="price" dataType="Float"/>
-			<field id="total" dataType="Float"/>
+			<field id="product_descr" dataType="String" alias="Букет"/>			
+			<field id="quant" dataType="Float" alias="Количество"/>
+			<field id="price" dataType="Float" alias="Цена"/>
+			<field id="disc_percent" dataType="Float" alias="Скидка,%"/>
+			<field id="price_no_disc" dataType="Float" alias="Цена"/>
+			<field id="total" dataType="Float" alias="Всего"/>
 		</model>
 		<model id="DOCClientOrderDOCTFProduct" parent="ModelSQL" dataTable="doc_client_orders_t_products" virtual="FALSE" masterModel="DOCSale" modelType="DOCTF">
 			<field id="doc_id" dataType="Int" refTable="doc_sales" refField="id" primaryKey="TRUE"/>
@@ -987,6 +1049,8 @@
 			<field id="product_id" dataType="Int" alias="Букет" refTable="products" refField="id" required="TRUE"/>
 			<field id="quant" dataType="Float" alias="Количество" length="19" precision="3"/>
 			<field id="price" dataType="Float" alias="Цена" length="15" precision="2"/>
+			<field id="disc_percent" dataType="Float" length="15" precision="2"/>
+			<field id="price_no_disc" dataType="Float" length="15" precision="2"/>			
 			<field id="total" dataType="Float" alias="Сумма" length="15" precision="2"/>
 		</model>				
 		<model id="DOCClientOrderDOCTFProductList" parent="ModelSQL" dataTable="doc_client_orders_t_products_list" virtual="TRUE">
@@ -996,11 +1060,12 @@
 			<field id="product_descr" dataType="String"/>			
 			<field id="quant" dataType="Float"/>
 			<field id="price" dataType="Float"/>
+			<field id="disc_percent" dataType="Float"/>
+			<field id="price_no_disc" dataType="Float"/>			
 			<field id="total" dataType="Float"/>
-			<field id="doc_client_order_id" dataType="Int" refTable="doc_client_orders" refField="id"/>
 		</model>
 		
-		<model id="DOCSale" parent="ModelSQLDOC20" dataTable="doc_sales" virtual="FALSE" modelType="DOC" docTypeId="sale">
+		<model id="DOCSale" parent="ModelSQL" dataTable="doc_sales" virtual="FALSE" modelType="DOC" docTypeId="sale" lastRowSelectOnInit="TRUE">
 			<defaultOrder>
 				<field id="date_time"/>
 			</defaultOrder>
@@ -1015,6 +1080,8 @@
 			<field id="total_material_cost" dataType="Float" alias="Себест.материалов" length="15" precision="2"/>
 			<field id="total_product_cost" dataType="Float" alias="Себест.продукции" length="15" precision="2"/>
 			<field id="client_id" dataType="Int" alias="Клиент" refTable="clients" refField="id"/>
+			<field id="discount_id" dataType="Int" alias="Вид скидки" refTable="discounts" refField="id"/>
+			
 			<index id="doc_sales_date_time_index">
 				<field id="date_time"/>
 			</index>			
@@ -1025,17 +1092,20 @@
 			<globalFilter id="store_id"/>
 			<registerAtcs>
 				<register id="RAProduct"/>
-				<register id="RAProductOrder"/>
 				<register id="RAMaterial"/>
-				<register id="RAMaterialSale"/>
-				<register id="RAProductSale"/>
 			</registerAtcs>						
 		</model>
-		<model id="DOCSaleList" parent="ModelSQLDOC20" dataTable="doc_sales_list_view" virtual="TRUE">
+		<model id="DOCSaleList" parent="ModelSQL" dataTable="doc_sales_list_view" virtual="TRUE" limitConstant="doc_per_page_count" lastRowSelectOnInit="TRUE">
+			<aggFunctions>
+				<aggFunction alias="total_total" expr="sum(total)"/>
+				<aggFunction alias="total_cost" expr="sum(cost)"/>
+				<aggFunction alias="avg_income" expr="avg(income)"/>
+				<aggFunction alias="avg_income_percent" expr="avg(income_percent)"/>
+			</aggFunctions>		
 			<field id="id" dataType="Int" primaryKey="TRUE" sysCol="TRUE"/>
 			<field id="date_time" dataType="DateTime" alias="Дата"/>
 			<field id="number" dataType="String" alias="Номер"/>
-			<field id="processed" dataType="String" sysCol="TRUE"/>
+			<field id="processed" dataType="String" alias="Проведен"/>
 			<field id="store_id" dataType="Int" sysCol="TRUE"/>
 			<field id="store_descr" dataType="String" alias="Салон"/>			
 			<field id="user_id" dataType="Int" sysCol="TRUE"/>
@@ -1052,12 +1122,12 @@
 			
 			<globalFilter id="store_id"/>
 		</model>
-		<model id="DOCSaleDialog" parent="ModelSQLDOC20" dataTable="doc_sales_dialog" virtual="TRUE">
+		<model id="DOCSaleDialog" parent="ModelSQL" dataTable="doc_sales_dialog" virtual="TRUE" lastRowSelectOnInit="TRUE">
 			<field id="id" dataType="Int" primaryKey="TRUE" sysCol="TRUE"/>
 			<field id="date_time" dataType="DateTime" sysCol="TRUE"/>
 			<field id="date_time_descr" dataType="String" alias="Дата"/>
 			<field id="number" dataType="String" alias="Номер"/>
-			<field id="processed" dataType="String" sysCol="TRUE"/>
+			<field id="processed" dataType="String" alias="Проведен"/>
 			<field id="store_id" dataType="Int" sysCol="TRUE"/>
 			<field id="store_descr" dataType="String" alias="Салон"/>			
 			<field id="user_id" dataType="Int" sysCol="TRUE"/>
@@ -1067,13 +1137,15 @@
 			<field id="total" dataType="Float" alias="Сумма"/>
 			<field id="client_id" dataType="Int" sysCol="TRUE"/>
 			<field id="client_descr" dataType="String" alias="Клиент"/>
+			<field id="discount_id" dataType="Int" sysCol="TRUE"/>
 			
 			<globalFilter id="store_id"/>
 		</model>
 		
-		<model id="DOCSaleDOCTMaterial" parent="ModelSQL" dataTable="doc_sales_t_tmp_materials" virtual="FALSE" masterModel="DOCSale" modelType="DOCT">
-			<field id="login_id" dataType="Int" refTable="logins" refField="id" primaryKey="TRUE"/>
+		<model id="DOCSaleDOCTMaterial" parent="ModelSQLDOCT20" dataTable="doc_sales_t_tmp_materials" virtual="FALSE" masterModel="DOCSale" modelType="DOCT">			
+			<field id="view_id" dataType="String" length="32" primaryKey="TRUE"/>
 			<field id="line_number" dataType="Int" primaryKey="TRUE"/>
+			<field id="login_id" dataType="Int" refTable="logins" refField="id"/>
 			<field id="material_id" dataType="Int" alias="Материал" refTable="materials" refField="id" required="TRUE"/>
 			<field id="quant" dataType="Float" alias="Количество" length="19" precision="3"/>
 			<field id="price" dataType="Float" alias="Цена" length="15" precision="2"/>
@@ -1082,14 +1154,14 @@
 			<field id="price_no_disc" dataType="Float" alias="Цена без скидки" length="15" precision="2"/>
 			<field id="total_no_disc" dataType="Float" alias="Сумма буз скидки" length="15" precision="2"/>			
 		</model>
-		<model id="DOCSaleDOCTMaterialList" parent="ModelSQL" dataTable="doc_sales_t_tmp_materials_list_view" virtual="TRUE">
-			<field id="login_id" dataType="Int" primaryKey="TRUE"/>
+		<model id="DOCSaleDOCTMaterialList" parent="ModelSQLDOCT20" dataTable="doc_sales_t_tmp_materials_list_view" virtual="TRUE">
+			<field id="view_id" dataType="String" length="32" primaryKey="TRUE"/>			
 			<field id="line_number" dataType="Int" alias="№" primaryKey="TRUE"/>
-			<field id="material_id" dataType="Int"/>
-			<field id="material_descr" dataType="String"/>			
-			<field id="quant" dataType="Float"/>
-			<field id="price" dataType="Float"/>
-			<field id="total" dataType="Float"/>
+			<field id="material_id" dataType="Int" sysCol="TRUE"/>
+			<field id="material_descr" dataType="String" alias="Материал"/>			
+			<field id="quant" dataType="Float" alias="Количество"/>
+			<field id="price" dataType="Float" alias="Цена"/>
+			<field id="total" dataType="Float" alias="Сумма"/>
 			<field id="disc_percent" dataType="Float" alias="Скидка" length="15" precision="2"/>
 			<field id="price_no_disc" dataType="Float" alias="Цена без скидки" length="15" precision="2"/>
 			<field id="total_no_disc" dataType="Float" alias="Сумма буз скидки" length="15" precision="2"/>						
@@ -1117,29 +1189,32 @@
 			<field id="price_no_disc" dataType="Float" alias="Цена без скидки" length="15" precision="2"/>
 			<field id="total_no_disc" dataType="Float" alias="Сумма буз скидки" length="15" precision="2"/>						
 		</model>		
-		<model id="DOCSaleDOCTProduct" parent="ModelSQL" dataTable="doc_sales_t_tmp_products" virtual="FALSE" masterModel="DOCSale" modelType="DOCT">
-			<field id="login_id" dataType="Int" refTable="logins" refField="id" primaryKey="TRUE"/>
+		<model id="DOCSaleDOCTProduct" parent="ModelSQLDOCT20" dataTable="doc_sales_t_tmp_products" virtual="FALSE" masterModel="DOCSale" modelType="DOCT">
+			<field id="view_id" dataType="String" length="32" primaryKey="TRUE"/>
 			<field id="line_number" dataType="Int" primaryKey="TRUE"/>
+			<field id="login_id" dataType="Int" refTable="logins" refField="id"/>
 			<field id="doc_production_id" dataType="Int" alias="Поставка" refTable="doc_productions" refField="id" required="TRUE"/>
 			<field id="quant" dataType="Float" alias="Количество" length="19" precision="3"/>
 			<field id="price" dataType="Float" alias="Цена" length="15" precision="2"/>
 			<field id="total" dataType="Float" alias="Сумма" length="15" precision="2"/>
 			<field id="disc_percent" dataType="Float" alias="Скидка" length="15" precision="2"/>
 			<field id="price_no_disc" dataType="Float" alias="Цена без скидки" length="15" precision="2"/>
-			<field id="total_no_disc" dataType="Float" alias="Сумма буз скидки" length="15" precision="2"/>						
+			<field id="total_no_disc" dataType="Float" alias="Сумма без скидки" length="15" precision="2"/>						
 		</model>				
-		<model id="DOCSaleDOCTProductList" parent="ModelSQL" dataTable="doc_sales_t_tmp_products_list_view" virtual="TRUE">
-			<field id="login_id" dataType="Int" primaryKey="TRUE"/>
+		<model id="DOCSaleDOCTProductList" parent="ModelSQLDOCT20" dataTable="doc_sales_t_tmp_products_list_view" virtual="TRUE">
+			<field id="view_id" dataType="String" length="32" primaryKey="TRUE"/>
 			<field id="line_number" dataType="Int" alias="№" primaryKey="TRUE"/>
 			<field id="product_id" dataType="Int"/>
-			<field id="doc_production_id" dataType="Int"/>
+			<field id="doc_production_id" dataType="Int" alias="Комплектация"/>
+			<field id="doc_production_number" dataType="Int"/>
+			<field id="doc_production_date_time" dataType="DateTime"/>
 			<field id="product_descr" dataType="String"/>			
-			<field id="quant" dataType="Float"/>
-			<field id="price" dataType="Float"/>
-			<field id="total" dataType="Float"/>
+			<field id="quant" dataType="Float" alias="Количество"/>
+			<field id="price" dataType="Float" alias="Цена"/>
+			<field id="total" dataType="Float" alias="Сумма"/>
 			<field id="disc_percent" dataType="Float" alias="Скидка" length="15" precision="2"/>
 			<field id="price_no_disc" dataType="Float" alias="Цена без скидки" length="15" precision="2"/>
-			<field id="total_no_disc" dataType="Float" alias="Сумма буз скидки" length="15" precision="2"/>						
+			<field id="total_no_disc" dataType="Float" alias="Сумма без скидки" length="15" precision="2"/>						
 		</model>
 		<model id="DOCSaleDOCTFProduct" parent="ModelSQL" dataTable="doc_sales_t_products" virtual="FALSE" masterModel="DOCSale" modelType="DOCTF">
 			<field id="doc_id" dataType="Int" refTable="doc_sales" refField="id" primaryKey="TRUE"/>
@@ -1237,22 +1312,14 @@
 			<defaultOrder>
 				<field id="date_time"/>
 			</defaultOrder>
-			<field id="id" dataType="Int" primaryKey="TRUE" autoInc="TRUE" required="FALSE" alias="Код">
-			</field>
-			<field id="date_time" dataType="DateTime" required="TRUE" alias="Период">
-			</field>
-			<field id="store_id" dataType="Int" alias="Магазин" refTable="stores" refField="id">
-			</field>
-			<field id="stock_type" dataType="Enum" enumId="stock_types" alias="Склад" required="TRUE">
-			</field>									
-			<field id="material_id" dataType="Int" alias="Материал" refTable="materials" refField="id">
-			</field>
-			<field id="doc_procurement_id" dataType="Int" alias="Поставка" refTable="doc_material_procurements" refField="id" regFieldType="dimension" required="TRUE">
-			</field>						
-			<field id="quant" dataType="Float" alias="Количество" length="19" precision="3">
-			</field>
-			<field id="cost" dataType="Float" alias="Стоимость" length="15" precision="2">
-			</field>
+			<field id="id" dataType="Int" primaryKey="TRUE" autoInc="TRUE" required="FALSE" alias="Код"/>
+			<field id="date_time" dataType="DateTime" required="TRUE" alias="Период"/>
+			<field id="store_id" dataType="Int" alias="Магазин" refTable="stores" refField="id"/>
+			<field id="material_id" dataType="Int" alias="Материал" refTable="materials" refField="id"/>
+			<field id="doc_procurement_id" dataType="Int" alias="Поставка" refTable="doc_material_procurements" refField="id" regFieldType="dimension" required="TRUE"/>
+			<field id="quant" dataType="Float" alias="Количество" length="19" precision="3"/>
+			<field id="cost" dataType="Float" alias="Стоимость" length="15" precision="2"/>
+			
 			<index id="rg_materials_date_time_index">
 				<field id="date_time"/>
 			</index>			
@@ -1274,27 +1341,16 @@
 			<defaultOrder>
 				<field id="date_time"/>
 			</defaultOrder>
-			<field id="id" dataType="Int" primaryKey="TRUE" autoInc="TRUE" required="FALSE" alias="Код">
-			</field>
-			<field id="date_time" dataType="DateTime" required="TRUE" alias="Период">
-			</field>
-			<field id="deb" dataType="Bool" alias="Дебет">
-			</field>
-			<field id="doc_type" dataType="Enum" enumId="doc_types" alias="Вид документа" required="TRUE">
-			</field>	
+			<field id="id" dataType="Int" primaryKey="TRUE" autoInc="TRUE" required="FALSE" alias="Код"/>
+			<field id="date_time" dataType="DateTime" required="TRUE" alias="Период"/>
+			<field id="deb" dataType="Bool" alias="Дебет"/>
+			<field id="doc_type" dataType="Enum" enumId="doc_types" alias="Вид документа" required="TRUE"/>
 			<field id="doc_id" dataType="Int"/>
-			<field id="store_id" dataType="Int" alias="Магазин" refTable="stores" refField="id" regFieldType="dimension" required="TRUE">
-			</field>
-			<field id="stock_type" dataType="Enum" enumId="stock_types" alias="Склад" regFieldType="dimension" required="TRUE">
-			</field>						
-			<field id="material_id" dataType="Int" alias="Материал" refTable="materials" refField="id" regFieldType="dimension" required="TRUE">
-			</field>
-			<field id="doc_procurement_id" dataType="Int" alias="Поставка" refTable="doc_material_procurements" refField="id" regFieldType="dimension" required="TRUE">
-			</field>			
-			<field id="quant" dataType="Float" alias="Количество" length="19" precision="3" regFieldType="fact">
-			</field>
-			<field id="cost" dataType="Float" alias="Стоимость" length="15" precision="2" regFieldType="fact">
-			</field>
+			<field id="store_id" dataType="Int" alias="Магазин" refTable="stores" refField="id" regFieldType="dimension" required="TRUE"/>
+			<field id="material_id" dataType="Int" alias="Материал" refTable="materials" refField="id" regFieldType="dimension" required="TRUE"/>
+			<field id="quant" dataType="Float" alias="Количество" length="19" precision="3" regFieldType="fact"/>
+			<field id="cost" dataType="Float" alias="Стоимость" length="15" precision="2" regFieldType="fact"/>
+			
 			<index id="ra_materials_date_time_index">
 				<field id="date_time"/>
 			</index>			
@@ -1320,18 +1376,13 @@
 			<defaultOrder>
 				<field id="date_time"/>
 			</defaultOrder>
-			<field id="id" dataType="Int" primaryKey="TRUE" autoInc="TRUE" required="FALSE" alias="Код">
-			</field>
-			<field id="date_time" dataType="DateTime" required="TRUE" alias="Период">
-			</field>
-			<field id="store_id" dataType="Int" alias="Магазин" refTable="stores" refField="id">
-			</field>
-			<field id="product_id" dataType="Int" alias="продукция" refTable="products" refField="id">
-			</field>
-			<field id="doc_production_id" dataType="Int" alias="Комплектация" refTable="doc_productions" refField="id">
-			</field>			
-			<field id="quant" dataType="Float" alias="Количество" length="19" precision="3">
-			</field>
+			<field id="id" dataType="Int" primaryKey="TRUE" autoInc="TRUE" required="FALSE" alias="Код"/>
+			<field id="date_time" dataType="DateTime" required="TRUE" alias="Период"/>
+			<field id="store_id" dataType="Int" alias="Магазин" refTable="stores" refField="id"/>
+			<field id="product_id" dataType="Int" alias="продукция" refTable="products" refField="id"/>
+			<field id="doc_production_id" dataType="Int" alias="Комплектация" refTable="doc_productions" refField="id"/>
+			<field id="quant" dataType="Float" alias="Количество" length="19" precision="3"/>
+			
 			<index id="rg_products_date_time_index">
 				<field id="date_time"/>
 			</index>			
@@ -1353,19 +1404,14 @@
 			<field id="id" dataType="Int" primaryKey="TRUE" autoInc="TRUE" required="FALSE" alias="Код">
 			</field>
 			<field id="date_time" dataType="DateTime" alias="Дата"/>
-			<field id="doc_type" dataType="Enum" enumId="doc_types" alias="Вид документа">
-			</field>	
+			<field id="doc_type" dataType="Enum" enumId="doc_types" alias="Вид документа"/>
 			<field id="doc_id" dataType="Int"/>
-			<field id="deb" dataType="Bool" alias="Дебет">
-			</field>			
-			<field id="store_id" dataType="Int" alias="Магазин" refTable="stores" refField="id" regFieldType="dimension">
-			</field>			
-			<field id="product_id" dataType="Int" alias="Букет" refTable="products" refField="id" regFieldType="dimension">
-			</field>
-			<field id="doc_production_id" dataType="Int" alias="Комплектация" refTable="doc_productions" refField="id" regFieldType="dimension">
-			</field>			
-			<field id="quant" dataType="Float" alias="Количество" length="19" precision="3" regFieldType="fact">
-			</field>
+			<field id="deb" dataType="Bool" alias="Дебет"/>
+			<field id="store_id" dataType="Int" alias="Магазин" refTable="stores" refField="id" regFieldType="dimension"/>
+			<field id="product_id" dataType="Int" alias="Букет" refTable="products" refField="id" regFieldType="dimension"/>
+			<field id="doc_production_id" dataType="Int" alias="Комплектация" refTable="doc_productions" refField="id" regFieldType="dimension"/>
+			<field id="quant" dataType="Float" alias="Количество" length="19" precision="3" regFieldType="fact"/>
+			
 			<index id="ra_products_doc_index">
 				<field id="doc_type"/>
 				<field id="doc_id"/>
@@ -1384,247 +1430,20 @@
 			</index>
 			<globalFilter id="store_id"/>			
 		</model>		
-		<model id="RGProductOrder" parent="ModelSQL" dataTable="rg_product_orders" virtual="FALSE" modelType="RG" period="1 month">
-			<defaultOrder>
-				<field id="date_time"/>
-			</defaultOrder>
-			<field id="id" dataType="Int" primaryKey="TRUE" autoInc="TRUE" required="FALSE" alias="Код">
-			</field>
-			<field id="date_time" dataType="DateTime" required="TRUE" alias="Период">
-			</field>
-			<field id="store_id" dataType="Int" alias="Магазин" refTable="stores" refField="id" regFieldType="dimension">
-			</field>
-			<field id="product_order_type" dataType="Enum" enumId="product_order_types" alias="Вид заявки" regFieldType="dimension">
-			</field>						
-			<field id="product_id" dataType="Int" alias="продукция" refTable="products" refField="id" regFieldType="dimension">
-			</field>
-			<field id="quant" dataType="Float" alias="Количество" length="19" precision="3">
-			</field>
-			<index id="rg_product_orders_date_time_index">
-				<field id="date_time"/>
-			</index>			
-			<index id="rg_product_orders_store_id_index">
-				<field id="store_id"/>
-			</index>									
-			<index id="rg_product_orders_product_order_type_index">
-				<field id="product_order_type"/>
-			</index>									
-			<index id="rg_product_orders_product_id_index">
-				<field id="product_id"/>
-			</index>						
-			<globalFilter id="store_id"/>
-		</model>				
-		<model id="RAProductOrder" parent="ModelSQL" dataTable="ra_product_orders" virtual="FALSE" modelType="RA" regTypeId="product_order">
-			<defaultOrder>
-				<field id="date_time"/>
-			</defaultOrder>
-			<field id="id" dataType="Int" primaryKey="TRUE" autoInc="TRUE" required="FALSE" alias="Код">
-			</field>
-			<field id="date_time" dataType="DateTime" alias="Дата"/>
-			<field id="deb" dataType="Bool" alias="Дебет">
-			</field>			
-			<field id="doc_type" dataType="Enum" enumId="doc_types" alias="Вид документа">
-			</field>	
-			<field id="doc_id" dataType="Int"/>
-			<field id="store_id" dataType="Int" alias="Магазин" refTable="stores" refField="id" regFieldType="dimension">
-			</field>			
-			<field id="product_order_type" dataType="Enum" enumId="product_order_types" alias="Вид заявки" regFieldType="dimension">
-			</field>			
-			<field id="product_id" dataType="Int" alias="Букет" refTable="products" refField="id" regFieldType="dimension">
-			</field>
-			<field id="quant" dataType="Float" alias="Количество" length="19" precision="3" regFieldType="fact">
-			</field>
-			<index id="ra_product_orders_doc_index">
-				<field id="doc_type"/>
-				<field id="doc_id"/>
-			</index>			
-			<index id="ra_product_orders_date_time_index">
-				<field id="date_time"/>
-			</index>
-			<index id="ra_product_orders_store_id_index">
-				<field id="store_id"/>
-			</index>			
-			<index id="ra_product_orders_product_order_type_index">
-				<field id="product_order_type"/>
-			</index>						
-			<index id="ra_product_orders_product_id_index">
-				<field id="product_id"/>
-			</index>									
-			<globalFilter id="store_id"/>			
-		</model>						
-		<model id="RGMaterialCost" parent="ModelSQL" dataTable="rg_material_costs" virtual="FALSE" modelType="RG" period="1 month" balance="FALSE">
-			<defaultOrder>
-				<field id="date_time"/>
-			</defaultOrder>
-			<field id="id" dataType="Int" primaryKey="TRUE" autoInc="TRUE" required="FALSE" alias="Код">
-			</field>
-			<field id="date_time" dataType="DateTime" required="TRUE" alias="Период">
-			</field>
-			<field id="store_id" dataType="Int" refTable="stores" refField="id" regFieldType="dimension">
-			</field>			
-			<field id="material_id" dataType="Int" refTable="materials" refField="id" regFieldType="dimension">
-			</field>
-			<field id="quant" dataType="Float" alias="Количество" length="19" precision="3">
-			</field>
-			<field id="cost" dataType="Float" alias="Стоимость" length="15" precision="2">
-			</field>
-			<index id="rg_material_costs_date_time_index">
-				<field id="date_time"/>
-			</index>			
-			<index id="rg_material_costs_store_id_index">
-				<field id="store_id"/>
-			</index>									
-			<index id="rg_material_costs_material_id_index">
-				<field id="material_id"/>
-			</index>									
-			<globalFilter id="store_id"/>
-		</model>				
-		<model id="RGMaterialSale" parent="ModelSQL" dataTable="rg_material_sales" virtual="FALSE" modelType="RG" period="1 month" balance="FALSE">
-			<defaultOrder>
-				<field id="date_time"/>
-			</defaultOrder>
-			<field id="id" dataType="Int" primaryKey="TRUE" autoInc="TRUE" required="FALSE" alias="Код">
-			</field>
-			<field id="date_time" dataType="DateTime" required="TRUE" alias="Период">
-			</field>
-			<field id="store_id" dataType="Int" refTable="stores" refField="id" regFieldType="dimension">
-			</field>			
-			<field id="material_id" dataType="Int" refTable="materials" refField="id" regFieldType="dimension">
-			</field>
-			<field id="payment_type" dataType="Enum" enumId="payment_types" alias="Вид оплаты">
-			</field>						
-			<field id="quant" dataType="Float" alias="Количество" length="19" precision="3">
-			</field>
-			<field id="total" dataType="Float" alias="Сумма" length="15" precision="2">
-			</field>			
-			<field id="cost" dataType="Float" alias="Стоимость" length="15" precision="2">
-			</field>
-			<index id="rg_material_sales_date_time_index">
-				<field id="date_time"/>
-			</index>			
-			<index id="rg_material_sales_store_id_index">
-				<field id="store_id"/>
-			</index>									
-			<index id="rg_material_sales_material_id_index">
-				<field id="material_id"/>
-			</index>									
-			<globalFilter id="store_id"/>
-		</model>				
-		<model id="RAMaterialSale" parent="ModelSQL" dataTable="ra_material_sales" virtual="FALSE" modelType="RA" regTypeId="material_sale" balance="FALSE">
-			<defaultOrder>
-				<field id="date_time"/>
-			</defaultOrder>
-			<field id="id" dataType="Int" primaryKey="TRUE" autoInc="TRUE" required="FALSE" alias="Код">
-			</field>
-			<field id="date_time" dataType="DateTime" alias="Дата"/>
-			<field id="doc_type" dataType="Enum" enumId="doc_types" alias="Вид документа">
-			</field>	
-			<field id="doc_id" dataType="Int"/>
-			<field id="store_id" dataType="Int" alias="Магазин" refTable="stores" refField="id" regFieldType="dimension">
-			</field>			
-			<field id="material_id" dataType="Int" alias="Материал" refTable="materials" refField="id" regFieldType="dimension">
-			</field>
-			<field id="quant" dataType="Float" alias="Количество" length="19" precision="3" regFieldType="fact">
-			</field>
-			<field id="total" dataType="Float" alias="Сумма" length="15" precision="2">
-			</field>						
-			<field id="cost" dataType="Float" alias="Стоимость" length="15" precision="2" regFieldType="fact">
-			</field>			
-			<index id="ra_material_sales_doc_index">
-				<field id="doc_type"/>
-				<field id="doc_id"/>
-			</index>			
-			<index id="ra_material_sales_date_time_index">
-				<field id="date_time"/>
-			</index>
-			<index id="ra_material_sales_store_id_index">
-				<field id="store_id"/>
-			</index>			
-			<index id="ra_material_sales_material_id_index">
-				<field id="material_id"/>
-			</index>									
-			<globalFilter id="store_id"/>			
+		<model id="VariantStorage" parent="ModelSQL" dataTable="variant_storages" virtual="FALSE">
+			<field id="user_id" dataType="Int" refTable="users" refField="id" primaryKey="TRUE" required="TRUE"/>
+			<field id="storage_name" dataType="Text" primaryKey="TRUE" required="TRUE"/>
+			<field id="variant_name" dataType="Text" primaryKey="TRUE" required="TRUE"/>
+			<field id="default_variant" dataType="Bool"/>
+			<field id="filter_data" dataType="Text"/>
+			<field id="col_visib_data" dataType="Text"/>
+			<field id="col_order_data" dataType="Text"/>
 		</model>
-		<model id="RGProductSale" parent="ModelSQL" dataTable="rg_product_sales" virtual="FALSE" modelType="RG" period="1 month" balance="FALSE">
-			<defaultOrder>
-				<field id="date_time"/>
-			</defaultOrder>
-			<field id="id" dataType="Int" primaryKey="TRUE" autoInc="TRUE" required="FALSE" alias="Код">
-			</field>
-			<field id="date_time" dataType="DateTime" required="TRUE" alias="Период">
-			</field>
-			<field id="store_id" dataType="Int" refTable="stores" refField="id" regFieldType="dimension">
-			</field>			
-			<field id="product_id" dataType="Int" refTable="products" refField="id" regFieldType="dimension">
-			</field>
-			<field id="payment_type" dataType="Enum" enumId="payment_types" alias="Вид оплаты">
-			</field>						
-			<field id="quant" dataType="Float" alias="Количество" length="19" precision="3">
-			</field>
-			<field id="total" dataType="Float" alias="Сумма" length="15" precision="2">
-			</field>			
-			<field id="cost" dataType="Float" alias="Стоимость" length="15" precision="2">
-			</field>
-			<index id="rg_product_sales_date_time_index">
-				<field id="date_time"/>
-			</index>			
-			<index id="rg_product_sales_store_id_index">
-				<field id="store_id"/>
-			</index>									
-			<index id="rg_product_sales_material_id_index">
-				<field id="product_id"/>
-			</index>									
-			<globalFilter id="store_id"/>
-		</model>				
-		<model id="RAProductSale" parent="ModelSQL" dataTable="ra_product_sales" virtual="FALSE" modelType="RA" regTypeId="product_sale" balance="FALSE">
-			<defaultOrder>
-				<field id="date_time"/>
-			</defaultOrder>
-			<field id="id" dataType="Int" primaryKey="TRUE" autoInc="TRUE" required="FALSE" alias="Код">
-			</field>
-			<field id="date_time" dataType="DateTime" alias="Дата"/>
-			<field id="doc_type" dataType="Enum" enumId="doc_types" alias="Вид документа">
-			</field>	
-			<field id="doc_id" dataType="Int"/>
-			<field id="store_id" dataType="Int" alias="Магазин" refTable="stores" refField="id" regFieldType="dimension">
-			</field>			
-			<field id="product_id" dataType="Int" alias="Букеты" refTable="products" refField="id" regFieldType="dimension">
-			</field>
-			<field id="quant" dataType="Float" alias="Количество" length="19" precision="3" regFieldType="fact">
-			</field>
-			<field id="total" dataType="Float" alias="Сумма" length="15" precision="2">
-			</field>						
-			<field id="cost" dataType="Float" alias="Стоимость" length="15" precision="2" regFieldType="fact">
-			</field>			
-			<index id="ra_product_sales_doc_index">
-				<field id="doc_type"/>
-				<field id="doc_id"/>
-			</index>			
-			<index id="ra_product_sales_date_time_index">
-				<field id="date_time"/>
-			</index>
-			<index id="ra_product_sales_store_id_index">
-				<field id="store_id"/>
-			</index>			
-			<index id="ra_product_sales_material_id_index">
-				<field id="product_id"/>
-			</index>									
-			<globalFilter id="store_id"/>			
-		</model>										
-		<model id="ReportVariant" parent="ModelSQL" dataTable="report_variants" virtual="FALSE">
-			<field id="id" dataType="Int" primaryKey="TRUE" required="TRUE" autoInc="TRUE"/>
-			<field id="user_id" dataType="Int" refTable="users" refField="id"/>
-			<field id="report_type" dataType="Enum" enumId="report_types" required="TRUE"/>
-			<field id="name" dataType="Text"/>
-			<field id="data" dataType="Text"/>
-			<index id="report_variants_user_report_type" unique="FALSE">
-				<field id="user_id"/>
-				<field id="report_type"/>
-			</index>													
-		</model>
-		<model id="ReportVariantList" parent="ModelSQL" dataTable="report_variants_list" virtual="TRUE">
-			<field id="id" dataType="Int" primaryKey="TRUE" required="TRUE"/>
-			<field id="name" dataType="Text"/>
+		<model id="VariantStorageList" parent="ModelSQL" dataTable="variant_storages_list" virtual="TRUE">
+			<field id="user_id" dataType="Int" refTable="users" refField="id" primaryKey="TRUE" required="TRUE"/>
+			<field id="storage_name" dataType="Text" primaryKey="TRUE" required="TRUE"/>
+			<field id="default_variant" dataType="Bool"/>
+			<field id="variant_name" dataType="Text"/>
 		</model>
 		<model id="RepMaterialAction" virtual="TRUE" dataTable="rep_material_actions" parent="ModelReportSQL">
 			<field id="store_id" dataType="Int" alias="Салон"/>
@@ -1651,7 +1470,7 @@
 				<field id="name" unique="TRUE"/>
 			</index>			
 		</model>
-		<model id="DOCExpence" parent="ModelSQLDOC20" dataTable="doc_expences" virtual="FALSE" modelType="DOC" docTypeId="expences">
+		<model id="DOCExpence" parent="ModelSQL" dataTable="doc_expences" virtual="FALSE" modelType="DOC" docTypeId="expences" lastRowSelectOnInit="TRUE">
 			<defaultOrder>
 				<field id="date_time"/>
 			</defaultOrder>
@@ -1672,7 +1491,10 @@
 			<registerAtcs>
 			</registerAtcs>
 		</model>
-		<model id="DOCExpenceList" parent="ModelSQLDOC20" dataTable="doc_expences_list" virtual="TRUE" modelType="DOC">
+		<model id="DOCExpenceList" parent="ModelSQL" dataTable="doc_expences_list" virtual="TRUE" modelType="DOC" limitConstant="doc_per_page_count" lastRowSelectOnInit="TRUE">
+			<aggFunctions>
+				<aggFunction alias="total_total" expr="sum(total)"/>
+			</aggFunctions>		
 			<field id="id" dataType="Int" primaryKey="TRUE" sysCol="TRUE"/>
 			<field id="number" dataType="String" alias="Номер"/>
 			<field id="date_time" dataType="DateTime" sysCol="TRUE" alias="Дата"/>
@@ -1684,34 +1506,24 @@
 			<field id="total" dataType="Float" length="15" precision="2" alias="Сумма"/>
 			<globalFilter id="store_id"/>
 		</model>
-		<model id="DOCExpenceExpenceTypeList" parent="ModelSQL" dataTable="doc_expences_expence_types_list" virtual="TRUE">
-			<field id="id" dataType="Int" primaryKey="TRUE" sysCol="TRUE"/>
-			<field id="date_time" dataType="DateTime" sysCol="TRUE"/>
-			<field id="date_time_descr" dataType="String" alias="Дата"/>
-			<field id="number" dataType="String" alias="Номер"/>
-			<field id="store_id" dataType="Int" sysCol="TRUE"/>
-			<field id="store_descr" dataType="String" alias="Салон"/>			
-			<field id="user_id" dataType="Int" sysCol="TRUE"/>
-			<field id="user_descr" dataType="String" alias="Автор"/>
-			<field id="expence_type_id" dataType="Int" sysCol="TRUE"/>
-			<field id="expence_type_descr" dataType="String" alias="Вид затрат"/>			
-			<globalFilter id="store_id"/>
-		</model>						
-		<model id="DOCExpenceDOCTExpenceType" parent="ModelSQL" dataTable="doc_expences_t_tmp_expence_types" virtual="FALSE" modelType="DOCT" masterModel="DOCExpence">
-			<field id="login_id" dataType="Int" refTable="logins" refField="id" primaryKey="TRUE"/>
+		<model id="DOCExpenceDOCTExpenceType" parent="ModelSQLDOCT20" dataTable="doc_expences_t_tmp_expence_types" virtual="FALSE" modelType="DOCT" masterModel="DOCExpence">			
+			<field id="view_id" dataType="String" length="32" primaryKey="TRUE"/>
 			<field id="line_number" dataType="Int" primaryKey="TRUE"/>
+			<field id="login_id" dataType="Int" refTable="logins" refField="id"/>
 			<field id="expence_type_id" dataType="Int" alias="Вид затрат" refTable="expence_types" refField="id" required="TRUE"/>			
 			<field id="total" dataType="Float" length="15" precision="2" alias="Сумма"/>
 			<field id="expence_comment" dataType="Text" alias="Комментарий"/>
 			<field id="expence_date" dataType="Date" alias="Дата расхода"/>
 		</model>				
-		<model id="DOCExpenceDOCTExpenceTypeList" parent="ModelSQL" dataTable="doc_expences_t_tmp_expence_types_list" virtual="TRUE">
+		<model id="DOCExpenceDOCTExpenceTypeList" parent="ModelSQLDOCT20" dataTable="doc_expences_t_tmp_expence_types_list" virtual="TRUE">
+			<field id="view_id" dataType="String" length="32" primaryKey="TRUE"/>
 			<field id="line_number" dataType="Int" alias="№" primaryKey="TRUE"/>
-			<field id="login_id" dataType="Int" primaryKey="TRUE"/>
+			<field id="login_id" dataType="Int"/>
+			<field id="expence_type_id" dataType="Int" sysCol="TRUE"/>
 			<field id="expence_type_descr" dataType="String" alias="Вид затрат"/>
 			<field id="expence_comment" dataType="Text" alias="Комментарий"/>
-			<field id="expence_date" dataType="Date" sysCol="TRUE"/>
-			<field id="expence_date_descr" dataType="String" alias="Дата расхода"/>
+			<field id="total" dataType="Float" length="15" precision="2" alias="Сумма"/>
+			<field id="expence_date" dataType="Date" alias="Дата расхода"/>
 		</model>
 		<model id="DOCExpenceDOCTFExpenceType" parent="ModelSQL" dataTable="doc_expences_t_expence_types" virtual="FALSE" modelType="DOCTF" masterModel="DOCExpence">
 			<field id="doc_id" dataType="Int" refTable="doc_expences" refField="id" primaryKey="TRUE"/>
@@ -1729,6 +1541,20 @@
 			<field id="expence_type_descr" dataType="String" alias="Вид затрат"/>
 			<field id="expence_comment" dataType="Text" alias="Комментарий"/>		
 		</model>
+		<model id="DOCExpenceExpenceTypeList" parent="ModelSQL" dataTable="doc_expences_expence_types_list" virtual="TRUE">
+			<field id="id" dataType="Int" primaryKey="TRUE" sysCol="TRUE"/>
+			<field id="date_time" dataType="DateTime" sysCol="TRUE"/>
+			<field id="date_time_descr" dataType="String" alias="Дата"/>
+			<field id="number" dataType="String" alias="Номер"/>
+			<field id="store_id" dataType="Int" sysCol="TRUE"/>
+			<field id="store_descr" dataType="String" alias="Салон"/>			
+			<field id="user_id" dataType="Int" sysCol="TRUE"/>
+			<field id="user_descr" dataType="String" alias="Автор"/>
+			<field id="expence_type_id" dataType="Int" sysCol="TRUE"/>
+			<field id="expence_type_descr" dataType="String" alias="Вид затрат"/>			
+			<globalFilter id="store_id"/>
+		</model>						
+		
 		<model id="RepBalance" virtual="TRUE" dataTable="rep_balance" parent="ModelReportSQL">
 			<field id="store_id" dataType="Int" alias="Салон"/>
 			<field id="store_descr" dataType="String" alias="Салон"/>
@@ -1763,7 +1589,7 @@
 			<field id="id" dataType="Int" primaryKey="TRUE" alias="Код"/>
 			<field id="message_type" dataType="Enum" enumId="message_types" required="TRUE"/>
 			<field id="user_id" dataType="Int" refTable="users" refField="id" required="TRUE" alias="Автор сообщения"/>
-			<field id="require_view" dataType="Boolean" alias="Требует отметки просмотра"/>
+			<field id="require_view" dataType="Bool" alias="Требует отметки просмотра"/>
 			<field id="subject" dataType="Text" alias="Тема" required="TRUE"/>
 			<field id="content" dataType="Text" alias="Содержание"/>
 			<field id="importance_level" dataType="Int" alias="Уровень важности"/>
@@ -1781,7 +1607,7 @@
 			<field id="message_type" dataType="Enum" enumId="message_types" required="TRUE"/>
 			<field id="user_id" dataType="Int" refTable="users" refField="id" required="TRUE" alias="Автор сообщения"/>
 			<field id="user_descr" dataType="String" alias="Автор сообщения"/>
-			<field id="require_view" dataType="Boolean" alias="Требует отметки просмотра"/>
+			<field id="require_view" dataType="Bool" alias="Требует отметки просмотра"/>
 			<field id="subject" dataType="Text" alias="Тема" required="TRUE"/>
 			<field id="importance_level" dataType="Int" alias="Уровень важности"/>
 			<field id="date_time" dataType="DateTime" alias="Время создания"/>
@@ -1809,29 +1635,127 @@
 		</model>		
 
 		<model id="TemplateParam" parent="ModelSQL" dataTable="template_params" virtual="FALSE">
-			<field id="id" dataType="Int" primaryKey="TRUE" autoInc="TRUE"/>
-			<field id="template" dataType="String" length="100"/>
-			<field id="user_id" dataType="Int" refTable="users" refField="id" alias="Пользователь"/>
-			<field id="param" dataType="String" length="100"/>
-			<field id="val" dataType="Text"/>
-			
-			<index id="template_params_template_user_idx">
+			<defaultOrder>
 				<field id="template"/>
-				<field id="user_id"/>
+				<field id="param"/>
+			</defaultOrder>				
+		
+			<field id="id" dataType="Int" primaryKey="TRUE" autoInc="TRUE"/>
+			<field id="template" dataType="Text"/>
+			<field id="param" dataType="Text"/>
+			<field id="param_type" dataType="Text"/>
+			
+			<index id="template_params_template_idx">
+				<field id="template"/>
 			</index>															
 		</model>		
 
+		<model id="TemplateParamVal" parent="ModelSQL" dataTable="template_param_vals" virtual="FALSE">
+			<field id="id" dataType="Int" primaryKey="TRUE" autoInc="TRUE"/>
+			<field id="template_param_id" dataType="Int" refTable="template_params" refField="id"/>
+			<field id="user_id" dataType="Int" refTable="users" refField="id" alias="Пользователь"/>
+			<field id="val" dataType="Text"/>
+			
+			<index id="template_param_vals_template_param_id_idx">
+				<field id="template_param_id"/>
+			</index>															
+		</model>		
+
+		<model id="TemplateParamValList" parent="ModelSQL" virtual="TRUE">
+			<field id="param" dataType="String"/>
+			<field id="val" dataType="Text"/>
+		</model>		
+
+		<model id="DOCReprocessStat" parent="ModelSQL" dataTable="doc_reprocess_stat" virtual="FALSE">
+			<field id="doc_sequence" dataType="Enum" enumId="doc_sequences" alias="Последовательности" primaryKey="TRUE"/>			
+			<field id="start_time" dataType="DateTime" defaulValue="now()"/>
+			<field id="update_time" dataType="DateTime"/>
+			<field id="end_time" dataType="DateTime"/>
+			<field id="count_total" dataType="Int"/>
+			<field id="count_done" dataType="Int"/>			
+			<field id="time_to_go" dataType="Interval"/>
+			<field id="doc_id" dataType="Int"/>
+			<field id="doc_type" dataType="Enum" enumId="doc_types"/>
+			<field id="error_message" dataType="Text"/>
+			<field id="res" dataType="Bool"/>
+		</model>		
+
+		<model id="DOCReprocessStatList" parent="ModelSQL" dataTable="doc_reprocess_stat_list" virtual="TRUE">
+			<field id="doc_sequence" dataType="Enum" enumId="doc_sequences" alias="Последовательности" primaryKey="TRUE"/>			
+			<field id="seq_contents" dataType="String" alias="Состав идентификаторы"/>
+			<field id="seq_contents_descrs" dataType="String" alias="Состав представления"/>
+			<field id="stat_start_time" dataType="DateTime" alias="Время начала"/>
+			<field id="stat_update_time" dataType="DateTime" alias="Время обновления"/>
+			<field id="stat_end_time" dataType="DateTime" alias="Время окончания"/>
+			<field id="done_percent" dataType="Int"/>			
+			<field id="stat_time_to_go" dataType="Interval"/>
+			<field id="stat_doc_id" dataType="Int"/>
+			<field id="stat_doc_type" dataType="Enum" enumId="doc_types"/>
+			<field id="stat_error_message" dataType="Text"/>
+			<field id="stat_res" dataType="Bool"/>
+			<field id="stat_user_id" dataType="Int"/>
+			<field id="stat_user_descr" dataType="String"/>
+			<field id="viol_date_time" dataType="DateTime"/>
+			<field id="viol_reprocessing" dataType="Bool"/>
+			<field id="violated" dataType="Bool"/>
+			
+		</model>		
+
+		<model id="ReceiptHead" parent="ModelSQL" dataTable="receipt_head" virtual="FALSE">
+			<field id="client_id" dataType="Int" refTable="clients" refField="id"/>
+			<field id="discount_id" dataType="Int" refTable="discounts" refField="id"/>
+			<field id="doc_client_order_id" dataType="Int" refTable="doc_client_orders" refField="id"/>
+			<field id="user_id" dataType="Int" refTable="users" refField="id"/>
+			<index id="receipt_head_user_id_idx">
+				<field id="user_id"/>
+			</index>															
+			
+		</model>		
+		<model id="ReceiptHeadList" parent="ModelSQL" dataTable="receipt_head_list" virtual="TRUE">
+			<field id="client_id" dataType="Int" refTable="clients" refField="id"/>
+			<field id="client_descr" dataType="String"/>
+			<field id="discount_id" dataType="Int" refTable="discounts" refField="id"/>
+			<field id="discount_descr" dataType="String"/>
+			<field id="doc_client_order_id" dataType="Int" refTable="doc_client_orders" refField="id"/>
+			<field id="doc_client_order_descr" dataType="String"/>
+			<field id="user_id" dataType="Int" refTable="users" refField="id" primaryKey="TRUE"/>
+		</model>		
+		<model id="DOCSalePaymentType" parent="ModelSQL" dataTable="doc_sales_payment_types" virtual="FALSE">
+			<field id="doc_id" dataType="Int" refTable="doc_sales" refField="id" primaryKey="TRUE"/>
+			<field id="payment_type_for_sale_id" dataType="Int" refTable="payment_types_for_sale" refField="id" primaryKey="TRUE"/>
+			<field id="total" dataType="Float" length="2" precision="2"/>
+		</model>				
+		<model id="ReceiptPaymentType" parent="ModelSQL" dataTable="receipt_payment_types" virtual="FALSE">
+			<field id="user_id" dataType="Int" refTable="users" refField="id" primaryKey="TRUE"/>
+			<field id="dt" dataType="String" primaryKey="TRUE" defaulValue="now()"/>
+			<field id="payment_type_for_sale_id" dataType="Int" refTable="payment_types_for_sale" refField="id"/>
+			<field id="total" dataType="Float" length="15" precision="2"/>			
+		</model>		
+		<model id="ReceiptPaymentTypeList" parent="ModelSQL" dataTable="receipt_payment_types_list" virtual="TRUE">
+			<field id="dt" dataType="String" primaryKey="TRUE"/>
+			<field id="kkm_type_close" dataType="Int"/>
+			<field id="payment_type_for_sale_id" dataType="Int" refTable="payment_types_for_sale" refField="id"/>
+			<field id="payment_type_for_sale_descr" dataType="String"/>
+			<field id="total" dataType="Float" length="2" precision="2"/>
+			<field id="user_id" dataType="Int" refTable="users" refField="id"/>
+		</model>		
+		
 	</models>
 	<constants>
 		<constant id="sale_item_cols" name="Количество колонок с товарами при продаже" descr="Определеет количество вертикальных столбцов с товарами на одной странице для продавца." dataType="Int" defaultValue="3" autoload="TRUE"/>
-		<constant id="def_store" name="Магазин" descr="Тестовая константа" dataType="Int" refTable="stores" refField="id" autoload="TRUE"/>
+		<constant id="def_store" name="Основной магазин" descr="Основной магазин для подстановки по умолчанию в документы" dataType="Int" refTable="stores" refField="id" autoload="TRUE" ctrl_class="StoreSelect"/>
 		<constant id="doc_per_page_count" name="Количество документов на странице" descr="Количество документов на странице в журнале документов" dataType="Int" defaultValue="60" autoload="TRUE"/>
+		<constant id="grid_refresh_interval" name="Период обновления таблиц" descr="Период обновления таблиц в секундах" dataType="Int" defaultValue="15" autoload="TRUE"/>
 		<constant id="shift_length_time" name="Продолжительность рабочей смены" descr="Продолжительность рабочей смены" dataType="Time" defaultValue="12:00" autoload="TRUE"/>
 		<constant id="shift_start_time" name="Время начала рабочей смены" descr="Время начала рабочей смены" dataType="Time" defaultValue="08:00" autoload="TRUE"/>
-		<constant id="cel_phone_for_sms" name="Номер телефона для СМС" descr="Служебный номер телефона для отправки СМС" dataType="String" length="15" defaultValue=""/>
+		<constant id="cel_phone_for_sms" name="Номер телефона для СМС" descr="Служебный номер телефона для отправки СМС" dataType="String" length="15" defaultValue="" ctrl_class="EditPhone" view_class="GridColumnPhone"/>
 		<constant id="negat_material_balance_restrict" name="Контроль остатков материалов на складе" descr="Контроль отрицательных остатков материалов" dataType="Bool" defaultValue="'TRUE'"/>
 		<constant id="negat_product_balance_restrict" name="Контроль остатков продукции на складе" descr="Контроль отрицательных остатков продукции" dataType="Bool" defaultValue="'TRUE'"/>
-		<constant id="def_material_group" name="Группа материалов по умолчанию" descr="Группа материалов для открытия по умолчанию в журналах" dataType="Int" autoload="TRUE"/>
+		<constant id="def_material_group" name="Группа материалов по умолчанию" descr="Группа материалов для открытия по умолчанию в журналах" dataType="Int" autoload="TRUE" ctrl_class="MaterialGroupSelect"/>
+		<constant id="def_payment_type_for_sale" name="Тип оплаты по умолчанию" descr="Тип оплаты по умолчанию" dataType="Int" refTable="payment_types_for_sale" refField="id" autoload="TRUE"/>
+		<constant id="def_client" name="Покупатель по умолчанию" descr="Розничный покупатель для всех продаж" dataType="Int" refTable="clients" refField="id" autoload="TRUE" ctrl_class="ClientEditRef"/>
+		<constant id="def_discount" name="Вид скидки по умолчанию" descr="Вид скидки для подстановки в чек по умолчанию" dataType="Int" refTable="discounts" refField="id" autoload="TRUE" ctrl_class="DiscountSelect"/>
+		<constant id="session_live_time" name="Время жизни сессии" descr="Время, в течении которого сессия не будет удаляться на сервере" dataType="Interval" defaultValue="48:00"/>
 	</constants>
 	
 	<controllers>	
@@ -1912,9 +1836,9 @@
 				<field id="ord_directs" dataType="String"/>			
 			</publicMethod>
 			<publicMethod id="get_list_for_sale" modelId="Material">
-				<field id="cond_fields" dataType="String" required="TRUE"/>
-				<field id="cond_vals" dataType="String" required="TRUE"/>
-				<field id="cond_sgns" dataType="String" required="TRUE"/>
+				<field id="cond_fields" dataType="String"/>
+				<field id="cond_vals" dataType="String"/>
+				<field id="cond_sgns" dataType="String"/>
 				<field id="cond_ic" dataType="String"/>			
 				<field id="from" dataType="Int"/>
 				<field id="count" dataType="Int"/>
@@ -1971,6 +1895,7 @@
 				<field id="templ" dataType="String"/>
 				<field id="ord_fields" dataType="String"/>			
 				<field id="ord_directs" dataType="String"/>							
+				<field id="field_sep" dataType="String"/>
 			</publicMethod>			
 			<publicMethod id="procur_avg_price_report">
 				<field id="cond_fields" dataType="String"/>
@@ -1979,7 +1904,8 @@
 				<field id="cond_ic" dataType="String"/>
 				<field id="templ" dataType="String"/>
 				<field id="ord_fields" dataType="String"/>			
-				<field id="ord_directs" dataType="String"/>							
+				<field id="ord_directs" dataType="String"/>
+				<field id="field_sep" dataType="String"/>
 			</publicMethod>						
 			<publicMethod id="actions_report">
 				<field id="cond_fields" dataType="String"/>
@@ -1989,9 +1915,11 @@
 				<field id="templ" dataType="String"/>
 				<field id="ord_fields" dataType="String"/>			
 				<field id="ord_directs" dataType="String"/>							
+				<field id="field_sep" dataType="String"/>
 			</publicMethod>									
 			<publicMethod id="print_barcode">
 				<field id="material_id" dataType="Int"/>
+				<field id="templ" dataType="String"/>
 			</publicMethod>			
 		</controller>		
 		<controller id="MaterialGroup" parentId="ControllerSQL" state="TRUE" noState="FALSE">
@@ -2028,17 +1956,24 @@
 			<publicMethod id="get_list" modelId="SpecificationList"/>
 			<publicMethod id="get_object" modelId="SpecificationList"/>
 		</controller>		
-		<controller id="DOCProduction" parentId="ControllerSQLDOC20" state="TRUE" globalFilter_store="TRUE">
-			<publicMethod id="insert" modelId="DOCProduction"/>
-			<publicMethod id="update" modelId="DOCProduction"/>
+		<controller id="DOCProduction" parentId="ControllerSQLDOC20" state="TRUE" globalFilter_store="TRUE" processable="TRUE">
+			<publicMethod id="insert" modelId="DOCProduction">
+				<field id="view_id" dataType="String" length="32" required="TRUE"/>	
+			</publicMethod>
+			<publicMethod id="update" modelId="DOCProduction">
+				<field id="view_id" dataType="String" length="32" required="TRUE"/>
+			</publicMethod>
 			<publicMethod id="delete" modelId="DOCProduction"/>
 			<publicMethod id="get_list" modelId="DOCProductionList"/>
 			<publicMethod id="get_object" modelId="DOCProductionList"/>
 			
-			<publicMethod id="get_doc" modelId="DOCProductionList">
-				<field id="id" dataType="Int" required="TRUE"/>
+			<publicMethod id="before_open">
+				<field id="doc_id" dataType="Int"/>
+				<field id="view_id" dataType="String" length="32" required="TRUE"/>
 			</publicMethod>
-			
+			<publicMethod id="set_unprocessed">
+				<field id="doc_id" dataType="Int" required="TRUE"/>
+			</publicMethod>
 			
 			<publicMethod id="fill_on_spec">
 				<field id="product_id" dataType="Int" required="TRUE"/>
@@ -2058,10 +1993,17 @@
 			</publicMethod>
 			<publicMethod id="get_print">
 				<field id="doc_id" dataType="Int"/>
+				<field id="templ" dataType="String"/>
 			</publicMethod>									
 			<publicMethod id="print_barcode">
 				<field id="doc_id" dataType="Int"/>
+				<field id="templ" dataType="String"/>
 			</publicMethod>												
+			<publicMethod id="calc_mat_costs">
+				<field id="view_id" dataType="String" length="32" required="TRUE"/>	
+				<field id="doc_id" dataType="Int"/>
+			</publicMethod>												
+			
 			<publicMethod id="get_details" modelId="DOCProductionMaterialList" globalFilter_store="TRUE">
 				<field id="cond_fields" dataType="String" required="TRUE"/>
 				<field id="cond_vals" dataType="String" required="TRUE"/>
@@ -2083,53 +2025,47 @@
 				<field id="store_id" dataType="Int"/>
 			</publicMethod>
 		</controller>				
-		<controller id="DOCProductDisposal" parentId="ControllerSQLDOC" state="TRUE" globalFilter_store="TRUE">
+		<controller id="DOCProductDisposal" parentId="ControllerSQLDOC20" state="TRUE" globalFilter_store="TRUE" processable="TRUE">
 			<publicMethod id="insert" modelId="DOCProductDisposal"/>
 			<publicMethod id="update" modelId="DOCProductDisposal"/>
 			<publicMethod id="delete" modelId="DOCProductDisposal"/>
 			<publicMethod id="get_list" modelId="DOCProductDisposalList"/>
 			<publicMethod id="get_object" modelId="DOCProductDisposalList"/>
-			<publicMethod id="before_open">
-				<field id="doc_id" dataType="Int"/>
-			</publicMethod>
 			<publicMethod id="get_actions">
 				<field id="doc_id" dataType="Int"/>
 			</publicMethod>
+			<publicMethod id="set_unprocessed">
+				<field id="doc_id" dataType="Int" required="TRUE"/>
+			</publicMethod>
+			
 			<publicMethod id="get_print">
 				<field id="doc_id" dataType="Int"/>
+				<field id="templ" dataType="String"/>
 			</publicMethod>
-			<publicMethod id="get_details" modelId="DOCProductDisposalMaterialList" globalFilter_store="TRUE">
-				<field id="cond_fields" dataType="String" required="TRUE"/>
-				<field id="cond_vals" dataType="String" required="TRUE"/>
-				<field id="cond_sgns" dataType="String" required="TRUE"/>
-				<field id="cond_ic" dataType="String"/>			
-				<field id="from" dataType="Int"/>
-				<field id="count" dataType="Int"/>			
-				<field id="ord_fields" dataType="String"/>			
-				<field id="ord_directs" dataType="String"/>							
-			</publicMethod>									
 		</controller>		
-		<controller id="DOCProductDisposalDOCTMaterial" parentId="ControllerSQL" state="TRUE" globalFilter_store="TRUE">
-			<publicMethod id="insert" modelId="DOCProductDisposalDOCTMaterial"/>
-			<publicMethod id="update" modelId="DOCProductDisposalDOCTMaterial"/>
-			<publicMethod id="delete" modelId="DOCProductDisposalDOCTMaterial"/>
-			<publicMethod id="get_list" modelId="DOCProductDisposalDOCTMaterialList"/>
-			<publicMethod id="get_object" modelId="DOCProductDisposalDOCTMaterialList"/>
-		</controller>				
-		<controller id="DOCMaterialProcurement" parentId="ControllerSQLDOC" state="TRUE" globalFilter_store="TRUE">
-			<publicMethod id="insert" modelId="DOCMaterialProcurement"/>
-			<publicMethod id="update" modelId="DOCMaterialProcurement"/>
+		<controller id="DOCMaterialProcurement" parentId="ControllerSQLDOC20" state="TRUE" globalFilter_store="TRUE" processable="TRUE">
+			<publicMethod id="insert" modelId="DOCMaterialProcurement">
+				<field id="view_id" dataType="String" length="32" required="TRUE"/>	
+			</publicMethod>
+			<publicMethod id="update" modelId="DOCMaterialProcurement">
+				<field id="view_id" dataType="String" length="32" required="TRUE"/>
+			</publicMethod>
 			<publicMethod id="delete" modelId="DOCMaterialProcurement"/>
 			<publicMethod id="get_list" modelId="DOCMaterialProcurementList"/>
 			<publicMethod id="get_object" modelId="DOCMaterialProcurementList"/>
 			<publicMethod id="before_open">
 				<field id="doc_id" dataType="Int"/>
+				<field id="view_id" dataType="String" length="32" required="TRUE"/>
 			</publicMethod>
+			<publicMethod id="set_unprocessed">
+				<field id="doc_id" dataType="Int" required="TRUE"/>
+			</publicMethod>			
 			<publicMethod id="get_actions">
 				<field id="doc_id" dataType="Int"/>
 			</publicMethod>			
 			<publicMethod id="get_print">
 				<field id="doc_id" dataType="Int"/>
+				<field id="templ" dataType="String"/>
 			</publicMethod>						
 			<publicMethod id="get_details" modelId="DOCMaterialProcurementMaterialList" globalFilter_store="TRUE">
 				<field id="cond_fields" dataType="String" required="TRUE"/>
@@ -2149,76 +2085,29 @@
 			<publicMethod id="get_list" modelId="DOCMaterialProcurementDOCTMaterialList"/>
 			<publicMethod id="get_object" modelId="DOCMaterialProcurementDOCTMaterialList"/>
 		</controller>		
-		<controller id="DOCMaterialOrder" parentId="ControllerSQLDOC" state="TRUE" globalFilter_store="TRUE">
-			<publicMethod id="insert" modelId="DOCMaterialOrder"/>
-			<publicMethod id="update" modelId="DOCMaterialOrder"/>
-			<publicMethod id="delete" modelId="DOCMaterialOrder"/>
-			<publicMethod id="get_list" modelId="DOCMaterialOrderList"/>
-			<publicMethod id="get_object" modelId="DOCMaterialOrderList"/>
-			<publicMethod id="before_open">
-				<field id="doc_id" dataType="Int"/>
+		<controller id="DOCMaterialDisposal" parentId="ControllerSQLDOC20" state="TRUE" globalFilter_store="TRUE" processable="TRUE">
+			<publicMethod id="insert" modelId="DOCMaterialDisposal">
+				<field id="view_id" dataType="String" length="32" required="TRUE"/>	
 			</publicMethod>
-			<publicMethod id="get_actions">
-				<field id="doc_id" dataType="Int"/>
-			</publicMethod>			
-			<publicMethod id="get_print">
-				<field id="doc_id" dataType="Int"/>
-			</publicMethod>						
-			<publicMethod id="get_details" modelId="DOCMaterialOrderMaterialList" globalFilter_store="TRUE">
-				<field id="cond_fields" dataType="String" required="TRUE"/>
-				<field id="cond_vals" dataType="String" required="TRUE"/>
-				<field id="cond_sgns" dataType="String" required="TRUE"/>
-				<field id="cond_ic" dataType="String"/>			
-				<field id="from" dataType="Int"/>
-				<field id="count" dataType="Int"/>			
-				<field id="ord_fields" dataType="String"/>			
-				<field id="ord_directs" dataType="String"/>							
+			<publicMethod id="update" modelId="DOCMaterialDisposal">
+				<field id="view_id" dataType="String" length="32" required="TRUE"/>
 			</publicMethod>
-		</controller>		
-		<controller id="DOCMaterialOrderDOCTMaterial" parentId="ControllerSQL" state="TRUE" globalFilter_store="TRUE">
-			<publicMethod id="insert" modelId="DOCMaterialOrderDOCTMaterial"/>
-			<publicMethod id="update" modelId="DOCMaterialOrderDOCTMaterial"/>
-			<publicMethod id="delete" modelId="DOCMaterialOrderDOCTMaterial"/>
-			<publicMethod id="get_list" modelId="DOCMaterialOrderDOCTMaterialList"/>
-			<publicMethod id="get_object" modelId="DOCMaterialOrderDOCTMaterialList"/>
-		</controller>
-		<controller id="DOCMaterialToWaste" parentId="ControllerSQLDOC" state="TRUE" globalFilter_store="TRUE">
-			<publicMethod id="insert" modelId="DOCMaterialToWaste"/>
-			<publicMethod id="update" modelId="DOCMaterialToWaste"/>
-			<publicMethod id="delete" modelId="DOCMaterialToWaste"/>
-			<publicMethod id="get_list" modelId="DOCMaterialToWasteList"/>
-			<publicMethod id="get_object" modelId="DOCMaterialToWasteList"/>
-			<publicMethod id="before_open">
-				<field id="doc_id" dataType="Int"/>
-			</publicMethod>
-			<publicMethod id="get_actions">
-				<field id="doc_id" dataType="Int"/>
-			</publicMethod>
-			<publicMethod id="get_print">
-				<field id="doc_id" dataType="Int"/>
-			</publicMethod>									
-		</controller>		
-		<controller id="DOCMaterialToWasteDOCTMaterial" parentId="ControllerSQL" state="TRUE" globalFilter_store="TRUE">
-			<publicMethod id="insert" modelId="DOCMaterialToWasteDOCTMaterial"/>
-			<publicMethod id="update" modelId="DOCMaterialToWasteDOCTMaterial"/>
-			<publicMethod id="delete" modelId="DOCMaterialToWasteDOCTMaterial"/>
-			<publicMethod id="get_list" modelId="DOCMaterialToWasteDOCTMaterialList"/>
-			<publicMethod id="get_object" modelId="DOCMaterialToWasteDOCTMaterialList"/>
-		</controller>				
-		<controller id="DOCMaterialDisposal" parentId="ControllerSQLDOC" state="TRUE" globalFilter_store="TRUE">
-			<publicMethod id="insert" modelId="DOCMaterialDisposal"/>
-			<publicMethod id="update" modelId="DOCMaterialDisposal"/>
 			<publicMethod id="delete" modelId="DOCMaterialDisposal"/>
 			<publicMethod id="get_list" modelId="DOCMaterialDisposalList"/>
 			<publicMethod id="get_object" modelId="DOCMaterialDisposalList"/>
 			<publicMethod id="before_open">
+				<field id="view_id" dataType="String" length="32" required="TRUE"/>
 				<field id="doc_id" dataType="Int"/>
 			</publicMethod>
 			<publicMethod id="get_actions">
 				<field id="doc_id" dataType="Int"/>
-			</publicMethod>	
+			</publicMethod>
+			<publicMethod id="set_unprocessed">
+				<field id="doc_id" dataType="Int" required="TRUE"/>
+			</publicMethod>				
 			<publicMethod id="get_print">
 				<field id="doc_id" dataType="Int"/>
+				<field id="templ" dataType="String"/>
 			</publicMethod>									
 			<publicMethod id="get_details" modelId="DOCMaterialDisposalMaterialList" globalFilter_store="TRUE">
 				<field id="cond_fields" dataType="String" required="TRUE"/>
@@ -2238,20 +2127,29 @@
 			<publicMethod id="get_list" modelId="DOCMaterialDisposalDOCTMaterialList"/>
 			<publicMethod id="get_object" modelId="DOCMaterialDisposalDOCTMaterialList"/>
 		</controller>				
-		<controller id="DOCSale" parentId="ControllerSQLDOC" state="TRUE" globalFilter_store="TRUE">
-			<publicMethod id="insert" modelId="DOCSale"/>
-			<publicMethod id="update" modelId="DOCSale"/>
+		<controller id="DOCSale" parentId="ControllerSQLDOC20" state="TRUE" globalFilter_store="TRUE" processable="TRUE">
+			<publicMethod id="insert" modelId="DOCSale">
+				<field id="view_id" dataType="String" length="32" required="TRUE"/>	
+			</publicMethod>
+			<publicMethod id="update" modelId="DOCSale">
+				<field id="view_id" dataType="String" length="32" required="TRUE"/>
+			</publicMethod>
 			<publicMethod id="delete" modelId="DOCSale"/>
 			<publicMethod id="get_list" modelId="DOCSaleList"/>
 			<publicMethod id="get_object" modelId="DOCSaleDialog"/>
 			<publicMethod id="before_open">
+				<field id="view_id" dataType="String" length="32" required="TRUE"/>
 				<field id="doc_id" dataType="Int"/>
 			</publicMethod>
+			<publicMethod id="set_unprocessed">
+				<field id="doc_id" dataType="Int" required="TRUE"/>
+			</publicMethod>			
 			<publicMethod id="get_actions">
 				<field id="doc_id" dataType="Int"/>
 			</publicMethod>
 			<publicMethod id="get_print">
 				<field id="doc_id" dataType="Int"/>
+				<field id="templ" dataType="String"/>
 			</publicMethod>									
 			<publicMethod id="get_mat_details" modelId="DOCSaleMaterialList" globalFilter_store="TRUE">
 				<field id="cond_fields" dataType="String" required="TRUE"/>
@@ -2288,39 +2186,15 @@
 			<publicMethod id="get_list" modelId="DOCSaleDOCTMaterialList"/>
 			<publicMethod id="get_object" modelId="DOCSaleDOCTMaterialList"/>
 		</controller>		
-		<controller id="DOCProductOrder" parentId="ControllerSQLDOC" state="TRUE" globalFilter_store="TRUE">
-			<publicMethod id="insert" modelId="DOCProductOrder"/>
-			<publicMethod id="update" modelId="DOCProductOrder"/>
-			<publicMethod id="delete" modelId="DOCProductOrder"/>
-			<publicMethod id="get_list" modelId="DOCProductOrderList"/>
-			<publicMethod id="get_object" modelId="DOCProductOrderList"/>
-			<publicMethod id="get_actions">
-				<field id="doc_id" dataType="Int"/>
-			</publicMethod>						
-		</controller>		
-		<controller id="DOCProductOrderDOCTProduct" parentId="ControllerSQL" state="TRUE" globalFilter_store="TRUE">
-			<publicMethod id="insert" modelId="DOCProductOrderDOCTProduct"/>
-			<publicMethod id="update" modelId="DOCProductOrderDOCTProduct"/>
-			<publicMethod id="delete" modelId="DOCProductOrderDOCTProduct"/>
-			<publicMethod id="get_list" modelId="DOCProductOrderDOCTProductList"/>
-			<publicMethod id="get_object" modelId="DOCProductOrderDOCTProductList"/>
-		</controller>		
-		<controller id="RGProductOrder" parentId="ControllerSQL" state="TRUE">
-			<publicMethod id="get_balance">
-				<field id="cond_fields" dataType="String" required="TRUE"/>
-				<field id="cond_vals" dataType="String" required="TRUE"/>
-				<field id="cond_sgns" dataType="String" required="TRUE"/>
-				<field id="cond_ic" dataType="String"/>
-				<field id="ord_fields" dataType="String"/>
-				<field id="ord_directs" dataType="String"/>											
-			</publicMethod>
-		</controller>						
 		<controller id="Receipt" parentId="ControllerSQL" state="TRUE">
 			<publicMethod id="get_list" modelId="ReceiptList"/>
 			<publicMethod id="delete" modelId="Receipt"/>
 			<publicMethod id="add_material">
 				<field id="item_id" dataType="Int"/>
 			</publicMethod>						
+			<publicMethod id="set_disc_percent">
+				<field id="disc_percent" dataType="Float"/>
+			</publicMethod>												
 			<publicMethod id="add_product">
 				<field id="item_id" dataType="Int"/>
 				<field id="doc_production_id" dataType="Int"/>
@@ -2339,20 +2213,69 @@
 				<field id="doc_client_order_id" dataType="Int"/>
 			</publicMethod>
 			<publicMethod id="add_by_code">
-				<field id="code" dataType="String"/>
+				<field id="barcode" dataType="String"/>
 			</publicMethod>						
 			<publicMethod id="fill_on_client_order">
 				<field id="doc_client_order_id" dataType="Int"/>
 			</publicMethod>						
+			<publicMethod id="save_head">
+				<field id="client_id" dataType="Int"/>
+				<field id="discount_id" dataType="Int"/>
+				<field id="doc_client_order_id" dataType="Int"/>
+			</publicMethod>									
+			<publicMethod id="add_payment_type">
+				<field id="payment_type_for_sale_id" dataType="Int" required="TRUE"/>
+			</publicMethod>												
+			<publicMethod id="set_payment_type_total">
+				<field id="dt" dataType="String" required="TRUE"/>
+				<field id="total" dataType="Float" length="15" precision="2"/>
+			</publicMethod>															
+			<publicMethod id="del_payment_type">
+				<field id="dt" dataType="String" required="TRUE"/>
+			</publicMethod>															
+			<publicMethod id="get_payment_type_list">
+			</publicMethod>															
+			
 		</controller>								
-		<controller id="ReportVariant" parentId="ControllerSQL" state="TRUE">
-			<publicMethod id="insert" modelId="ReportVariant"/>
-			<publicMethod id="update" modelId="ReportVariant"/>
-			<publicMethod id="delete" modelId="ReportVariant"/>
+		<controller id="VariantStorage" parentId="ControllerSQL" state="TRUE">
+			<publicMethod id="insert" modelId="VariantStorage"/>
+			<publicMethod id="upsert_filter_data" modelId="VariantStorage">
+				<field id="storage_name" dataType="String" required="TRUE"/>
+				<field id="variant_name" dataType="String" required="TRUE"/>
+				<field id="filter_data" dataType="String" required="TRUE"/>
+				<field id="default_variant" dataType="Bool" required="TRUE"/>
+			</publicMethod>			
+			<publicMethod id="upsert_col_visib_data" modelId="VariantStorage">
+				<field id="storage_name" dataType="String" required="TRUE"/>
+				<field id="variant_name" dataType="String" required="TRUE"/>
+				<field id="col_visib" dataType="String" required="TRUE"/>
+				<field id="default_variant" dataType="Bool" required="TRUE"/>
+			</publicMethod>			
+			<publicMethod id="upsert_col_order_data" modelId="VariantStorage">
+				<field id="storage_name" dataType="String" required="TRUE"/>
+				<field id="variant_name" dataType="String" required="TRUE"/>
+				<field id="col_order" dataType="String" required="TRUE"/>
+				<field id="default_variant" dataType="Bool" required="TRUE"/>
+			</publicMethod>						
+			<publicMethod id="update" modelId="VariantStorage"/>
+			<publicMethod id="delete" modelId="VariantStorage"/>
 			<publicMethod id="get_list">
-				<field id="report_type" dataType="String" required="TRUE"/>
+				<field id="storage_name" dataType="String" required="TRUE"/>
+				<field id="variant_name" dataType="String"/>
 			</publicMethod>
-			<publicMethod id="get_object" modelId="ReportVariant"/>
+			<publicMethod id="get_object" modelId="VariantStorage"/>
+			<publicMethod id="get_filter_data" modelId="VariantStorage">
+				<field id="storage_name" dataType="String" required="TRUE"/>
+				<field id="variant_name" dataType="String"/>
+			</publicMethod>
+			<publicMethod id="get_col_visib_data" modelId="VariantStorage">
+				<field id="storage_name" dataType="String" required="TRUE"/>
+				<field id="variant_name" dataType="String"/>
+			</publicMethod>			
+			<publicMethod id="get_col_order_data" modelId="VariantStorage">
+				<field id="storage_name" dataType="String" required="TRUE"/>
+				<field id="variant_name" dataType="String"/>
+			</publicMethod>			
 		</controller>		
 		<controller id="ExpenceType" parentId="ControllerSQL" state="TRUE" noState="FALSE">
 			<publicMethod id="insert" modelId="ExpenceType"/>
@@ -2360,21 +2283,31 @@
 			<publicMethod id="delete" modelId="ExpenceType"/>
 			<publicMethod id="get_list" modelId="ExpenceType"/>
 			<publicMethod id="get_object" modelId="ExpenceType"/>
+			<publicMethod id="complete" modelId="ExpenceType" patternFieldId="name"/>
 		</controller>				
-		<controller id="DOCExpence" parentId="ControllerSQLDOC" state="TRUE" globalFilter_store="TRUE">
-			<publicMethod id="insert" modelId="DOCExpence"/>
-			<publicMethod id="update" modelId="DOCExpence"/>
+		<controller id="DOCExpence" parentId="ControllerSQLDOC20" state="TRUE" globalFilter_store="TRUE">
+			<publicMethod id="insert" modelId="DOCExpence">
+				<field id="view_id" dataType="String" length="32" required="TRUE"/>	
+			</publicMethod>
+			<publicMethod id="update" modelId="DOCExpence">
+				<field id="view_id" dataType="String" length="32" required="TRUE"/>
+			</publicMethod>
 			<publicMethod id="delete" modelId="DOCExpence"/>
 			<publicMethod id="get_list" modelId="DOCExpenceList"/>
 			<publicMethod id="get_object" modelId="DOCExpenceList"/>
 			<publicMethod id="before_open">
+				<field id="view_id" dataType="String" length="32" required="TRUE"/>
 				<field id="doc_id" dataType="Int"/>
 			</publicMethod>
 			<publicMethod id="get_actions">
 				<field id="doc_id" dataType="Int"/>
-			</publicMethod>			
+			</publicMethod>
+			<publicMethod id="set_unprocessed">
+				<field id="doc_id" dataType="Int" required="TRUE"/>
+			</publicMethod>						
 			<publicMethod id="get_print">
 				<field id="doc_id" dataType="Int"/>
+				<field id="templ" dataType="String"/>
 			</publicMethod>						
 			<publicMethod id="get_details" modelId="DOCExpenceExpenceTypeList" globalFilter_store="TRUE">
 				<field id="cond_fields" dataType="String" required="TRUE"/>
@@ -2395,6 +2328,7 @@
 			<publicMethod id="get_object" modelId="DOCExpenceDOCTExpenceTypeList"/>
 		</controller>
 		<controller id="RepBalance" parentId="ControllerSQL" state="TRUE" globalFilter_store="TRUE">
+			<publicMethod id="get"/>
 			<publicMethod id="balance">
 				<field id="cond_fields" dataType="String"/>
 				<field id="cond_vals" dataType="String"/>
@@ -2402,10 +2336,12 @@
 				<field id="cond_ic" dataType="String"/>
 				<field id="templ" dataType="String"/>
 				<field id="ord_fields" dataType="String"/>
-				<field id="ord_directs" dataType="String"/>				
+				<field id="ord_directs" dataType="String"/>
+				<field id="field_sep" dataType="String"/>								
 			</publicMethod>									
 		</controller>
 		<controller id="RepSaleForAcc" parentId="ControllerSQL" state="TRUE" globalFilter_store="TRUE">
+			<publicMethod id="get_object"/>
 			<publicMethod id="report">
 				<field id="cond_fields" dataType="String"/>
 				<field id="cond_vals" dataType="String"/>
@@ -2414,9 +2350,11 @@
 				<field id="templ" dataType="String"/>
 				<field id="ord_fields" dataType="String"/>
 				<field id="ord_directs" dataType="String"/>											
+				<field id="field_sep" dataType="String"/>
 			</publicMethod>									
 		</controller>
 		<controller id="RepSalesOnTypes" parentId="ControllerSQL" state="TRUE" globalFilter_store="TRUE">
+			<publicMethod id="get_object"/>
 			<publicMethod id="report">
 				<field id="cond_fields" dataType="String"/>
 				<field id="cond_vals" dataType="String"/>
@@ -2425,24 +2363,46 @@
 				<field id="templ" dataType="String"/>
 				<field id="ord_fields" dataType="String"/>
 				<field id="ord_directs" dataType="String"/>				
+				<field id="field_sep" dataType="String"/>
 			</publicMethod>									
 		</controller>
 		
-		<controller id="DOCClientOrder" parentId="ControllerSQLDOC" state="TRUE" globalFilter_store="TRUE">
-			<publicMethod id="insert" modelId="DOCClientOrder"/>
-			<publicMethod id="update" modelId="DOCClientOrder"/>
+		<controller id="DOCClientOrder" parentId="ControllerSQLDOC20" state="TRUE" globalFilter_store="TRUE" processable="FALSE">
+			<publicMethod id="insert" modelId="DOCClientOrder">
+				<field id="view_id" dataType="String" length="32" required="TRUE"/>	
+			</publicMethod>
+			<publicMethod id="update" modelId="DOCClientOrder">
+				<field id="view_id" dataType="String" length="32" required="TRUE"/>
+			</publicMethod>
 			<publicMethod id="delete" modelId="DOCClientOrder"/>
 			<publicMethod id="get_list" modelId="DOCClientOrderList"/>
 			<publicMethod id="get_object" modelId="DOCClientOrderList"/>
 			<publicMethod id="get_print">
 				<field id="doc_id" dataType="Int"/>
+				<field id="templ" dataType="String"/>
 			</publicMethod>												
 			<publicMethod id="before_open">
+				<field id="view_id" dataType="String" length="32" required="TRUE"/>
 				<field id="doc_id" dataType="Int"/>
 			</publicMethod>
+			<publicMethod id="set_unprocessed">
+				<field id="doc_id" dataType="Int" required="TRUE"/>
+			</publicMethod>			
 			<publicMethod id="get_actions">
 				<field id="doc_id" dataType="Int"/>
 			</publicMethod>			
+			<publicMethod id="get_print">
+				<field id="doc_id" dataType="Int"/>
+				<field id="templ" dataType="String"/>
+			</publicMethod>			
+			<publicMethod id="set_state">
+				<field id="doc_id" dataType="Int"/>
+				<field id="state" dataType="String"/>
+			</publicMethod>			
+			<publicMethod id="set_payed">
+				<field id="doc_id" dataType="Int"/>
+			</publicMethod>			
+			
 		</controller>
 		<controller id="DOCClientOrderDOCTProduct" parentId="ControllerSQL" state="TRUE" globalFilter_store="TRUE">
 			<publicMethod id="insert" modelId="DOCClientOrderDOCTProduct"/>
@@ -2486,7 +2446,7 @@
 			<publicMethod id="delete" modelId="Client"/>
 			<publicMethod id="get_list" modelId="ClientList"/>
 			<publicMethod id="get_object" modelId="ClientDialog"/>
-			<publicMethod id="complete" modelId="Client" patternFieldId="name"/>
+			<publicMethod id="complete" modelId="ClientList" patternFieldId="name"/>
 		</controller>		
 
 		<controller id="Message" parentId="ControllerSQL" state="TRUE" noState="FALSE">
@@ -2502,6 +2462,37 @@
 				<field id="param" dataType="String"/>
 				<field id="val" dataType="Text"/>
 			</publicMethod>
+		</controller>		
+		
+		<controller id="Discount" parentId="ControllerSQL" state="TRUE" noState="FALSE">
+			<publicMethod id="insert" modelId="Discount"/>
+			<publicMethod id="update" modelId="Discount"/>
+			<publicMethod id="delete" modelId="Discount"/>
+			<publicMethod id="get_list" modelId="Discount"/>
+			<publicMethod id="get_object" modelId="Discount"/>
+			<publicMethod id="get_list_for_sale" modelId="DiscountList"/>
+		</controller>		
+
+		<controller id="DiscCard" parentId="ControllerSQL" state="TRUE" noState="FALSE">
+			<publicMethod id="update" modelId="DiscCard"/>
+			<publicMethod id="get_list" modelId="DiscCard"/>
+			<publicMethod id="get_object" modelId="DiscCard"/>
+			<publicMethod id="complete" modelId="DiscCard" patternFieldId="barcode"/>
+		</controller>		
+
+		<controller id="DOCManager" parentId="ControllerSQL" state="TRUE" noState="FALSE">
+			<publicMethod id="reprocess">
+				<field id="sequence_list" dataType="String" required="TRUE"/>
+			</publicMethod>
+			<publicMethod id="get_list" modelId="DOCManagerList"/>
+			<publicMethod id="get_sequence_viol_list">
+				<field id="sequence_list" dataType="String"/>
+			</publicMethod>
+			<publicMethod id="get_reprocess_list" modelId="DOCReprocessStatList"/>
+		</controller>		
+		
+		<controller id="RepMaterialAction" parentId="ControllerSQL" state="TRUE" noState="FALSE">
+			<publicMethod id="get_object"/>
 		</controller>		
 		
 	</controllers>
@@ -2530,17 +2521,11 @@
 			<menuItem c="Material_Controller" t="MaterialList" f="get_list" descr="Материалы" default="FALSE" limit="TRUE"/>
 			<menuItem c="Supplier_Controller" t="SupplierList" f="get_list" descr="Поставщики" default="FALSE" limit="TRUE"/>
 			<menuItem c="Client_Controller" t="ClientList" f="get_list" descr="Покупатели" default="FALSE" limit="TRUE"/>
+			<menuItem c="Discount_Controller" t="DiscountList" f="get_list" descr="Виды скидок" default="FALSE"/>
 			<menuItem c="PaymentTypeForSale_Controller" t="PaymentTypeForSale" f="get_list" descr="Типы оплаты" default="FALSE"/>
 			<menuItem c="CashRegister_Controller" t="CashRegister" f="get_list" descr="ККМ" default="FALSE"/>			
 		</menuItem>
-		
-		<!--
-		<menuItem descr="Заказы покупателей">
-			<menuItem viewId="DOCClientOrderList_View" descr="Журнал"/>
-			<menuItem viewId="ProductOrderBalanceList_View" descr="Заказы"/>
-		</menuItem>
-		-->
-		
+				
 		<menuItem descr="Букеты">
 			<menuItem c="Product_Controller" t="ProductBalanceList" f="get_list_with_balance" descr="Остатки" default="TRUE"/>
 			<menuItem c="DOCProduction_Controller" t="DOCProductionList" f="get_list" descr="Комплектация" default="FALSE"/>
@@ -2551,23 +2536,26 @@
 			<menuItem c="Material_Controller" t="MaterialBalanceList" descr="Остатки" f="get_list_with_balance"/>
 			<menuItem c="DOCMaterialProcurement_Controller" t="DOCMaterialProcurementList" descr="Поступление" f="get_list" limit="TRUE"/>
 			<menuItem c="DOCMaterialDisposal_Controller" t="DOCMaterialDisposalList" descr="Списание" f="get_list" limit="TRUE"/>
-		</menuItem>		
-		<menuItem descr="Продажи">
-			<menuItem c="DOCSale_Controller" f="get_list" t="DOCSaleList" descr="Продажи" limit="TRUE"/>
-		</menuItem>		
+		</menuItem>	
+		
+		<menuItem c="DOCClientOrder_Controller" f="get_list" t="DOCClientOrderList" descr="Журнал заказов покупателей"/>
+			
+		<menuItem c="DOCSale_Controller" f="get_list" t="DOCSaleList" descr="Журнал продаж" limit="TRUE"/>
+		
 		<menuItem descr="Затраты">
 			<menuItem c="ExpenceType_Controller" f="get_list" t="ExpenceType" descr="Виды затрат"/>
 			<menuItem c="DOCExpence_Controller" f="get_list" t="DOCExpenceList" descr="Журнал документов"/>
-			<menuItem c="RepBalance_Controller" t="RepBalance" descr="Баланс"/>
-		</menuItem>				
+			<menuItem c="RepBalance_Controller" f="get" t="RepBalance" descr="Баланс"/>
+		</menuItem>
+						
 		<menuItem descr="Отчеты">
 			<!--<menuItem viewId="MaterialProcurPlanReport_View" descr="План закупок"/>
 			-->
-			<menuItem viewId="MaterialProcurAvgPriceReport_View" descr="Средние цены поступления"/>
-			<menuItem viewId="MaterialActionsReport_View" descr="Движение материалов"/>			
-			<menuItem viewId="MaterialActionsNoPriceReport_View" descr="Движение материалов (без цен)"/>			
-			<menuItem viewId="RepSaleForAcc_View" descr="Продажи по материалам"/>			
-			<menuItem viewId="RepSalesOnTypes_View" descr="Продажи по видам оплат"/>			
+			<menuItem c="Material_Controller" f="get_object" t="MaterialProcurAvgPrice" descr="Средние цены"/>
+			<menuItem c="RepMaterialAction_Controller" f="get_object" t="MaterialActionsReport" descr="Движение материалов"/>			
+			<menuItem c="RepMaterialAction_Controller" f="get_object" t="MaterialActionsNoPriceReport" descr="Движение мат. (без цен)"/>			
+			<menuItem c="RepSaleForAcc_Controller" f="get_object" t="RepSaleForAcc" descr="Продажи по материалам"/>			
+			<menuItem c="RepSalesOnTypes_Controller" f="get_object" t="RepSalesOnTypes" descr="Продажи по видам оплат"/>			
 		</menuItem>				
 		<menuItem descr="Администрирование">
 			<menuItem c="User_Controller" t="UserList" f="get_list" descr="Пользователи" default="FALSE"/>
@@ -2575,85 +2563,97 @@
 			
 		</menuItem>				
 	</mainMenu>
+	
 	<mainMenu roleId="store_manager">
 		<menuItem descr="Справочники">
-			<menuItem viewId="StoreList_View" descr="Салоны"/>
-			<menuItem viewId="ProductList_View" descr="Букеты"/>
-			<menuItem viewId="MaterialGroup_View" descr="Группы материалов"/>
-			<menuItem viewId="MaterialList_View" descr="Материалы"/>
-			<menuItem viewId="SupplierList_View" descr="Поставщики"/>
-		</menuItem>
-		<menuItem descr="Заказы покупателей">
-			<menuItem viewId="DOCClientOrderList_View" descr="Журнал"/>
+			<menuItem c="Store_Controller" t="StoreList" f="get_list" descr="Салоны" default="FALSE"/>
+			<menuItem c="Product_Controller" t="ProductList" f="get_list" descr="Букеты" default="FALSE"/>
+			<menuItem c="MaterialGroup_Controller" t="MaterialGroup" f="get_list" descr="Группы материалов" default="FALSE"/>
+			<menuItem c="Material_Controller" t="MaterialList" f="get_list" descr="Материалы" default="FALSE" limit="TRUE"/>
+			<menuItem c="Supplier_Controller" t="SupplierList" f="get_list" descr="Поставщики" default="FALSE" limit="TRUE"/>
+			<menuItem c="Client_Controller" t="ClientList" f="get_list" descr="Покупатели" default="FALSE" limit="TRUE"/>
 		</menuItem>
 		<menuItem descr="Букеты">
-			<menuItem viewId="ProductBalanceList_View" descr="Остатки" default="TRUE"/>
-			<menuItem viewId="DOCProductionList_View" descr="Комплектация"/>
-			<menuItem viewId="DOCProductDisposalList_View" descr="Списание"/>			
+			<menuItem c="Product_Controller" t="ProductBalanceList" f="get_list_with_balance" descr="Остатки" default="TRUE"/>
+			<menuItem c="DOCProduction_Controller" t="DOCProductionList" f="get_list" descr="Комплектация" default="FALSE"/>
+			<menuItem c="DOCProductDisposal_Controller" t="DOCProductDisposalList" f="get_list" descr="Списание" default="FALSE"/>
 		</menuItem>
 		<menuItem descr="Материалы">
-			<menuItem viewId="MaterialBalanceList_View" descr="Остатки"/>
-			<menuItem viewId="DOCMaterialOrderList_View" descr="Заказы"/>
-			<menuItem viewId="DOCMaterialProcurementList_View" descr="Поступление"/>
-			<menuItem viewId="DOCMaterialDisposalList_View" descr="Списание"/>
-		</menuItem>		
-		<menuItem descr="Продажи">
-			<menuItem viewId="DOCSaleList_View" descr="Продажи"/>			
-		</menuItem>	
+			<menuItem c="Material_Controller" t="MaterialBalanceList" descr="Остатки" f="get_list_with_balance"/>
+			<menuItem c="DOCMaterialProcurement_Controller" t="DOCMaterialProcurementList" descr="Поступление" f="get_list" limit="TRUE"/>
+			<menuItem c="DOCMaterialDisposal_Controller" t="DOCMaterialDisposalList" descr="Списание" f="get_list" limit="TRUE"/>
+		</menuItem>
+		
+		<menuItem c="DOCClientOrder_Controller" f="get_list" t="DOCClientOrderList" descr="Журнал заказов покупателей"/>
+			
+		<menuItem c="DOCSale_Controller" f="get_list" t="DOCSaleList" descr="Журнал продаж" limit="TRUE"/>
+		
 		<menuItem descr="Отчеты">
-			<menuItem viewId="MaterialProcurAvgPriceReport_View" descr="Средние цены поступления"/>
-			<menuItem viewId="MaterialActionsReport_View" descr="Движение материалов"/>
-			<menuItem viewId="RepSaleForAcc_View" descr="Продажи по материалам"/>			
+			<menuItem c="Material_Controller" f="get_object" t="MaterialProcurAvgPrice" descr="Средние цены"/>
+			<menuItem c="Material_Controller" f="get_object" t="MaterialActionsReport" descr="Движение материалов"/>			
+			<menuItem c="Material_Controller" f="get_object" t="MaterialActionsNoPriceReport" descr="Движение мат. (без цен)"/>			
+			<menuItem c="RepSaleForAcc_Controller" f="get_object" t="RepSaleForAcc" descr="Продажи по материалам"/>			
+			<menuItem c="RepSalesOnTypes_Controller" f="get_object" t="RepSalesOnTypes" descr="Продажи по видам оплат"/>			
 		</menuItem>						
-		<menuItem descr="Администрирование">
-			<menuItem viewId="UserNewPassword_View" descr="Сменить свой пароль"/>
-		</menuItem>				
 	</mainMenu>	
-	<mainMenu roleId="cashier">
-		<menuItem descr="Продажи">
-			<menuItem viewId="SaleProduct_View" descr="Текущая продажа" default="TRUE"/>
-			<menuItem viewId="DOCSaleList_View" descr="Журнал документов"/>
-			<menuItem viewId="ProductBalanceList_View" descr="Остатки"/>
-			<menuItem viewId="CashRegisterOper_View" descr="ККМ"/>
-		</menuItem>
-		<menuItem descr="Администрирование">
-			<menuItem viewId="UserNewPassword_View" descr="Сменить свой пароль"/>
-		</menuItem>
-	</mainMenu>
+	
 	<mainMenu roleId="florist">
 		<menuItem descr="Справочники">
-			<menuItem viewId="MaterialList_View" descr="Материалы"/>
-		</menuItem>
-		<menuItem descr="Заказы покупателей">
-			<menuItem viewId="DOCClientOrderList_View" descr="Журнал"/>
+			<menuItem c="Material_Controller" t="MaterialList" f="get_list" descr="Материалы" default="FALSE" limit="TRUE"/>
 		</menuItem>
 		<menuItem descr="Букеты">
-			<menuItem viewId="ProductBalanceList_View" descr="Остатки"/>
-			<menuItem viewId="DOCProductionList_View" descr="Комплектация"/>
-			<menuItem viewId="DOCProductDisposalList_View" descr="Списание"/>			
-		</menuItem>
-		<menuItem descr="Администрирование">
-			<menuItem viewId="UserNewPassword_View" descr="Сменить свой пароль"/>
+			<menuItem c="Product_Controller" t="ProductBalanceList" f="get_list_with_balance" descr="Остатки" default="TRUE"/>
+			<menuItem c="DOCProduction_Controller" t="DOCProductionList" f="get_list" descr="Комплектация" default="FALSE"/>
+			<menuItem c="DOCProductDisposal_Controller" t="DOCProductDisposalList" f="get_list" descr="Списание" default="FALSE"/>
 		</menuItem>
 	</mainMenu>
+	<mainMenu roleId="cashier">
+		
+		<menuItem c="DOCSale_Controller" f="get_list" t="DOCSaleList" descr="Журнал продаж" limit="TRUE"/>			
+		
+		<menuItem descr="Остатки">
+			<menuItem c="Product_Controller" t="ProductBalanceList" f="get_list_with_balance" descr="Остатки букетов"/>
+			<menuItem c="Material_Controller" t="MaterialBalanceList" descr="Остатки материалов" f="get_list_with_balance"/>
+		</menuItem>	
+		
+		<menuItem c="DOCClientOrder_Controller" f="get_list" t="DOCClientOrderList" descr="Заказы покупателей"/>
+		<menuItem t="CashRegisterOper" descr="Операции с ККМ"/>
+	</mainMenu>
+	
+	<jsTemplates>
+		<jsTemplate id="GridCmdContainerAjx" file="controls/tmpl/GridCmdContainerAjx.html"/>
+		<jsTemplate id="ViewGridColManager" file="controls/tmpl/ViewGridColManager.html"/>
+		<jsTemplate id="PopOver" file="controls/tmpl/PopOver.html"/>
+		<jsTemplate id="GridCmdFilterView" file="controls/tmpl/GridCmdFilterView.html"/>
+		<jsTemplate id="EditPeriodDate" file="controls/tmpl/EditPeriodDate.html"/>
+		<jsTemplate id="WindowPrint" file="controls/tmpl/WindowPrint.html"/>
+		<jsTemplate id="VariantStorageSaveView" file="controls/tmpl/VariantStorageSaveView.html"/>
+		<jsTemplate id="VariantStorageOpenView" file="controls/tmpl/VariantStorageOpenView.html"/>
+		
+		<jsTemplate id="DOCClientOrderGridCommand" file="tmpl/DOCClientOrderGridCommand.html"/>		
+	</jsTemplates>
 	
 	<jsScripts>
 		<!-- jquery,bootsrtap && plugins -->
-		<jsScript file="jquery.min.js" compressed="TRUE" standalone="TRUE"/>
-		<jsScript file="bootstrap.min.js" compressed="TRUE" standalone="TRUE" version="1.0"/>
-		<jsScript file="bootstrap-datepicker.min.js" compressed="TRUE" standalone="TRUE" version="1.0"/>
-		<jsScript file="bootstrap-datepicker.ru.min.js" compressed="TRUE" standalone="TRUE" version="1.0"/>
-		<jsScript file="jquery.maskedinput.min.js" compressed="TRUE" standalone="TRUE" version="1.0"/>
-		<jsScript file="metisMenu.min.js" compressed="TRUE" standalone="TRUE" version="1.0"/>
-		<jsScript file="raphael-min.js" compressed="TRUE" standalone="TRUE" version="1.0"/>
-		<jsScript file="morris.min.js" compressed="TRUE" standalone="TRUE" version="1.0"/>		
-		<jsScript file="sb-admin-2.js" compressed="TRUE" standalone="TRUE" version="1.0"/>
+		<jsScript file="ext/jquery-1.12.4/jquery-1.12.4.min.js" compressed="TRUE" standalone="TRUE"/>
+		<jsScript file="ext/bootstrap-3.3.6/bootstrap.min.js" compressed="TRUE" standalone="TRUE" version="1.0"/>
+		<jsScript file="ext/bootstrap-datepicker/bootstrap-datepicker.min.js" compressed="TRUE" standalone="TRUE" version="1.0"/>
+		<jsScript file="ext/bootstrap-datepicker/bootstrap-datepicker.ru.min.js" compressed="TRUE" standalone="TRUE" version="1.0"/>
+		<jsScript file="ext/Bush-jquery.maskedinput/dist/jquery.maskedinput.min.js" compressed="TRUE" standalone="TRUE" version="1.0"/>
+		<!--<jsScript file="jquery.maskedinput.js" compressed="FALSE" standalone="TRUE" version="1.0"/>-->
+		<jsScript file="ext/startbootstrap-sb-admin-2-1.0.8/bower_components/metisMenu/dist/metisMenu.min.js" compressed="TRUE" standalone="TRUE" version="1.0"/>
+		<jsScript file="ext/startbootstrap-sb-admin-2-1.0.8/bower_components/raphael/raphael-min.js" compressed="TRUE" standalone="TRUE" version="1.0"/>
+		<jsScript file="ext/startbootstrap-sb-admin-2-1.0.8/bower_components/morrisjs/morris.min.js" compressed="TRUE" standalone="TRUE" version="1.0"/>		
+		<jsScript file="ext/startbootstrap-sb-admin-2-1.0.8/dist/js/sb-admin-2.js" compressed="TRUE" standalone="TRUE" version="1.0"/>
+
+		<!--<jsScript file="jquery.inputmask.bundle.js" compressed="FALSE" standalone="TRUE" version="1.0"/>-->
 		
 		<jsScript file="ext/jshash-2.2/md5-min.js" compressed="TRUE" standalone="TRUE"/>
 		
 		<!-- core -->
 		<jsScript file="core/extend.js"/>		
 		<jsScript file="core/App.js"/>		
+		<jsScript file="core/AppWin.js"/>				
 		<jsScript file="core/CommonHelper.js"/>
 		<jsScript file="core/DOMHelper.js"/>
 		<jsScript file="core/DateHelper.js"/>
@@ -2670,9 +2670,12 @@
 				
 		<jsScript file="core/Model.js"/>
 		<jsScript file="core/ModelXML.js"/>
-		<jsScript file="core/ModeObjectXML.js"/>
-		<jsScript file="core/ModelSingleRowXML.js"/>
+		<jsScript file="core/ModelJSON.js"/>
+		<jsScript file="core/ModelObjectXML.js"/>
+		<jsScript file="core/ModelObjectJSON.js"/>
 		<jsScript file="core/ModelServRespXML.js"/>
+		<jsScript file="core/ModelServRespJSON.js"/>
+		<!--<jsScript file="core/ModelServAuthXML.js"/>-->
 		
 		<jsScript file="core/Validator.js"/>
 		<jsScript file="core/ValidatorString.js"/>
@@ -2682,7 +2685,9 @@
 		<jsScript file="core/ValidatorTime.js"/>
 		<jsScript file="core/ValidatorInt.js"/>
 		<jsScript file="core/ValidatorFloat.js"/>
-		<jsScript file="core/ValidatorEnum.js"/>				
+		<jsScript file="core/ValidatorEnum.js"/>
+		<jsScript file="core/ValidatorJSON.js"/>
+		<jsScript file="core/ValidatorArray.js"/>								
 		
 		<jsScript file="core/Field.js"/>
 		<jsScript file="core/FieldString.js"/>
@@ -2695,57 +2700,63 @@
 		<jsScript file="core/FieldFloat.js"/>
 		<jsScript file="core/FieldPassword.js"/>
 		<jsScript file="core/FieldText.js"/>
+		<jsScript file="core/FieldJSON.js"/>
+		<jsScript file="core/FieldArray.js"/>		
 		<jsScript file="core/ModelFilter.js"/>
 		<jsScript file="core/RefType.js"/>		
 		
-		<jsScript file="core/rs_rus.js"/>
+		<jsScript file="core/EquipServer.js"/>
+		
+		<jsScript file="core/rs_ru.js" resource="ru"/>
 		
 		<!-- **** controls *** -->		
 		<jsScript file="controls/DataBinding.js"/>
 		<jsScript file="controls/Command.js"/>
-		<jsScript file="controls/CommandBinding.js"/>
+		<jsScript file="controls/CommandBinding.js" resource="ru"/>
 		
 		<jsScript file="controls/Control.js"/>
-		<jsScript file="controls/rs/Control.rs_rus.js"/>
-		<jsScript file="controls/ControlContainer.js"/>
-		<jsScript file="controls/rs/ControlContainer.rs_rus.js"/>
+		<jsScript file="controls/rs/Control.rs_ru.js" resource="ru"/>
+		<jsScript file="controls/ControlContainer.js" resource="ru"/>
+		<jsScript file="controls/rs/ControlContainer.rs_ru.js" resource="ru"/>
 		
 		<jsScript file="controls/View.js"/>
 		<jsScript file="controls/ViewAjx.js"/>
-		<jsScript file="controls/rs/ViewAjx.rs_rus.js"/>
+		<jsScript file="controls/rs/ViewAjx.rs_ru.js" resource="ru"/>
 		<jsScript file="controls/ErrorControl.js"/>
 		<jsScript file="controls/Calculator.js"/>
-		<jsScript file="controls/rs/Calculator.rs_rus.js"/>
+		<jsScript file="controls/rs/Calculator.rs_ru.js" resource="ru"/>
 		<jsScript file="controls/Button.js"/>
 		<jsScript file="controls/ButtonCtrl.js"/>
 		<jsScript file="controls/ButtonEditCtrl.js"/>
-		<jsScript file="controls/rs/ButtonEditCtrl.rs.js"/>		
+		<jsScript file="controls/rs/ButtonEditCtrl.rs_ru.js" resource="ru"/>		
 		<jsScript file="controls/ButtonCalc.js"/>
-		<jsScript file="controls/rs/ButtonCalc.rs_rus.js"/>
+		<jsScript file="controls/rs/ButtonCalc.rs_ru.js" resource="ru"/>
 		<jsScript file="controls/ButtonCalendar.js"/>
-		<jsScript file="controls/rs/ButtonCalendar.rs_rus.js"/>
+		<jsScript file="controls/rs/ButtonCalendar.rs_ru.js" resource="ru"/>
 		<jsScript file="controls/ButtonClear.js"/>
-		<jsScript file="controls/rs/ButtonClear.rs_rus.js"/>
+		<jsScript file="controls/rs/ButtonClear.rs_ru.js" resource="ru"/>
 		<jsScript file="controls/ButtonCmd.js"/>
 		<jsScript file="controls/ButtonExpToExcel.js"/>
-		<jsScript file="controls/rs/ButtonExpToExcel.rs_rus.js"/>
+		<jsScript file="controls/rs/ButtonExpToExcel.rs_ru.js" resource="ru"/>
 		<jsScript file="controls/ButtonExpToPDF.js"/>
-		<jsScript file="controls/rs/ButtonExpToPDF.rs_rus.js"/>		
+		<jsScript file="controls/rs/ButtonExpToPDF.rs_ru.js" resource="ru"/>		
 		<jsScript file="controls/ButtonOpen.js"/>
-		<jsScript file="controls/rs/ButtonOpen.rs.js"/>				
+		<jsScript file="controls/rs/ButtonOpen.rs_ru.js" resource="ru"/>				
 		<jsScript file="controls/ButtonInsert.js"/>
-		<jsScript file="controls/rs/ButtonInsert.rs_rus.js"/>				
+		<jsScript file="controls/rs/ButtonInsert.rs_ru.js" resource="ru"/>				
 		<jsScript file="controls/ButtonPrint.js"/>
-		<jsScript file="controls/rs/ButtonPrint.rs_rus.js"/>		
+		<jsScript file="controls/rs/ButtonPrint.rs_ru.js" resource="ru"/>		
+		<jsScript file="controls/ButtonPrintList.js"/>		
+		<jsScript file="controls/rs/ButtonPrintList.rs_ru.js" resource="ru"/>
 		<jsScript file="controls/ButtonSelectRef.js"/>
-		<jsScript file="controls/rs/ButtonSelectRef.rs.js"/>
+		<jsScript file="controls/rs/ButtonSelectRef.rs_ru.js" resource="ru"/>
 		
 		<jsScript file="controls/ButtonToggle.js"/>		
 		
 		<jsScript file="controls/Label.js"/>
 		
 		<jsScript file="controls/Edit.js"/>
-		<jsScript file="controls/rs/Edit.rs_rus.js"/>
+		<jsScript file="controls/rs/Edit.rs_ru.js" resource="ru"/>
 		<jsScript file="controls/EditRef.js"/>
 		<jsScript file="controls/EditString.js"/>
 		<jsScript file="controls/EditText.js"/>
@@ -2761,15 +2772,19 @@
 		<jsScript file="controls/EditPassword.js"/>
 		<jsScript file="controls/EditCheckBox.js"/>
 		<jsScript file="controls/EditContainer.js"/>		
-		<jsScript file="controls/rs/EditContainer.rs.js"/>
+		<jsScript file="controls/rs/EditContainer.rs_ru.js" resource="ru"/>
 		<jsScript file="controls/EditRadioGroup.js"/>
 		<jsScript file="controls/EditRadio.js"/>		
 		<jsScript file="controls/EditSelect.js"/>		
 		<jsScript file="controls/EditSelectRef.js"/>
-		<jsScript file="controls/rs/EditSelectRef.rs.js"/>
+		<jsScript file="controls/rs/EditSelectRef.rs_ru.js" resource="ru"/>
 		<jsScript file="controls/EditSelectOption.js"/>
+		<jsScript file="controls/EditSelectOptionRef.js"/>
 		<jsScript file="controls/EditRadioGroupRef.js"/>
-		<jsScript file="controls/rs/EditRadioGroupRef.rs.js"/>
+		<jsScript file="controls/rs/EditRadioGroupRef.rs_ru.js" resource="ru"/>
+		<jsScript file="controls/EditCheckSelect.js"/>
+		<jsScript file="controls/rs/EditCheckSelect.rs_ru.js" resource="ru"/>		
+		<jsScript file="controls/PrintObj.js"/>		
 		
 		<jsScript file="controls/EditRef.js"/>
 		<jsScript file="controls/HiddenKey.js"/>
@@ -2783,6 +2798,7 @@
 		<jsScript file="controls/GridColumnPhone.js"/>
 		<jsScript file="controls/GridColumnFloat.js"/>
 		<jsScript file="controls/GridColumnDate.js"/>
+		<jsScript file="controls/GridColumnEnum.js"/>		
 		<jsScript file="controls/GridCell.js"/>
 		<jsScript file="controls/GridCellHead.js"/>
 		<jsScript file="controls/GridCellFoot.js"/>
@@ -2791,58 +2807,124 @@
 		<jsScript file="controls/GridFoot.js"/>
 		<jsScript file="controls/GridBody.js"/>
 		<jsScript file="controls/Grid.js"/>
-		<jsScript file="controls/rs/Grid.rs_rus.js"/>
-		<jsScript file="controls/GridCommands.js"/>
-		<jsScript file="controls/rs/GridCommands.rs.js"/>
+		<jsScript file="controls/rs/Grid.rs_ru.js" resource="ru"/>
 		
-		<!--
-		<jsScript file="controls/ViewGridColumnManager.js"/>
-		<jsScript file="controls/rs/ViewGridColumnManager.rs.js"/>		
+		<jsScript file="controls/GridCommands.js"/>
+		<jsScript file="controls/GridCmd.js"/>
+		<jsScript file="controls/GridCmdContainer.js"/>
+		<jsScript file="controls/rs/GridCmdContainer.rs_ru.js" resource="ru"/>
+		<jsScript file="controls/GridCmdContainerAjx.js"/>
+		<jsScript file="controls/GridCmdContainerDOC.js"/>
+		<jsScript file="controls/GridCmdInsert.js"/>
+		<jsScript file="controls/rs/GridCmdInsert.rs_ru.js" resource="ru"/>
+		<jsScript file="controls/GridCmdEdit.js"/>
+		<jsScript file="controls/rs/GridCmdEdit.rs_ru.js" resource="ru"/>
+		<jsScript file="controls/GridCmdCopy.js"/>
+		<jsScript file="controls/rs/GridCmdCopy.rs_ru.js" resource="ru"/>
+		<jsScript file="controls/GridCmdDelete.js"/>
+		<jsScript file="controls/rs/GridCmdDelete.rs_ru.js" resource="ru"/>
+		<jsScript file="controls/GridCmdColManager.js"/>
+		<jsScript file="controls/rs/GridCmdColManager.rs_ru.js" resource="ru"/>
+		<jsScript file="controls/GridCmdPrint.js"/>
+		<jsScript file="controls/rs/GridCmdPrint.rs_ru.js" resource="ru"/>
+		<jsScript file="controls/GridCmdRefresh.js"/>
+		<jsScript file="controls/rs/GridCmdRefresh.rs_ru.js" resource="ru"/>
+		<jsScript file="controls/GridCmdPrintObj.js"/>
+		<jsScript file="controls/GridCmdSearch.js"/>
+		<jsScript file="controls/rs/GridCmdSearch.rs_ru.js" resource="ru"/>
+		<jsScript file="controls/GridCmdExport.js"/>
+		<jsScript file="controls/rs/GridCmdExport.rs_ru.js" resource="ru"/>
+		<jsScript file="controls/GridCmdAllCommands.js"/>
+		<jsScript file="controls/rs/GridCmdAllCommands.rs_ru.js" resource="ru"/>		
+		<jsScript file="controls/GridCmdDOCUnprocess.js"/>
+		<jsScript file="controls/rs/GridCmdDOCUnprocess.rs_ru.js" resource="ru"/>
+		<jsScript file="controls/GridCmdDOCShowActs.js"/>
+		<jsScript file="controls/rs/GridCmdDOCShowActs.rs_ru.js" resource="ru"/>
+		<jsScript file="controls/GridCmdRowUp.js"/>
+		<jsScript file="controls/rs/GridCmdRowUp.rs_ru.js" resource="ru"/>
+		<jsScript file="controls/GridCmdRowDown.js"/>
+		<jsScript file="controls/rs/GridCmdRowDown.rs_ru.js" resource="ru"/>
+		<jsScript file="controls/GridCmdFilter.js"/>
+		<jsScript file="controls/rs/GridCmdFilter.rs_ru.js" resource="ru"/>
+		<jsScript file="controls/GridCmdFilterView.js"/>
+		<jsScript file="controls/rs/GridCmdFilterView.rs_ru.js" resource="ru"/>
+		<jsScript file="controls/GridCmdFilterSave.js"/>
+		<jsScript file="controls/rs/GridCmdFilterSave.rs_ru.js" resource="ru"/>
+		<jsScript file="controls/GridCmdFilterOpen.js"/>
+		<jsScript file="controls/rs/GridCmdFilterOpen.rs_ru.js" resource="ru"/>
+
+		<jsScript file="controls/ViewGridColManager.js"/>
+		<jsScript file="controls/rs/ViewGridColManager.rs_ru.js" resource="ru"/>		
 		<jsScript file="controls/ViewGridColParam.js"/>
-		<jsScript file="controls/rs/ViewGridColParam.rs.js"/>
+		<jsScript file="controls/rs/ViewGridColParam.rs_ru.js" resource="ru"/>
 		<jsScript file="controls/ViewGridColVisibility.js"/>
-		<jsScript file="controls/rs/ViewGridColVisibility.rs.js"/>
+		<jsScript file="controls/rs/ViewGridColVisibility.rs_ru.js" resource="ru"/>		
 		<jsScript file="controls/ViewGridColOrder.js"/>
-		<jsScript file="controls/rs/ViewGridColOrder.rs.js"/>		
-		-->
+		<jsScript file="controls/rs/ViewGridColOrder.rs_ru.js" resource="ru"/>		
+		
+		<jsScript file="controls/VariantStorageSaveView.js"/>
+		<jsScript file="controls/rs/VariantStorageSaveView.rs_ru.js" resource="ru"/>
+		<jsScript file="controls/VariantStorageOpenView.js"/>
+		<jsScript file="controls/rs/VariantStorageOpenView.rs_ru.js" resource="ru"/>
 		
 		<jsScript file="controls/GridAjx.js"/>
-		<jsScript file="controls/rs/GridAjx.rs_rus.js"/>		
+		<jsScript file="controls/rs/GridAjx.rs_ru.js" resource="ru"/>		
+		<jsScript file="controls/GridAjxDOCT.js"/>
 		<jsScript file="controls/GridCommandsAjx.js"/>
-		<jsScript file="controls/rs/GridCommandsAjx.rs_rus.js"/>
+		<jsScript file="controls/rs/GridCommandsAjx.rs_ru.js" resource="ru"/>
+		<jsScript file="controls/GridCommandsDOC.js"/>
+		<jsScript file="controls/rs/GridCommandsDOC.rs_ru.js" resource="ru"/>
 		<jsScript file="controls/GridPagination.js"/>
-		<jsScript file="controls/rs/GridPagination.rs_rus.js"/>
+		<jsScript file="controls/rs/GridPagination.rs_ru.js"/>
 		<jsScript file="controls/GridFilter.js"/>
-		<jsScript file="controls/rs/GridFilter.rs_rus.js"/>
+		<jsScript file="controls/rs/GridFilter.rs_ru.js" resource="ru"/>
 		<jsScript file="controls/EditPeriodDate.js"/>
-		<jsScript file="controls/rs/EditPeriodDate.rs.js"/>
+		<jsScript file="controls/rs/EditPeriodDate.rs_ru.js" resource="ru"/>
 		<jsScript file="controls/EditPeriodDateTime.js"/>		
 		
 		<jsScript file="controls/ButtonOK.js"/>
-		<jsScript file="controls/rs/ButtonOK.rs_rus.js"/>
+		<jsScript file="controls/rs/ButtonOK.rs_ru.js" resource="ru"/>
 		<jsScript file="controls/ButtonSave.js"/>
-		<jsScript file="controls/rs/ButtonSave.rs_rus.js"/>		
+		<jsScript file="controls/rs/ButtonSave.rs_ru.js" resource="ru"/>		
 		<jsScript file="controls/ButtonCancel.js"/>
-		<jsScript file="controls/rs/ButtonCancel.rs.js"/>
+		<jsScript file="controls/rs/ButtonCancel.rs_ru.js" resource="ru"/>
 		<jsScript file="controls/ViewObjectAjx.js"/>
-		<jsScript file="controls/rs/ViewObjectAjx.rs_rus.js"/>		
+		<jsScript file="controls/rs/ViewObjectAjx.rs_ru.js" resource="ru"/>		
 		<jsScript file="controls/ViewGridEditInlineAjx.js"/>
-		<jsScript file="controls/rs/ViewGridEditInlineAjx.rs_rus.js"/>
+		<jsScript file="controls/rs/ViewGridEditInlineAjx.rs_ru.js" resource="ru"/>
 		<jsScript file="controls/ViewDOC.js"/>
-		<jsScript file="controls/rs/ViewDOC.rs.js"/>		
+		<jsScript file="controls/rs/ViewDOC.rs_ru.js"/>		
 
 		<jsScript file="controls/WindowPrint.js"/>
-		<jsScript file="controls/rs/WindowPrint.rs_rus.js"/>
+		<jsScript file="controls/rs/WindowPrint.rs_ru.js" resource="ru"/>
 		<jsScript file="controls/WindowQuestion.js"/>
-		<jsScript file="controls/rs/WindowQuestion.rs_rus.js"/>		
+		<jsScript file="controls/rs/WindowQuestion.rs_ru.js" resource="ru"/>		
+		<jsScript file="controls/WindowSearch.js"/>
+		<jsScript file="controls/rs/WindowSearch.rs_ru.js" resource="ru"/>				
 		<jsScript file="controls/WindowForm.js"/>
 		<jsScript file="controls/WindowFormObject.js"/>
-		<jsScript file="controls/rs/WindowFormObject.rs_rus.js"/>		
+		<jsScript file="controls/rs/WindowFormObject.rs_ru.js" resource="ru"/>		
 		<jsScript file="controls/WindowFormModalBS.js"/>
+		<jsScript file="controls/rs/WindowFormModalBS.rs_ru.js" resource="ru"/>		
 		<jsScript file="controls/WindowMessage.js"/>
 		
+		<jsScript file="controls/GridCellHeadDOCProcessed.js"/>
+		<jsScript file="controls/GridCellHeadDOCDate.js"/>
+		<jsScript file="controls/GridCellHeadDOCNumber.js"/>								
+		
 		<jsScript file="controls/actb.js"/>
-		<jsScript file="controls/rs/actb.rs_rus.js"/>
+		<jsScript file="controls/rs/actb.rs_ru.js" resource="ru"/>
+				
+		<jsScript file="controls/RepCommands.js"/>	
+		<jsScript file="controls/rs/RepCommands.rs_ru.js" resource="ru"/>			
+		
+		<jsScript file="controls/ViewReport.js"/>	
+		<jsScript file="controls/rs/ViewReport.rs_ru.js" resource="ru"/>
+		
+		<jsScript file="controls/PopUpMenu.js"/>
+		<jsScript file="controls/PopOver.js"/>
+		<jsScript file="controls/PeriodSelect.js"/>
+		<jsScript file="controls/rs/PeriodSelect.rs_ru.js" resource="ru"/>
 		
 		<!-- controllers -->
 		<jsScript file="controllers/Constant_Controller.js"/>
@@ -2857,22 +2939,14 @@
 		<jsScript file="controllers/User_Controller.js"/>
 		<jsScript file="controllers/DOCMaterialDisposal_Controller.js"/>
 		<jsScript file="controllers/DOCMaterialDisposalDOCTMaterial_Controller.js"/>
-		<jsScript file="controllers/DOCMaterialToWaste_Controller.js"/>
-		<jsScript file="controllers/DOCMaterialToWasteDOCTMaterial_Controller.js"/>		
 		<jsScript file="controllers/DOCMaterialProcurement_Controller.js"/>
 		<jsScript file="controllers/DOCMaterialProcurementDOCTMaterial_Controller.js"/>
-		<jsScript file="controllers/DOCMaterialOrder_Controller.js"/>
-		<jsScript file="controllers/DOCMaterialOrderDOCTMaterial_Controller.js"/>		
 		<jsScript file="controllers/DOCProductDisposal_Controller.js"/>
-		<jsScript file="controllers/DOCProductDisposalDOCTMaterial_Controller.js"/>
 		<jsScript file="controllers/DOCProduction_Controller.js"/>
 		<jsScript file="controllers/DOCProductionDOCTMaterial_Controller.js"/>
 		<jsScript file="controllers/DOCSale_Controller.js"/>
 		<jsScript file="controllers/DOCSaleDOCTProduct_Controller.js"/>
 		<jsScript file="controllers/DOCSaleDOCTMaterial_Controller.js"/>
-		<jsScript file="controllers/DOCProductOrder_Controller.js"/>
-		<jsScript file="controllers/DOCProductOrderDOCTProduct_Controller.js"/>
-		<jsScript file="controllers/RGProductOrder_Controller.js"/>
 		<jsScript file="controllers/Receipt_Controller.js"/>
 		<jsScript file="controllers/ExpenceType_Controller.js"/>
 		<jsScript file="controllers/DOCExpence_Controller.js"/>
@@ -2888,53 +2962,65 @@
 		<jsScript file="controllers/Client_Controller.js"/>
 		<jsScript file="controllers/RepSalesOnTypes_Controller.js"/>		
 		
-		<jsScript file="custom_controls/AppCRM.js"/>
-		<jsScript file="custom_controls/MaterialGroupSelect.js"/>
-		<jsScript file="custom_controls/StoreSelect.js"/>		
-		<jsScript file="custom_controls/MaterialNameEdit.js"/>
-		<jsScript file="custom_controls/ProductNameEdit.js"/>
-		<jsScript file="custom_controls/SupplierNameEdit.js"/>
-		<jsScript file="custom_controls/ClientNameEdit.js"/>
-		<jsScript file="custom_controls/UserNameEdit.js"/>
-		<jsScript file="custom_controls/CashRegisterSelect.js"/>
-		<jsScript file="custom_controls/PaymentTypeForSaleSelect.js"/>
-		<jsScript file="custom_controls/UserEditRef.js"/>
-		<jsScript file="custom_controls/GridColumnCustomTime.js"/>
-		<jsScript file="custom_controls/MaterialGroupRadio.js"/>		
-		<jsScript file="custom_controls/SupplierEditRef.js"/>
-		<jsScript file="custom_controls/ProductEditRef.js"/>
-		<jsScript file="custom_controls/DOCNumberEdit.js"/>
-		<jsScript file="custom_controls/DOCDateEdit.js"/>
-		<jsScript file="custom_controls/MaterialEditRef.js"/>		
-		
+		<jsScript file="custom/App.templates.js"/>
+		<jsScript file="custom/AppFlowers.js"/>
+		<jsScript file="custom/MaterialGroupSelect.js"/>
+		<jsScript file="custom/StoreSelect.js"/>		
+		<jsScript file="custom/MaterialNameEdit.js"/>
+		<jsScript file="custom/ProductNameEdit.js"/>
+		<jsScript file="custom/SupplierNameEdit.js"/>
+		<jsScript file="custom/ClientNameEdit.js"/>
+		<jsScript file="custom/ClientEditRef.js"/>
+		<jsScript file="custom/UserNameEdit.js"/>
+		<jsScript file="custom/CashRegisterSelect.js"/>
+		<jsScript file="custom/PaymentTypeForSaleSelect.js"/>
+		<jsScript file="custom/DeliveryHourSelect.js"/>		
+		<jsScript file="custom/UserEditRef.js"/>
+		<jsScript file="custom/GridColumnCustomTime.js"/>
+		<jsScript file="custom/MaterialGroupRadio.js"/>		
+		<jsScript file="custom/SupplierEditRef.js"/>
+		<jsScript file="custom/ProductEditRef.js"/>
+		<jsScript file="custom/DOCNumberEdit.js"/>
+		<jsScript file="custom/DOCDateEdit.js"/>
+		<jsScript file="custom/MaterialEditRef.js"/>
+		<jsScript file="custom/DOCCommands.js"/>
+		<jsScript file="custom/DOCProductionDetMatSysCell.js"/>
+		<jsScript file="custom/DOCSaleReceiptSysCell.js"/>		
+		<jsScript file="custom/DOCProductionEditRef.js"/>
+		<jsScript file="custom/ExpenceTypeEditRef.js"/>
+		<jsScript file="custom/DiscountSelect.js"/>		
+		<jsScript file="custom/DiscCardEditRef.js"/>
+		<jsScript file="custom/DOCSaleReceiptEditCell.js"/>
+		<jsScript file="custom/ItemsForSaleGrid.js"/>
+		<jsScript file="custom/DOCClientOrderEditRef.js"/>
+		<jsScript file="custom/DOCSalePayTypeSysCell.js"/>
+		<jsScript file="custom/DOCSalePayTypeEditCell.js"/>
+		<jsScript file="custom/ReceiptPayTypeAddBtn.js"/>																												
+		<jsScript file="custom/SeqMaterialText.js"/>
+		<jsScript file="custom/ConstantGrid.js"/>
+		<jsScript file="custom/DOCClientOrderGridCommand.js"/>
+				
 		<!--
-		<jsScript file="custom_controls/CustomEditObjects.js"/>
-		<jsScript file="custom_controls/ReceiptGridRowCommands.js"/>
-		<jsScript file="custom_controls/ProductionFloristGridRowCommands.js"/>
-		<jsScript file="custom_controls/MaterialsForSaleGridDb.js"/>
-		<jsScript file="custom_controls/ProductsForSaleGridDb.js"/>
-		<jsScript file="custom_controls/ReceiptGridDb.js"/>
-		<jsScript file="custom_controls/ProductOrderGridDb.js"/>
-		<jsScript file="custom_controls/ProductionMaterialFloristGridDb.js"/>
-		<jsScript file="custom_controls/ViewHeadDetailList_View.js"/>		
-		<jsScript file="custom_controls/ViewSaleList_View.js"/>		
-		<jsScript file="custom_controls/MaterialGroupMenuItem.js"/>		
-		<jsScript file="custom_controls/ReceiptEditGridCell.js"/>
-		<jsScript file="custom_controls/EditShiftFrom.js"/>
-		<jsScript file="custom_controls/EditShiftTo.js"/>
-		<jsScript file="custom_controls/GridFilterDocumentFlowers.js"/>
-		<jsScript file="custom_controls/GridDbDOCHeadDetail.js"/>
-		<jsScript file="custom_controls/MaterialGridRowCommands.js"/>
-		<jsScript file="custom_controls/SaleCachierGridRowCommands.js"/>				
-		<jsScript file="custom_controls/CashRegFPrint5200DrDownload.js"/>		
+		<jsScript file="custom/ConstantEditInlineAjx.js"/>						
 		-->
+		
+		
+		<jsScript file="enum_controls/EnumGridColumn_delivery_note_types.js"/>
+		<jsScript file="enum_controls/EnumGridColumn_delivery_types.js"/>
+		<jsScript file="enum_controls/EnumGridColumn_payment_types.js"/>
+		<jsScript file="enum_controls/EnumGridColumn_client_order_states.js"/>
+		
+				
+		<jsScript file="custom/rs_ru.js"/>
 		
 		<!-- Forms -->
 		<jsScript file="forms/Material_Form.js"/>
 		<jsScript file="forms/MaterialList_Form.js"/>
 		<jsScript file="forms/MaterialBalanceList_Form.js"/>
+		<jsScript file="forms/ProductBalanceList_Form.js"/>
 		<jsScript file="forms/Supplier_Form.js"/>
 		<jsScript file="forms/Client_Form.js"/>
+		<jsScript file="forms/ClientList_Form.js"/>		
 		<jsScript file="forms/Product_Form.js"/>
 		<jsScript file="forms/User_Form.js"/>
 		<jsScript file="forms/DOCProduction_Form.js"/>
@@ -2945,10 +3031,17 @@
 		<jsScript file="forms/ProductList_Form.js"/>
 		<jsScript file="forms/DOCSale_Form.js"/>
 		<jsScript file="forms/DOCExpence_Form.js"/>				
+		<jsScript file="forms/DOCMaterialProcurement_Form.js"/>
+		<jsScript file="forms/DOCMaterialDisposal_Form.js"/>
+		<jsScript file="forms/ExpenceTypeList_Form.js"/>								
+		<jsScript file="forms/DOCExpence_Form.js"/>
+		<jsScript file="forms/DiscCard_Form.js"/>
+		<jsScript file="forms/DOCClientOrder_Form.js"/>
+		<jsScript file="forms/DOCClientOrderList_Form.js"/>		
+		
 		
 		<!-- Views -->
-		<jsScript file="views/Login_View.js"/>
-		<jsScript file="views/rs/Login_View.rs.js"/>
+		<jsScript file="views/Login_View.js"/>		
 		<jsScript file="views/StoreList_View.js"/>
 		<jsScript file="views/ProductList_View.js"/>
 		<jsScript file="views/MaterialGroup_View.js"/>
@@ -2969,14 +3062,41 @@
 		<jsScript file="views/DOCProductionList_View.js"/>
 		<jsScript file="views/DOCProductDisposalList_View.js"/>
 		<jsScript file="views/DOCMaterialDisposalList_View.js"/>
+		<jsScript file="views/DOCMaterialDisposal_View.js"/>
 		<jsScript file="views/DOCProductDisposal_View.js"/>
-		<jsScript file="views/DOCMaterialProcurementList_View.js"/>		
+		<jsScript file="views/DOCMaterialProcurementList_View.js"/>
+		<jsScript file="views/DOCMaterialProcurement_View.js"/>
+		<jsScript file="views/DOCMaterialProcurementDOCTMaterialInline_View.js"/>						
 		<jsScript file="views/DOCSaleList_View.js"/>
 		<jsScript file="views/ExpenceType_View.js"/>		
 		<jsScript file="views/DOCExpenceList_View.js"/>
 		<jsScript file="views/UserProfile_View.js"/>
-		<jsScript file="views/rs/UserProfile_View.rs.js"/>
 		<jsScript file="views/DOCProduction_View.js"/>
+		<jsScript file="views/QuantEdit_View.js"/>
+		<jsScript file="views/DOCExpenceList_View.js"/>
+		<jsScript file="views/DOCExpence_View.js"/>												
+		<jsScript file="views/RepBalance_View.js"/>
+		<jsScript file="views/MaterialProcurAvgPrice_View.js"/>
+		<jsScript file="views/MaterialActionsReport_View.js"/>		
+		<jsScript file="views/MaterialActionsNoPriceReport_View.js"/>		
+		<jsScript file="views/RepSaleForAcc_View.js"/>
+		<jsScript file="views/RepSalesOnTypes_View.js"/>
+		<jsScript file="views/DOCSale_View.js"/>
+		<jsScript file="views/DOCSaleDOCTMaterialInline_View.js"/>
+		<jsScript file="views/DOCSaleDOCTProductInline_View.js"/>
+		<jsScript file="views/CashRegisterOper_View.js"/>
+		<jsScript file="views/DOCSaleCashier_View.js"/>
+		<jsScript file="views/DOCSaleReceipt_View.js"/>
+		<jsScript file="views/DiscountList_View.js"/>
+		<jsScript file="views/DiscCard_View.js"/>
+		<jsScript file="views/ExpenceTypeList_View.js"/>
+		<jsScript file="views/DOCClientOrderList_View.js"/>
+		<jsScript file="views/DOCClientOrder_View.js"/>
+		<jsScript file="views/DOCClientOrderDOCTMaterialInline_View.js"/>
+		<jsScript file="views/DOCClientOrderDOCTProductInline_View.js"/>
+		 
+		
+		<jsScript file="views/rs_ru.js"/>
 		
 		<!--
 		<jsScript file="views/ConstantInline_View.js"/>
@@ -3020,8 +3140,6 @@
 		<jsScript file="views/DOCMaterialDisposalDOCTMaterialListInline_View.js"/>
 		
 		<jsScript file="views/DOCSaleDialog_View.js"/>
-		<jsScript file="views/DOCSaleDOCTProductList_View.js"/>
-		<jsScript file="views/DOCSaleDOCTProductListInline_View.js"/>
 		<jsScript file="views/DOCSaleDOCTMaterialList_View.js"/>
 		<jsScript file="views/DOCSaleDOCTMaterialListInline_View.js"/>
 		<jsScript file="views/DOCProductOrderList_View.js"/>
@@ -3043,7 +3161,7 @@
 		<jsScript file="views/DOCExpenceDOCTExpenceTypeList_View.js"/>
 		<jsScript file="views/DOCExpenceDOCTExpenceTypeListInline_View.js"/>		
 		
-		<jsScript file="views/RepBalance_View.js"/>		
+		
 		<jsScript file="views/CashRegister_View.js"/>		
 		<jsScript file="views/CashRegisterInline_View.js"/>		
 		
@@ -3056,24 +3174,22 @@
 		<jsScript file="views/DOCClientOrderDOCTMaterialListInline_View.js"/>
 		<jsScript file="views/DOCClientOrderDOCTProductList_View.js"/>
 		<jsScript file="views/DOCClientOrderDOCTProductListInline_View.js"/>
-		<jsScript file="views/RepSaleForAcc_View.js"/>
-		<jsScript file="views/RepSalesOnTypes_View.js"/>
 		<jsScript file="views/ClientList_View.js"/>
 		<jsScript file="views/ClientDialog_View.js"/>
 		-->
 		
-	<jsScript file="controllers/FileStorageSmall_Controller.js"/><jsScript file="controllers/ReportVariant_Controller.js"/><jsScript file="models/Store_Model.js"/><jsScript file="models/StoreList_Model.js"/><jsScript file="models/ConstantList_Model.js"/><jsScript file="models/User_Model.js"/><jsScript file="models/UserList_Model.js"/><jsScript file="models/UserDialog_Model.js"/><jsScript file="models/CashRegister_Model.js"/><jsScript file="models/Client_Model.js"/><jsScript file="models/ClientList_Model.js"/><jsScript file="models/ClientDialog_Model.js"/><jsScript file="models/Product_Model.js"/><jsScript file="models/ProductList_Model.js"/><jsScript file="models/ProductBalanceList_Model.js"/><jsScript file="models/MaterialGroup_Model.js"/><jsScript file="models/Material_Model.js"/><jsScript file="models/MaterialList_Model.js"/><jsScript file="models/MaterialBalanceList_Model.js"/><jsScript file="models/Supplier_Model.js"/><jsScript file="models/SupplierList_Model.js"/><jsScript file="models/Specification_Model.js"/><jsScript file="models/SpecificationList_Model.js"/><jsScript file="models/PaymentTypeForSale_Model.js"/><jsScript file="models/DOCProduction_Model.js"/><jsScript file="models/DOCProductionMaterialList_Model.js"/><jsScript file="models/DOCProductionList_Model.js"/><jsScript file="models/DOCProductionDOCTMaterial_Model.js"/><jsScript file="models/DOCProductionDOCTMaterialList_Model.js"/><jsScript file="models/DOCProductionDOCTFMaterial_Model.js"/><jsScript file="models/DOCProductionDOCTFMaterialList_Model.js"/><jsScript file="models/DOCProductDisposal_Model.js"/><jsScript file="models/DOCProductDisposalMaterialList_Model.js"/><jsScript file="models/DOCProductDisposalList_Model.js"/><jsScript file="models/DOCProductDisposalDOCTMaterial_Model.js"/><jsScript file="models/DOCProductDisposalDOCTMaterialList_Model.js"/><jsScript file="models/DOCProductDisposalDOCTFMaterial_Model.js"/><jsScript file="models/DOCProductDisposalDOCTFMaterialList_Model.js"/><jsScript file="models/DOCMaterialProcurement_Model.js"/><jsScript file="models/DOCMaterialProcurementList_Model.js"/><jsScript file="models/DOCMaterialProcurementMaterialList_Model.js"/><jsScript file="models/DOCMaterialProcurementDOCTMaterial_Model.js"/><jsScript file="models/DOCMaterialProcurementDOCTMaterialList_Model.js"/><jsScript file="models/DOCMaterialProcurementDOCTFMaterial_Model.js"/><jsScript file="models/DOCMaterialProcurementDOCTFMaterialList_Model.js"/><jsScript file="models/DOCMaterialOrder_Model.js"/><jsScript file="models/DOCMaterialOrderList_Model.js"/><jsScript file="models/DOCMaterialOrderMaterialList_Model.js"/><jsScript file="models/DOCMaterialOrderDOCTMaterial_Model.js"/><jsScript file="models/DOCMaterialOrderDOCTMaterialList_Model.js"/><jsScript file="models/DOCMaterialOrderDOCTFMaterial_Model.js"/><jsScript file="models/DOCMaterialOrderDOCTFMaterialList_Model.js"/><jsScript file="models/DOCMaterialToWaste_Model.js"/><jsScript file="models/DOCMaterialToWasteList_Model.js"/><jsScript file="models/DOCMaterialToWasteDOCTMaterial_Model.js"/><jsScript file="models/DOCMaterialToWasteDOCTMaterialList_Model.js"/><jsScript file="models/DOCMaterialToWasteDOCTFMaterial_Model.js"/><jsScript file="models/DOCMaterialToWasteDOCTFMaterialList_Model.js"/><jsScript file="models/DOCMaterialDisposal_Model.js"/><jsScript file="models/DOCMaterialDisposalList_Model.js"/><jsScript file="models/DOCMaterialDisposalMaterialList_Model.js"/><jsScript file="models/DOCMaterialDisposalDOCTMaterial_Model.js"/><jsScript file="models/DOCMaterialDisposalDOCTMaterialList_Model.js"/><jsScript file="models/DOCMaterialDisposalDOCTFMaterial_Model.js"/><jsScript file="models/DOCMaterialDisposalDOCTFMaterialList_Model.js"/><jsScript file="models/DOCClientOrder_Model.js"/><jsScript file="models/DOCClientOrderList_Model.js"/><jsScript file="models/DOCClientOrderDOCTMaterial_Model.js"/><jsScript file="models/DOCClientOrderDOCTMaterialList_Model.js"/><jsScript file="models/DOCClientOrderDOCTFMaterial_Model.js"/><jsScript file="models/DOCClientOrderDOCTFMaterialList_Model.js"/><jsScript file="models/DOCClientOrderDOCTProduct_Model.js"/><jsScript file="models/DOCClientOrderDOCTProductList_Model.js"/><jsScript file="models/DOCClientOrderDOCTFProduct_Model.js"/><jsScript file="models/DOCClientOrderDOCTFProductList_Model.js"/><jsScript file="models/DOCSale_Model.js"/><jsScript file="models/DOCSaleList_Model.js"/><jsScript file="models/DOCSaleDialog_Model.js"/><jsScript file="models/DOCSaleDOCTMaterial_Model.js"/><jsScript file="models/DOCSaleDOCTMaterialList_Model.js"/><jsScript file="models/DOCSaleDOCTFMaterial_Model.js"/><jsScript file="models/DOCSaleDOCTFMaterialList_Model.js"/><jsScript file="models/DOCSaleDOCTProduct_Model.js"/><jsScript file="models/DOCSaleDOCTProductList_Model.js"/><jsScript file="models/DOCSaleDOCTFProduct_Model.js"/><jsScript file="models/DOCSaleDOCTFProductList_Model.js"/><jsScript file="models/DOCSaleMaterialList_Model.js"/><jsScript file="models/DOCSaleProductList_Model.js"/><jsScript file="models/Receipt_Model.js"/><jsScript file="models/ReceiptList_Model.js"/><jsScript file="models/RGMaterial_Model.js"/><jsScript file="models/RAMaterial_Model.js"/><jsScript file="models/RGProduct_Model.js"/><jsScript file="models/RAProduct_Model.js"/><jsScript file="models/RGProductOrder_Model.js"/><jsScript file="models/RAProductOrder_Model.js"/><jsScript file="models/RGMaterialCost_Model.js"/><jsScript file="models/RGMaterialSale_Model.js"/><jsScript file="models/RAMaterialSale_Model.js"/><jsScript file="models/RGProductSale_Model.js"/><jsScript file="models/RAProductSale_Model.js"/><jsScript file="models/ReportVariant_Model.js"/><jsScript file="models/ReportVariantList_Model.js"/><jsScript file="models/RepMaterialAction_Model.js"/><jsScript file="models/ExpenceType_Model.js"/><jsScript file="models/DOCExpence_Model.js"/><jsScript file="models/DOCExpenceList_Model.js"/><jsScript file="models/DOCExpenceExpenceTypeList_Model.js"/><jsScript file="models/DOCExpenceDOCTExpenceType_Model.js"/><jsScript file="models/DOCExpenceDOCTExpenceTypeList_Model.js"/><jsScript file="models/DOCExpenceDOCTFExpenceType_Model.js"/><jsScript file="models/DOCExpenceDOCTFExpenceTypeList_Model.js"/><jsScript file="models/RepBalance_Model.js"/><jsScript file="models/DeliveryHour_Model.js"/><jsScript file="models/DeliveryHourList_Model.js"/><jsScript file="models/Message_Model.js"/><jsScript file="models/MessageRecipient_Model.js"/><jsScript file="models/MessageView_Model.js"/><jsScript file="controllers/Message_Controller.js"/><jsScript file="models/MessageHeaderList_Model.js"/><jsScript file="custom_controls/Enum_role_types.js"/><jsScript file="custom_controls/Enum_product_order_types.js"/><jsScript file="custom_controls/Enum_doc_types.js"/><jsScript file="custom_controls/Enum_reg_types.js"/><jsScript file="custom_controls/Enum_stock_types.js"/><jsScript file="custom_controls/Enum_payment_types.js"/><jsScript file="custom_controls/Enum_report_types.js"/><jsScript file="custom_controls/Enum_delivery_types.js"/><jsScript file="custom_controls/Enum_recipient_types.js"/><jsScript file="custom_controls/Enum_delivery_note_types.js"/><jsScript file="custom_controls/Enum_client_order_states.js"/><jsScript file="custom_controls/Enum_message_types.js"/><jsScript file="models/TemplateParam_Model.js"/><jsScript file="custom_controls/Enum_def_date_types.js"/><jsScript file="models/UserProfile_Model.js"/><jsScript file="controllers/TemplateParam_Controller.js"/></jsScripts>
+	<jsScript file="controllers/FileStorageSmall_Controller.js"/><jsScript file="models/Store_Model.js"/><jsScript file="models/StoreList_Model.js"/><jsScript file="models/ConstantList_Model.js"/><jsScript file="models/User_Model.js"/><jsScript file="models/UserList_Model.js"/><jsScript file="models/UserDialog_Model.js"/><jsScript file="models/CashRegister_Model.js"/><jsScript file="models/Client_Model.js"/><jsScript file="models/ClientList_Model.js"/><jsScript file="models/ClientDialog_Model.js"/><jsScript file="models/Product_Model.js"/><jsScript file="models/ProductList_Model.js"/><jsScript file="models/ProductBalanceList_Model.js"/><jsScript file="models/MaterialGroup_Model.js"/><jsScript file="models/Material_Model.js"/><jsScript file="models/MaterialList_Model.js"/><jsScript file="models/MaterialBalanceList_Model.js"/><jsScript file="models/Supplier_Model.js"/><jsScript file="models/SupplierList_Model.js"/><jsScript file="models/Specification_Model.js"/><jsScript file="models/SpecificationList_Model.js"/><jsScript file="models/PaymentTypeForSale_Model.js"/><jsScript file="models/DOCProduction_Model.js"/><jsScript file="models/DOCProductionMaterialList_Model.js"/><jsScript file="models/DOCProductionList_Model.js"/><jsScript file="models/DOCProductionDOCTMaterial_Model.js"/><jsScript file="models/DOCProductionDOCTMaterialList_Model.js"/><jsScript file="models/DOCProductionDOCTFMaterial_Model.js"/><jsScript file="models/DOCProductionDOCTFMaterialList_Model.js"/><jsScript file="models/DOCProductDisposal_Model.js"/><jsScript file="models/DOCProductDisposalMaterialList_Model.js"/><jsScript file="models/DOCProductDisposalList_Model.js"/><jsScript file="models/DOCProductDisposalDOCTMaterial_Model.js"/><jsScript file="models/DOCProductDisposalDOCTMaterialList_Model.js"/><jsScript file="models/DOCProductDisposalDOCTFMaterial_Model.js"/><jsScript file="models/DOCProductDisposalDOCTFMaterialList_Model.js"/><jsScript file="models/DOCMaterialProcurement_Model.js"/><jsScript file="models/DOCMaterialProcurementList_Model.js"/><jsScript file="models/DOCMaterialProcurementMaterialList_Model.js"/><jsScript file="models/DOCMaterialProcurementDOCTMaterial_Model.js"/><jsScript file="models/DOCMaterialProcurementDOCTMaterialList_Model.js"/><jsScript file="models/DOCMaterialProcurementDOCTFMaterial_Model.js"/><jsScript file="models/DOCMaterialProcurementDOCTFMaterialList_Model.js"/><jsScript file="models/DOCMaterialOrder_Model.js"/><jsScript file="models/DOCMaterialOrderList_Model.js"/><jsScript file="models/DOCMaterialOrderMaterialList_Model.js"/><jsScript file="models/DOCMaterialOrderDOCTMaterial_Model.js"/><jsScript file="models/DOCMaterialOrderDOCTMaterialList_Model.js"/><jsScript file="models/DOCMaterialOrderDOCTFMaterial_Model.js"/><jsScript file="models/DOCMaterialOrderDOCTFMaterialList_Model.js"/><jsScript file="models/DOCMaterialDisposal_Model.js"/><jsScript file="models/DOCMaterialDisposalList_Model.js"/><jsScript file="models/DOCMaterialDisposalMaterialList_Model.js"/><jsScript file="models/DOCMaterialDisposalDOCTMaterial_Model.js"/><jsScript file="models/DOCMaterialDisposalDOCTMaterialList_Model.js"/><jsScript file="models/DOCMaterialDisposalDOCTFMaterial_Model.js"/><jsScript file="models/DOCMaterialDisposalDOCTFMaterialList_Model.js"/><jsScript file="models/DOCClientOrder_Model.js"/><jsScript file="models/DOCClientOrderList_Model.js"/><jsScript file="models/DOCClientOrderDOCTMaterial_Model.js"/><jsScript file="models/DOCClientOrderDOCTMaterialList_Model.js"/><jsScript file="models/DOCClientOrderDOCTFMaterial_Model.js"/><jsScript file="models/DOCClientOrderDOCTFMaterialList_Model.js"/><jsScript file="models/DOCClientOrderDOCTProduct_Model.js"/><jsScript file="models/DOCClientOrderDOCTProductList_Model.js"/><jsScript file="models/DOCClientOrderDOCTFProduct_Model.js"/><jsScript file="models/DOCClientOrderDOCTFProductList_Model.js"/><jsScript file="models/DOCSale_Model.js"/><jsScript file="models/DOCSaleList_Model.js"/><jsScript file="models/DOCSaleDialog_Model.js"/><jsScript file="models/DOCSaleDOCTMaterial_Model.js"/><jsScript file="models/DOCSaleDOCTMaterialList_Model.js"/><jsScript file="models/DOCSaleDOCTFMaterial_Model.js"/><jsScript file="models/DOCSaleDOCTFMaterialList_Model.js"/><jsScript file="models/DOCSaleDOCTProduct_Model.js"/><jsScript file="models/DOCSaleDOCTProductList_Model.js"/><jsScript file="models/DOCSaleDOCTFProduct_Model.js"/><jsScript file="models/DOCSaleDOCTFProductList_Model.js"/><jsScript file="models/DOCSaleMaterialList_Model.js"/><jsScript file="models/DOCSaleProductList_Model.js"/><jsScript file="models/Receipt_Model.js"/><jsScript file="models/ReceiptList_Model.js"/><jsScript file="models/RGMaterial_Model.js"/><jsScript file="models/RAMaterial_Model.js"/><jsScript file="models/RGProduct_Model.js"/><jsScript file="models/RAProduct_Model.js"/><jsScript file="models/VariantStorage_Model.js"/><jsScript file="models/VariantStorageList_Model.js"/><jsScript file="models/RepMaterialAction_Model.js"/><jsScript file="models/ExpenceType_Model.js"/><jsScript file="models/DOCExpence_Model.js"/><jsScript file="models/DOCExpenceList_Model.js"/><jsScript file="models/DOCExpenceExpenceTypeList_Model.js"/><jsScript file="models/DOCExpenceDOCTExpenceType_Model.js"/><jsScript file="models/DOCExpenceDOCTExpenceTypeList_Model.js"/><jsScript file="models/DOCExpenceDOCTFExpenceType_Model.js"/><jsScript file="models/DOCExpenceDOCTFExpenceTypeList_Model.js"/><jsScript file="models/RepBalance_Model.js"/><jsScript file="models/DeliveryHour_Model.js"/><jsScript file="models/DeliveryHourList_Model.js"/><jsScript file="models/Message_Model.js"/><jsScript file="models/MessageRecipient_Model.js"/><jsScript file="models/MessageView_Model.js"/><jsScript file="controllers/Message_Controller.js"/><jsScript file="models/MessageHeaderList_Model.js"/><jsScript file="enum_controls/Enum_role_types.js"/><jsScript file="enum_controls/Enum_doc_types.js"/><jsScript file="enum_controls/Enum_reg_types.js"/><jsScript file="enum_controls/Enum_payment_types.js"/><jsScript file="enum_controls/Enum_report_types.js"/><jsScript file="enum_controls/Enum_delivery_types.js"/><jsScript file="enum_controls/Enum_recipient_types.js"/><jsScript file="enum_controls/Enum_delivery_note_types.js"/><jsScript file="enum_controls/Enum_client_order_states.js"/><jsScript file="enum_controls/Enum_message_types.js"/><jsScript file="models/TemplateParam_Model.js"/><jsScript file="enum_controls/Enum_def_date_types.js"/><jsScript file="models/UserProfile_Model.js"/><jsScript file="controllers/TemplateParam_Controller.js"/><jsScript file="models/TemplateParamVal_Model.js"/><jsScript file="models/TemplateParamValList_Model.js"/><jsScript file="controllers/Discount_Controller.js"/><jsScript file="models/Discount_Model.js"/><jsScript file="models/DiscountList_Model.js"/><jsScript file="controllers/DiscCard_Controller.js"/><jsScript file="models/DiscCard_Model.js"/><jsScript file="controllers/DOCManager_Controller.js"/><jsScript file="models/DOCReprocessStat_Model.js"/><jsScript file="controllers/Constant_Controller.js"/><jsScript file="models/ReceiptHead_Model.js"/><jsScript file="models/ReceiptHeadList_Model.js"/><jsScript file="models/DOCSalePaymentType_Model.js"/><jsScript file="models/ReceiptPaymentType_Model.js"/><jsScript file="models/ReceiptPaymentTypeList_Model.js"/><jsScript file="enum_controls/Enum_doc_sequences.js"/><jsScript file="models/DOCReprocessStatList_Model.js"/><jsScript file="controllers/RepMaterialAction_Controller.js"/><jsScript file="enum_controls/EnumGridColumn_role_types.js"/><jsScript file="enum_controls/EnumGridColumn_doc_types.js"/><jsScript file="enum_controls/EnumGridColumn_reg_types.js"/><jsScript file="enum_controls/EnumGridColumn_report_types.js"/><jsScript file="enum_controls/EnumGridColumn_recipient_types.js"/><jsScript file="enum_controls/EnumGridColumn_message_types.js"/><jsScript file="enum_controls/EnumGridColumn_def_date_types.js"/><jsScript file="enum_controls/EnumGridColumn_doc_sequences.js"/><jsScript file="controllers/VariantStorage_Controller.js"/><jsScript file="enum_controls/EnumGridColumn_role_types.js"/><jsScript file="enum_controls/EnumGridColumn_doc_types.js"/><jsScript file="enum_controls/EnumGridColumn_reg_types.js"/><jsScript file="enum_controls/EnumGridColumn_report_types.js"/><jsScript file="enum_controls/EnumGridColumn_recipient_types.js"/><jsScript file="enum_controls/EnumGridColumn_message_types.js"/><jsScript file="enum_controls/EnumGridColumn_def_date_types.js"/><jsScript file="enum_controls/EnumGridColumn_doc_sequences.js"/></jsScripts>
 	
 	<cssScripts>
-		<cssScript file="bootstrap.min.css" compressed="TRUE" standalone="TRUE"/>
-		<cssScript file="bootstrap-datepicker.standalone.min.css" compressed="TRUE" standalone="TRUE"/>
-		<cssScript file="metisMenu.min.css" standalone="TRUE"/>
-		<cssScript file="timeline.css" standalone="TRUE"/>
-		<cssScript file="sb-admin-2.css" standalone="TRUE"/>
-		<cssScript file="morris.css" standalone="TRUE"/>		
-		<cssScript file="font-awesome.min.css" standalone="TRUE"/>						
-		<cssScript file="style.css" standalone="TRUE"/>
-		<cssScript file="dhtmlwindow.css" standalone="TRUE"/>
+		<cssScript file="ext/bootstrap-datepicker/bootstrap-datepicker.standalone.min.css" compressed="TRUE" standalone="TRUE"/>		
+		<cssScript file="ext/startbootstrap-sb-admin-2-1.0.8/bower_components/bootstrap/dist/css/bootstrap.min.css" compressed="TRUE" standalone="TRUE"/>
+		<cssScript file="ext/startbootstrap-sb-admin-2-1.0.8/bower_components/metisMenu/dist/metisMenu.min.css" standalone="TRUE"/>
+		<cssScript file="ext/startbootstrap-sb-admin-2-1.0.8/dist/css/timeline.css" standalone="TRUE"/>
+		<cssScript file="ext/startbootstrap-sb-admin-2-1.0.8/dist/css/sb-admin-2.css" standalone="TRUE"/>
+		<cssScript file="ext/startbootstrap-sb-admin-2-1.0.8/bower_components/morrisjs/morris.css" standalone="TRUE"/>		
+		<cssScript file="ext/startbootstrap-sb-admin-2-1.0.8/bower_components/font-awesome/css/font-awesome.min.css" compressed="TRUE" standalone="TRUE"/>						
+		<cssScript file="custom-css/style.css" standalone="TRUE"/>
+		<cssScript file="ext/dhtml/dhtmlwindow.css" standalone="TRUE"/>
 		
 		<!--				
 		<cssScript file="modal.css"/>

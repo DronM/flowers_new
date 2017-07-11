@@ -30,6 +30,9 @@ class <xsl:value-of select="@id"/>_Controller extends ControllerSQL{
 </xsl:template>
 
 <xsl:template name="extra_methods">
+	public function get_object($pm){
+	}
+
 	public function report($pm){
 		$cond = new CondParamsSQL($pm,$this->getDbLink());
 		if ($cond->paramExists('store_id','e')){

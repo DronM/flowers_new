@@ -14,191 +14,111 @@ class DOCProductionMaterialList_Model extends ModelSQL{
 		$this->setDbName("public");
 		
 		$this->setTableName("doc_productions_materials_list_view");
+			
+		//*** Field id ***
+		$f_opts = array();
+		$f_opts['primaryKey'] = TRUE;
+		$f_opts['sysCol']=TRUE;
+		$f_opts['id']="id";
 		
-		$f_id=new FieldSQlInt($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"id"
-		,array(
-		
-			'primaryKey'=>TRUE,
-			'id'=>"id"
-		,
-			'sysCol'=>TRUE
-				
-		
-		));
+		$f_id=new FieldSQLInt($this->getDbLink(),$this->getDbName(),$this->getTableName(),"id",$f_opts);
 		$this->addField($f_id);
-
-		$f_date_time=new FieldSQlDateTime($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"date_time"
-		,array(
+		//********************
+	
+		//*** Field date_time ***
+		$f_opts = array();
+		$f_opts['sysCol']=TRUE;
+		$f_opts['id']="date_time";
 		
-			'id'=>"date_time"
-		,
-			'sysCol'=>TRUE
-				
-		
-		));
+		$f_date_time=new FieldSQLDateTime($this->getDbLink(),$this->getDbName(),$this->getTableName(),"date_time",$f_opts);
 		$this->addField($f_date_time);
-
-		$f_date_time_descr=new FieldSQlString($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"date_time_descr"
-		,array(
+		//********************
+	
+		//*** Field number ***
+		$f_opts = array();
+		$f_opts['id']="number";
 		
-			'alias'=>"Дата"
-		,
-			'id'=>"date_time_descr"
-				
-		
-		));
-		$this->addField($f_date_time_descr);
-
-		$f_number=new FieldSQlString($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"number"
-		,array(
-		
-			'alias'=>"Номер"
-		,
-			'id'=>"number"
-				
-		
-		));
+		$f_number=new FieldSQLString($this->getDbLink(),$this->getDbName(),$this->getTableName(),"number",$f_opts);
 		$this->addField($f_number);
-
-		$f_store_id=new FieldSQlInt($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"store_id"
-		,array(
+		//********************
+	
+		//*** Field store_id ***
+		$f_opts = array();
+		$f_opts['sysCol']=TRUE;
+		$f_opts['id']="store_id";
 		
-			'id'=>"store_id"
-		,
-			'sysCol'=>TRUE
-				
-		
-		));
+		$f_store_id=new FieldSQLInt($this->getDbLink(),$this->getDbName(),$this->getTableName(),"store_id",$f_opts);
 		$this->addField($f_store_id);
-
-		$f_store_descr=new FieldSQlString($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"store_descr"
-		,array(
+		//********************
+	
+		//*** Field store_descr ***
+		$f_opts = array();
+		$f_opts['id']="store_descr";
 		
-			'alias'=>"Салон"
-		,
-			'id'=>"store_descr"
-				
-		
-		));
+		$f_store_descr=new FieldSQLString($this->getDbLink(),$this->getDbName(),$this->getTableName(),"store_descr",$f_opts);
 		$this->addField($f_store_descr);
-
-		$f_user_id=new FieldSQlInt($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"user_id"
-		,array(
+		//********************
+	
+		//*** Field user_id ***
+		$f_opts = array();
+		$f_opts['sysCol']=TRUE;
+		$f_opts['id']="user_id";
 		
-			'id'=>"user_id"
-		,
-			'sysCol'=>TRUE
-				
-		
-		));
+		$f_user_id=new FieldSQLInt($this->getDbLink(),$this->getDbName(),$this->getTableName(),"user_id",$f_opts);
 		$this->addField($f_user_id);
-
-		$f_user_descr=new FieldSQlString($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"user_descr"
-		,array(
+		//********************
+	
+		//*** Field user_descr ***
+		$f_opts = array();
+		$f_opts['id']="user_descr";
 		
-			'alias'=>"Автор"
-		,
-			'id'=>"user_descr"
-				
-		
-		));
+		$f_user_descr=new FieldSQLString($this->getDbLink(),$this->getDbName(),$this->getTableName(),"user_descr",$f_opts);
 		$this->addField($f_user_descr);
-
-		$f_on_norm=new FieldSQlString($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"on_norm"
-		,array(
+		//********************
+	
+		//*** Field material_id ***
+		$f_opts = array();
+		$f_opts['sysCol']=TRUE;
+		$f_opts['id']="material_id";
 		
-			'alias'=>"По норме"
-		,
-			'id'=>"on_norm"
-				
-		
-		));
-		$this->addField($f_on_norm);
-
-		$f_material_id=new FieldSQlInt($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"material_id"
-		,array(
-		
-			'id'=>"material_id"
-		,
-			'sysCol'=>TRUE
-				
-		
-		));
+		$f_material_id=new FieldSQLInt($this->getDbLink(),$this->getDbName(),$this->getTableName(),"material_id",$f_opts);
 		$this->addField($f_material_id);
-
-		$f_material_descr=new FieldSQlString($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"material_descr"
-		,array(
+		//********************
+	
+		//*** Field material_descr ***
+		$f_opts = array();
+		$f_opts['id']="material_descr";
 		
-			'alias'=>"Материал"
-		,
-			'id'=>"material_descr"
-				
-		
-		));
+		$f_material_descr=new FieldSQLString($this->getDbLink(),$this->getDbName(),$this->getTableName(),"material_descr",$f_opts);
 		$this->addField($f_material_descr);
-
-		$f_quant=new FieldSQlFloat($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"quant"
-		,array(
+		//********************
+	
+		//*** Field quant ***
+		$f_opts = array();
+		$f_opts['id']="quant";
 		
-			'alias'=>"Количество"
-		,
-			'id'=>"quant"
-				
-		
-		));
+		$f_quant=new FieldSQLFloat($this->getDbLink(),$this->getDbName(),$this->getTableName(),"quant",$f_opts);
 		$this->addField($f_quant);
-
-		$f_quant_norm=new FieldSQlFloat($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"quant_norm"
-		,array(
+		//********************
+	
+		//*** Field material_sum ***
+		$f_opts = array();
+		$f_opts['sysCol']=TRUE;
+		$f_opts['id']="material_sum";
 		
-			'alias'=>"Количество по норме"
-		,
-			'id'=>"quant_norm"
-				
+		$f_material_sum=new FieldSQLString($this->getDbLink(),$this->getDbName(),$this->getTableName(),"material_sum",$f_opts);
+		$this->addField($f_material_sum);
+		//********************
+	
+		//*** Field material_cost ***
+		$f_opts = array();
+		$f_opts['sysCol']=TRUE;
+		$f_opts['id']="material_cost";
 		
-		));
-		$this->addField($f_quant_norm);
-
-		$f_material_sum_descr=new FieldSQlString($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"material_sum_descr"
-		,array(
-		
-			'id'=>"material_sum_descr"
-		,
-			'sysCol'=>TRUE
-				
-		
-		));
-		$this->addField($f_material_sum_descr);
-
-		$f_material_cost_descr=new FieldSQlString($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"material_cost_descr"
-		,array(
-		
-			'id'=>"material_cost_descr"
-		,
-			'sysCol'=>TRUE
-				
-		
-		));
-		$this->addField($f_material_cost_descr);
-
-		
-		
-		
+		$f_material_cost=new FieldSQLString($this->getDbLink(),$this->getDbName(),$this->getTableName(),"material_cost",$f_opts);
+		$this->addField($f_material_cost);
+		//********************
+$this->setLimitConstant('doc_per_page_count');
 	}
 
 }

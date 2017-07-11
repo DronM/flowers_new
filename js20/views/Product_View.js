@@ -16,6 +16,8 @@ function Product_View(id,options){
 		
 	this.addElement(new HiddenKey(id+":id"));	
 
+	var self = this;
+
 	this.addElement(new ProductNameEdit(id+":name",{
 		"app":options.app,
 		"events":{
@@ -77,14 +79,22 @@ function Product_View(id,options){
 					"elements":[
 						new GridCellHead(id+":specification-grid:head:material_descr",{
 							"columns":[
-								new GridColumn({"field":specification_model.getField("material_descr")
+								new GridColumn("material",{
+									"field":specification_model.getField("material_descr"),
+									"ctrlClass":MaterialEditRef,
+									"ctrlOptions":{
+										"labelCaption":"",
+										"keyIds":["material_id"]
+									},
+									"ctrlBindField":specification_model.getField("material_id")
 									})
 							]
 						}),
 					
 						new GridCellHead(id+":specification-grid:head:quant",{
 							"columns":[
-								new GridColumn({"field":specification_model.getField("material_quant")
+								new GridColumn("quant",{"field":specification_model.getField("material_quant"),
+									"ctrlOptions":{"minValue":"1"}
 									})
 							]
 						})						
@@ -96,7 +106,7 @@ function Product_View(id,options){
 		"enabled":false,
 		"app":options.app
 	});	
-	var self = this;
+	
 	this.addElement(grid);
 	
 	/*
@@ -143,3 +153,15 @@ function Product_View(id,options){
 }
 extend(Product_View,ViewObjectAjx);
 
+/*
+Product_View.prototype.setProductId = function(){
+	this.getElement("specification-grid").get
+}
+*/
+Product_View.prototype.fillNameFull = function(){
+	var name = this.getElement("name").getValue();
+	var name_full = this.getElement("name_full").getValue();
+	if (name && !name_full){
+		this.getElement("name_full").setValue(name);
+	}
+}

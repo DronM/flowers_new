@@ -12,60 +12,41 @@ class UserProfile_Model extends ModelSQL{
 		$this->setDbName("public");
 		
 		$this->setTableName("user_profile");
+			
+		//*** Field id ***
+		$f_opts = array();
+		$f_opts['primaryKey'] = TRUE;
+		$f_opts['id']="id";
 		
-		$f_id=new FieldSQlInt($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"id"
-		,array(
-		
-			'primaryKey'=>TRUE,
-			'alias'=>"Код"
-		,
-			'id'=>"id"
-				
-		
-		));
+		$f_id=new FieldSQLInt($this->getDbLink(),$this->getDbName(),$this->getTableName(),"id",$f_opts);
 		$this->addField($f_id);
-
-		$f_name=new FieldSQlString($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"name"
-		,array(
+		//********************
+	
+		//*** Field name ***
+		$f_opts = array();
+		$f_opts['id']="name";
 		
-			'alias'=>"Имя"
-		,
-			'id'=>"name"
-				
-		
-		));
+		$f_name=new FieldSQLString($this->getDbLink(),$this->getDbName(),$this->getTableName(),"name",$f_opts);
 		$this->addField($f_name);
-
-		$f_email=new FieldSQlString($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"email"
-		,array(
+		//********************
+	
+		//*** Field email ***
+		$f_opts = array();
+		$f_opts['id']="email";
 		
-			'alias'=>"Эл.почта"
-		,
-			'id'=>"email"
-				
-		
-		));
+		$f_email=new FieldSQLString($this->getDbLink(),$this->getDbName(),$this->getTableName(),"email",$f_opts);
 		$this->addField($f_email);
-
-		$f_phone_cel=new FieldSQlString($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"phone_cel"
-		,array(
+		//********************
+	
+		//*** Field phone_cel ***
+		$f_opts = array();
+		$f_opts['length']=11;
+		$f_opts['id']="phone_cel";
 		
-			'alias'=>"Моб.телефон"
-		,
-			'length'=>11,
-			'id'=>"phone_cel"
-				
-		
-		));
+		$f_phone_cel=new FieldSQLString($this->getDbLink(),$this->getDbName(),$this->getTableName(),"phone_cel",$f_opts);
 		$this->addField($f_phone_cel);
-
-		
-		
-		
+		//********************
+$this->setLimitConstant('doc_per_page_count');
 	}
 
 }

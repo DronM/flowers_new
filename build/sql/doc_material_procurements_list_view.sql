@@ -7,19 +7,19 @@ CREATE OR REPLACE VIEW doc_material_procurements_list_view AS
 		doc.id,
 		doc.number,
 		doc.date_time, 
-	    date8_time8_descr(doc.date_time) AS date_time_descr,
 		doc.processed, 
 	    doc.store_id,
 		st.name AS store_descr,
 		doc.user_id,
 		u.name AS user_descr, 
 	    doc.supplier_id,
-		sup.name AS supplier_descr, 
-	    (	SELECT
+		sup.name AS supplier_descr
+	    ,(	SELECT
 				COALESCE(sum(doc_m.total), 0::numeric) AS t
 			FROM doc_material_procurements_t_materials doc_m
 			WHERE doc_m.doc_id = doc.id
-		) AS total
+	) AS total
+	
 	   FROM doc_material_procurements doc
 	   LEFT JOIN users u ON u.id = doc.user_id
 	   LEFT JOIN stores st ON st.id = doc.store_id

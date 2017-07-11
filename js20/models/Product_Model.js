@@ -25,95 +25,54 @@ function Product_Model(options){
 			
 				
 			
-			
+				
+	
 	var filed_options = {};
-	filed_options.primaryKey = true;
+	filed_options.primaryKey = true;	
+	filed_options.alias = 'Код';options.fields.id = new FieldInt("id",filed_options);
 	
-	filed_options.alias = 'Код';
+				
 	
-	var field = new FieldInt("id",filed_options);
-	
-
-	options.fields.id = field;
-
-			
 	var filed_options = {};
-	filed_options.primaryKey = false;
+	filed_options.primaryKey = false;	
+	filed_options.alias = 'Наименование';options.fields.name = new FieldString("name",filed_options);
+	options.fields.name.getValidator().setRequired(true);
+	options.fields.name.getValidator().setMaxLength('100');
 	
-	filed_options.alias = 'Наименование';
+				
 	
-	var field = new FieldString("name",filed_options);
-	
-		field.getValidator().setRequired(true);
-	
-		field.getValidator().setMaxLength('100');
-	
-
-	options.fields.name = field;
-
-			
 	var filed_options = {};
-	filed_options.primaryKey = false;
+	filed_options.primaryKey = false;	
+	filed_options.alias = 'Описание';options.fields.name_full = new FieldText("name_full",filed_options);
+	options.fields.name_full.getValidator().setRequired(true);
 	
-	filed_options.alias = 'Описание';
+				
 	
-	var field = new FieldText("name_full",filed_options);
-	
-		field.getValidator().setRequired(true);
-	
-
-	options.fields.name_full = field;
-
-			
 	var filed_options = {};
-	filed_options.primaryKey = false;
+	filed_options.primaryKey = false;	
+	filed_options.alias = 'Розничная цена';options.fields.price = new FieldFloat("price",filed_options);
+	options.fields.price.getValidator().setRequired(true);
+	options.fields.price.getValidator().setMaxLength('15');
 	
-	filed_options.alias = 'Розничная цена';
+				
 	
-	var field = new FieldFloat("price",filed_options);
-	
-		field.getValidator().setRequired(true);
-	
-		field.getValidator().setMaxLength('15');
-	
-
-	options.fields.price = field;
-
-			
 	var filed_options = {};
-	filed_options.primaryKey = false;
+	filed_options.primaryKey = false;	
+	filed_options.alias = 'Для продажи';options.fields.for_sale = new FieldBool("for_sale",filed_options);
 	
-	filed_options.alias = 'Для продажи';
+				
 	
-	var field = new FieldBool("for_sale",filed_options);
-	
-
-	options.fields.for_sale = field;
-
-			
 	var filed_options = {};
-	filed_options.primaryKey = false;
+	filed_options.primaryKey = false;	
+	filed_options.alias = 'Заказывать автоматически';options.fields.make_order = new FieldBool("make_order",filed_options);
 	
-	filed_options.alias = 'Заказывать автоматически';
+				
 	
-	var field = new FieldBool("make_order",filed_options);
-	
-
-	options.fields.make_order = field;
-
-			
 	var filed_options = {};
-	filed_options.primaryKey = false;
+	filed_options.primaryKey = false;	
+	filed_options.alias = 'Минимальный остаток';options.fields.min_stock_quant = new FieldFloat("min_stock_quant",filed_options);
+	options.fields.min_stock_quant.getValidator().setMaxLength('19');
 	
-	filed_options.alias = 'Минимальный остаток';
-	
-	var field = new FieldFloat("min_stock_quant",filed_options);
-	
-		field.getValidator().setMaxLength('19');
-	
-
-	options.fields.min_stock_quant = field;
-
 						
 									
 		Product_Model.superclass.constructor.call(this,id,options);

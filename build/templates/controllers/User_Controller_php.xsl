@@ -92,20 +92,6 @@ class <xsl:value-of select="@id"/>_Controller extends ControllerSQL{
 	
 	/* array with user inf*/
 	private function set_logged($ar){
-		$this->setLogged(TRUE);
-		
-		$_SESSION['user_id']		= $ar['id'];
-		$_SESSION['user_name']		= $ar['name'];
-		$_SESSION['role_id']		= $ar['role_id'];
-		$_SESSION['role_descr'] 	= $ar['role_descr'];
-		
-		//$_SESSION['user_pwd'] = $pm->getParamValue('pwd');
-		$_SESSION['constrain_to_store'] = $ar['constrain_to_store'];
-		$_SESSION['def_store_id']	= $ar['store_id'];
-		$_SESSION['user_store_descr']	= $ar['store_descr'];
-		$_SESSION['cash_register']	= $ar['cash_register'];
-		$_SESSION['multy_store']	= $ar['multy_store'];
-		
 		
 		//global filters
 		if ($ar['constrain_to_store']){
@@ -121,41 +107,65 @@ class <xsl:value-of select="@id"/>_Controller extends ControllerSQL{
 			</xsl:for-each>
 		}
 		
-		$log_ar = $this->getDbLinkMaster()->query_first(
-			sprintf("SELECT pub_key FROM logins
-			WHERE session_id='%s' AND user_id ='%s' AND date_time_out IS NULL",
-			session_id(),$ar['id'])
-		);
+		$log_ar = $this->getDbLinkMaster()->query_first(sprintf(
+			"SELECT
+				pub_key,
+				id
+			FROM logins
+			WHERE session_id='%s' AND user_id =%d AND date_time_out IS NULL
+			ORDER BY date_time_in  DESC
+			LIMIT 1",			
+			session_id(),$ar['id']
+		));
 		if (!$log_ar['pub_key']){
 			//no user login
 			
 			$this->pub_key = uniqid();
 			
-			$log_ar = $this->getDbLinkMaster()->query_first(
-				sprintf("UPDATE logins SET 
-					user_id = '%s',
-					pub_key = '%s'
-				WHERE session_id='%s' AND user_id IS NULL
+			$log_ar = $this->getDbLinkMaster()->query_first(sprintf(
+				"UPDATE logins
+					SET 
+						user_id = %d,
+						pub_key = '%s'
+				WHERE session_id='%s' AND user_id IS NULL AND date_time_out IS NULL
 				RETURNING id",
 				$ar['id'],$this->pub_key,session_id())
 			);				
 			if (!$log_ar['id']){
 				//нет вообще юзера
-				$log_ar = $this->getDbLinkMaster()->query_first(
-					sprintf("INSERT INTO logins
+				$log_ar = $this->getDbLinkMaster()->query_first(sprintf(
+					"INSERT INTO logins
 					(date_time_in,ip,session_id,pub_key,user_id)
-					VALUES('%s','%s','%s','%s','%s')
+					VALUES('%s','%s','%s','%s',%d)
 					RETURNING id",
 					date('Y-m-d H:i:s'),$_SERVER["REMOTE_ADDR"],
 					session_id(),$this->pub_key,$ar['id'])
 				);								
-			}
-			$_SESSION['LOGIN_ID'] = $ar['id'];			
+			}			
 		}
 		else{
 			//user logged
 			$this->pub_key = trim($log_ar['pub_key']);
 		}
+		$_SESSION['LOGIN_ID'] = $log_ar['id'];
+		
+		$this->setLogged(TRUE);
+		
+		$_SESSION['user_id']		= $ar['id'];
+		$_SESSION['user_name']		= $ar['name'];
+		$_SESSION['role_id']		= $ar['role_id'];
+		$_SESSION['role_descr'] 	= $ar['role_descr'];
+		
+		//$_SESSION['user_pwd'] = $pm->getParamValue('pwd');
+		$_SESSION['constrain_to_store'] = $ar['constrain_to_store'];
+		$_SESSION['def_store_id']	= $ar['store_id'];
+		$_SESSION['user_store_descr']	= $ar['store_descr'];
+		$_SESSION['cash_reg_id']	= $ar['cash_reg_id'];
+		$_SESSION['cash_reg_server']	= $ar['cash_reg_server'];
+		$_SESSION['cash_reg_port']	= $ar['cash_reg_port'];
+		$_SESSION['multy_store']	= $ar['multy_store'];
+		
+		
 	}
 	
 	public function do_login($pm){
@@ -184,10 +194,15 @@ class <xsl:value-of select="@id"/>_Controller extends ControllerSQL{
 					ELSE 0
 				END AS constrain_to_store,
 				st.name AS store_descr,
-				u.cash_register_id AS cash_register,
-				(CASE WHEN (SELECT count(*) FROM stores)>1 THEN 1 ELSE 0 END) AS multy_store
+				
+				cash_regs.eq_id AS cash_reg_id,
+				cash_regs.eq_server AS cash_reg_server,
+				cash_regs.eq_port AS cash_reg_port,
+				
+				(CASE WHEN u.constrain_to_store=FALSE AND (SELECT count(*) FROM stores)>1 THEN 1 ELSE 0 END) AS multy_store
 			FROM users AS u
 			LEFT JOIN stores AS st ON st.id=u.store_id
+			LEFT JOIN cash_registers AS cash_regs ON cash_regs.id=u.cash_register_id
 			WHERE u.name=%s AND u.pwd=md5(%s)",
 			$name,$pwd));
 			

@@ -25,141 +25,87 @@ function DOCSale_Model(options){
 			
 				
 			
-			
+				
+	
 	var filed_options = {};
-	filed_options.primaryKey = true;
+	filed_options.primaryKey = true;	
+	options.fields.id = new FieldInt("id",filed_options);
 	
+				
 	
-	var field = new FieldInt("id",filed_options);
-	
-
-	options.fields.id = field;
-
-			
 	var filed_options = {};
-	filed_options.primaryKey = false;
+	filed_options.primaryKey = false;	
+	filed_options.alias = 'Дата';options.fields.date_time = new FieldDateTime("date_time",filed_options);
+	options.fields.date_time.getValidator().setRequired(true);
 	
-	filed_options.alias = 'Дата';
+				
 	
-	var field = new FieldDateTime("date_time",filed_options);
-	
-		field.getValidator().setRequired(true);
-	
-
-	options.fields.date_time = field;
-
-			
 	var filed_options = {};
-	filed_options.primaryKey = false;
+	filed_options.primaryKey = false;	
+	filed_options.alias = 'Номер';options.fields.number = new FieldInt("number",filed_options);
 	
-	filed_options.alias = 'Номер';
+				
 	
-	var field = new FieldInt("number",filed_options);
-	
-
-	options.fields.number = field;
-
-			
 	var filed_options = {};
-	filed_options.primaryKey = false;
+	filed_options.primaryKey = false;	
+	filed_options.alias = 'Проведен';options.fields.processed = new FieldBool("processed",filed_options);
 	
-	filed_options.alias = 'Проведен';
+				
 	
-	var field = new FieldBool("processed",filed_options);
-	
-
-	options.fields.processed = field;
-
-			
 	var filed_options = {};
-	filed_options.primaryKey = false;
+	filed_options.primaryKey = false;	
+	filed_options.alias = 'Магазин';options.fields.store_id = new FieldInt("store_id",filed_options);
 	
-	filed_options.alias = 'Магазин';
+				
 	
-	var field = new FieldInt("store_id",filed_options);
-	
-
-	options.fields.store_id = field;
-
-			
 	var filed_options = {};
-	filed_options.primaryKey = false;
+	filed_options.primaryKey = false;	
+	filed_options.alias = 'Продавец';options.fields.user_id = new FieldInt("user_id",filed_options);
 	
-	filed_options.alias = 'Продавец';
+				
 	
-	var field = new FieldInt("user_id",filed_options);
-	
-
-	options.fields.user_id = field;
-
-			
 	var filed_options = {};
-	filed_options.primaryKey = false;
+	filed_options.primaryKey = false;	
+	filed_options.alias = 'Магазин';options.fields.payment_type_for_sale_id = new FieldInt("payment_type_for_sale_id",filed_options);
+				
+				
 	
-	filed_options.alias = 'Магазин';
-	
-	var field = new FieldInt("payment_type_for_sale_id",filed_options);
-	
-
-	options.fields.payment_type_for_sale_id = field;
-			
-			
 	var filed_options = {};
-	filed_options.primaryKey = false;
+	filed_options.primaryKey = false;	
+	filed_options.alias = 'Сумма';options.fields.total = new FieldFloat("total",filed_options);
+	options.fields.total.getValidator().setMaxLength('15');
 	
-	filed_options.alias = 'Сумма';
+				
 	
-	var field = new FieldFloat("total",filed_options);
-	
-		field.getValidator().setMaxLength('15');
-	
-
-	options.fields.total = field;
-
-			
 	var filed_options = {};
-	filed_options.primaryKey = false;
+	filed_options.primaryKey = false;	
+	filed_options.alias = 'Себест.материалов';options.fields.total_material_cost = new FieldFloat("total_material_cost",filed_options);
+	options.fields.total_material_cost.getValidator().setMaxLength('15');
 	
-	filed_options.alias = 'Себест.материалов';
+				
 	
-	var field = new FieldFloat("total_material_cost",filed_options);
-	
-		field.getValidator().setMaxLength('15');
-	
-
-	options.fields.total_material_cost = field;
-
-			
 	var filed_options = {};
-	filed_options.primaryKey = false;
+	filed_options.primaryKey = false;	
+	filed_options.alias = 'Себест.продукции';options.fields.total_product_cost = new FieldFloat("total_product_cost",filed_options);
+	options.fields.total_product_cost.getValidator().setMaxLength('15');
 	
-	filed_options.alias = 'Себест.продукции';
+				
 	
-	var field = new FieldFloat("total_product_cost",filed_options);
-	
-		field.getValidator().setMaxLength('15');
-	
-
-	options.fields.total_product_cost = field;
-
-			
 	var filed_options = {};
-	filed_options.primaryKey = false;
+	filed_options.primaryKey = false;	
+	filed_options.alias = 'Клиент';options.fields.client_id = new FieldInt("client_id",filed_options);
 	
-	filed_options.alias = 'Клиент';
+				
 	
-	var field = new FieldInt("client_id",filed_options);
+	var filed_options = {};
+	filed_options.primaryKey = false;	
+	filed_options.alias = 'Вид скидки';options.fields.discount_id = new FieldInt("discount_id",filed_options);
 	
-
-	options.fields.client_id = field;
-
+			
 						
 			
 			
 			
-				
-				
-				
 				
 				
 									

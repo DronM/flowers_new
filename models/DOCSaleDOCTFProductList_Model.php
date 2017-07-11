@@ -13,133 +13,100 @@ class DOCSaleDOCTFProductList_Model extends ModelSQL{
 		$this->setDbName("public");
 		
 		$this->setTableName("doc_sales_t_products_list_view");
+			
+		//*** Field doc_id ***
+		$f_opts = array();
+		$f_opts['primaryKey'] = TRUE;
+		$f_opts['id']="doc_id";
 		
-		$f_doc_id=new FieldSQlInt($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"doc_id"
-		,array(
-		
-			'primaryKey'=>TRUE,
-			'id'=>"doc_id"
-				
-		
-		));
+		$f_doc_id=new FieldSQLInt($this->getDbLink(),$this->getDbName(),$this->getTableName(),"doc_id",$f_opts);
 		$this->addField($f_doc_id);
-
-		$f_line_number=new FieldSQlInt($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"line_number"
-		,array(
+		//********************
+	
+		//*** Field line_number ***
+		$f_opts = array();
+		$f_opts['primaryKey'] = TRUE;
+		$f_opts['id']="line_number";
 		
-			'primaryKey'=>TRUE,
-			'alias'=>"№"
-		,
-			'id'=>"line_number"
-				
-		
-		));
+		$f_line_number=new FieldSQLInt($this->getDbLink(),$this->getDbName(),$this->getTableName(),"line_number",$f_opts);
 		$this->addField($f_line_number);
-
-		$f_product_id=new FieldSQlInt($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"product_id"
-		,array(
+		//********************
+	
+		//*** Field product_id ***
+		$f_opts = array();
+		$f_opts['id']="product_id";
 		
-			'id'=>"product_id"
-				
-		
-		));
+		$f_product_id=new FieldSQLInt($this->getDbLink(),$this->getDbName(),$this->getTableName(),"product_id",$f_opts);
 		$this->addField($f_product_id);
-
-		$f_doc_production_id=new FieldSQlInt($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"doc_production_id"
-		,array(
+		//********************
+	
+		//*** Field doc_production_id ***
+		$f_opts = array();
+		$f_opts['id']="doc_production_id";
 		
-			'id'=>"doc_production_id"
-				
-		
-		));
+		$f_doc_production_id=new FieldSQLInt($this->getDbLink(),$this->getDbName(),$this->getTableName(),"doc_production_id",$f_opts);
 		$this->addField($f_doc_production_id);
-
-		$f_product_descr=new FieldSQlString($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"product_descr"
-		,array(
+		//********************
+	
+		//*** Field product_descr ***
+		$f_opts = array();
+		$f_opts['id']="product_descr";
 		
-			'id'=>"product_descr"
-				
-		
-		));
+		$f_product_descr=new FieldSQLString($this->getDbLink(),$this->getDbName(),$this->getTableName(),"product_descr",$f_opts);
 		$this->addField($f_product_descr);
-
-		$f_quant=new FieldSQlFloat($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"quant"
-		,array(
+		//********************
+	
+		//*** Field quant ***
+		$f_opts = array();
+		$f_opts['id']="quant";
 		
-			'id'=>"quant"
-				
-		
-		));
+		$f_quant=new FieldSQLFloat($this->getDbLink(),$this->getDbName(),$this->getTableName(),"quant",$f_opts);
 		$this->addField($f_quant);
-
-		$f_price=new FieldSQlFloat($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"price"
-		,array(
+		//********************
+	
+		//*** Field price ***
+		$f_opts = array();
+		$f_opts['id']="price";
 		
-			'id'=>"price"
-				
-		
-		));
+		$f_price=new FieldSQLFloat($this->getDbLink(),$this->getDbName(),$this->getTableName(),"price",$f_opts);
 		$this->addField($f_price);
-
-		$f_total=new FieldSQlFloat($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"total"
-		,array(
+		//********************
+	
+		//*** Field total ***
+		$f_opts = array();
+		$f_opts['id']="total";
 		
-			'id'=>"total"
-				
-		
-		));
+		$f_total=new FieldSQLFloat($this->getDbLink(),$this->getDbName(),$this->getTableName(),"total",$f_opts);
 		$this->addField($f_total);
-
-		$f_disc_percent=new FieldSQlFloat($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"disc_percent"
-		,array(
+		//********************
+	
+		//*** Field disc_percent ***
+		$f_opts = array();
+		$f_opts['length']=15;
+		$f_opts['id']="disc_percent";
 		
-			'alias'=>"Скидка"
-		,
-			'length'=>15,
-			'id'=>"disc_percent"
-				
-		
-		));
+		$f_disc_percent=new FieldSQLFloat($this->getDbLink(),$this->getDbName(),$this->getTableName(),"disc_percent",$f_opts);
 		$this->addField($f_disc_percent);
-
-		$f_price_no_disc=new FieldSQlFloat($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"price_no_disc"
-		,array(
+		//********************
+	
+		//*** Field price_no_disc ***
+		$f_opts = array();
+		$f_opts['length']=15;
+		$f_opts['id']="price_no_disc";
 		
-			'alias'=>"Цена без скидки"
-		,
-			'length'=>15,
-			'id'=>"price_no_disc"
-				
-		
-		));
+		$f_price_no_disc=new FieldSQLFloat($this->getDbLink(),$this->getDbName(),$this->getTableName(),"price_no_disc",$f_opts);
 		$this->addField($f_price_no_disc);
-
-		$f_total_no_disc=new FieldSQlFloat($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"total_no_disc"
-		,array(
+		//********************
+	
+		//*** Field total_no_disc ***
+		$f_opts = array();
+		$f_opts['length']=15;
+		$f_opts['id']="total_no_disc";
 		
-			'alias'=>"Сумма буз скидки"
-		,
-			'length'=>15,
-			'id'=>"total_no_disc"
-				
-		
-		));
+		$f_total_no_disc=new FieldSQLFloat($this->getDbLink(),$this->getDbName(),$this->getTableName(),"total_no_disc",$f_opts);
 		$this->addField($f_total_no_disc);
-
-		
-		
-		
+		//********************
+$this->setLimitConstant('doc_per_page_count');
 	}
 
 }

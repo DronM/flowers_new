@@ -1,12 +1,12 @@
 <?php
 
-require_once(FRAME_WORK_PATH.'basic_classes/ModelSQLDOC20.php');
+require_once(FRAME_WORK_PATH.'basic_classes/ModelSQL.php');
 require_once(FRAME_WORK_PATH.'basic_classes/FieldSQLInt.php');
 require_once(FRAME_WORK_PATH.'basic_classes/FieldSQLString.php');
 require_once(FRAME_WORK_PATH.'basic_classes/FieldSQLFloat.php');
 require_once(FRAME_WORK_PATH.'basic_classes/FieldSQLDateTime.php');
 
-class DOCSaleList_Model extends ModelSQLDOC20{
+class DOCSaleList_Model extends ModelSQL{
 	
 	public function __construct($dbLink){
 		parent::__construct($dbLink);
@@ -14,215 +14,158 @@ class DOCSaleList_Model extends ModelSQLDOC20{
 		$this->setDbName("public");
 		
 		$this->setTableName("doc_sales_list_view");
+			
+		//*** Field id ***
+		$f_opts = array();
+		$f_opts['primaryKey'] = TRUE;
+		$f_opts['sysCol']=TRUE;
+		$f_opts['id']="id";
 		
-		$f_id=new FieldSQlInt($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"id"
-		,array(
-		
-			'primaryKey'=>TRUE,
-			'id'=>"id"
-		,
-			'sysCol'=>TRUE
-				
-		
-		));
+		$f_id=new FieldSQLInt($this->getDbLink(),$this->getDbName(),$this->getTableName(),"id",$f_opts);
 		$this->addField($f_id);
-
-		$f_date_time=new FieldSQlDateTime($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"date_time"
-		,array(
+		//********************
+	
+		//*** Field date_time ***
+		$f_opts = array();
+		$f_opts['id']="date_time";
 		
-			'alias'=>"Дата"
-		,
-			'id'=>"date_time"
-				
-		
-		));
+		$f_date_time=new FieldSQLDateTime($this->getDbLink(),$this->getDbName(),$this->getTableName(),"date_time",$f_opts);
 		$this->addField($f_date_time);
-
-		$f_number=new FieldSQlString($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"number"
-		,array(
+		//********************
+	
+		//*** Field number ***
+		$f_opts = array();
+		$f_opts['id']="number";
 		
-			'alias'=>"Номер"
-		,
-			'id'=>"number"
-				
-		
-		));
+		$f_number=new FieldSQLString($this->getDbLink(),$this->getDbName(),$this->getTableName(),"number",$f_opts);
 		$this->addField($f_number);
-
-		$f_processed=new FieldSQlString($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"processed"
-		,array(
+		//********************
+	
+		//*** Field processed ***
+		$f_opts = array();
+		$f_opts['id']="processed";
 		
-			'id'=>"processed"
-		,
-			'sysCol'=>TRUE
-				
-		
-		));
+		$f_processed=new FieldSQLString($this->getDbLink(),$this->getDbName(),$this->getTableName(),"processed",$f_opts);
 		$this->addField($f_processed);
-
-		$f_store_id=new FieldSQlInt($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"store_id"
-		,array(
+		//********************
+	
+		//*** Field store_id ***
+		$f_opts = array();
+		$f_opts['sysCol']=TRUE;
+		$f_opts['id']="store_id";
 		
-			'id'=>"store_id"
-		,
-			'sysCol'=>TRUE
-				
-		
-		));
+		$f_store_id=new FieldSQLInt($this->getDbLink(),$this->getDbName(),$this->getTableName(),"store_id",$f_opts);
 		$this->addField($f_store_id);
-
-		$f_store_descr=new FieldSQlString($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"store_descr"
-		,array(
+		//********************
+	
+		//*** Field store_descr ***
+		$f_opts = array();
+		$f_opts['id']="store_descr";
 		
-			'alias'=>"Салон"
-		,
-			'id'=>"store_descr"
-				
-		
-		));
+		$f_store_descr=new FieldSQLString($this->getDbLink(),$this->getDbName(),$this->getTableName(),"store_descr",$f_opts);
 		$this->addField($f_store_descr);
-
-		$f_user_id=new FieldSQlInt($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"user_id"
-		,array(
+		//********************
+	
+		//*** Field user_id ***
+		$f_opts = array();
+		$f_opts['sysCol']=TRUE;
+		$f_opts['id']="user_id";
 		
-			'id'=>"user_id"
-		,
-			'sysCol'=>TRUE
-				
-		
-		));
+		$f_user_id=new FieldSQLInt($this->getDbLink(),$this->getDbName(),$this->getTableName(),"user_id",$f_opts);
 		$this->addField($f_user_id);
-
-		$f_user_descr=new FieldSQlString($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"user_descr"
-		,array(
+		//********************
+	
+		//*** Field user_descr ***
+		$f_opts = array();
+		$f_opts['id']="user_descr";
 		
-			'alias'=>"Автор"
-		,
-			'id'=>"user_descr"
-				
-		
-		));
+		$f_user_descr=new FieldSQLString($this->getDbLink(),$this->getDbName(),$this->getTableName(),"user_descr",$f_opts);
 		$this->addField($f_user_descr);
-
-		$f_payment_type_for_sale_id=new FieldSQlInt($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"payment_type_for_sale_id"
-		,array(
+		//********************
+	
+		//*** Field payment_type_for_sale_id ***
+		$f_opts = array();
+		$f_opts['sysCol']=TRUE;
+		$f_opts['id']="payment_type_for_sale_id";
 		
-			'id'=>"payment_type_for_sale_id"
-		,
-			'sysCol'=>TRUE
-				
-		
-		));
+		$f_payment_type_for_sale_id=new FieldSQLInt($this->getDbLink(),$this->getDbName(),$this->getTableName(),"payment_type_for_sale_id",$f_opts);
 		$this->addField($f_payment_type_for_sale_id);
-
-		$f_payment_type_for_sale_descr=new FieldSQlString($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"payment_type_for_sale_descr"
-		,array(
+		//********************
+	
+		//*** Field payment_type_for_sale_descr ***
+		$f_opts = array();
+		$f_opts['id']="payment_type_for_sale_descr";
 		
-			'alias'=>"Вид оплаты"
-		,
-			'id'=>"payment_type_for_sale_descr"
-				
-		
-		));
+		$f_payment_type_for_sale_descr=new FieldSQLString($this->getDbLink(),$this->getDbName(),$this->getTableName(),"payment_type_for_sale_descr",$f_opts);
 		$this->addField($f_payment_type_for_sale_descr);
-
-		$f_client_id=new FieldSQlInt($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"client_id"
-		,array(
+		//********************
+	
+		//*** Field client_id ***
+		$f_opts = array();
+		$f_opts['sysCol']=TRUE;
+		$f_opts['id']="client_id";
 		
-			'id'=>"client_id"
-		,
-			'sysCol'=>TRUE
-				
-		
-		));
+		$f_client_id=new FieldSQLInt($this->getDbLink(),$this->getDbName(),$this->getTableName(),"client_id",$f_opts);
 		$this->addField($f_client_id);
-
-		$f_client_descr=new FieldSQlString($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"client_descr"
-		,array(
+		//********************
+	
+		//*** Field client_descr ***
+		$f_opts = array();
+		$f_opts['id']="client_descr";
 		
-			'alias'=>"Клиент"
-		,
-			'id'=>"client_descr"
-				
-		
-		));
+		$f_client_descr=new FieldSQLString($this->getDbLink(),$this->getDbName(),$this->getTableName(),"client_descr",$f_opts);
 		$this->addField($f_client_descr);
-
-		$f_delivery=new FieldSQlString($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"delivery"
-		,array(
+		//********************
+	
+		//*** Field delivery ***
+		$f_opts = array();
+		$f_opts['id']="delivery";
 		
-			'alias'=>"Доставка"
-		,
-			'id'=>"delivery"
-				
-		
-		));
+		$f_delivery=new FieldSQLString($this->getDbLink(),$this->getDbName(),$this->getTableName(),"delivery",$f_opts);
 		$this->addField($f_delivery);
-
-		$f_total=new FieldSQlFloat($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"total"
-		,array(
+		//********************
+	
+		//*** Field total ***
+		$f_opts = array();
+		$f_opts['id']="total";
 		
-			'alias'=>"Сумма"
-		,
-			'id'=>"total"
-				
-		
-		));
+		$f_total=new FieldSQLFloat($this->getDbLink(),$this->getDbName(),$this->getTableName(),"total",$f_opts);
 		$this->addField($f_total);
-
-		$f_cost=new FieldSQlFloat($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"cost"
-		,array(
+		//********************
+	
+		//*** Field cost ***
+		$f_opts = array();
+		$f_opts['id']="cost";
 		
-			'alias'=>"Стоимость"
-		,
-			'id'=>"cost"
-				
-		
-		));
+		$f_cost=new FieldSQLFloat($this->getDbLink(),$this->getDbName(),$this->getTableName(),"cost",$f_opts);
 		$this->addField($f_cost);
-
-		$f_income=new FieldSQlFloat($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"income"
-		,array(
+		//********************
+	
+		//*** Field income ***
+		$f_opts = array();
+		$f_opts['id']="income";
 		
-			'alias'=>"Наценка,руб"
-		,
-			'id'=>"income"
-				
-		
-		));
+		$f_income=new FieldSQLFloat($this->getDbLink(),$this->getDbName(),$this->getTableName(),"income",$f_opts);
 		$this->addField($f_income);
-
-		$f_income_percent=new FieldSQlFloat($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"income_percent"
-		,array(
+		//********************
+	
+		//*** Field income_percent ***
+		$f_opts = array();
+		$f_opts['id']="income_percent";
 		
-			'alias'=>"Наценка,%"
-		,
-			'id'=>"income_percent"
-				
-		
-		));
+		$f_income_percent=new FieldSQLFloat($this->getDbLink(),$this->getDbName(),$this->getTableName(),"income_percent",$f_opts);
 		$this->addField($f_income_percent);
+		//********************
+$this->setLimitConstant('doc_per_page_count');
+		$this->setLastRowSelectOnInit(TRUE);
+	$this->addAggFunction(
+		array('alias'=>'total_total','expr'=>'sum(total)')
+,array('alias'=>'total_cost','expr'=>'sum(cost)')
+,array('alias'=>'avg_income','expr'=>'avg(income)')
+,array('alias'=>'avg_income_percent','expr'=>'avg(income_percent)')
 
-		
-		
-		
+	);	
+
 	}
 
 }

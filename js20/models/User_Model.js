@@ -25,113 +25,68 @@ function User_Model(options){
 			
 				
 			
-			
+				
+	
 	var filed_options = {};
-	filed_options.primaryKey = true;
+	filed_options.primaryKey = true;	
+	options.fields.id = new FieldInt("id",filed_options);
+	options.fields.id.getValidator().setRequired(true);
 	
+				
 	
-	var field = new FieldInt("id",filed_options);
-	
-		field.getValidator().setRequired(true);
-	
-
-	options.fields.id = field;
-
-			
 	var filed_options = {};
-	filed_options.primaryKey = false;
+	filed_options.primaryKey = false;	
+	options.fields.name = new FieldString("name",filed_options);
+	options.fields.name.getValidator().setRequired(true);
+	options.fields.name.getValidator().setMaxLength('50');
 	
+				
 	
-	var field = new FieldString("name",filed_options);
-	
-		field.getValidator().setRequired(true);
-	
-		field.getValidator().setMaxLength('50');
-	
-
-	options.fields.name = field;
-
-			
 	var filed_options = {};
-	filed_options.primaryKey = false;
-	
-	
-	var field = new FieldEnum("role_id",filed_options);
+	filed_options.primaryKey = false;	
+	options.fields.role_id = new FieldEnum("role_id",filed_options);
 	filed_options.enumValues = 'admin,store_manager,florist,cashier';
+	options.fields.role_id.getValidator().setRequired(true);
 	
-		field.getValidator().setRequired(true);
+				
 	
-
-	options.fields.role_id = field;
-
-			
 	var filed_options = {};
-	filed_options.primaryKey = false;
+	filed_options.primaryKey = false;	
+	options.fields.email = new FieldString("email",filed_options);
+	options.fields.email.getValidator().setMaxLength('50');
 	
+				
 	
-	var field = new FieldString("email",filed_options);
-	
-		field.getValidator().setMaxLength('50');
-	
-
-	options.fields.email = field;
-
-			
 	var filed_options = {};
-	filed_options.primaryKey = false;
+	filed_options.primaryKey = false;	
+	options.fields.pwd = new FieldPassword("pwd",filed_options);
+	options.fields.pwd.getValidator().setMaxLength('32');
 	
+				
 	
-	var field = new FieldPassword("pwd",filed_options);
-	
-		field.getValidator().setMaxLength('32');
-	
-
-	options.fields.pwd = field;
-
-			
 	var filed_options = {};
-	filed_options.primaryKey = false;
+	filed_options.primaryKey = false;	
+	options.fields.phone_cel = new FieldString("phone_cel",filed_options);
+	options.fields.phone_cel.getValidator().setMaxLength('11');
 	
+				
 	
-	var field = new FieldString("phone_cel",filed_options);
-	
-		field.getValidator().setMaxLength('11');
-	
-
-	options.fields.phone_cel = field;
-
-			
 	var filed_options = {};
-	filed_options.primaryKey = false;
+	filed_options.primaryKey = false;	
+	filed_options.alias = 'Магазин';options.fields.store_id = new FieldInt("store_id",filed_options);
 	
-	filed_options.alias = 'Магазин';
+				
 	
-	var field = new FieldInt("store_id",filed_options);
-	
-
-	options.fields.store_id = field;
-
-			
 	var filed_options = {};
-	filed_options.primaryKey = false;
+	filed_options.primaryKey = false;	
+	filed_options.alias = 'Привязвывать к магазину';options.fields.constrain_to_store = new FieldBool("constrain_to_store",filed_options);
 	
-	filed_options.alias = 'Привязвывать к магазину';
+				
 	
-	var field = new FieldBool("constrain_to_store",filed_options);
-	
-
-	options.fields.constrain_to_store = field;
-
-			
 	var filed_options = {};
-	filed_options.primaryKey = false;
+	filed_options.primaryKey = false;	
+	options.fields.cash_register_id = new FieldInt("cash_register_id",filed_options);
 	
-	
-	var field = new FieldInt("cash_register_id",filed_options);
-	
-
-	options.fields.cash_register_id = field;
-
 						
 		User_Model.superclass.constructor.call(this,id,options);
 }

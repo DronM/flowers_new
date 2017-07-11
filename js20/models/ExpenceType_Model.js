@@ -25,33 +25,21 @@ function ExpenceType_Model(options){
 			
 				
 			
-			
+				
+	
 	var filed_options = {};
-	filed_options.primaryKey = true;
+	filed_options.primaryKey = true;	
+	options.fields.id = new FieldInt("id",filed_options);
+	options.fields.id.getValidator().setRequired(true);
 	
+				
 	
-	var field = new FieldInt("id",filed_options);
-	
-		field.getValidator().setRequired(true);
-	
-
-	options.fields.id = field;
-
-			
 	var filed_options = {};
-	filed_options.primaryKey = false;
+	filed_options.primaryKey = false;	
+	filed_options.alias = 'Наименование';options.fields.name = new FieldString("name",filed_options);
+	options.fields.name.getValidator().setRequired(true);
+	options.fields.name.getValidator().setMaxLength('50');
 	
-	filed_options.alias = 'Наименование';
-	
-	var field = new FieldString("name",filed_options);
-	
-		field.getValidator().setRequired(true);
-	
-		field.getValidator().setMaxLength('50');
-	
-
-	options.fields.name = field;
-
 						
 		ExpenceType_Model.superclass.constructor.call(this,id,options);
 }

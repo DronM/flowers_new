@@ -19,7 +19,6 @@
 function UserList_Form(options){
 	options = options || {};	
 	
-	options.width = 900;
 	options.formName = "UserList";
 	options.controller = "User_Controller";
 	options.method = "get_list";

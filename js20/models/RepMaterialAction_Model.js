@@ -22,153 +22,86 @@ function RepMaterialAction_Model(options){
 	
 	options.fields = {};
 	
-			
+				
+	
 	var filed_options = {};
-	filed_options.primaryKey = false;
+	filed_options.primaryKey = false;	
+	filed_options.alias = 'Салон';options.fields.store_id = new FieldInt("store_id",filed_options);
 	
-	filed_options.alias = 'Салон';
+				
 	
-	var field = new FieldInt("store_id",filed_options);
-	
-
-	options.fields.store_id = field;
-
-			
 	var filed_options = {};
-	filed_options.primaryKey = false;
+	filed_options.primaryKey = false;	
+	filed_options.alias = 'Салон';options.fields.store_descr = new FieldString("store_descr",filed_options);
 	
-	filed_options.alias = 'Салон';
+				
 	
-	var field = new FieldString("store_descr",filed_options);
-	
-
-	options.fields.store_descr = field;
-
-			
 	var filed_options = {};
-	filed_options.primaryKey = false;
+	filed_options.primaryKey = false;	
+	filed_options.alias = 'Поставка';options.fields.doc_procurement_id = new FieldInt("doc_procurement_id",filed_options);
 	
-	filed_options.alias = 'Поставка';
+				
 	
-	var field = new FieldInt("doc_procurement_id",filed_options);
-	
-
-	options.fields.doc_procurement_id = field;
-
-			
 	var filed_options = {};
-	filed_options.primaryKey = false;
+	filed_options.primaryKey = false;	
+	filed_options.alias = 'Поставка';options.fields.doc_procurement_descr = new FieldString("doc_procurement_descr",filed_options);
+				
+				
 	
-	filed_options.alias = 'Поставка';
-	
-	var field = new FieldString("doc_procurement_descr",filed_options);
-	
-
-	options.fields.doc_procurement_descr = field;
-			
-			
 	var filed_options = {};
-	filed_options.primaryKey = false;
+	filed_options.primaryKey = false;	
+	filed_options.alias = 'Группа материалов';options.fields.material_group_id = new FieldInt("material_group_id",filed_options);
 	
-	filed_options.alias = 'Группа материалов';
+				
 	
-	var field = new FieldInt("material_group_id",filed_options);
-	
-
-	options.fields.material_group_id = field;
-
-			
 	var filed_options = {};
-	filed_options.primaryKey = false;
+	filed_options.primaryKey = false;	
+	filed_options.alias = 'Группа материалов';options.fields.material_group_descr = new FieldString("material_group_descr",filed_options);
 	
-	filed_options.alias = 'Группа материалов';
+				
 	
-	var field = new FieldString("material_group_descr",filed_options);
-	
-
-	options.fields.material_group_descr = field;
-
-			
 	var filed_options = {};
-	filed_options.primaryKey = false;
+	filed_options.primaryKey = false;	
+	filed_options.alias = 'Материал';options.fields.material_id = new FieldInt("material_id",filed_options);
 	
-	filed_options.alias = 'Материал';
+				
 	
-	var field = new FieldInt("material_id",filed_options);
-	
-
-	options.fields.material_id = field;
-
-			
 	var filed_options = {};
-	filed_options.primaryKey = false;
+	filed_options.primaryKey = false;	
+	filed_options.alias = 'Материал';options.fields.material_group_descr = new FieldString("material_group_descr",filed_options);
 	
-	filed_options.alias = 'Материал';
+				
 	
-	var field = new FieldString("material_group_descr",filed_options);
-	
-
-	options.fields.material_group_descr = field;
-
-			
 	var filed_options = {};
-	filed_options.primaryKey = false;
+	filed_options.primaryKey = false;	
+	filed_options.alias = 'Документ движения';options.fields.ra_doc_id = new FieldInt("ra_doc_id",filed_options);
 	
-	filed_options.alias = 'Документ движения';
+				
 	
-	var field = new FieldInt("ra_doc_id",filed_options);
-	
-
-	options.fields.ra_doc_id = field;
-
-			
 	var filed_options = {};
-	filed_options.primaryKey = false;
+	filed_options.primaryKey = false;	
+	filed_options.alias = 'Документ движения';options.fields.ra_doc_type = new FieldString("ra_doc_type",filed_options);
 	
-	filed_options.alias = 'Документ движения';
+				
 	
-	var field = new FieldString("ra_doc_type",filed_options);
-	
-
-	options.fields.ra_doc_type = field;
-
-			
 	var filed_options = {};
-	filed_options.primaryKey = false;
+	filed_options.primaryKey = false;	
+	filed_options.alias = 'Документ движения';options.fields.ra_doc_descr = new FieldString("ra_doc_descr",filed_options);
 	
-	filed_options.alias = 'Документ движения';
+				
 	
-	var field = new FieldString("ra_doc_descr",filed_options);
-	
-
-	options.fields.ra_doc_descr = field;
-
-			
 	var filed_options = {};
-	filed_options.primaryKey = false;
+	filed_options.primaryKey = false;	
+	filed_options.alias = 'Количество';options.fields.quant = new FieldFloat("quant",filed_options);
+	options.fields.quant.getValidator().setMaxLength('19');
 	
-	filed_options.alias = 'Количество';
+				
 	
-	var field = new FieldFloat("quant",filed_options);
-	
-		field.getValidator().setMaxLength('19');
-	
-
-	options.fields.quant = field;
-
-			
 	var filed_options = {};
-	filed_options.primaryKey = false;
+	filed_options.primaryKey = false;	
+	filed_options.alias = 'Стоимость';options.fields.cost = new FieldFloat("cost",filed_options);
+	options.fields.cost.getValidator().setMaxLength('15');
 	
-	filed_options.alias = 'Стоимость';
-	
-	var field = new FieldFloat("cost",filed_options);
-	
-		field.getValidator().setMaxLength('15');
-	
-
-	options.fields.cost = field;
-
 		RepMaterialAction_Model.superclass.constructor.call(this,id,options);
 }
 extend(RepMaterialAction_Model,ModelXML);

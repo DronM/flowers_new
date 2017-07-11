@@ -2,6 +2,10 @@
 
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
+<xsl:output method="html" indent="yes"
+			doctype-public="-//W3C//DTD XHTML 1.0 Strict//EN" 
+			doctype-system="http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"/>
+
 <xsl:variable name="BASE_PATH" select="/document/model[@id='ModelVars']/row[1]/basePath"/>
 <xsl:variable name="VERSION" select="/document/model[@id='ModelVars']/row[1]/scriptId"/>
 <xsl:variable name="TITLE" select="/document/model[@id='ModelVars']/row[1]/title"/>
@@ -19,10 +23,18 @@
 			function pageLoad(){				
 				<xsl:call-template name="initApp"/>
 				<xsl:call-template name="modelFromTemplate"/>
+				
+				<xsl:if test="/document/model[@id='ModelServResponse']/row/result='1'">
+					throw Error(CommonHelper.longString(function () {/*
+					<xsl:value-of select="/document/model[@id='ModelServResponse']/row/descr"/>
+					*/}));
+				</xsl:if>	
 			}
 		</script>
 	</head>
 	<body onload="pageLoad();">
+		<!--  -->
+		<!--<button onclick="alert(DateHelper.strtotime('2016-12-06T06:30:00'));">1111111111</button>-->
 		<div id="wrapper">
 			<xsl:call-template name="initMenu"/>
 			
@@ -81,7 +93,7 @@
 
 <!--************* Application instance ******************** -->
 <xsl:template name="initApp">
-	var application = new AppCRM({
+	var application = new AppFlowers({
 		host:'<xsl:value-of select="$BASE_PATH"/>',
 		servVars:{
 			"version":'<xsl:value-of select="$VERSION"/>',
@@ -90,15 +102,43 @@
 			"user_id":'<xsl:value-of select="model[@id='ModelVars']/row/user_id"/>',
 			"user_name":'<xsl:value-of select="model[@id='ModelVars']/row/user_name"/>',
 			"multy_store":'<xsl:value-of select="model[@id='ModelVars']/row/multy_store"/>'
-		},
-		"bsCol":("col-"+$('#users-device-size').find('div:visible').first().attr('id')+"-")
+		}
 		<xsl:if test="model[@id='ConstantValueList_Model']">
-		,
-		"constantXMLString":CommonHelper.longString(function () {/*
+		,"constantXMLString":CommonHelper.longString(function () {/*
 				<xsl:copy-of select="model[@id='ConstantValueList_Model']"/>
 		*/})
 		</xsl:if>
+				
+		<!--	
+		<xsl:if test="/document/model[@id='ModelServResponse']/row/result='1'">
+			,
+			"error":"<xsl:value-of select="/document/model[@id='ModelServResponse']/row/descr"/>"
+		</xsl:if>	
+		-->
 	});
+	<xsl:call-template name="initAppWin"/>
+	
+	<xsl:if test="/document/model[@id='ModelVars']/row/cash_reg_id and model[@id='ModelVars']/row/role_id='cashier'">
+	var opts = {
+		"id":"<xsl:value-of select="/document/model[@id='ModelVars']/row/cash_reg_id"/>",
+		"server":"<xsl:value-of select="/document/model[@id='ModelVars']/row/cash_reg_server"/>",
+		"port":"<xsl:value-of select="/document/model[@id='ModelVars']/row/cash_reg_port"/>"
+	};
+	application.setCachRegister(new EquipServer(opts));
+	</xsl:if>
+</xsl:template>
+
+<!--************* Window instance ******************** -->
+<xsl:template name="initAppWin">	
+	var applicationWin = new AppWin({
+		"bsCol":("col-"+$('#users-device-size').find('div:visible').first().attr('id')+"-"),
+		"app":application
+		<!--
+		<xsl:if test="/document/model[@id='ModelServResponse']/row/result='1'">
+			,"error":"<xsl:value-of select="/document/model[@id='ModelServResponse']/row/descr"/>"
+		</xsl:if>	
+		-->
+	});	
 </xsl:template>
 
 <!--************* Page head ******************** -->
@@ -193,7 +233,9 @@
 		            </div>
 		        </li>
 		        -->
+		        <xsl:apply-templates select="/document/model[@id='MenuMaterialGroup_Model']"/>
 		        <xsl:apply-templates select="/document/model[@id='MainMenu_Model']"/>
+		       
 		        
 			<li>
 			    <a href="index.php?c=User_Controller&amp;f=get_profile&amp;t=UserProfile"><i class="fa fa-fw"></i> Профиль пользователя </a>
@@ -233,59 +275,147 @@
 	</xsl:choose>
 </xsl:template>
 
+<xsl:template match="model[@id='MenuMaterialGroup_Model']">
+	<li>
+		<a href="#"><i class="fa fa-fw"></i>Номенклатура<span class="fa arrow"></span></a>
+		<ul class="nav nav-second-level">
+			<li>
+			    <a href="index.php?c=Product_Controller&amp;f=get_list_for_sale&amp;t=DOCSaleCashier"><i class="fa fa-fw"></i>Букеты</a>
+			</li>			
+		
+			<xsl:apply-templates select="row"/>
+		</ul>						
+	</li>
+</xsl:template>
+
+<xsl:template match="model[@id='MenuMaterialGroup_Model']/row">
+	<!-- one level-->
+	<li>
+	    <a href="index.php?c=Material_Controller&amp;f=get_list_for_sale&amp;t=DOCSaleCashier&amp;cond_fields=group_id&amp;cond_vals={id}&amp;cond_sgns=e"><i class="fa fa-fw"></i> <xsl:value-of select="name"/> </a>
+	</li>			
+</xsl:template>
+
 <!--*************** templates ********************* -->
 <xsl:template match="model[@templateId]">
 <xsl:copy-of select="*"/>
 </xsl:template>
 
 <xsl:template name="modelFromTemplate">
-	<xsl:variable name="template_params" select="/document/model[@id='TemplateParam_Model']"/>
-	<xsl:variable name="journ_dates" select="/document/model[@id='JournalDefDate_Model']"/>
+	<xsl:for-each select="model[@templateId]">
+		<xsl:variable name="templateId" select="@templateId"/>
+		<xsl:variable name="templateModelId" select="div[1]/@modelId"/>
+	
+		var v_<xsl:value-of select="$templateId"/> = new <xsl:value-of select="$templateId"/>_View("<xsl:value-of select="$templateId"/>",{
+
+			"app":application
+			<xsl:choose>
+			<xsl:when test="count(models/model) &gt; 0">
+			<xsl:for-each select="models/model">
+			<xsl:variable name="m_id" select="@id"/>
+			,"<xsl:value-of select="$m_id"/>":CommonHelper.longString(function () {/*
+			<xsl:copy-of select="/document/model[@id=$m_id]"/>
+			*/})						
+			</xsl:for-each>
+
+			</xsl:when>
+			
+			<xsl:otherwise>
+			,"modelDataStr":CommonHelper.longString(function () {/*
+			<xsl:choose>
+				<xsl:when test="$templateModelId">
+					<xsl:copy-of select="/document/model[@id=$templateModelId]"/>
+				</xsl:when>
+				<xsl:otherwise>
+					<xsl:copy-of select="/document/model[@id=concat($templateId,'_Model')]"/>
+				</xsl:otherwise>
+			</xsl:choose>
+			*/})			
+			</xsl:otherwise>	
+
+			</xsl:choose>
+			<xsl:if test="/document/model[@id='VariantStorage_Model']">
+			,"variantStorageModel":new VariantStorage_Model({"data":CommonHelper.longString(function () {/*
+				<xsl:copy-of select="/document/model[@id='VariantStorage_Model']"/>
+			*/})})
+			</xsl:if>		
+			});
+
+		v_<xsl:value-of select="$templateId"/>.toDOM();					
+	</xsl:for-each>
+	<!--
+	<xsl:variable name="template_params" select="/document/model[@id='TemplateParamValList_Model']"/>
 	
 	<xsl:for-each select="model[@templateId]">
-	<xsl:variable name="templateId" select="@templateId"/>
-	<xsl:variable name="templateModelId" select="div[1]/@modelId"/>
-	<!--
-	<xsl:variable name="modelContent">
+		<xsl:variable name="templateId" select="@templateId"/>
+		<xsl:variable name="templateModelId" select="div[1]/@modelId"/>
+	
+		/*modelId=<xsl:value-of select="div[1]/@modelId"/>*/
+	
+		var t_params = {};
+		<xsl:for-each select="$template_params/row">
 		<xsl:choose>
-			<xsl:when test="div[1]/@modelId">
-				<xsl:value-of select="/document/model[@id=concat(div[1]/@modelId,'_Model')]"/>
+		<xsl:when test="param_type='DateTime' or param_type='DT_DATE'">
+		t_params.<xsl:value-of select="paramid"/> = DateHelper.strtotime('<xsl:value-of select="val"/>');
+		</xsl:when>
+		<xsl:when test="param_type='Int'">
+		t_params.<xsl:value-of select="paramid"/> = parseInt('<xsl:value-of select="val"/>');
+		</xsl:when>	
+		<xsl:when test="param_type='Float'">
+		t_params.<xsl:value-of select="paramid"/> = parseFloat('<xsl:value-of select="val"/>');
+		</xsl:when>		
+		<xsl:when test="param_type='Structure'">
+		t_params.<xsl:value-of select="paramid"/> = <xsl:value-of select="val"/>;
+		</xsl:when>						
+		<xsl:otherwise>
+		t_params.<xsl:value-of select="paramid"/> = '<xsl:value-of select="val"/>';
+		</xsl:otherwise>
+		</xsl:choose>	
+		</xsl:for-each>
+
+		application.setTemplateParams('<xsl:value-of select="$templateId"/>',t_params);
+	
+		var v_<xsl:value-of select="$templateId"/> = new <xsl:value-of select="$templateId"/>_View("<xsl:value-of select="$templateId"/>",{
+			"app":application
+			<xsl:choose>
+			<xsl:when test="count(models/model) &gt; 0">
+			<xsl:for-each select="models/model">
+			<xsl:variable name="m_id" select="@id"/>
+			,"<xsl:value-of select="$m_id"/>":CommonHelper.longString(function () {/*
+			<xsl:copy-of select="/document/model[@id=$m_id]"/>
+			*/})						
+			</xsl:for-each>
 			</xsl:when>
+			
 			<xsl:otherwise>
-				<xsl:value-of select="/document/model[@id=concat($templateId,'_Model')]"/>
-			</xsl:otherwise>
-		</xsl:choose>
-	</xsl:variable>	
-	-->
-	/*modelId=<xsl:value-of select="div[1]/@modelId"/>*/
-	var v_<xsl:value-of select="$templateId"/> = new <xsl:value-of select="$templateId"/>_View("<xsl:value-of select="$templateId"/>",{
-		"app":application,
-		"modelDataStr":CommonHelper.longString(function () {/*
-		<xsl:choose>
-			<xsl:when test="$templateModelId">
-				<xsl:copy-of select="/document/model[@id=$templateModelId]"/>
-			</xsl:when>
-			<xsl:otherwise>
-				<xsl:copy-of select="/document/model[@id=concat($templateId,'_Model')]"/>
-			</xsl:otherwise>
-		</xsl:choose>
-		*/})
-		
-		<xsl:if test="$template_params">
-		,"templateParamDataStr":CommonHelper.longString(function () {/*
-		<xsl:copy-of select="$template_params"/>
-		*/})
-		</xsl:if>
-		
-		<xsl:if test="$journ_dates">
-		,"journDateFrom":DateHelper.strtotime("<xsl:value-of select="$journ_dates/row/date_from"/>")
-		,"journDateTo":DateHelper.strtotime("<xsl:value-of select="$journ_dates/row/date_to"/>")
-		</xsl:if>
-		});
-	v_<xsl:value-of select="$templateId"/>.toDOM();				
+			,"modelDataStr":CommonHelper.longString(function () {/*
+			<xsl:choose>
+				<xsl:when test="$templateModelId">
+					<xsl:copy-of select="/document/model[@id=$templateModelId]"/>
+				</xsl:when>
+				<xsl:otherwise>
+					<xsl:copy-of select="/document/model[@id=concat($templateId,'_Model')]"/>
+				</xsl:otherwise>
+			</xsl:choose>
+			*/})			
+			</xsl:otherwise>	
+			</xsl:choose>
+			<xsl:if test="$template_params">
+			,"templateParams":t_params
+			</xsl:if>		
+			});
+		v_<xsl:value-of select="$templateId"/>.toDOM();				
 	</xsl:for-each>
+	-->
 </xsl:template>
 
+
+<!-- ERROR 
+<xsl:template match="model[@id='ModelServResponse']/row/result='1'">
+throw Error(CommonHelper.longString(function () {/*
+<xsl:value-of select="descr"/>
+*/}));
+</xsl:template>
+-->
 
 <!--System variables -->
 <xsl:template match="model[@id='ModelVars']/row">
@@ -302,20 +432,21 @@
 </xsl:template>
 
 <!-- CSS -->
-<xsl:template match="model[@id='ModelStyleSheet']/row">
-	<link rel="stylesheet" href="{concat($BASE_PATH,href,'?',$VERSION)}" type="text/css"/>
+<xsl:template match="model[@id='ModelStyleSheet']/row">	
+	<link rel="stylesheet" href="{concat(href,'?',$VERSION)}" type="text/css"/>
 </xsl:template>
 
 <!-- Javascript -->
 <xsl:template match="model[@id='ModelJavaScript']/row">
-	<script src="{concat($BASE_PATH,href,'?',$VERSION)}"></script>
+	<script src="{concat(href,'?',$VERSION)}"></script>
 </xsl:template>
 
-<!-- Error -->
+<!-- Error
 <xsl:template match="model[@id='ModelServResponse']/row">
 	<xsl:if test="result/node()='1'">
 	<div class="error"><xsl:value-of select="descr"/></div>
 	</xsl:if>
 </xsl:template>
+ -->
 
 </xsl:stylesheet>

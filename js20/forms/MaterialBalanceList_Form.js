@@ -19,7 +19,6 @@
 function MaterialBalanceList_Form(options){
 	options = options || {};	
 	
-	options.width = 1200;
 	options.formName = "MaterialBalanceList";
 	options.controller = "Material_Controller";
 	options.method = "get_list_with_balance";

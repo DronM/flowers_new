@@ -10,22 +10,41 @@
 	<head>
 		<xsl:call-template name="initHead"/>
 		
-		<title>Катрэн+, личный кабинет</title>
+		<title>CRM</title>
 		
 		<script>		
 			function beforeUnload(){
-				if (window.opener &amp;&amp; window.opener.onChildClose){
-					window.opener.onChildClose(0);
+				if (window.m_childForms){
+					for(var fid in window.m_childForms){
+						if (window.m_childForms[fid]){
+							window.m_childForms[fid].close();
+						}
+					}
+				}
+				if (window.onClose){
+					window.onClose();
 				}
 			}
 			function pageLoad(){				
-				<!--
+				var application;
+				if (window.getApp){
+					application = window.getApp();
+					<xsl:call-template name="initAppWin"/>
+					<xsl:if test="/document/model[@id='ModelServResponse']/row/result='1'">
+					throw Error(CommonHelper.longString(function () {/*
+					<xsl:value-of select="/document/model[@id='ModelServResponse']/row/descr"/>
+					*/}));
+					</xsl:if>	
+					
+				}
+				else{
 				<xsl:call-template name="initApp"/>
-				-->
-				var application = window.opener.getApp();
-				console.log("bsCol="+application.getBsCol());
+				}
 				
 				<xsl:call-template name="modelFromTemplate"/>
+			<xsl:if test="/document/model[@id='ModelServResponse']/row/result='1'">
+				throw Error("<xsl:value-of select="/document/model[@id='ModelServResponse']/row/descr"/>");
+			</xsl:if>	
 				
 			}
 		</script>

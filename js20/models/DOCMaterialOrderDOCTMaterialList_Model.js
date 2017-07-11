@@ -22,57 +22,36 @@ function DOCMaterialOrderDOCTMaterialList_Model(options){
 	
 	options.fields = {};
 	
-			
+				
+	
 	var filed_options = {};
-	filed_options.primaryKey = false;
+	filed_options.primaryKey = false;	
+	options.fields.login_id = new FieldInt("login_id",filed_options);
 	
+				
 	
-	var field = new FieldInt("login_id",filed_options);
-	
-
-	options.fields.login_id = field;
-
-			
 	var filed_options = {};
-	filed_options.primaryKey = true;
+	filed_options.primaryKey = true;	
+	filed_options.alias = '№';options.fields.line_number = new FieldInt("line_number",filed_options);
 	
-	filed_options.alias = '№';
+				
 	
-	var field = new FieldInt("line_number",filed_options);
-	
-
-	options.fields.line_number = field;
-
-			
 	var filed_options = {};
-	filed_options.primaryKey = false;
+	filed_options.primaryKey = false;	
+	options.fields.material_id = new FieldInt("material_id",filed_options);
 	
+				
 	
-	var field = new FieldInt("material_id",filed_options);
-	
-
-	options.fields.material_id = field;
-
-			
 	var filed_options = {};
-	filed_options.primaryKey = false;
+	filed_options.primaryKey = false;	
+	options.fields.material_descr = new FieldString("material_descr",filed_options);
+				
+				
 	
-	
-	var field = new FieldString("material_descr",filed_options);
-	
-
-	options.fields.material_descr = field;
-			
-			
 	var filed_options = {};
-	filed_options.primaryKey = false;
+	filed_options.primaryKey = false;	
+	options.fields.quant = new FieldFloat("quant",filed_options);
 	
-	
-	var field = new FieldFloat("quant",filed_options);
-	
-
-	options.fields.quant = field;
-
 		DOCMaterialOrderDOCTMaterialList_Model.superclass.constructor.call(this,id,options);
 }
 extend(DOCMaterialOrderDOCTMaterialList_Model,ModelXML);

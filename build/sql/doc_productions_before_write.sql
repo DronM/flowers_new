@@ -1,8 +1,8 @@
--- Function: doc_productions_before_write(integer, integer)
+-- Function: doc_productions_before_write(in_view_id varchar(32), in_doc_id integer)
 
--- DROP FUNCTION doc_productions_before_write(integer, integer);
+-- DROP FUNCTION doc_productions_before_write(in_view_id varchar(32), in_doc_id integer);
 
-CREATE OR REPLACE FUNCTION doc_productions_before_write(in_tmp_doc_id varchar(32), in_doc_id integer)
+CREATE OR REPLACE FUNCTION doc_productions_before_write(in_view_id varchar(32), in_doc_id integer)
   RETURNS void AS
 $BODY$
 BEGIN				
@@ -15,14 +15,14 @@ BEGIN
 	(doc_id,line_number,material_id,quant)
 	(SELECT in_doc_id ,line_number,material_id,quant
 	FROM doc_productions_t_tmp_materials
-	WHERE tmp_doc_id=in_tmp_doc_id);
+	WHERE view_id=in_view_id);
 	
 	--clear temp table
-	DELETE FROM doc_productions_t_tmp_materials WHERE tmp_doc_id=in_tmp_doc_id;
+	DELETE FROM doc_productions_t_tmp_materials WHERE view_id=in_view_id;
 	
 END;
 $BODY$
   LANGUAGE plpgsql VOLATILE
   COST 100;
-ALTER FUNCTION doc_productions_before_write(integer, integer)
+ALTER FUNCTION doc_productions_before_write(in_view_id varchar(32), in_doc_id integer)
   OWNER TO bellagio;

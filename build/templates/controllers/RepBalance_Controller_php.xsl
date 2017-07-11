@@ -57,6 +57,8 @@ class <xsl:value-of select="@id"/>_Controller extends ControllerSQL{
 		$store_id
 		),'balance');
 	}
+	public function get($pm){
+	}
 </xsl:template>
 
 </xsl:stylesheet>

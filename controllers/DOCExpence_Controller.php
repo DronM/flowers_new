@@ -1,6 +1,5 @@
 <?php
-
-require_once(FRAME_WORK_PATH.'basic_classes/ControllerSQLDOC.php');
+require_once(FRAME_WORK_PATH.'basic_classes/ControllerSQLDOC20.php');
 
 require_once(FRAME_WORK_PATH.'basic_classes/FieldExtInt.php');
 require_once(FRAME_WORK_PATH.'basic_classes/FieldExtString.php');
@@ -12,10 +11,12 @@ require_once(FRAME_WORK_PATH.'basic_classes/FieldExtDate.php');
 require_once(FRAME_WORK_PATH.'basic_classes/FieldExtTime.php');
 require_once(FRAME_WORK_PATH.'basic_classes/FieldExtPassword.php');
 require_once(FRAME_WORK_PATH.'basic_classes/FieldExtBool.php');
-class DOCExpence_Controller extends ControllerSQLDOC{
+require_once(FRAME_WORK_PATH.'basic_classes/FieldExtInterval.php');
+class DOCExpence_Controller extends ControllerSQLDOC20{
 	public function __construct($dbLinkMaster=NULL){
 		parent::__construct($dbLinkMaster);
 			
+		
 		/* insert */
 		$pm = new PublicMethod('insert');
 		$param = new FieldExtDateTime('date_time'
@@ -45,6 +46,13 @@ class DOCExpence_Controller extends ControllerSQLDOC{
 		$pm->addParam($param);
 		
 		$pm->addParam(new FieldExtInt('ret_id'));
+		
+			$f_params = array();
+			
+				$f_params['required']=TRUE;
+			$param = new FieldExtString('view_id'
+			,$f_params);
+		$pm->addParam($param);		
 		
 		
 		$this->addPublicMethod($pm);
@@ -95,6 +103,13 @@ class DOCExpence_Controller extends ControllerSQLDOC{
 			$param = new FieldExtInt('id',array(
 			));
 			$pm->addParam($param);
+		
+			$f_params = array();
+			
+				$f_params['required']=TRUE;
+			$param = new FieldExtString('view_id'
+			,$f_params);
+		$pm->addParam($param);		
 		
 		
 			$this->addPublicMethod($pm);
@@ -147,6 +162,13 @@ class DOCExpence_Controller extends ControllerSQLDOC{
 		
 				
 	$opts=array();
+	
+		$opts['length']=32;
+		$opts['required']=TRUE;				
+		$pm->addParam(new FieldExtString('view_id',$opts));
+	
+				
+	$opts=array();
 					
 		$pm->addParam(new FieldExtInt('doc_id',$opts));
 	
@@ -163,7 +185,19 @@ class DOCExpence_Controller extends ControllerSQLDOC{
 	
 			
 		$this->addPublicMethod($pm);
+
 			
+		$pm = new PublicMethod('set_unprocessed');
+		
+				
+	$opts=array();
+	
+		$opts['required']=TRUE;				
+		$pm->addParam(new FieldExtInt('doc_id',$opts));
+	
+			
+		$this->addPublicMethod($pm);
+						
 			
 		$pm = new PublicMethod('get_print');
 		
@@ -171,6 +205,11 @@ class DOCExpence_Controller extends ControllerSQLDOC{
 	$opts=array();
 					
 		$pm->addParam(new FieldExtInt('doc_id',$opts));
+	
+				
+	$opts=array();
+					
+		$pm->addParam(new FieldExtString('templ',$opts));
 	
 			
 		$this->addPublicMethod($pm);
@@ -230,7 +269,7 @@ class DOCExpence_Controller extends ControllerSQLDOC{
 	public function insert($pm){
 		//doc owner
 		$pm->setParamValue('user_id',$_SESSION['user_id']);
-		parent::insert();		
+		parent::insert($pm);		
 	}
 	public function get_details($pm){		
 		$model = new DOCExpenceExpenceTypeList_Model($this->getDbLink());	

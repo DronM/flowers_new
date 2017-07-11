@@ -14,72 +14,51 @@ class MaterialList_Model extends ModelSQL{
 		$this->setDbName("public");
 		
 		$this->setTableName("materials_list_view");
+			
+		//*** Field id ***
+		$f_opts = array();
+		$f_opts['primaryKey'] = TRUE;
+		$f_opts['sysCol']=TRUE;
+		$f_opts['id']="id";
 		
-		$f_id=new FieldSQlInt($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"id"
-		,array(
-		
-			'primaryKey'=>TRUE,
-			'id'=>"id"
-		,
-			'sysCol'=>TRUE
-				
-		
-		));
+		$f_id=new FieldSQLInt($this->getDbLink(),$this->getDbName(),$this->getTableName(),"id",$f_opts);
 		$this->addField($f_id);
-
-		$f_name=new FieldSQlString($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"name"
-		,array(
+		//********************
+	
+		//*** Field name ***
+		$f_opts = array();
+		$f_opts['id']="name";
 		
-			'alias'=>"Наименование"
-		,
-			'id'=>"name"
-				
-		
-		));
+		$f_name=new FieldSQLString($this->getDbLink(),$this->getDbName(),$this->getTableName(),"name",$f_opts);
 		$this->addField($f_name);
-
-		$f_price=new FieldSQlFloat($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"price"
-		,array(
+		//********************
+	
+		//*** Field price ***
+		$f_opts = array();
+		$f_opts['length']=15;
+		$f_opts['id']="price";
 		
-			'alias'=>"Розничная цена"
-		,
-			'length'=>15,
-			'id'=>"price"
-				
-		
-		));
+		$f_price=new FieldSQLFloat($this->getDbLink(),$this->getDbName(),$this->getTableName(),"price",$f_opts);
 		$this->addField($f_price);
-
-		$f_for_sale=new FieldSQlBool($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"for_sale"
-		,array(
+		//********************
+	
+		//*** Field for_sale ***
+		$f_opts = array();
+		$f_opts['id']="for_sale";
 		
-			'alias'=>"Для продажи"
-		,
-			'id'=>"for_sale"
-				
-		
-		));
+		$f_for_sale=new FieldSQLBool($this->getDbLink(),$this->getDbName(),$this->getTableName(),"for_sale",$f_opts);
 		$this->addField($f_for_sale);
-
-		$f_material_group_id=new FieldSQlString($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"material_group_id"
-		,array(
+		//********************
+	
+		//*** Field material_group_id ***
+		$f_opts = array();
+		$f_opts['sysCol']=TRUE;
+		$f_opts['id']="material_group_id";
 		
-			'id'=>"material_group_id"
-		,
-			'sysCol'=>TRUE
-				
-		
-		));
+		$f_material_group_id=new FieldSQLString($this->getDbLink(),$this->getDbName(),$this->getTableName(),"material_group_id",$f_opts);
 		$this->addField($f_material_group_id);
-$this->limitConstant = 'doc_per_page_count';
-		
-		
-		
+		//********************
+$this->setLimitConstant('doc_per_page_count');
 	}
 
 }

@@ -13,6 +13,7 @@ $BODY$
 DECLARE
 	v_name text;
 	v_price numeric(15,2);
+	v_disc_percent numeric;
 BEGIN
 	IF in_item_type = 0 THEN
 		SELECT p.name::text,d_p.price
@@ -27,10 +28,21 @@ BEGIN
 		WHERE id=in_item_id;
 	END IF;
 
+	SELECT d.percent INTO v_disc_percent
+	FROM receipt_head h
+	LEFT JOIN discounts AS d ON d.id=h.discount_id
+	WHERE user_id=in_user_id;
+
+	IF v_disc_percent IS NULL THEN
+		v_disc_percent = 0;
+	END IF;
+	--RAISE EXCEPTION 'percent=%',v_disc_percent;
+
 	UPDATE receipts
 	SET quant = quant + 1,
-		price_no_disc = v_price,		
-		total = calc_total(v_price*(quant+1),disc_percent)
+		price_no_disc = v_price,
+		disc_percent = v_disc_percent,		
+		total = calc_total(v_price*(quant+1),v_disc_percent)
 	WHERE
 		user_id = in_user_id
 		AND item_id = in_item_id
@@ -58,15 +70,16 @@ BEGIN
 				in_item_type,
 				v_name,
 				1,
-				0,
+				v_disc_percent,
 				v_price,				
-				v_price
+				calc_total(v_price,v_disc_percent)
 			);
 		EXCEPTION WHEN OTHERS THEN
 			UPDATE receipts
 			SET quant = quant + 1,
 				price_no_disc = v_price,
-				total = calc_total(v_price*(quant+1),disc_percent)
+				disc_percent = v_disc_percent,		
+				total = calc_total(v_price*(quant+1),v_disc_percent)
 			WHERE
 				user_id = in_user_id
 				AND item_id = in_item_id

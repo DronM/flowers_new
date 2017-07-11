@@ -1,25 +1,22 @@
-/* Copyright (c) 2016
-	Andrey Mikhalevich, Katren ltd.
-*/
-/*	
-	Description
-*/
-/** Requirements
- * @requires core/extend.js
- * @requires core/ControllerDb.js
-*/
-
-/* constructor
-@param string id
-@param object options{
-
-}
-*/
+/**
+ * @author Andrey Mikhalevich <katrenplus@mail.ru>, 2017
+ 
+ * @class
+ * @classdesc controller
+ 
+ * @requires ../core/extend.js
+ * @requires ../core/ControllerDb.js 
+  
+ * @param {App} app - app instance
+ * @param {namespase} options
+ * @param {Model} options.listModel
+ * @param {Model} options.objModel 
+ */ 
 
 function DOCProduction_Controller(app,options){
 	options = options || {};
-	options.listModelId = "DOCProductionList_Model";
-	options.objModelId = "DOCProductionList_Model";
+	options.listModel = DOCProductionList_Model;
+	options.objModel = DOCProductionList_Model;
 	DOCProduction_Controller.superclass.constructor.call(this,app,options);	
 	
 	//methods
@@ -28,7 +25,8 @@ function DOCProduction_Controller(app,options){
 	this.addDelete();
 	this.addGetList();
 	this.addGetObject();
-	this.add_get_doc();
+	this.add_before_open();
+	this.add_set_unprocessed();
 	this.add_fill_on_spec();
 	this.add_get_balance_list();
 	this.add_get_current_doc_cost();
@@ -36,6 +34,7 @@ function DOCProduction_Controller(app,options){
 	this.add_get_actions();
 	this.add_get_print();
 	this.add_print_barcode();
+	this.add_calc_mat_costs();
 	this.add_get_details();
 		
 }
@@ -44,77 +43,63 @@ extend(DOCProduction_Controller,ControllerDb);
 			DOCProduction_Controller.prototype.addInsert = function(){
 	DOCProduction_Controller.superclass.addInsert.call(this);
 	var field;
-	var options;
 	
 	var pm = this.getInsert();
-	options = {};
+	var options = {};
 	options.primaryKey = true;options.autoInc = true;
 	var field = new FieldInt("id",options);
 	
 	pm.addField(field);
 	
-	options = {};
+	var options = {};
 	options.alias = "Дата";options.required = true;
 	var field = new FieldDateTime("date_time",options);
 	
 	pm.addField(field);
 	
-	options = {};
+	var options = {};
 	options.alias = "Номер";
 	var field = new FieldInt("number",options);
 	
 	pm.addField(field);
 	
-	options = {};
+	var options = {};
 	options.alias = "Проведен";
 	var field = new FieldBool("processed",options);
 	
 	pm.addField(field);
 	
-	options = {};
+	var options = {};
 	options.alias = "Магазин";
 	var field = new FieldInt("store_id",options);
 	
 	pm.addField(field);
 	
-	options = {};
+	var options = {};
 	options.alias = "Флорист";
 	var field = new FieldInt("user_id",options);
 	
 	pm.addField(field);
 	
-	options = {};
+	var options = {};
 	options.alias = "Букет";options.required = true;
 	var field = new FieldInt("product_id",options);
 	
 	pm.addField(field);
 	
-	options = {};
-	options.alias = "Вид заявки";	
-	options.enumValues = 'sale,disposal,manual';
-	field = new FieldEnum("product_order_type",options);
-	
-	pm.addField(field);
-	
-	options = {};
-	options.alias = "По норме";
-	var field = new FieldBool("on_norm",options);
-	
-	pm.addField(field);
-	
-	options = {};
+	var options = {};
 	options.alias = "Количество";
 	var field = new FieldFloat("quant",options);
 	
 	pm.addField(field);
 	
-	options = {};
+	var options = {};
 	options.alias = "Цена";
 	var field = new FieldFloat("price",options);
 	
 	pm.addField(field);
 	
-	options = {};
+	var options = {};
 	options.alias = "Комментарий";
 	var field = new FieldText("florist_comment",options);
 	
@@ -122,148 +107,198 @@ extend(DOCProduction_Controller,ControllerDb);
 	
 	pm.addField(new FieldInt("ret_id",{}));
 	
+		var options = {};
+		options.required = true;		
+		pm.addField(new FieldString("view_id",options));
+	
 	
 }
 
 			DOCProduction_Controller.prototype.addUpdate = function(){
 	DOCProduction_Controller.superclass.addUpdate.call(this);
-	var field;
-	var options;	
+	var field;	
 	var pm = this.getUpdate();
-	options = {"sendNulls":true};
+	var options = {};
 	options.primaryKey = true;options.autoInc = true;
 	var field = new FieldInt("id",options);
 	
 	pm.addField(field);
 	
-	
 	field = new FieldInt("old_id",{});
 	pm.addField(field);
 	
-	options = {"sendNulls":true};
+	var options = {};
 	options.alias = "Дата";
 	var field = new FieldDateTime("date_time",options);
 	
 	pm.addField(field);
 	
-	
-	options = {"sendNulls":true};
+	var options = {};
 	options.alias = "Номер";
 	var field = new FieldInt("number",options);
 	
 	pm.addField(field);
 	
-	
-	options = {"sendNulls":true};
+	var options = {};
 	options.alias = "Проведен";
 	var field = new FieldBool("processed",options);
 	
 	pm.addField(field);
 	
-	
-	options = {"sendNulls":true};
+	var options = {};
 	options.alias = "Магазин";
 	var field = new FieldInt("store_id",options);
 	
 	pm.addField(field);
 	
-	
-	options = {"sendNulls":true};
+	var options = {};
 	options.alias = "Флорист";
 	var field = new FieldInt("user_id",options);
 	
 	pm.addField(field);
 	
-	
-	options = {"sendNulls":true};
+	var options = {};
 	options.alias = "Букет";
 	var field = new FieldInt("product_id",options);
 	
 	pm.addField(field);
 	
-	
-	options = {"sendNulls":true};
-	options.alias = "Вид заявки";	
-	options.enumValues = 'sale,disposal,manual';
-	
-	field = new FieldEnum("product_order_type",options);
-	
-	pm.addField(field);
-	
-	
-	options = {"sendNulls":true};
-	options.alias = "По норме";
-	var field = new FieldBool("on_norm",options);
-	
-	pm.addField(field);
-	
-	
-	options = {"sendNulls":true};
+	var options = {};
 	options.alias = "Количество";
 	var field = new FieldFloat("quant",options);
 	
 	pm.addField(field);
 	
-	
-	options = {"sendNulls":true};
+	var options = {};
 	options.alias = "Цена";
 	var field = new FieldFloat("price",options);
 	
 	pm.addField(field);
 	
-	
-	options = {"sendNulls":true};
+	var options = {};
 	options.alias = "Комментарий";
 	var field = new FieldText("florist_comment",options);
 	
 	pm.addField(field);
 	
+		var options = {};
+		options.required = true;		
+		pm.addField(new FieldString("view_id",options));
 	
 	
 }
 
 			DOCProduction_Controller.prototype.addDelete = function(){
 	DOCProduction_Controller.superclass.addDelete.call(this);
-	var options = {"required":true};
-	
 	var pm = this.getDelete();
+	var options = {"required":true};
+		
 	pm.addField(new FieldInt("id",options));
 }
 
 			DOCProduction_Controller.prototype.addGetList = function(){
 	DOCProduction_Controller.superclass.addGetList.call(this);
-	var options = {};
+	
+	
 	
 	var pm = this.getGetList();
-	pm.addField(new FieldInt("id",options));
-	pm.addField(new FieldString("tmp_id",options));
-	pm.addField(new FieldString("number",options));
-	pm.addField(new FieldDateTime("date_time",options));
-	pm.addField(new FieldInt("store_id",options));
-	pm.addField(new FieldString("store_descr",options));
-	pm.addField(new FieldInt("user_id",options));
-	pm.addField(new FieldString("user_descr",options));
-	pm.addField(new FieldInt("product_id",options));
-	pm.addField(new FieldString("product_descr",options));
-	pm.addField(new FieldFloat("quant",options));
-	pm.addField(new FieldFloat("price",options));
-	pm.addField(new FieldFloat("mat_sum",options));
-	pm.addField(new FieldFloat("mat_cost",options));
-	pm.addField(new FieldString("processed",options));
-	pm.addField(new FieldText("florist_comment",options));
+	var f_opts = {};
+	
+	pm.addField(new FieldInt("id",f_opts));
+	var f_opts = {};
+	f_opts.alias = "Номер";
+	pm.addField(new FieldString("number",f_opts));
+	var f_opts = {};
+	f_opts.alias = "Дата";
+	pm.addField(new FieldDateTime("date_time",f_opts));
+	var f_opts = {};
+	f_opts.alias = "Проведен";
+	pm.addField(new FieldString("processed",f_opts));
+	var f_opts = {};
+	f_opts.alias = "По норме";
+	pm.addField(new FieldBool("on_norm",f_opts));
+	var f_opts = {};
+	
+	pm.addField(new FieldInt("store_id",f_opts));
+	var f_opts = {};
+	f_opts.alias = "Салон";
+	pm.addField(new FieldString("store_descr",f_opts));
+	var f_opts = {};
+	
+	pm.addField(new FieldInt("user_id",f_opts));
+	var f_opts = {};
+	f_opts.alias = "Автор";
+	pm.addField(new FieldString("user_descr",f_opts));
+	var f_opts = {};
+	
+	pm.addField(new FieldInt("product_id",f_opts));
+	var f_opts = {};
+	f_opts.alias = "Продукция";
+	pm.addField(new FieldString("product_descr",f_opts));
+	var f_opts = {};
+	f_opts.alias = "Количество";
+	pm.addField(new FieldFloat("quant",f_opts));
+	var f_opts = {};
+	f_opts.alias = "Цена";
+	pm.addField(new FieldFloat("price",f_opts));
+	var f_opts = {};
+	f_opts.alias = "Сумма материалов";
+	pm.addField(new FieldFloat("material_retail_cost",f_opts));
+	var f_opts = {};
+	f_opts.alias = "Себестоимость материалов";
+	pm.addField(new FieldFloat("material_cost",f_opts));
+	var f_opts = {};
+	f_opts.alias = "Наценка,%";
+	pm.addField(new FieldFloat("income_percent",f_opts));
+	var f_opts = {};
+	f_opts.alias = "Наценка,руб";
+	pm.addField(new FieldFloat("income",f_opts));
+	var f_opts = {};
+	f_opts.alias = "Комментарий";
+	pm.addField(new FieldText("florist_comment",f_opts));
+	var f_opts = {};
+	f_opts.alias = "Период после продажи";
+	pm.addField(new FieldText("after_prod_interval",f_opts));
+	var f_opts = {};
+	f_opts.alias = "Представление документа";
+	pm.addField(new FieldString("doc_descr",f_opts));
 }
 
 			DOCProduction_Controller.prototype.addGetObject = function(){
 	DOCProduction_Controller.superclass.addGetObject.call(this);
-	var options = {};
 	
 	var pm = this.getGetObject();
-	pm.addField(new FieldInt("id",options));
+	var f_opts = {};
+		
+	pm.addField(new FieldInt("id",f_opts));
 }
 
 			
-			DOCProduction_Controller.prototype.add_get_doc = function(){
-	var pm = new PublicMethod('get_doc',{controller:this});
+			DOCProduction_Controller.prototype.add_before_open = function(){
+	var pm = new PublicMethod('before_open',{controller:this});
+	this.addPublicMethod(pm);
+	
+				
+	
+	var options = {};
+	
+		pm.addField(new FieldInt("doc_id",options));
+	
+				
+	
+	var options = {};
+	
+		options.required = true;
+	
+		options.maxlength = "32";
+	
+		pm.addField(new FieldString("view_id",options));
+	
+			
+}
+
+			DOCProduction_Controller.prototype.add_set_unprocessed = function(){
+	var pm = new PublicMethod('set_unprocessed',{controller:this});
 	this.addPublicMethod(pm);
 	
 				
@@ -272,12 +307,11 @@ extend(DOCProduction_Controller,ControllerDb);
 	
 		options.required = true;
 	
-		pm.addField(new FieldInt("id",options));
+		pm.addField(new FieldInt("doc_id",options));
 	
 			
 }
 
-			
 			
 			DOCProduction_Controller.prototype.add_fill_on_spec = function(){
 	var pm = new PublicMethod('fill_on_spec',{controller:this});
@@ -373,6 +407,12 @@ extend(DOCProduction_Controller,ControllerDb);
 	
 		pm.addField(new FieldInt("doc_id",options));
 	
+				
+	
+	var options = {};
+	
+		pm.addField(new FieldString("templ",options));
+	
 			
 }
 									
@@ -386,9 +426,39 @@ extend(DOCProduction_Controller,ControllerDb);
 	
 		pm.addField(new FieldInt("doc_id",options));
 	
+				
+	
+	var options = {};
+	
+		pm.addField(new FieldString("templ",options));
+	
 			
 }
 												
+			DOCProduction_Controller.prototype.add_calc_mat_costs = function(){
+	var pm = new PublicMethod('calc_mat_costs',{controller:this});
+	this.addPublicMethod(pm);
+	
+				
+	
+	var options = {};
+	
+		options.required = true;
+	
+		options.maxlength = "32";
+	
+		pm.addField(new FieldString("view_id",options));
+		
+				
+	
+	var options = {};
+	
+		pm.addField(new FieldInt("doc_id",options));
+	
+			
+}
+												
+			
 			DOCProduction_Controller.prototype.add_get_details = function(){
 	var pm = new PublicMethod('get_details',{controller:this});
 	this.addPublicMethod(pm);
@@ -451,3 +521,22 @@ extend(DOCProduction_Controller,ControllerDb);
 }
 												
 		
+	
+DOCProduction_Controller.prototype.getPrintList = function(){
+	return  [
+		new PrintObj({
+			"caption":"Комплектация",
+			"publicMethod":this.getPublicMethod("get_print"),
+			"templ":"DOCProductionPrint",
+			"publicMethodKeyIds":["doc_id"]
+		}),
+	
+		new PrintObj({
+			"caption":"Этикетка",
+			"publicMethod":this.getPublicMethod("print_barcode"),
+			"templ":"DOCProductionBarcode",
+			"publicMethodKeyIds":["doc_id"]
+		})
+	];
+}
+	

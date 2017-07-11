@@ -25,71 +25,42 @@ function Specification_Model(options){
 			
 				
 			
-			
+				
+	
 	var filed_options = {};
-	filed_options.primaryKey = true;
+	filed_options.primaryKey = true;	
+	filed_options.alias = 'Код';options.fields.id = new FieldInt("id",filed_options);
 	
-	filed_options.alias = 'Код';
+				
 	
-	var field = new FieldInt("id",filed_options);
-	
-
-	options.fields.id = field;
-
-			
 	var filed_options = {};
-	filed_options.primaryKey = false;
+	filed_options.primaryKey = false;	
+	filed_options.alias = 'Продукция';options.fields.product_id = new FieldInt("product_id",filed_options);
+	options.fields.product_id.getValidator().setRequired(true);
 	
-	filed_options.alias = 'Продукция';
+				
 	
-	var field = new FieldInt("product_id",filed_options);
-	
-		field.getValidator().setRequired(true);
-	
-
-	options.fields.product_id = field;
-
-			
 	var filed_options = {};
-	filed_options.primaryKey = false;
+	filed_options.primaryKey = false;	
+	filed_options.alias = 'Материал';options.fields.material_id = new FieldInt("material_id",filed_options);
+	options.fields.material_id.getValidator().setRequired(true);
 	
-	filed_options.alias = 'Материал';
+				
 	
-	var field = new FieldInt("material_id",filed_options);
-	
-		field.getValidator().setRequired(true);
-	
-
-	options.fields.material_id = field;
-
-			
 	var filed_options = {};
-	filed_options.primaryKey = false;
+	filed_options.primaryKey = false;	
+	filed_options.defValue = true;
+	filed_options.alias = 'Кол.продукции';options.fields.product_quant = new FieldFloat("product_quant",filed_options);
+	options.fields.product_quant.getValidator().setMaxLength('19');
 	
-	filed_options.alias = 'Кол.продукции';
+				
 	
-	var field = new FieldFloat("product_quant",filed_options);
-	
-		field.getValidator().setMaxLength('19');
-	
-
-	options.fields.product_quant = field;
-
-			
 	var filed_options = {};
-	filed_options.primaryKey = false;
+	filed_options.primaryKey = false;	
+	filed_options.alias = 'Кол.материала';options.fields.material_quant = new FieldFloat("material_quant",filed_options);
+	options.fields.material_quant.getValidator().setRequired(true);
+	options.fields.material_quant.getValidator().setMaxLength('19');
 	
-	filed_options.alias = 'Кол.материала';
-	
-	var field = new FieldFloat("material_quant",filed_options);
-	
-		field.getValidator().setRequired(true);
-	
-		field.getValidator().setMaxLength('19');
-	
-
-	options.fields.material_quant = field;
-
 			
 						
 		Specification_Model.superclass.constructor.call(this,id,options);

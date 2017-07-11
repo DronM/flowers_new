@@ -13,132 +13,97 @@ class UserDialog_Model extends ModelSQL{
 		$this->setDbName("public");
 		
 		$this->setTableName("user_view");
+			
+		//*** Field id ***
+		$f_opts = array();
+		$f_opts['primaryKey'] = TRUE;
+		$f_opts['id']="id";
 		
-		$f_id=new FieldSQlInt($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"id"
-		,array(
-		
-			'primaryKey'=>TRUE,
-			'alias'=>"Код"
-		,
-			'id'=>"id"
-				
-		
-		));
+		$f_id=new FieldSQLInt($this->getDbLink(),$this->getDbName(),$this->getTableName(),"id",$f_opts);
 		$this->addField($f_id);
-
-		$f_name=new FieldSQlString($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"name"
-		,array(
+		//********************
+	
+		//*** Field name ***
+		$f_opts = array();
+		$f_opts['id']="name";
 		
-			'alias'=>"Имя"
-		,
-			'id'=>"name"
-				
-		
-		));
+		$f_name=new FieldSQLString($this->getDbLink(),$this->getDbName(),$this->getTableName(),"name",$f_opts);
 		$this->addField($f_name);
-
-		$f_email=new FieldSQlString($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"email"
-		,array(
+		//********************
+	
+		//*** Field email ***
+		$f_opts = array();
+		$f_opts['id']="email";
 		
-			'alias'=>"Эл.почта"
-		,
-			'id'=>"email"
-				
-		
-		));
+		$f_email=new FieldSQLString($this->getDbLink(),$this->getDbName(),$this->getTableName(),"email",$f_opts);
 		$this->addField($f_email);
-
-		$f_role_descr=new FieldSQlString($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"role_descr"
-		,array(
+		//********************
+	
+		//*** Field role_descr ***
+		$f_opts = array();
+		$f_opts['id']="role_descr";
 		
-			'alias'=>"Роль"
-		,
-			'id'=>"role_descr"
-				
-		
-		));
+		$f_role_descr=new FieldSQLString($this->getDbLink(),$this->getDbName(),$this->getTableName(),"role_descr",$f_opts);
 		$this->addField($f_role_descr);
-
-		$f_role_id=new FieldSQlString($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"role_id"
-		,array(
+		//********************
+	
+		//*** Field role_id ***
+		$f_opts = array();
+		$f_opts['id']="role_id";
 		
-			'id'=>"role_id"
-				
-		
-		));
+		$f_role_id=new FieldSQLString($this->getDbLink(),$this->getDbName(),$this->getTableName(),"role_id",$f_opts);
 		$this->addField($f_role_id);
-
-		$f_phone_cel=new FieldSQlString($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"phone_cel"
-		,array(
+		//********************
+	
+		//*** Field phone_cel ***
+		$f_opts = array();
+		$f_opts['length']=11;
+		$f_opts['id']="phone_cel";
 		
-			'alias'=>"Моб.телефон"
-		,
-			'length'=>11,
-			'id'=>"phone_cel"
-				
-		
-		));
+		$f_phone_cel=new FieldSQLString($this->getDbLink(),$this->getDbName(),$this->getTableName(),"phone_cel",$f_opts);
 		$this->addField($f_phone_cel);
-
-		$f_store_descr=new FieldSQlString($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"store_descr"
-		,array(
+		//********************
+	
+		//*** Field store_descr ***
+		$f_opts = array();
+		$f_opts['id']="store_descr";
 		
-			'id'=>"store_descr"
-				
-		
-		));
+		$f_store_descr=new FieldSQLString($this->getDbLink(),$this->getDbName(),$this->getTableName(),"store_descr",$f_opts);
 		$this->addField($f_store_descr);
-
-		$f_store_id=new FieldSQlString($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"store_id"
-		,array(
+		//********************
+	
+		//*** Field store_id ***
+		$f_opts = array();
+		$f_opts['id']="store_id";
 		
-			'id'=>"store_id"
-				
-		
-		));
+		$f_store_id=new FieldSQLString($this->getDbLink(),$this->getDbName(),$this->getTableName(),"store_id",$f_opts);
 		$this->addField($f_store_id);
-
-		$f_constrain_to_store=new FieldSQlBool($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"constrain_to_store"
-		,array(
+		//********************
+	
+		//*** Field constrain_to_store ***
+		$f_opts = array();
+		$f_opts['id']="constrain_to_store";
 		
-			'id'=>"constrain_to_store"
-				
-		
-		));
+		$f_constrain_to_store=new FieldSQLBool($this->getDbLink(),$this->getDbName(),$this->getTableName(),"constrain_to_store",$f_opts);
 		$this->addField($f_constrain_to_store);
-
-		$f_cash_register_descr=new FieldSQlString($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"cash_register_descr"
-		,array(
+		//********************
+	
+		//*** Field cash_register_descr ***
+		$f_opts = array();
+		$f_opts['id']="cash_register_descr";
 		
-			'id'=>"cash_register_descr"
-				
-		
-		));
+		$f_cash_register_descr=new FieldSQLString($this->getDbLink(),$this->getDbName(),$this->getTableName(),"cash_register_descr",$f_opts);
 		$this->addField($f_cash_register_descr);
-
-		$f_cash_register_id=new FieldSQlInt($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"cash_register_id"
-		,array(
+		//********************
+	
+		//*** Field cash_register_id ***
+		$f_opts = array();
+		$f_opts['id']="cash_register_id";
 		
-			'id'=>"cash_register_id"
-				
-		
-		));
+		$f_cash_register_id=new FieldSQLInt($this->getDbLink(),$this->getDbName(),$this->getTableName(),"cash_register_id",$f_opts);
 		$this->addField($f_cash_register_id);
-
-		
-		
-		
+		//********************
+$this->setLimitConstant('doc_per_page_count');
 	}
 
 }

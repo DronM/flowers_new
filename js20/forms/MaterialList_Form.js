@@ -19,7 +19,6 @@
 function MaterialList_Form(options){
 	options = options || {};	
 	
-	options.width = 900;
 	options.formName = "MaterialList";
 	options.controller = "Material_Controller";
 	options.method = "get_list";

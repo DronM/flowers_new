@@ -113,7 +113,7 @@ $BODY$
 			0::numeric AS end_prod_cost	
 			
 		FROM rg_materials_balance(
-			$1,ARRAY[$3],'{}',ARRAY((SELECT m.id FROM mat_list m)),'{}') AS b
+			$1,ARRAY[$3],ARRAY((SELECT m.id FROM mat_list m))) AS b
 		GROUP BY b.material_id
 		)
 		--остатки материалов на начало в букетах
@@ -430,7 +430,7 @@ $BODY$
 			0::numeric AS end_prod_cost	
 			
 		FROM rg_materials_balance(
-			$2+'1 second'::interval,ARRAY[$3],'{}',ARRAY((SELECT m.id FROM mat_list m)),'{}') AS b
+			$2+'1 second'::interval,ARRAY[$3],ARRAY((SELECT m.id FROM mat_list m))) AS b
 		GROUP BY b.material_id
 		)
 		--остатки материалов на конец в букетах

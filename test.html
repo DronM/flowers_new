@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<head>
+</head>
+<body>
+<script>
+	window.getvv = function(pref){
+		return pref+"987";
+	}
+	var res = '<div> class="{{window.getvv(123)}}"></div>';
+	var matches = res.match( /{{.*}}/g );
+	for(var i=0;i<matches.length;i++){
+		//s = matches[i].replace(/{{/,'');
+		//s = s.replace(/}}/,'');
+		s = matches[i].substring(2,matches[i].length-2);
+		var v = eval(s);
+		console.log("ValToSet="+v)
+		var r=new RegExp(matches[i].toString(),"g");
+		console.log("Reg="+r)
+		//res = res.replace(/matches[i]/g,v);
+		res = res.split(matches[i]).join(v);
+		console.log(res)
+	}			
+</script>
+<body>
+</html>

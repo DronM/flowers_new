@@ -12,6 +12,9 @@ function Material_View(id,options){
 
 	options = options || {};
 	
+	var contr = new Material_Controller(options.app);
+	options.printList = contr.getPrintList();
+	
 	Material_View.superclass.constructor.call(this,id,options);
 		
 	var self = this;
@@ -47,18 +50,18 @@ function Material_View(id,options){
 		"app":options.app
 	}));	
 
-	this.addElement(new EditPercent(id+":margin_percent",{
+	this.addElement(new EditInt(id+":margin_percent",{
 		"labelCaption":"Наценка:",
 		"app":options.app
 	}));	
 	
 	this.addElement(new MaterialGroupSelect(id+":material_group",{
 		"labelCaption":"Группа материалов:",
+		"keyIds":["material_group_id"],
 		"app":options.app
 	}));	
 	
-	//****************************************************
-	var contr = new Material_Controller(options.app);
+	//****************************************************	
 	
 	//read
 	this.setReadPublicMethod(contr.getPublicMethod("get_object"));
@@ -70,7 +73,7 @@ function Material_View(id,options){
 		new DataBinding({"control":this.getElement("price"),"model":this.m_model}),
 		new DataBinding({"control":this.getElement("for_sale"),"model":this.m_model}),
 		new DataBinding({"control":this.getElement("margin_percent"),"model":this.m_model}),
-		new DataBinding({"control":this.getElement("material_group"),"model":this.m_model,"fieldId":"material_group_id"})
+		new DataBinding({"control":this.getElement("material_group"),"model":this.m_model,"keyIds":["material_group_id"]})
 	]);
 	
 	//write

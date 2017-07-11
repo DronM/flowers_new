@@ -22,123 +22,73 @@ function UserDialog_Model(options){
 	
 	options.fields = {};
 	
-			
+				
+	
 	var filed_options = {};
-	filed_options.primaryKey = true;
+	filed_options.primaryKey = true;	
+	filed_options.alias = 'Код';options.fields.id = new FieldInt("id",filed_options);
 	
-	filed_options.alias = 'Код';
+				
 	
-	var field = new FieldInt("id",filed_options);
-	
-
-	options.fields.id = field;
-
-			
 	var filed_options = {};
-	filed_options.primaryKey = false;
+	filed_options.primaryKey = false;	
+	filed_options.alias = 'Имя';options.fields.name = new FieldString("name",filed_options);
 	
-	filed_options.alias = 'Имя';
+				
 	
-	var field = new FieldString("name",filed_options);
-	
-
-	options.fields.name = field;
-
-			
 	var filed_options = {};
-	filed_options.primaryKey = false;
+	filed_options.primaryKey = false;	
+	filed_options.alias = 'Эл.почта';options.fields.email = new FieldString("email",filed_options);
 	
-	filed_options.alias = 'Эл.почта';
+				
 	
-	var field = new FieldString("email",filed_options);
-	
-
-	options.fields.email = field;
-
-			
 	var filed_options = {};
-	filed_options.primaryKey = false;
+	filed_options.primaryKey = false;	
+	filed_options.alias = 'Роль';options.fields.role_descr = new FieldString("role_descr",filed_options);
 	
-	filed_options.alias = 'Роль';
+				
 	
-	var field = new FieldString("role_descr",filed_options);
-	
-
-	options.fields.role_descr = field;
-
-			
 	var filed_options = {};
-	filed_options.primaryKey = false;
+	filed_options.primaryKey = false;	
+	options.fields.role_id = new FieldString("role_id",filed_options);
 	
+				
 	
-	var field = new FieldString("role_id",filed_options);
-	
-
-	options.fields.role_id = field;
-
-			
 	var filed_options = {};
-	filed_options.primaryKey = false;
+	filed_options.primaryKey = false;	
+	filed_options.alias = 'Моб.телефон';options.fields.phone_cel = new FieldString("phone_cel",filed_options);
+	options.fields.phone_cel.getValidator().setMaxLength('11');
 	
-	filed_options.alias = 'Моб.телефон';
+				
 	
-	var field = new FieldString("phone_cel",filed_options);
-	
-		field.getValidator().setMaxLength('11');
-	
-
-	options.fields.phone_cel = field;
-
-			
 	var filed_options = {};
-	filed_options.primaryKey = false;
+	filed_options.primaryKey = false;	
+	options.fields.store_descr = new FieldString("store_descr",filed_options);
 	
+				
 	
-	var field = new FieldString("store_descr",filed_options);
-	
-
-	options.fields.store_descr = field;
-
-			
 	var filed_options = {};
-	filed_options.primaryKey = false;
+	filed_options.primaryKey = false;	
+	options.fields.store_id = new FieldString("store_id",filed_options);
 	
+				
 	
-	var field = new FieldString("store_id",filed_options);
-	
-
-	options.fields.store_id = field;
-
-			
 	var filed_options = {};
-	filed_options.primaryKey = false;
+	filed_options.primaryKey = false;	
+	options.fields.constrain_to_store = new FieldBool("constrain_to_store",filed_options);
 	
+				
 	
-	var field = new FieldBool("constrain_to_store",filed_options);
-	
-
-	options.fields.constrain_to_store = field;
-
-			
 	var filed_options = {};
-	filed_options.primaryKey = false;
+	filed_options.primaryKey = false;	
+	options.fields.cash_register_descr = new FieldString("cash_register_descr",filed_options);
 	
+				
 	
-	var field = new FieldString("cash_register_descr",filed_options);
-	
-
-	options.fields.cash_register_descr = field;
-
-			
 	var filed_options = {};
-	filed_options.primaryKey = false;
-	
-	
-	var field = new FieldInt("cash_register_id",filed_options);
-	
-
-	options.fields.cash_register_id = field;
-			
+	filed_options.primaryKey = false;	
+	options.fields.cash_register_id = new FieldInt("cash_register_id",filed_options);
+				
 		UserDialog_Model.superclass.constructor.call(this,id,options);
 }
 extend(UserDialog_Model,ModelXML);

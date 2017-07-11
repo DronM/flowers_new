@@ -1,5 +1,4 @@
 <?php
-
 require_once(FRAME_WORK_PATH.'basic_classes/ControllerSQL.php');
 
 require_once(FRAME_WORK_PATH.'basic_classes/FieldExtInt.php');
@@ -12,11 +11,17 @@ require_once(FRAME_WORK_PATH.'basic_classes/FieldExtDate.php');
 require_once(FRAME_WORK_PATH.'basic_classes/FieldExtTime.php');
 require_once(FRAME_WORK_PATH.'basic_classes/FieldExtPassword.php');
 require_once(FRAME_WORK_PATH.'basic_classes/FieldExtBool.php');
+require_once(FRAME_WORK_PATH.'basic_classes/FieldExtInterval.php');
 require_once(FRAME_WORK_PATH.'basic_classes/CondParamsSQL.php');
 
 class RepBalance_Controller extends ControllerSQL{
 	public function __construct($dbLinkMaster=NULL){
 		parent::__construct($dbLinkMaster);
+			
+		$pm = new PublicMethod('get');
+		
+		$this->addPublicMethod($pm);
+
 			
 		$pm = new PublicMethod('balance');
 		
@@ -54,7 +59,12 @@ class RepBalance_Controller extends ControllerSQL{
 	$opts=array();
 					
 		$pm->addParam(new FieldExtString('ord_directs',$opts));
+	
+				
+	$opts=array();
 					
+		$pm->addParam(new FieldExtString('field_sep',$opts));
+									
 			
 		$this->addPublicMethod($pm);
 									
@@ -88,6 +98,8 @@ class RepBalance_Controller extends ControllerSQL{
 		$date_time_to,
 		$store_id
 		),'balance');
+	}
+	public function get($pm){
 	}
 
 }

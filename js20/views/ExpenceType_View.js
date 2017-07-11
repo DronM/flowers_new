@@ -15,27 +15,26 @@ function ExpenceType_View(id,options){
 	var model = new ExpenceType_Model({"data":options.modelDataStr});
 	var contr = new ExpenceType_Controller(options.app);
 	
+	var popup_menu = new PopUpMenu();
+	
 	this.addElement(new GridAjx(id+":grid",{
 		"model":model,
+		"keyIds":["id"],
 		"controller":contr,
 		"editInline":true,
 		"editWinClass":null,
-		"commands":new GridCommandsAjx(id+"-gridcmd",{"app":options.app}),
+		"commands":new GridCmdContainerAjx(id+"-gridcmd",{
+			"popUpMenu":popup_menu,
+			"colTemplate":"ExpenceType",
+			"app":options.app
+		}),
 		"head":new GridHead(id+"-grid:head",{
 			"elements":[
 				new GridRow(id+":grid:head:row0",{
 					"elements":[
-						/*
-						new GridCellHead(id+":grid:head:id",{
-							"columns":[
-								new GridColumn({"field":model.getField("id")})
-							],
-							"sortable":true
-						}),
-						*/
 						new GridCellHead(id+":grid:head:name",{
 							"columns":[
-								new GridColumn({"field":model.getField("name")})
+								new GridColumn("name",{"field":model.getField("name")})
 							],
 							"sortable":true,
 							"sort":"asc"							
@@ -46,6 +45,7 @@ function ExpenceType_View(id,options){
 		}),
 		"pagination":null,		
 		"autoRefresh":false,
+		"rowSelect":false,
 		"focus":true,
 		"app":options.app
 	}));	

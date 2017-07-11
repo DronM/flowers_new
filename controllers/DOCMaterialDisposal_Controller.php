@@ -1,6 +1,5 @@
 <?php
-
-require_once(FRAME_WORK_PATH.'basic_classes/ControllerSQLDOC.php');
+require_once(FRAME_WORK_PATH.'basic_classes/ControllerSQLDOC20.php');
 
 require_once(FRAME_WORK_PATH.'basic_classes/FieldExtInt.php');
 require_once(FRAME_WORK_PATH.'basic_classes/FieldExtString.php');
@@ -12,10 +11,14 @@ require_once(FRAME_WORK_PATH.'basic_classes/FieldExtDate.php');
 require_once(FRAME_WORK_PATH.'basic_classes/FieldExtTime.php');
 require_once(FRAME_WORK_PATH.'basic_classes/FieldExtPassword.php');
 require_once(FRAME_WORK_PATH.'basic_classes/FieldExtBool.php');
-class DOCMaterialDisposal_Controller extends ControllerSQLDOC{
+require_once(FRAME_WORK_PATH.'basic_classes/FieldExtInterval.php');
+class DOCMaterialDisposal_Controller extends ControllerSQLDOC20{
 	public function __construct($dbLinkMaster=NULL){
 		parent::__construct($dbLinkMaster);
 			
+		$this->setProcessable(TRUE);
+		
+		
 		/* insert */
 		$pm = new PublicMethod('insert');
 		$param = new FieldExtDateTime('date_time'
@@ -50,6 +53,13 @@ class DOCMaterialDisposal_Controller extends ControllerSQLDOC{
 		$pm->addParam($param);
 		
 		$pm->addParam(new FieldExtInt('ret_id'));
+		
+			$f_params = array();
+			
+				$f_params['required']=TRUE;
+			$param = new FieldExtString('view_id'
+			,$f_params);
+		$pm->addParam($param);		
 		
 		
 		$this->addPublicMethod($pm);
@@ -107,6 +117,13 @@ class DOCMaterialDisposal_Controller extends ControllerSQLDOC{
 			));
 			$pm->addParam($param);
 		
+			$f_params = array();
+			
+				$f_params['required']=TRUE;
+			$param = new FieldExtString('view_id'
+			,$f_params);
+		$pm->addParam($param);		
+		
 		
 			$this->addPublicMethod($pm);
 			$this->setUpdateModelId('DOCMaterialDisposal_Model');
@@ -158,6 +175,13 @@ class DOCMaterialDisposal_Controller extends ControllerSQLDOC{
 		
 				
 	$opts=array();
+	
+		$opts['length']=32;
+		$opts['required']=TRUE;				
+		$pm->addParam(new FieldExtString('view_id',$opts));
+	
+				
+	$opts=array();
 					
 		$pm->addParam(new FieldExtInt('doc_id',$opts));
 	
@@ -174,7 +198,19 @@ class DOCMaterialDisposal_Controller extends ControllerSQLDOC{
 	
 			
 		$this->addPublicMethod($pm);
+
+			
+		$pm = new PublicMethod('set_unprocessed');
+		
+				
+	$opts=array();
 	
+		$opts['required']=TRUE;				
+		$pm->addParam(new FieldExtInt('doc_id',$opts));
+	
+			
+		$this->addPublicMethod($pm);
+				
 			
 		$pm = new PublicMethod('get_print');
 		
@@ -182,6 +218,11 @@ class DOCMaterialDisposal_Controller extends ControllerSQLDOC{
 	$opts=array();
 					
 		$pm->addParam(new FieldExtInt('doc_id',$opts));
+	
+				
+	$opts=array();
+					
+		$pm->addParam(new FieldExtString('templ',$opts));
 	
 			
 		$this->addPublicMethod($pm);
@@ -241,7 +282,7 @@ class DOCMaterialDisposal_Controller extends ControllerSQLDOC{
 	public function insert($pm){
 		//doc owner
 		$pm->setParamValue('user_id',$_SESSION['user_id']);		
-		parent::insert();		
+		parent::insert($pm);		
 	}
 	
 	public function get_details($pm){		
@@ -275,10 +316,10 @@ class DOCMaterialDisposal_Controller extends ControllerSQLDOC{
 		$this->addNewModel(
 			sprintf(
 			'SELECT number,
-			get_date_str_rus(date_time::date) AS date_time_descr,
-			store_descr,
-			user_descr,
-			explanation
+				get_date_str_rus(date_time::date) AS date_time_descr,
+				store_descr,
+				user_descr,
+				explanation
 			FROM doc_material_disposals_list_view
 			WHERE id=%d',
 			$pm->getParamValue('doc_id')),
@@ -286,11 +327,10 @@ class DOCMaterialDisposal_Controller extends ControllerSQLDOC{
 		$this->addNewModel(
 			sprintf(
 			'SELECT t.line_number,
-			m.name AS material_descr,
-			format_money(m.price) AS price_descr,
-			format_quant(t.quant) AS quant,
-			m.price*t.quant AS total,
-			format_money(m.price*t.quant) AS total_descr
+				m.name AS material_descr,
+				m.price AS price,
+				t.quant AS quant,
+				m.price*t.quant AS total
 			FROM doc_material_disposals_t_materials AS t
 			LEFT JOIN materials AS m ON m.id=t.material_id
 			WHERE t.doc_id=%d

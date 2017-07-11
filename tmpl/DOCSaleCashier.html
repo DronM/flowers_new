@@ -1,0 +1,40 @@
+<models>
+	<model id="ReceiptList_Model"/>
+	<model id="ReceiptHeadList_Model"/>
+	<model id="ReceiptPaymentTypeList_Model"/>
+	<model id="PaymentTypeForSale_Model"/>
+	<model id="get_list_for_sale"/>		
+</models>
+
+<div id="DOCSaleCashier">
+	<!-- Номенклатура -->
+	<div id="DOCSaleCashier:items-grid"/>
+	
+	<!-- чек -->
+	<div class="panel panel-default">
+		<div class="panel panel-body">
+			<div class="row">
+				<div id="DOCSaleCashier:receipt:barcode"/>
+			</div>
+			<div class="row">
+				<div id="DOCSaleCashier:receipt:client"/>
+				<div id="DOCSaleCashier:receipt:discount"/>
+				<div id="DOCSaleCashier:receipt:doc_client_order"/>								
+			</div>
+			<br></br>
+			<div id="DOCSaleCashier:receipt:receipt-grid"/>
+			
+			<div class="row">
+				<div id="DOCSaleCashier:receipt:payment_type-grid"/>
+			</div>	
+			
+			<div id="DOCSaleCashier:receipt:change"/>
+			
+			<div class="row">
+				<div id="DOCSaleCashier:receipt:btnClear"/>
+				<div id="DOCSaleCashier:receipt:btnProcess"/>
+			</div>	
+		</div>
+	</div>
+	
+</div>	

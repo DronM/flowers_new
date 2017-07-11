@@ -12,71 +12,48 @@ class MessageRecipient_Model extends ModelSQL{
 		$this->setDbName("public");
 		
 		$this->setTableName("message_recipients");
+			
+		//*** Field id ***
+		$f_opts = array();
+		$f_opts['primaryKey'] = TRUE;
+		$f_opts['id']="id";
 		
-		$f_id=new FieldSQlInt($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"id"
-		,array(
-		
-			'primaryKey'=>TRUE,
-			'alias'=>"Код"
-		,
-			'id'=>"id"
-				
-		
-		));
+		$f_id=new FieldSQLInt($this->getDbLink(),$this->getDbName(),$this->getTableName(),"id",$f_opts);
 		$this->addField($f_id);
-
-		$f_message_id=new FieldSQlInt($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"message_id"
-		,array(
-		'required'=>TRUE,
-			'alias'=>"Сообщение"
-		,
-			'id'=>"message_id"
-				
+		//********************
+	
+		//*** Field message_id ***
+		$f_opts = array();
+		$f_opts['id']="message_id";
 		
-		));
+		$f_message_id=new FieldSQLInt($this->getDbLink(),$this->getDbName(),$this->getTableName(),"message_id",$f_opts);
 		$this->addField($f_message_id);
-
-		$f_for_store_id=new FieldSQlInt($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"for_store_id"
-		,array(
+		//********************
+	
+		//*** Field for_store_id ***
+		$f_opts = array();
+		$f_opts['id']="for_store_id";
 		
-			'alias'=>"Магазин"
-		,
-			'id'=>"for_store_id"
-				
-		
-		));
+		$f_for_store_id=new FieldSQLInt($this->getDbLink(),$this->getDbName(),$this->getTableName(),"for_store_id",$f_opts);
 		$this->addField($f_for_store_id);
-
-		$f_for_role_id=new FieldSQlEnum($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"for_role_id"
-		,array(
+		//********************
+	
+		//*** Field for_role_id ***
+		$f_opts = array();
+		$f_opts['id']="for_role_id";
 		
-			'alias'=>"Роль"
-		,
-			'id'=>"for_role_id"
-				
-		
-		));
+		$f_for_role_id=new FieldSQLEnum($this->getDbLink(),$this->getDbName(),$this->getTableName(),"for_role_id",$f_opts);
 		$this->addField($f_for_role_id);
-
-		$f_for_user_id=new FieldSQlInt($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"for_user_id"
-		,array(
+		//********************
+	
+		//*** Field for_user_id ***
+		$f_opts = array();
+		$f_opts['id']="for_user_id";
 		
-			'alias'=>"Пользователь"
-		,
-			'id'=>"for_user_id"
-				
-		
-		));
+		$f_for_user_id=new FieldSQLInt($this->getDbLink(),$this->getDbName(),$this->getTableName(),"for_user_id",$f_opts);
 		$this->addField($f_for_user_id);
-
-		
-		
-		
+		//********************
+$this->setLimitConstant('doc_per_page_count');
 	}
 
 }

@@ -1,6 +1,6 @@
 -- Function: receipt_close(int,int,int,int,int)
 
---DROP FUNCTION receipt_close(int,int,int,int,int);
+DROP FUNCTION receipt_close(int,int,int,int,int);
 
 CREATE OR REPLACE FUNCTION receipt_close(
 	in_store_id int,
@@ -9,7 +9,7 @@ CREATE OR REPLACE FUNCTION receipt_close(
 	in_client_id int,
 	in_doc_client_order_id int
 )
-  RETURNS void AS
+  RETURNS integer AS
 $BODY$
 DECLARE
 	v_doc_id int;
@@ -22,9 +22,9 @@ BEGIN
 		payment_type_for_sale_id,
 		client_id,
 		doc_client_order_id)
-	VALUES (now(),$1,$2,$3,$4,$5)
+	VALUES (now(),$1,$2,0,$4,$5)
 	RETURNING id INTO v_doc_id;
-	
+		
 	--table products
 	INSERT INTO doc_sales_t_products
 	(doc_id, product_id, doc_production_id,
@@ -54,6 +54,8 @@ BEGIN
 	WHERE id=v_doc_id;
 	
 	DELETE FROM receipts WHERE user_id = $2;
+
+	RETURN v_doc_id;
 END;
 $BODY$
   LANGUAGE plpgsql VOLATILE

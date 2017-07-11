@@ -1,5 +1,4 @@
 <?php
-
 require_once(FRAME_WORK_PATH.'basic_classes/ControllerSQL.php');
 
 require_once(FRAME_WORK_PATH.'basic_classes/FieldExtInt.php');
@@ -12,16 +11,21 @@ require_once(FRAME_WORK_PATH.'basic_classes/FieldExtDate.php');
 require_once(FRAME_WORK_PATH.'basic_classes/FieldExtTime.php');
 require_once(FRAME_WORK_PATH.'basic_classes/FieldExtPassword.php');
 require_once(FRAME_WORK_PATH.'basic_classes/FieldExtBool.php');
+require_once(FRAME_WORK_PATH.'basic_classes/FieldExtInterval.php');
 class DOCSaleDOCTMaterial_Controller extends ControllerSQL{
 	public function __construct($dbLinkMaster=NULL){
 		parent::__construct($dbLinkMaster);
 			
+		
 		/* insert */
 		$pm = new PublicMethod('insert');
-		$param = new FieldExtInt('login_id'
+		$param = new FieldExtString('view_id'
 				,array());
 		$pm->addParam($param);
 		$param = new FieldExtInt('line_number'
+				,array());
+		$pm->addParam($param);
+		$param = new FieldExtInt('login_id'
 				,array());
 		$pm->addParam($param);
 		$param = new FieldExtInt('material_id'
@@ -68,16 +72,20 @@ class DOCSaleDOCTMaterial_Controller extends ControllerSQL{
 		/* update */		
 		$pm = new PublicMethod('update');
 		
-		$pm->addParam(new FieldExtInt('old_login_id',array('required'=>TRUE)));
+		$pm->addParam(new FieldExtString('old_view_id',array('required'=>TRUE)));
 		
 		$pm->addParam(new FieldExtInt('old_line_number',array('required'=>TRUE)));
 		
 		$pm->addParam(new FieldExtInt('obj_mode'));
-		$param = new FieldExtInt('login_id'
+		$param = new FieldExtString('view_id'
 				,array(
 			));
 			$pm->addParam($param);
 		$param = new FieldExtInt('line_number'
+				,array(
+			));
+			$pm->addParam($param);
+		$param = new FieldExtInt('login_id'
 				,array(
 			));
 			$pm->addParam($param);
@@ -124,7 +132,7 @@ class DOCSaleDOCTMaterial_Controller extends ControllerSQL{
 			));
 			$pm->addParam($param);
 		
-			$param = new FieldExtInt('login_id',array(
+			$param = new FieldExtString('view_id',array(
 			));
 			$pm->addParam($param);
 		
@@ -140,7 +148,7 @@ class DOCSaleDOCTMaterial_Controller extends ControllerSQL{
 		/* delete */
 		$pm = new PublicMethod('delete');
 		
-		$pm->addParam(new FieldExtInt('login_id'
+		$pm->addParam(new FieldExtString('view_id'
 		));		
 		
 		$pm->addParam(new FieldExtInt('line_number'
@@ -175,7 +183,7 @@ class DOCSaleDOCTMaterial_Controller extends ControllerSQL{
 		$pm = new PublicMethod('get_object');
 		$pm->addParam(new FieldExtInt('browse_mode'));
 		
-		$pm->addParam(new FieldExtInt('login_id'
+		$pm->addParam(new FieldExtString('view_id'
 		));
 		
 		$pm->addParam(new FieldExtInt('line_number'

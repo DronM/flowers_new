@@ -102,6 +102,20 @@ limit="TRUE"
 
 <menuItem
 
+descr="Виды скидок"
+
+default="FALSE"
+
+c="Discount_Controller"
+
+f="get_list"
+
+t="DiscountList"
+
+></menuItem>
+
+<menuItem
+
 descr="Типы оплаты"
 
 default="FALSE"
@@ -225,12 +239,19 @@ limit="TRUE"
 
 <menuItem
 
-descr="Продажи"
+descr="Журнал заказов покупателей"
 
->
+c="DOCClientOrder_Controller"
+
+f="get_list"
+
+t="DOCClientOrderList"
+
+></menuItem>
+
 <menuItem
 
-descr="Продажи"
+descr="Журнал продаж"
 
 c="DOCSale_Controller"
 
@@ -241,7 +262,6 @@ t="DOCSaleList"
 limit="TRUE"
 
 ></menuItem>
-</menuItem>
 
 <menuItem
 
@@ -278,6 +298,8 @@ descr="Баланс"
 
 c="RepBalance_Controller"
 
+f="get"
+
 t="RepBalance"
 
 ></menuItem>
@@ -290,41 +312,61 @@ descr="Отчеты"
 >
 <menuItem
 
-viewId="MaterialProcurAvgPriceReport_View"
+descr="Средние цены"
 
-descr="Средние цены поступления"
+c="Material_Controller"
+
+f="get_object"
+
+t="MaterialProcurAvgPrice"
 
 ></menuItem>
 
 <menuItem
-
-viewId="MaterialActionsReport_View"
 
 descr="Движение материалов"
 
-></menuItem>
+c="RepMaterialAction_Controller"
 
-<menuItem
+f="get_object"
 
-viewId="MaterialActionsNoPriceReport_View"
-
-descr="Движение материалов (без цен)"
+t="MaterialActionsReport"
 
 ></menuItem>
 
 <menuItem
 
-viewId="RepSaleForAcc_View"
+descr="Движение мат. (без цен)"
+
+c="RepMaterialAction_Controller"
+
+f="get_object"
+
+t="MaterialActionsNoPriceReport"
+
+></menuItem>
+
+<menuItem
 
 descr="Продажи по материалам"
 
+c="RepSaleForAcc_Controller"
+
+f="get_object"
+
+t="RepSaleForAcc"
+
 ></menuItem>
 
 <menuItem
 
-viewId="RepSalesOnTypes_View"
-
 descr="Продажи по видам оплат"
+
+c="RepSalesOnTypes_Controller"
+
+f="get_object"
+
+t="RepSalesOnTypes"
 
 ></menuItem>
 </menuItem>

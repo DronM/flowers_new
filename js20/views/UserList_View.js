@@ -15,25 +15,23 @@ function UserList_View(id,options){
 	var model = new UserList_Model({"data":options.modelDataStr});
 	var contr = new User_Controller(options.app);
 	
+	var constants = {"grid_refresh_interval":null};
+	options.app.getConstantManager().get(constants);
+	
+	var popup_menu = new PopUpMenu();
+	
 	this.addElement(new GridAjx(id+":grid",{
 		"model":model,
 		"controller":contr,
 		"editInline":false,
 		"editWinClass":User_Form,
+		"keyIds":["id"],
 		//"onSelect":window.onSelect,
 		//"multySelect":window.multySelect,
-		"commands":new GridCommandsAjx(id+":grid:cmd",{
-			"cmdFilter":true,
-			"filters":{"name":{
-					"binding":new CommandBinding({
-						"control":new UserNameEdit(id+":filter-ctrl-name",{"app":options.app}),
-						"field":new FieldString("name")}),
-					"sign":"lk",
-					"lwcards":true,
-					"rwcards":true,
-					"icase":true
-					}
-			},
+		"popUpMenu":popup_menu,
+		"commands":new GridCmdContainerAjx(id+":grid:cmd",{
+			"popUpMenu":popup_menu,
+			"colTemplate":"UserList",
 			"app":options.app
 		}),
 		"head":new GridHead(id+"-grid:head",{
@@ -42,23 +40,24 @@ function UserList_View(id,options){
 					"elements":[
 						new GridCellHead(id+":grid:head:name",{
 							"columns":[
-								new GridColumn({"field":model.getField("name")})
+								new GridColumn("name",{"field":model.getField("name")})
 							],
 							"sortable":true,
 							"sort":"asc"							
 						}),
 						new GridCellHead(id+":grid:head:role",{
 							"columns":[
-								new GridColumn({"field":model.getField("role_descr")})
+								new GridColumn("role",{"field":model.getField("role_descr")})
 							]
 						})						
 					]
 				})
 			]
 		}),
-		"pagination":null,		
-		
+		"pagination":null,				
 		"autoRefresh":false,
+		"refreshInterval":constants.grid_refresh_interval.getValue()*1000,
+		"rowSelect":false,
 		"focus":true,
 		"app":options.app
 	}));	

@@ -22,52 +22,31 @@ function MessageView_Model(options){
 	
 	options.fields = {};
 	
-			
+				
+	
 	var filed_options = {};
-	filed_options.primaryKey = true;
+	filed_options.primaryKey = true;	
+	filed_options.alias = 'Код';options.fields.id = new FieldInt("id",filed_options);
 	
-	filed_options.alias = 'Код';
+				
 	
-	var field = new FieldInt("id",filed_options);
-	
-
-	options.fields.id = field;
-
-			
 	var filed_options = {};
-	filed_options.primaryKey = false;
+	filed_options.primaryKey = false;	
+	filed_options.alias = 'Сообщение';options.fields.message_id = new FieldInt("message_id",filed_options);
+	options.fields.message_id.getValidator().setRequired(true);
 	
-	filed_options.alias = 'Сообщение';
+				
 	
-	var field = new FieldInt("message_id",filed_options);
-	
-		field.getValidator().setRequired(true);
-	
-
-	options.fields.message_id = field;
-
-			
 	var filed_options = {};
-	filed_options.primaryKey = false;
+	filed_options.primaryKey = false;	
+	filed_options.alias = 'Пользователь';options.fields.user_id = new FieldInt("user_id",filed_options);
+				
+				
 	
-	filed_options.alias = 'Пользователь';
-	
-	var field = new FieldInt("user_id",filed_options);
-	
-
-	options.fields.user_id = field;
-			
-			
 	var filed_options = {};
-	filed_options.primaryKey = false;
+	filed_options.primaryKey = false;	
+	filed_options.alias = 'Время просмотра';options.fields.date_time = new FieldDateTime("date_time",filed_options);
 	
-	filed_options.alias = 'Время просмотра';
-	
-	var field = new FieldDateTime("date_time",filed_options);
-	
-
-	options.fields.date_time = field;
-
 																		
 		MessageView_Model.superclass.constructor.call(this,id,options);
 }

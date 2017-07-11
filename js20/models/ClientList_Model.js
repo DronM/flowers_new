@@ -22,41 +22,44 @@ function ClientList_Model(options){
 	
 	options.fields = {};
 	
-			
+				
+	
 	var filed_options = {};
-	filed_options.primaryKey = true;
+	filed_options.primaryKey = true;	
+	options.fields.id = new FieldInt("id",filed_options);
 	
+				
 	
-	var field = new FieldInt("id",filed_options);
-	
-
-	options.fields.id = field;
-
-			
 	var filed_options = {};
-	filed_options.primaryKey = false;
+	filed_options.primaryKey = false;	
+	options.fields.name = new FieldString("name",filed_options);
+	options.fields.name.getValidator().setRequired(true);
+	options.fields.name.getValidator().setMaxLength('100');
 	
+				
 	
-	var field = new FieldString("name",filed_options);
-	
-		field.getValidator().setRequired(true);
-	
-		field.getValidator().setMaxLength('100');
-	
-
-	options.fields.name = field;
-
-			
 	var filed_options = {};
-	filed_options.primaryKey = false;
+	filed_options.primaryKey = false;	
+	filed_options.alias = 'Телефон';options.fields.tel = new FieldString("tel",filed_options);
 	
-	filed_options.alias = 'Телефон';
+				
 	
-	var field = new FieldString("tel",filed_options);
+	var filed_options = {};
+	filed_options.primaryKey = false;	
+	filed_options.alias = 'Скидка, %';options.fields.disc_card_percent = new FieldString("disc_card_percent",filed_options);
 	
-
-	options.fields.tel = field;
-
+				
+	
+	var filed_options = {};
+	filed_options.primaryKey = false;	
+	options.fields.disc_card_id = new FieldInt("disc_card_id",filed_options);
+	
+				
+	
+	var filed_options = {};
+	filed_options.primaryKey = false;	
+	options.fields.discount_id = new FieldInt("discount_id",filed_options);
+	
 		ClientList_Model.superclass.constructor.call(this,id,options);
 }
 extend(ClientList_Model,ModelXML);

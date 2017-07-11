@@ -22,27 +22,18 @@ function StoreList_Model(options){
 	
 	options.fields = {};
 	
-			
+				
+	
 	var filed_options = {};
-	filed_options.primaryKey = true;
+	filed_options.primaryKey = true;	
+	options.fields.id = new FieldInt("id",filed_options);
 	
+				
 	
-	var field = new FieldInt("id",filed_options);
-	
-
-	options.fields.id = field;
-
-			
 	var filed_options = {};
-	filed_options.primaryKey = false;
+	filed_options.primaryKey = false;	
+	filed_options.alias = 'Наименование';options.fields.name = new FieldString("name",filed_options);
 	
-	filed_options.alias = 'Наименование';
-	
-	var field = new FieldString("name",filed_options);
-	
-
-	options.fields.name = field;
-
 		StoreList_Model.superclass.constructor.call(this,id,options);
 }
 extend(StoreList_Model,ModelXML);

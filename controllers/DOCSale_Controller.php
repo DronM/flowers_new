@@ -1,6 +1,5 @@
 <?php
-
-require_once(FRAME_WORK_PATH.'basic_classes/ControllerSQLDOC.php');
+require_once(FRAME_WORK_PATH.'basic_classes/ControllerSQLDOC20.php');
 
 require_once(FRAME_WORK_PATH.'basic_classes/FieldExtInt.php');
 require_once(FRAME_WORK_PATH.'basic_classes/FieldExtString.php');
@@ -12,11 +11,15 @@ require_once(FRAME_WORK_PATH.'basic_classes/FieldExtDate.php');
 require_once(FRAME_WORK_PATH.'basic_classes/FieldExtTime.php');
 require_once(FRAME_WORK_PATH.'basic_classes/FieldExtPassword.php');
 require_once(FRAME_WORK_PATH.'basic_classes/FieldExtBool.php');
+require_once(FRAME_WORK_PATH.'basic_classes/FieldExtInterval.php');
 require_once('functions/SMS.php');
-class DOCSale_Controller extends ControllerSQLDOC{
+class DOCSale_Controller extends ControllerSQLDOC20{
 	public function __construct($dbLinkMaster=NULL){
 		parent::__construct($dbLinkMaster);
 			
+		$this->setProcessable(TRUE);
+		
+		
 		/* insert */
 		$pm = new PublicMethod('insert');
 		$param = new FieldExtDateTime('date_time'
@@ -69,8 +72,20 @@ class DOCSale_Controller extends ControllerSQLDOC{
 				'alias'=>'Клиент'
 			));
 		$pm->addParam($param);
+		$param = new FieldExtInt('discount_id'
+				,array(
+				'alias'=>'Вид скидки'
+			));
+		$pm->addParam($param);
 		
 		$pm->addParam(new FieldExtInt('ret_id'));
+		
+			$f_params = array();
+			
+				$f_params['required']=TRUE;
+			$param = new FieldExtString('view_id'
+			,$f_params);
+		$pm->addParam($param);		
 		
 		
 		$this->addPublicMethod($pm);
@@ -147,10 +162,23 @@ class DOCSale_Controller extends ControllerSQLDOC{
 				'alias'=>'Клиент'
 			));
 			$pm->addParam($param);
+		$param = new FieldExtInt('discount_id'
+				,array(
+			
+				'alias'=>'Вид скидки'
+			));
+			$pm->addParam($param);
 		
 			$param = new FieldExtInt('id',array(
 			));
 			$pm->addParam($param);
+		
+			$f_params = array();
+			
+				$f_params['required']=TRUE;
+			$param = new FieldExtString('view_id'
+			,$f_params);
+		$pm->addParam($param);		
 		
 		
 			$this->addPublicMethod($pm);
@@ -203,12 +231,31 @@ class DOCSale_Controller extends ControllerSQLDOC{
 		
 				
 	$opts=array();
+	
+		$opts['length']=32;
+		$opts['required']=TRUE;				
+		$pm->addParam(new FieldExtString('view_id',$opts));
+	
+				
+	$opts=array();
 					
 		$pm->addParam(new FieldExtInt('doc_id',$opts));
 	
 			
 		$this->addPublicMethod($pm);
 
+			
+		$pm = new PublicMethod('set_unprocessed');
+		
+				
+	$opts=array();
+	
+		$opts['required']=TRUE;				
+		$pm->addParam(new FieldExtInt('doc_id',$opts));
+	
+			
+		$this->addPublicMethod($pm);
+			
 			
 		$pm = new PublicMethod('get_actions');
 		
@@ -227,6 +274,11 @@ class DOCSale_Controller extends ControllerSQLDOC{
 	$opts=array();
 					
 		$pm->addParam(new FieldExtInt('doc_id',$opts));
+	
+				
+	$opts=array();
+					
+		$pm->addParam(new FieldExtString('templ',$opts));
 	
 			
 		$this->addPublicMethod($pm);
@@ -334,7 +386,7 @@ class DOCSale_Controller extends ControllerSQLDOC{
 	public function insert($pm){
 		//doc owner
 		$pm->setParamValue('user_id',$_SESSION['user_id']);		
-		parent::insert();		
+		parent::insert($pm);		
 		
 		//SMS
 		$ar = $this->getDbLink()->query_first('SELECT const_cel_phone_for_sms_val() AS val');
@@ -353,38 +405,37 @@ class DOCSale_Controller extends ControllerSQLDOC{
 	
 	
 	public function get_print($pm){
-		$this->addNewModel(
-			sprintf(
+		$this->addNewModel(sprintf(
 			'SELECT number,
-			get_date_str_rus(date_time::date) AS date_time_descr,
-			store_descr,
-			user_descr,
-			payment_type_descr,
-			format_money(total) AS total_descr
+				get_date_str_rus(date_time::date) AS date_time_descr,
+				store_descr,
+				user_descr,
+				total,
+				payment_type_for_sale_descr
 			FROM doc_sales_list_view
 			WHERE id=%d',
 			$pm->getParamValue('doc_id')),
 		'head');
-		$this->addNewModel(
-			sprintf(
+		
+		$this->addNewModel(sprintf(
 			'SELECT line_number,
-			material_descr,
-			quant,
-			format_money(price) AS price_descr,
-			format_money(total) AS total_descr,
-			total
+				material_descr,
+				quant,
+				price_no_disc AS price,
+				disc_percent,
+				total
 			FROM doc_sales_t_materials_list_view
 			WHERE doc_id=%d
 			ORDER BY line_number',
 			$pm->getParamValue('doc_id')),
 		'materials');		
-		$this->addNewModel(
-			sprintf(
+		$this->addNewModel(sprintf(
 			'SELECT line_number,
-			product_descr,
-			quant,
-			format_money(price) AS price_descr,
-			format_money(total) AS total_descr
+				product_descr,
+				quant,
+				price_no_disc AS price,
+				disc_percent,
+				total AS total
 			FROM doc_sales_t_products_list_view
 			WHERE doc_id=%d
 			ORDER BY line_number',

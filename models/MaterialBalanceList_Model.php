@@ -14,119 +14,99 @@ class MaterialBalanceList_Model extends ModelSQL{
 		$this->setDbName("public");
 		
 		$this->setTableName("material_list_with_balance");
+			
+		//*** Field id ***
+		$f_opts = array();
+		$f_opts['primaryKey'] = TRUE;
+		$f_opts['sysCol']=TRUE;
+		$f_opts['id']="id";
 		
-		$f_id=new FieldSQlInt($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"id"
-		,array(
-		
-			'primaryKey'=>TRUE,
-			'id'=>"id"
-		,
-			'sysCol'=>TRUE
-				
-		
-		));
+		$f_id=new FieldSQLInt($this->getDbLink(),$this->getDbName(),$this->getTableName(),"id",$f_opts);
 		$this->addField($f_id);
-
-		$f_date_time=new FieldSQlDateTime($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"date_time"
-		,array(
+		//********************
+	
+		//*** Field date_time ***
+		$f_opts = array();
+		$f_opts['id']="date_time";
 		
-			'alias'=>"Период"
-		,
-			'id'=>"date_time"
-				
-		
-		));
+		$f_date_time=new FieldSQLDateTime($this->getDbLink(),$this->getDbName(),$this->getTableName(),"date_time",$f_opts);
 		$this->addField($f_date_time);
-
-		$f_name=new FieldSQlString($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"name"
-		,array(
+		//********************
+	
+		//*** Field name ***
+		$f_opts = array();
+		$f_opts['id']="name";
 		
-			'alias'=>"Материал"
-		,
-			'id'=>"name"
-				
-		
-		));
+		$f_name=new FieldSQLString($this->getDbLink(),$this->getDbName(),$this->getTableName(),"name",$f_opts);
 		$this->addField($f_name);
-
-		$f_material_group_id=new FieldSQlInt($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"material_group_id"
-		,array(
+		//********************
+	
+		//*** Field material_group_id ***
+		$f_opts = array();
+		$f_opts['sysCol']=TRUE;
+		$f_opts['id']="material_group_id";
 		
-			'id'=>"material_group_id"
-		,
-			'sysCol'=>TRUE
-				
-		
-		));
+		$f_material_group_id=new FieldSQLInt($this->getDbLink(),$this->getDbName(),$this->getTableName(),"material_group_id",$f_opts);
 		$this->addField($f_material_group_id);
-
-		$f_material_group_descr=new FieldSQlString($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"material_group_descr"
-		,array(
+		//********************
+	
+		//*** Field material_group_descr ***
+		$f_opts = array();
+		$f_opts['id']="material_group_descr";
 		
-			'alias'=>"Группа"
-		,
-			'id'=>"material_group_descr"
-				
-		
-		));
+		$f_material_group_descr=new FieldSQLString($this->getDbLink(),$this->getDbName(),$this->getTableName(),"material_group_descr",$f_opts);
 		$this->addField($f_material_group_descr);
-
-		$f_price=new FieldSQlFloat($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"price"
-		,array(
+		//********************
+	
+		//*** Field price ***
+		$f_opts = array();
+		$f_opts['id']="price";
 		
-			'alias'=>"Цена"
-		,
-			'id'=>"price"
-				
-		
-		));
+		$f_price=new FieldSQLFloat($this->getDbLink(),$this->getDbName(),$this->getTableName(),"price",$f_opts);
 		$this->addField($f_price);
-
-		$f_main_quant=new FieldSQlFloat($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"main_quant"
-		,array(
+		//********************
+	
+		//*** Field main_quant ***
+		$f_opts = array();
+		$f_opts['id']="main_quant";
 		
-			'alias'=>"Кол-во"
-		,
-			'id'=>"main_quant"
-				
-		
-		));
+		$f_main_quant=new FieldSQLFloat($this->getDbLink(),$this->getDbName(),$this->getTableName(),"main_quant",$f_opts);
 		$this->addField($f_main_quant);
-
-		$f_main_total=new FieldSQlFloat($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"main_total"
-		,array(
+		//********************
+	
+		//*** Field main_total ***
+		$f_opts = array();
+		$f_opts['id']="main_total";
 		
-			'alias'=>"Сумма"
-		,
-			'id'=>"main_total"
-				
-		
-		));
+		$f_main_total=new FieldSQLFloat($this->getDbLink(),$this->getDbName(),$this->getTableName(),"main_total",$f_opts);
 		$this->addField($f_main_total);
-
-		$f_procur_avg_time=new FieldSQlString($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"procur_avg_time"
-		,array(
+		//********************
+	
+		//*** Field procur_avg_time ***
+		$f_opts = array();
+		$f_opts['id']="procur_avg_time";
 		
-			'alias'=>"Время"
-		,
-			'id'=>"procur_avg_time"
-				
-		
-		));
+		$f_procur_avg_time=new FieldSQLString($this->getDbLink(),$this->getDbName(),$this->getTableName(),"procur_avg_time",$f_opts);
 		$this->addField($f_procur_avg_time);
-
+		//********************
+	
+		//*** Field store_id ***
+		$f_opts = array();
+		$f_opts['sysCol']=TRUE;
+		$f_opts['id']="store_id";
 		
+		$f_store_id=new FieldSQLInt($this->getDbLink(),$this->getDbName(),$this->getTableName(),"store_id",$f_opts);
+		$this->addField($f_store_id);
+		//********************
+	
+		//*** Field store_descr ***
+		$f_opts = array();
+		$f_opts['id']="store_descr";
 		
-		
+		$f_store_descr=new FieldSQLString($this->getDbLink(),$this->getDbName(),$this->getTableName(),"store_descr",$f_opts);
+		$this->addField($f_store_descr);
+		//********************
+$this->setLimitConstant('doc_per_page_count');
 	}
 
 }

@@ -13,8 +13,12 @@ require_once(FRAME_WORK_PATH.'basic_classes/ModelJavaScript.php');
 require_once(FRAME_WORK_PATH.'basic_classes/ModelTemplate.php');
 require_once(USER_CONTROLLERS_PATH.'Constant_Controller.php');
 
+require_once(USER_MODELS_PATH.'MaterialGroup_Model.php');
+
 <xsl:apply-templates select="metadata/enums/enum[@id='role_types']"/>
 class ViewBase extends ViewHTMLXSLT {	
+
+	private $dbLink;
 
 	protected function addMenu(&amp;$models){
 		if (isset($_SESSION['role_id'])){
@@ -23,19 +27,26 @@ class ViewBase extends ViewHTMLXSLT {
 		}	
 	}
 	
+	protected function initDbLink(){
+		if (!$this->dbLink){
+			$this->dbLink = new DB_Sql();
+			$this->dbLink->persistent=true;
+			$this->dbLink->appname = APP_NAME;
+			$this->dbLink->technicalemail = TECH_EMAIL;
+			$this->dbLink->reporterror = DEBUG;
+			$this->dbLink->database= DB_NAME;			
+			$this->dbLink->connect(DB_SERVER,DB_USER,DB_PASSWORD,(defined('DB_PORT'))? DB_PORT:NULL);
+		}	
+	}
+	
 	protected function addConstants(&amp;$models){
 		if (isset($_SESSION['role_id'])){
-			$dbLink = new DB_Sql();
-			$dbLink->persistent=true;
-			$dbLink->appname = APP_NAME;
-			$dbLink->technicalemail = TECH_EMAIL;
-			$dbLink->reporterror = DEBUG;
-			$dbLink->database= DB_NAME;			
-			$dbLink->connect(DB_SERVER,DB_USER,DB_PASSWORD,(defined('DB_PORT'))? DB_PORT:NULL);
+			$this->initDbLink();
 		
-			$contr = new Constant_Controller($dbLink);
+			$contr = new Constant_Controller($this->dbLink);
 			$list = array(<xsl:apply-templates select="/metadata/constants/constant[@autoload='TRUE']"/>);
-			$models['ConstantList_Model'] = $contr->getConstantValueModel($list);
+			$models['ConstantValueList_Model'] = $contr->getConstantValueModel($list);						
+			
 		}	
 	}
 
@@ -44,30 +55,43 @@ class ViewBase extends ViewHTMLXSLT {
 		<xsl:apply-templates select="metadata/cssScripts"/>
 		if (!DEBUG){
 			$this->addJsModel(new ModelJavaScript(USER_JS_PATH.'lib.js'));
+			<xsl:apply-templates select="metadata/jsScripts/jsScript[@standalone='TRUE']"/>			
 			$script_id = VERSION;
 		}
 		else{		
-			<xsl:apply-templates select="metadata/jsScripts"/>			
+			<xsl:apply-templates select="metadata/jsScripts/jsScript"/>			
+			//$script_id = md5(time());
 			if (isset($_SESSION['scriptId'])){
 				$script_id = $_SESSION['scriptId'];
 			}
 			else{
 				$script_id = VERSION;
-			}			
+			}
 		}
-		<!-- custom vars-->
+		
+		<!-- custom vars definitions-->
 		$this->getVarModel()->addField(new Field('def_store_id',DT_STRING));
 		$this->getVarModel()->addField(new Field('constrain_to_store',DT_STRING));
 		$this->getVarModel()->addField(new Field('role_id',DT_INT));
-		$this->getVarModel()->addField(new Field('cash_register',DT_INT));
+		$this->getVarModel()->addField(new Field('cash_reg_id',DT_STRING));
+		$this->getVarModel()->addField(new Field('cash_reg_server',DT_STRING));
+		$this->getVarModel()->addField(new Field('cash_reg_port',DT_STRING));
 		$this->getVarModel()->addField(new Field('multy_store',DT_STRING));
-		$this->getVarModel()->addField(new Field('debug',DT_INT));
-		
+	
+		<!-- obligatory vars values-->
 		$this->getVarModel()->insert();
 		$this->setVarValue('scriptId',$script_id);
-		$this->setVarValue('basePath',BASE_PATH);		
-		
-		<!-- custom vars-->
+		$this->setVarValue('basePath',BASE_PATH);
+		$this->setVarValue('version',VERSION);		
+		$this->setVarValue('debug',DEBUG);				
+		if (isset($_SESSION['locale_id'])){
+			$this->setVarValue('locale_id',$_SESSION['locale_id']);
+		}
+		else if (!isset($_SESSION['locale_id']) &amp;&amp; defined('DEF_LOCALE')){
+			$this->setVarValue('locale_id', DEF_LOCALE);
+		}
+
+		<!-- custom vars values-->
 		if (isset($_SESSION['constrain_to_store'])){
 			$this->setVarValue('constrain_to_store',$_SESSION['constrain_to_store']);
 		}
@@ -77,13 +101,15 @@ class ViewBase extends ViewHTMLXSLT {
 		if (isset($_SESSION['role_id'])){
 			$this->setVarValue('role_id',$_SESSION['role_id']);
 		}
-		if (isset($_SESSION['cash_register'])){
-			$this->setVarValue('cash_register',$_SESSION['cash_register']);
+		if (isset($_SESSION['cash_reg_id'])){
+			$this->setVarValue('cash_reg_id',$_SESSION['cash_reg_id']);
+			$this->setVarValue('cash_reg_server',$_SESSION['cash_reg_server']);
+			$this->setVarValue('cash_reg_port',$_SESSION['cash_reg_port']);
 		}
 		if (isset($_SESSION['multy_store'])){
 			$this->setVarValue('multy_store',$_SESSION['multy_store']);
 		}
-		
+	
 		//Global Filters
 		<!--
 		<xsl:for-each select="/metadata/globalFilters/field">
@@ -97,19 +123,27 @@ class ViewBase extends ViewHTMLXSLT {
 	public function write(ArrayObject &amp;$models){
 		$this->addMenu($models);
 		
-		<!-- constant autoload -->
+		<!-- constant autoload
 		<xsl:if test="count(/metadata/constants/constant[@autoload='TRUE'])">
-		$this->addConstants($models);
+		if (
+			isset($_REQUEST['t']) &amp;&amp; (!isset($_REQUEST['v']) || $_REQUEST['v']!='Child')
+		){
+			
+		}
 		</xsl:if>
+		 -->
+		 
+		$this->addConstants($models);
 		
-		//template
-		if (isset($_REQUEST['t'])){
-			$tmpl = $_REQUEST['t']; 
-			if (file_exists($file = USER_VIEWS_PATH. $tmpl. '.html') ){
-				$text = $this->convToUtf8(file_get_contents($file));
-				$models[$tmpl] = new ModelTemplate($tmpl,$text);
-			}
-		}		
+		//Для динамического формирования меню
+		if (isset($_SESSION['role_id']) &amp;&amp; $_SESSION['role_id']=='cashier'){
+			$this->initDbLink();
+			$models['MenuMaterialGroup_Model'] = new MaterialGroup_Model($this->dbLink);
+			$models['MenuMaterialGroup_Model']->setId('MenuMaterialGroup_Model');
+			$models['MenuMaterialGroup_Model']->select(false,null,null,
+				null,null,null,null,null,TRUE);
+		}
+		
 		parent::write($models);
 	}	
 }	
@@ -121,8 +155,21 @@ class ViewBase extends ViewHTMLXSLT {
 			
 <xsl:template match="enum/value">require_once('models/MainMenu_Model_<xsl:value-of select="@id"/>.php');</xsl:template>
 
-<xsl:template match="jsScripts/jsScript">$this->addJsModel(new ModelJavaScript(USER_JS_PATH.'<xsl:value-of select="@file"/>'));</xsl:template>
+<xsl:template match="jsScripts/jsScript">
+<xsl:choose>
+<xsl:when test="@resource">
+	if (
+	(isset($_SESSION['locale_id']) &amp;&amp; $_SESSION['locale_id']=='<xsl:value-of select="@resource"/>')
+	||
+	(!isset($_SESSION['locale_id']) &amp;&amp; DEF_LOCALE=='<xsl:value-of select="@resource"/>')
+	){
+		$this->addJsModel(new ModelJavaScript(USER_JS_PATH.'<xsl:value-of select="@file"/>'));
+	}
+</xsl:when>
+<xsl:otherwise>$this->addJsModel(new ModelJavaScript(USER_JS_PATH.'<xsl:value-of select="@file"/>'));</xsl:otherwise>
+</xsl:choose>
+</xsl:template>
 
-<xsl:template match="cssScripts/cssScript">$this->addCssModel(new ModelStyleSheet(USER_CSS_PATH.'<xsl:value-of select="@file"/>'));</xsl:template>
+<xsl:template match="cssScripts/cssScript">$this->addCssModel(new ModelStyleSheet(USER_JS_PATH.'<xsl:value-of select="@file"/>'));</xsl:template>
 
 </xsl:stylesheet>

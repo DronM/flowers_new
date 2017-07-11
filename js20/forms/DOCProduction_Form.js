@@ -19,9 +19,6 @@
 function DOCProduction_Form(options){
 	options = options || {};	
 	
-	//options.width = 1200;
-	//options.height = 800;
-	options.fullScreen = true;
 	options.formName = "DOCProduction";
 	options.method = "get_object";
 	

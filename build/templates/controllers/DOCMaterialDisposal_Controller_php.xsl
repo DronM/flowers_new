@@ -17,7 +17,7 @@
 
 <xsl:template match="controller"><![CDATA[<?php]]>
 <xsl:call-template name="add_requirements"/>
-class <xsl:value-of select="@id"/>_Controller extends ControllerSQLDOC{
+class <xsl:value-of select="@id"/>_Controller extends ControllerSQLDOC20{
 	public function __construct($dbLinkMaster=NULL){
 		parent::__construct($dbLinkMaster);<xsl:apply-templates/>
 	}
@@ -25,7 +25,7 @@ class <xsl:value-of select="@id"/>_Controller extends ControllerSQLDOC{
 	public function insert($pm){
 		//doc owner
 		$pm->setParamValue('user_id',$_SESSION['user_id']);		
-		parent::insert();		
+		parent::insert($pm);		
 	}
 	
 	public function get_details($pm){		
@@ -59,10 +59,10 @@ class <xsl:value-of select="@id"/>_Controller extends ControllerSQLDOC{
 		$this->addNewModel(
 			sprintf(
 			'SELECT number,
-			get_date_str_rus(date_time::date) AS date_time_descr,
-			store_descr,
-			user_descr,
-			explanation
+				get_date_str_rus(date_time::date) AS date_time_descr,
+				store_descr,
+				user_descr,
+				explanation
 			FROM doc_material_disposals_list_view
 			WHERE id=%d',
 			$pm->getParamValue('doc_id')),
@@ -70,11 +70,10 @@ class <xsl:value-of select="@id"/>_Controller extends ControllerSQLDOC{
 		$this->addNewModel(
 			sprintf(
 			'SELECT t.line_number,
-			m.name AS material_descr,
-			format_money(m.price) AS price_descr,
-			format_quant(t.quant) AS quant,
-			m.price*t.quant AS total,
-			format_money(m.price*t.quant) AS total_descr
+				m.name AS material_descr,
+				m.price AS price,
+				t.quant AS quant,
+				m.price*t.quant AS total
 			FROM doc_material_disposals_t_materials AS t
 			LEFT JOIN materials AS m ON m.id=t.material_id
 			WHERE t.doc_id=%d

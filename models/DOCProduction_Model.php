@@ -1,15 +1,14 @@
 <?php
 
-require_once(FRAME_WORK_PATH.'basic_classes/ModelSQLDOC20.php');
+require_once(FRAME_WORK_PATH.'basic_classes/ModelSQL.php');
 require_once(FRAME_WORK_PATH.'basic_classes/FieldSQLInt.php');
 require_once(FRAME_WORK_PATH.'basic_classes/FieldSQLText.php');
 require_once(FRAME_WORK_PATH.'basic_classes/FieldSQLFloat.php');
-require_once(FRAME_WORK_PATH.'basic_classes/FieldSQLEnum.php');
 require_once(FRAME_WORK_PATH.'basic_classes/FieldSQLDateTime.php');
 require_once(FRAME_WORK_PATH.'basic_classes/FieldSQLBool.php');
 require_once(FRAME_WORK_PATH.'basic_classes/ModelOrderSQL.php');
 
-class DOCProduction_Model extends ModelSQLDOC20{
+class DOCProduction_Model extends ModelSQL{
 	
 	public function __construct($dbLink){
 		parent::__construct($dbLink);
@@ -17,165 +16,98 @@ class DOCProduction_Model extends ModelSQLDOC20{
 		$this->setDbName("public");
 		
 		$this->setTableName("doc_productions");
+			
+		//*** Field id ***
+		$f_opts = array();
+		$f_opts['primaryKey'] = TRUE;
+		$f_opts['autoInc']=TRUE;
+		$f_opts['id']="id";
 		
-		$f_id=new FieldSQlInt($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"id"
-		,array(
-		
-			'primaryKey'=>TRUE,
-			'autoInc'=>TRUE,
-			'id'=>"id"
-				
-		
-		));
+		$f_id=new FieldSQLInt($this->getDbLink(),$this->getDbName(),$this->getTableName(),"id",$f_opts);
 		$this->addField($f_id);
-
-		$f_date_time=new FieldSQlDateTime($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"date_time"
-		,array(
-		'required'=>TRUE,
-			'alias'=>"Дата"
-		,
-			'id'=>"date_time"
-				
+		//********************
+	
+		//*** Field date_time ***
+		$f_opts = array();
+		$f_opts['id']="date_time";
 		
-		));
+		$f_date_time=new FieldSQLDateTime($this->getDbLink(),$this->getDbName(),$this->getTableName(),"date_time",$f_opts);
 		$this->addField($f_date_time);
-
-		$f_number=new FieldSQlInt($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"number"
-		,array(
+		//********************
+	
+		//*** Field number ***
+		$f_opts = array();
+		$f_opts['id']="number";
 		
-			'alias'=>"Номер"
-		,
-			'id'=>"number"
-				
-		
-		));
+		$f_number=new FieldSQLInt($this->getDbLink(),$this->getDbName(),$this->getTableName(),"number",$f_opts);
 		$this->addField($f_number);
-
-		$f_processed=new FieldSQlBool($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"processed"
-		,array(
+		//********************
+	
+		//*** Field processed ***
+		$f_opts = array();
+		$f_opts['id']="processed";
 		
-			'alias'=>"Проведен"
-		,
-			'id'=>"processed"
-				
-		
-		));
+		$f_processed=new FieldSQLBool($this->getDbLink(),$this->getDbName(),$this->getTableName(),"processed",$f_opts);
 		$this->addField($f_processed);
-
-		$f_store_id=new FieldSQlInt($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"store_id"
-		,array(
+		//********************
+	
+		//*** Field store_id ***
+		$f_opts = array();
+		$f_opts['id']="store_id";
 		
-			'alias'=>"Магазин"
-		,
-			'id'=>"store_id"
-				
-		
-		));
+		$f_store_id=new FieldSQLInt($this->getDbLink(),$this->getDbName(),$this->getTableName(),"store_id",$f_opts);
 		$this->addField($f_store_id);
-
-		$f_user_id=new FieldSQlInt($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"user_id"
-		,array(
+		//********************
+	
+		//*** Field user_id ***
+		$f_opts = array();
+		$f_opts['id']="user_id";
 		
-			'alias'=>"Флорист"
-		,
-			'id'=>"user_id"
-				
-		
-		));
+		$f_user_id=new FieldSQLInt($this->getDbLink(),$this->getDbName(),$this->getTableName(),"user_id",$f_opts);
 		$this->addField($f_user_id);
-
-		$f_product_id=new FieldSQlInt($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"product_id"
-		,array(
-		'required'=>TRUE,
-			'alias'=>"Букет"
-		,
-			'id'=>"product_id"
-				
+		//********************
+	
+		//*** Field product_id ***
+		$f_opts = array();
+		$f_opts['id']="product_id";
 		
-		));
+		$f_product_id=new FieldSQLInt($this->getDbLink(),$this->getDbName(),$this->getTableName(),"product_id",$f_opts);
 		$this->addField($f_product_id);
-
-		$f_product_order_type=new FieldSQlEnum($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"product_order_type"
-		,array(
+		//********************
+	
+		//*** Field quant ***
+		$f_opts = array();
+		$f_opts['length']=19;
+		$f_opts['defaultValue']=1;
+		$f_opts['id']="quant";
 		
-			'alias'=>"Вид заявки"
-		,
-			'defaultValue'=>"manual"
-		,
-			'id'=>"product_order_type"
-				
-		
-		));
-		$this->addField($f_product_order_type);
-
-		$f_on_norm=new FieldSQlBool($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"on_norm"
-		,array(
-		
-			'alias'=>"По норме"
-		,
-			'id'=>"on_norm"
-				
-		
-		));
-		$this->addField($f_on_norm);
-
-		$f_quant=new FieldSQlFloat($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"quant"
-		,array(
-		
-			'alias'=>"Количество"
-		,
-			'length'=>19,
-			'defaultValue'=>"1"
-		,
-			'id'=>"quant"
-				
-		
-		));
+		$f_quant=new FieldSQLFloat($this->getDbLink(),$this->getDbName(),$this->getTableName(),"quant",$f_opts);
 		$this->addField($f_quant);
-
-		$f_price=new FieldSQlFloat($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"price"
-		,array(
+		//********************
+	
+		//*** Field price ***
+		$f_opts = array();
+		$f_opts['length']=15;
+		$f_opts['id']="price";
 		
-			'alias'=>"Цена"
-		,
-			'length'=>15,
-			'id'=>"price"
-				
-		
-		));
+		$f_price=new FieldSQLFloat($this->getDbLink(),$this->getDbName(),$this->getTableName(),"price",$f_opts);
 		$this->addField($f_price);
-
-		$f_florist_comment=new FieldSQlText($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"florist_comment"
-		,array(
+		//********************
+	
+		//*** Field florist_comment ***
+		$f_opts = array();
+		$f_opts['id']="florist_comment";
 		
-			'alias'=>"Комментарий"
-		,
-			'id'=>"florist_comment"
-				
-		
-		));
+		$f_florist_comment=new FieldSQLText($this->getDbLink(),$this->getDbName(),$this->getTableName(),"florist_comment",$f_opts);
 		$this->addField($f_florist_comment);
+		//********************
 
 		$order = new ModelOrderSQL();		
 		$this->setDefaultModelOrder($order);		
 		
 		$order->addField($f_date_time);
-
-		
-		
-		
+$this->setLimitConstant('doc_per_page_count');
+		$this->setLastRowSelectOnInit(TRUE);
 	}
 
 }

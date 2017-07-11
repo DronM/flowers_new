@@ -9,12 +9,24 @@ CREATE OR REPLACE FUNCTION receipt_fill_on_client_order(
 )
   RETURNS void AS
 $BODY$
+
+	DELETE FROM receipts WHERE user_id = in_user_id;
+	DELETE FROM receipt_head WHERE user_id = in_user_id;
+
+	INSERT INTO receipt_head
+		(client_id, doc_client_order_id, user_id)
+	(SELECT
+		t.client_id, in_doc_client_order_id, in_user_id
+	FROM doc_client_orders t
+	WHERE t.id = in_doc_client_order_id
+	);
+
 	--букеты
 	INSERT INTO receipts
 	(	user_id,
 		item_id,item_type,item_name,
 		doc_production_id,
-		quant,price,total,ord
+		quant,price_no_disc,total,ord
 	)
 	(SELECT
 		in_user_id,
@@ -28,7 +40,7 @@ $BODY$
 		ORDER BY d_pr.date_time
 		LIMIT 1
 		),
-		t.quant,t.price,t.total,now()::timestamp
+		t.quant,t.price_no_disc,t.total,now()::timestamp
 	FROM doc_client_orders_t_products t
 	LEFT JOIN products p ON p.id=t.product_id
 	WHERE t.doc_id=in_doc_client_order_id
@@ -39,13 +51,13 @@ $BODY$
 	(	user_id,
 		item_id,item_type,item_name,
 		doc_production_id,
-		quant,price,total,ord
+		quant,price_no_disc,total,ord
 	)
 	(SELECT
 		in_user_id,
 		t.material_id,1,m.name::text,
 		0,
-		t.quant,t.price,t.total,now()::timestamp
+		t.quant,t.price_no_disc,t.total,now()::timestamp
 	FROM doc_client_orders_t_materials t
 	LEFT JOIN materials m ON m.id=t.material_id
 	WHERE t.doc_id=in_doc_client_order_id

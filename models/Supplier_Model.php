@@ -14,80 +14,57 @@ class Supplier_Model extends ModelSQL{
 		$this->setDbName("public");
 		
 		$this->setTableName("suppliers");
+			
+		//*** Field id ***
+		$f_opts = array();
+		$f_opts['primaryKey'] = TRUE;
+		$f_opts['autoInc']=TRUE;
+		$f_opts['id']="id";
 		
-		$f_id=new FieldSQlInt($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"id"
-		,array(
-		'required'=>FALSE,
-			'primaryKey'=>TRUE,
-			'autoInc'=>TRUE,
-			'alias'=>"Код"
-		,
-			'id'=>"id"
-				
-		
-		));
+		$f_id=new FieldSQLInt($this->getDbLink(),$this->getDbName(),$this->getTableName(),"id",$f_opts);
 		$this->addField($f_id);
-
-		$f_name=new FieldSQlString($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"name"
-		,array(
-		'required'=>TRUE,
-			'alias'=>"Наименование"
-		,
-			'length'=>100,
-			'id'=>"name"
-				
+		//********************
+	
+		//*** Field name ***
+		$f_opts = array();
+		$f_opts['length']=100;
+		$f_opts['id']="name";
 		
-		));
+		$f_name=new FieldSQLString($this->getDbLink(),$this->getDbName(),$this->getTableName(),"name",$f_opts);
 		$this->addField($f_name);
-
-		$f_name_full=new FieldSQlText($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"name_full"
-		,array(
-		'required'=>TRUE,
-			'alias'=>"Полное наименование"
-		,
-			'id'=>"name_full"
-				
+		//********************
+	
+		//*** Field name_full ***
+		$f_opts = array();
+		$f_opts['id']="name_full";
 		
-		));
+		$f_name_full=new FieldSQLText($this->getDbLink(),$this->getDbName(),$this->getTableName(),"name_full",$f_opts);
 		$this->addField($f_name_full);
-
-		$f_tel=new FieldSQlString($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"tel"
-		,array(
+		//********************
+	
+		//*** Field tel ***
+		$f_opts = array();
+		$f_opts['length']=15;
+		$f_opts['id']="tel";
 		
-			'alias'=>"Телефон"
-		,
-			'length'=>15,
-			'id'=>"tel"
-				
-		
-		));
+		$f_tel=new FieldSQLString($this->getDbLink(),$this->getDbName(),$this->getTableName(),"tel",$f_opts);
 		$this->addField($f_tel);
-
-		$f_email=new FieldSQlString($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"email"
-		,array(
+		//********************
+	
+		//*** Field email ***
+		$f_opts = array();
+		$f_opts['length']=50;
+		$f_opts['id']="email";
 		
-			'alias'=>"Email"
-		,
-			'length'=>50,
-			'id'=>"email"
-				
-		
-		));
+		$f_email=new FieldSQLString($this->getDbLink(),$this->getDbName(),$this->getTableName(),"email",$f_opts);
 		$this->addField($f_email);
+		//********************
 
 		$order = new ModelOrderSQL();		
 		$this->setDefaultModelOrder($order);		
 		
 		$order->addField($f_name);
-
-		
-		
-		
+$this->setLimitConstant('doc_per_page_count');
 	}
 
 }

@@ -1,6 +1,6 @@
 --Function rep_sales_on_types(in_date_from timestamp,in_date_to timestamp,in_store_id integer)
 
--- DROP FUNCTION rep_sales_on_types(in_date_from timestamp,in_date_to timestamp,in_store_id integer);
+ DROP FUNCTION rep_sales_on_types(in_date_from timestamp,in_date_to timestamp,in_store_id integer);
 
 CREATE OR REPLACE FUNCTION rep_sales_on_types(in_date_from timestamp,in_date_to timestamp,in_store_id integer)
 RETURNS table(
@@ -20,13 +20,14 @@ $BODY$
 		doc.store_id,
 		st.name::text AS store_descr,
 		
-		doc.payment_type_for_sale_id AS payment_type_for_sale_id,
+		spt.payment_type_for_sale_id AS payment_type_for_sale_id,
 		pt.name::text AS payment_type_for_sale_descr,
 		
 		SUM(doc.total) AS total
 	FROM doc_sales AS doc
+	LEFT JOIN doc_sales_payment_types AS spt ON spt.doc_id=doc.id
 	LEFT JOIN stores AS st ON st.id=doc.store_id
-	LEFT JOIN payment_types_for_sale AS pt ON pt.id=doc.payment_type_for_sale_id
+	LEFT JOIN payment_types_for_sale AS pt ON pt.id=spt.payment_type_for_sale_id
 	WHERE doc.date_time BETWEEN $1 AND $2
 		AND ($3 IS NULL OR $3=0 OR ($3>0 AND $3=doc.store_id))
 	
@@ -34,7 +35,7 @@ $BODY$
 		doc.date_time::date,
 		doc.store_id,
 		st.name,
-		doc.payment_type_for_sale_id,
+		spt.payment_type_for_sale_id,
 		pt.name
 	ORDER BY doc.date_time::date
 	;

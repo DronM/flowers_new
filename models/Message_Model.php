@@ -5,6 +5,7 @@ require_once(FRAME_WORK_PATH.'basic_classes/FieldSQLInt.php');
 require_once(FRAME_WORK_PATH.'basic_classes/FieldSQLText.php');
 require_once(FRAME_WORK_PATH.'basic_classes/FieldSQLEnum.php');
 require_once(FRAME_WORK_PATH.'basic_classes/FieldSQLDateTime.php');
+require_once(FRAME_WORK_PATH.'basic_classes/FieldSQLBool.php');
 require_once(FRAME_WORK_PATH.'basic_classes/ModelOrderSQL.php');
 
 class Message_Model extends ModelSQL{
@@ -15,110 +16,77 @@ class Message_Model extends ModelSQL{
 		$this->setDbName("public");
 		
 		$this->setTableName("messages");
+			
+		//*** Field id ***
+		$f_opts = array();
+		$f_opts['primaryKey'] = TRUE;
+		$f_opts['id']="id";
 		
-		$f_id=new FieldSQlInt($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"id"
-		,array(
-		
-			'primaryKey'=>TRUE,
-			'alias'=>"Код"
-		,
-			'id'=>"id"
-				
-		
-		));
+		$f_id=new FieldSQLInt($this->getDbLink(),$this->getDbName(),$this->getTableName(),"id",$f_opts);
 		$this->addField($f_id);
-
-		$f_message_type=new FieldSQlEnum($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"message_type"
-		,array(
-		'required'=>TRUE,
-			'id'=>"message_type"
-				
+		//********************
+	
+		//*** Field message_type ***
+		$f_opts = array();
+		$f_opts['id']="message_type";
 		
-		));
+		$f_message_type=new FieldSQLEnum($this->getDbLink(),$this->getDbName(),$this->getTableName(),"message_type",$f_opts);
 		$this->addField($f_message_type);
-
-		$f_user_id=new FieldSQlInt($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"user_id"
-		,array(
-		'required'=>TRUE,
-			'alias'=>"Автор сообщения"
-		,
-			'id'=>"user_id"
-				
+		//********************
+	
+		//*** Field user_id ***
+		$f_opts = array();
+		$f_opts['id']="user_id";
 		
-		));
+		$f_user_id=new FieldSQLInt($this->getDbLink(),$this->getDbName(),$this->getTableName(),"user_id",$f_opts);
 		$this->addField($f_user_id);
-
-		$f_require_view=new FieldSQlBoolean($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"require_view"
-		,array(
+		//********************
+	
+		//*** Field require_view ***
+		$f_opts = array();
+		$f_opts['id']="require_view";
 		
-			'alias'=>"Требует отметки просмотра"
-		,
-			'id'=>"require_view"
-				
-		
-		));
+		$f_require_view=new FieldSQLBool($this->getDbLink(),$this->getDbName(),$this->getTableName(),"require_view",$f_opts);
 		$this->addField($f_require_view);
-
-		$f_subject=new FieldSQlText($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"subject"
-		,array(
-		'required'=>TRUE,
-			'alias'=>"Тема"
-		,
-			'id'=>"subject"
-				
+		//********************
+	
+		//*** Field subject ***
+		$f_opts = array();
+		$f_opts['id']="subject";
 		
-		));
+		$f_subject=new FieldSQLText($this->getDbLink(),$this->getDbName(),$this->getTableName(),"subject",$f_opts);
 		$this->addField($f_subject);
-
-		$f_content=new FieldSQlText($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"content"
-		,array(
+		//********************
+	
+		//*** Field content ***
+		$f_opts = array();
+		$f_opts['id']="content";
 		
-			'alias'=>"Содержание"
-		,
-			'id'=>"content"
-				
-		
-		));
+		$f_content=new FieldSQLText($this->getDbLink(),$this->getDbName(),$this->getTableName(),"content",$f_opts);
 		$this->addField($f_content);
-
-		$f_importance_level=new FieldSQlInt($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"importance_level"
-		,array(
+		//********************
+	
+		//*** Field importance_level ***
+		$f_opts = array();
+		$f_opts['id']="importance_level";
 		
-			'alias'=>"Уровень важности"
-		,
-			'id'=>"importance_level"
-				
-		
-		));
+		$f_importance_level=new FieldSQLInt($this->getDbLink(),$this->getDbName(),$this->getTableName(),"importance_level",$f_opts);
 		$this->addField($f_importance_level);
-
-		$f_date_time=new FieldSQlDateTime($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"date_time"
-		,array(
+		//********************
+	
+		//*** Field date_time ***
+		$f_opts = array();
+		$f_opts['id']="date_time";
 		
-			'alias'=>"Время создания"
-		,
-			'id'=>"date_time"
-				
-		
-		));
+		$f_date_time=new FieldSQLDateTime($this->getDbLink(),$this->getDbName(),$this->getTableName(),"date_time",$f_opts);
 		$this->addField($f_date_time);
+		//********************
 
 		$order = new ModelOrderSQL();		
 		$this->setDefaultModelOrder($order);		
 		
 		$order->addField($f_date_time);
-
-		
-		
-		
+$this->setLimitConstant('doc_per_page_count');
 	}
 
 }

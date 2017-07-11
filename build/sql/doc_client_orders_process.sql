@@ -9,35 +9,18 @@ DECLARE
 	v_tel text;
 BEGIN
 	IF (TG_WHEN='BEFORE' AND TG_OP='INSERT') THEN
-		SELECT coalesce(MAX(d.number),0)+1 INTO NEW.number FROM doc_client_orders AS d;
+		SELECT coalesce(MAX(d.number),0)+1 INTO NEW.number FROM doc_client_orders AS d
+		WHERE d.store_id=NEW.store_id;
 		
-		v_tel = REPLACE(
-				REPLACE(
-					REPLACE(
-						REPLACE(
-							REPLACE(
-								NEW.client_tel,'+',''
-							),
-							'(',''
-						),
-						')',''
-					),
-					' ',''
-				),
-				'-',''
-			);
-		IF (SUBSTR(v_tel,1,1)='7') THEN
-			v_tel = SUBSTR(v_tel,2);
-		END IF;
-		v_tel = format_cel_phone(v_tel);
+		v_tel = NEW.client_tel;
 		
 		SELECT cl.id INTO NEW.client_id
-		FROM clients cl WHERE cl.phone_cel=v_tel;
+		FROM clients cl WHERE cl.tel=v_tel;
 		
 		IF NEW.client_id IS NULL THEN
 			--новый клиент
 			INSERT INTO clients
-			(name,name_full,phone_cel)
+			(name,name_full,tel)
 			VALUES (NEW.client_name,NEW.client_name,v_tel)
 			RETURNING id INTO NEW.client_id;
 		END IF;
@@ -51,7 +34,6 @@ BEGIN
 	ELSIF (TG_WHEN='BEFORE' AND TG_OP='UPDATE') THEN
 		--remove register actions					
 											
-	
 		IF NEW.date_time<>OLD.date_time THEN
 			PERFORM doc_log_update('doc_client_order'::doc_types,NEW.id,NEW.date_time);
 		END IF;

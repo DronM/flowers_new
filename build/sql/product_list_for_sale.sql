@@ -3,7 +3,7 @@
 -- DROP FUNCTION product_list_for_sale(integer);
 
 CREATE OR REPLACE FUNCTION product_list_for_sale(IN in_store_id integer)
-  RETURNS TABLE(id integer, name text, price text, quant numeric, quant_descr text, code text, doc_production_id integer) AS
+  RETURNS TABLE(id integer, name text, price text, quant numeric, quant_descr text, code text, doc_production_id integer,item_type int) AS
 $BODY$
 	SELECT
 		p.id,
@@ -16,8 +16,10 @@ $BODY$
 		END AS quant_descr,
 
 		b.code::text,
-		b.doc_production_id
-	
+		b.doc_production_id,
+		
+		0 AS item_type
+		
 	FROM products AS p
 	RIGHT JOIN
 		(SELECT rg.product_id,rg.quant,doc_prod.number AS code,rg.doc_production_id AS doc_production_id

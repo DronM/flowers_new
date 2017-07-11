@@ -15,27 +15,31 @@ function StoreList_View(id,options){
 	var model = new StoreList_Model({"data":options.modelDataStr});
 	var contr = new Store_Controller(options.app);
 	
+	var constants = {"grid_refresh_interval":null};
+	options.app.getConstantManager().get(constants);
+	
+	var popup_menu = new PopUpMenu();
+	
 	this.addElement(new GridAjx(id+":grid",{
 		"model":model,
+		"keyIds":["id"],
 		"controller":contr,
 		"editInline":true,
 		"editWinClass":null,
-		"commands":new GridCommandsAjx(id+"-gridcmd",{"app":options.app}),
+		"popUpMenu":popup_menu,
+		//"commands":new GridCommandsAjx(id+"-gridcmd",{"popUpMenu":popup_menu,"app":options.app}),
+		"commands":new GridCmdContainerAjx(id+":grid:cmd",{
+			"popUpMenu":popup_menu,
+			"colTemplate":"StoreList",
+			"app":options.app
+		}),		
 		"head":new GridHead(id+"-grid:head",{
 			"elements":[
 				new GridRow(id+":grid:head:row0",{
 					"elements":[
-						/*
-						new GridCellHead(id+":grid:head:id",{
-							"columns":[
-								new GridColumn({"field":model.getField("id")})
-							],
-							"sortable":true
-						}),
-						*/
 						new GridCellHead(id+":grid:head:name",{
 							"columns":[
-								new GridColumn({"field":model.getField("name")})
+								new GridColumn("name",{"field":model.getField("name")})
 							],
 							"sortable":true,
 							"sort":"asc"							
@@ -45,6 +49,8 @@ function StoreList_View(id,options){
 			]
 		}),
 		"autoRefresh":false,
+		"refreshInterval":constants.grid_refresh_interval.getValue()*1000,
+		"rowSelect":false,
 		"focus":true,
 		"app":options.app
 	}));	

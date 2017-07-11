@@ -13,6 +13,18 @@
 			
 <xsl:template match="/">
 	<xsl:apply-templates select="metadata/controllers/controller[@id=$CONTROLLER_ID]"/>
+	
+DOCClientOrder_Controller.prototype.getPrintList = function(){
+	return  [
+		new PrintObj({
+			"caption":"Заказ покупателя",
+			"publicMethod":this.getPublicMethod("get_print"),
+			"templ":"DOCClientOrderPrint",
+			"publicMethodKeyIds":["doc_id"]
+		})
+	];
+}
+	
 </xsl:template>
 
 </xsl:stylesheet>

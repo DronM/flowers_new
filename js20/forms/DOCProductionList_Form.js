@@ -19,7 +19,6 @@
 function DOCProductionList_Form(options){
 	options = options || {};	
 	
-	options.width = 900;
 	options.formName = "DOCProductionList";
 	options.controller = "DOCProduction_Controller";
 	options.method = "get_list";

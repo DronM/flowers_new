@@ -12,51 +12,40 @@ class DeliveryHourList_Model extends ModelSQL{
 		$this->setDbName("public");
 		
 		$this->setTableName("delivery_hours_list");
+			
+		//*** Field id ***
+		$f_opts = array();
+		$f_opts['primaryKey'] = TRUE;
+		$f_opts['id']="id";
 		
-		$f_id=new FieldSQlInt($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"id"
-		,array(
-		
-			'primaryKey'=>TRUE,
-			'id'=>"id"
-				
-		
-		));
+		$f_id=new FieldSQLInt($this->getDbLink(),$this->getDbName(),$this->getTableName(),"id",$f_opts);
 		$this->addField($f_id);
-
-		$f_h_from=new FieldSQlInt($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"h_from"
-		,array(
+		//********************
+	
+		//*** Field h_from ***
+		$f_opts = array();
+		$f_opts['id']="h_from";
 		
-			'id'=>"h_from"
-				
-		
-		));
+		$f_h_from=new FieldSQLInt($this->getDbLink(),$this->getDbName(),$this->getTableName(),"h_from",$f_opts);
 		$this->addField($f_h_from);
-
-		$f_h_to=new FieldSQlInt($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"h_to"
-		,array(
+		//********************
+	
+		//*** Field h_to ***
+		$f_opts = array();
+		$f_opts['id']="h_to";
 		
-			'id'=>"h_to"
-				
-		
-		));
+		$f_h_to=new FieldSQLInt($this->getDbLink(),$this->getDbName(),$this->getTableName(),"h_to",$f_opts);
 		$this->addField($f_h_to);
-
-		$f_descr=new FieldSQlString($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"descr"
-		,array(
+		//********************
+	
+		//*** Field descr ***
+		$f_opts = array();
+		$f_opts['id']="descr";
 		
-			'id'=>"descr"
-				
-		
-		));
+		$f_descr=new FieldSQLString($this->getDbLink(),$this->getDbName(),$this->getTableName(),"descr",$f_opts);
 		$this->addField($f_descr);
-
-		
-		
-		
+		//********************
+$this->setLimitConstant('doc_per_page_count');
 	}
 
 }

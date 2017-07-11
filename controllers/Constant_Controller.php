@@ -1,5 +1,4 @@
 <?php
-
 require_once(FRAME_WORK_PATH.'basic_classes/ControllerSQL.php');
 
 require_once(FRAME_WORK_PATH.'basic_classes/FieldExtInt.php');
@@ -12,8 +11,12 @@ require_once(FRAME_WORK_PATH.'basic_classes/FieldExtDate.php');
 require_once(FRAME_WORK_PATH.'basic_classes/FieldExtTime.php');
 require_once(FRAME_WORK_PATH.'basic_classes/FieldExtPassword.php');
 require_once(FRAME_WORK_PATH.'basic_classes/FieldExtBool.php');
+require_once(FRAME_WORK_PATH.'basic_classes/FieldExtInterval.php');
 require_once(FRAME_WORK_PATH.'basic_classes/ModelSQL.php');
 require_once(FRAME_WORK_PATH.'basic_classes/FieldSQL.php');
+
+require_once(FRAME_WORK_PATH.'basic_classes/ParamsSQL.php');
+
 class Constant_Controller extends ControllerSQL{
 	public function __construct($dbLinkMaster=NULL){
 		parent::__construct($dbLinkMaster);
@@ -91,7 +94,10 @@ class Constant_Controller extends ControllerSQL{
 		$q = '';
 		foreach($idList as $id) {
 			$q.= ($q!='')? ' UNION ALL ':'';
-			$q.= sprintf("SELECT '%s' AS id,val::text FROM const_%s", $id,$id);
+			$q.= sprintf("SELECT
+				'%s' AS id,
+				const_%s_val()::text AS val,
+				(SELECT c.val_type FROM const_%s c) AS val_type", $id,$id,$id);
 		}
 		
 		$model->setSelectQueryText($q);
@@ -111,10 +117,13 @@ class Constant_Controller extends ControllerSQL{
 	}
 	
 	public function set_value($pm){
+		$p = new ParamsSQL($pm,$this->getDbLink());
+		$p->addAll();
+	
 		$link = $this->getDbLinkMaster();
 		$link->query(sprintf(
-		"SELECT const_%s_set_val('%s')",
-		$pm->getParamValue('id'),$pm->getParamValue('val')));
+		"SELECT const_%s_set_val(%s)",
+		$p->getVal('id'),$p->getDbVal('val')));
 	}
 }
 ?>

@@ -22,55 +22,33 @@ function SupplierList_Model(options){
 	
 	options.fields = {};
 	
-			
+				
+	
 	var filed_options = {};
-	filed_options.primaryKey = true;
+	filed_options.primaryKey = true;	
+	options.fields.id = new FieldInt("id",filed_options);
 	
+				
 	
-	var field = new FieldInt("id",filed_options);
-	
-
-	options.fields.id = field;
-
-			
 	var filed_options = {};
-	filed_options.primaryKey = false;
+	filed_options.primaryKey = false;	
+	filed_options.alias = 'Наименование';options.fields.name = new FieldString("name",filed_options);
+	options.fields.name.getValidator().setMaxLength('100');
 	
-	filed_options.alias = 'Наименование';
+				
 	
-	var field = new FieldString("name",filed_options);
-	
-		field.getValidator().setMaxLength('100');
-	
-
-	options.fields.name = field;
-
-			
 	var filed_options = {};
-	filed_options.primaryKey = false;
+	filed_options.primaryKey = false;	
+	filed_options.alias = 'Телефон';options.fields.tel = new FieldString("tel",filed_options);
+	options.fields.tel.getValidator().setMaxLength('15');
 	
-	filed_options.alias = 'Телефон';
+				
 	
-	var field = new FieldString("tel",filed_options);
-	
-		field.getValidator().setMaxLength('15');
-	
-
-	options.fields.tel = field;
-
-			
 	var filed_options = {};
-	filed_options.primaryKey = false;
+	filed_options.primaryKey = false;	
+	filed_options.alias = 'Email';options.fields.email = new FieldString("email",filed_options);
+	options.fields.email.getValidator().setMaxLength('50');
 	
-	filed_options.alias = 'Email';
-	
-	var field = new FieldString("email",filed_options);
-	
-		field.getValidator().setMaxLength('50');
-	
-
-	options.fields.email = field;
-
 		SupplierList_Model.superclass.constructor.call(this,id,options);
 }
 extend(SupplierList_Model,ModelXML);

@@ -22,7 +22,13 @@ function UserProfile_View(id,options){
 	this.addElement(new HiddenKey(id+":id"));	
 	
 	this.addElement(new UserNameEdit(id+":name",{
-		"app":options.app
+		"app":options.app,
+		"events":{
+			"keyup":function(){
+				self.getControlSave().setEnabled(true);
+			}
+		}
+		
 	}));	
 
 	this.addElement(new EditPassword(id+":pwd",{
@@ -46,12 +52,22 @@ function UserProfile_View(id,options){
 
 	this.addElement(new EditEmail(id+":email",{
 		"labelCaption":"Эл.почта:",
-		"app":options.app
+		"app":options.app,
+		"events":{
+			"keyup":function(){
+				self.getControlSave().setEnabled(true);
+			}
+		}		
 	}));	
 
 	this.addElement(new EditPhone(id+":phone_cel",{
 		"labelCaption":"Моб.телефон:",
-		"app":options.app
+		"app":options.app,
+		"events":{
+			"keyup":function(){
+				self.getControlSave().setEnabled(true);
+			}
+		}		
 	}));	
 
 	//****************************************************
@@ -76,6 +92,8 @@ function UserProfile_View(id,options){
 		new CommandBinding({"control":this.getElement("phone_cel")}),
 		new CommandBinding({"control":this.getElement("pwd")})
 	]);
+	
+	this.getControlSave().setEnabled(false);
 }
 extend(UserProfile_View,ViewObjectAjx);
 
@@ -85,26 +103,28 @@ UserProfile_View.prototype.TXT_PWD_ER = "Пароли не совпадают";
 
 UserProfile_View.prototype.checkPass = function(){
 	var pwd = this.getElement("pwd").getValue();
-	if (pwd.length){
+	if (pwd && pwd.length){
 		var pwd_conf = this.getElement("pwd_confirm").getValue();
-		if (pwd_conf.length && pwd!=pwd_conf){
+		if (pwd_conf && pwd_conf.length && pwd!=pwd_conf){
 			this.getElement("pwd_confirm").setNotValid(this.TXT_PWD_ER);
 			this.getControlSave().setEnabled(false);
 		}
-		else if (pwd_conf.length){
+		else if (pwd_conf && pwd_conf.length){
 			this.getElement("pwd_confirm").setValid();
 			if (!this.getControlSave().getEnabled()){
 				this.getControlSave().setEnabled(true);
 			}
 		}
-		else if (!pwd_conf.length && this.getControlSave().getEnabled()){
+		else if ((!pwd_conf || !pwd_conf.length) && this.getControlSave().getEnabled()){
 			this.getControlSave().setEnabled(false);
 		}
 	}
 }
 
+/*
 UserProfile_View.prototype.onSaveOk = function(resp){
 	UserProfile_View.superclass.onSaveOk.call(this,resp);
 	
-	this.getApp().showNote(this.NOTE_DATA_SAVED[this.getApp().getLang()],null,3000);
+	window.showNote(this.NOTE_DATA_SAVED,null,3000);
 }
+*/

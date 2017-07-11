@@ -19,8 +19,6 @@
 function DOCSale_Form(options){
 	options = options || {};	
 	
-	options.width = 900;
-	options.height = 800;
 	options.formName = "DOCSale";
 	options.method = "get_object";
 	

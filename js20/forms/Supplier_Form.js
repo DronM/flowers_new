@@ -19,7 +19,6 @@
 function Supplier_Form(options){
 	options = options || {};	
 	
-	options.width = 900;
 	options.formName = "Supplier";
 	options.method = "get_object";
 	

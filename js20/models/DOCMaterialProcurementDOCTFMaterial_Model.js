@@ -22,78 +22,46 @@ function DOCMaterialProcurementDOCTFMaterial_Model(options){
 	
 	options.fields = {};
 	
-			
+				
+	
 	var filed_options = {};
-	filed_options.primaryKey = true;
+	filed_options.primaryKey = true;	
+	options.fields.doc_id = new FieldInt("doc_id",filed_options);
 	
+				
 	
-	var field = new FieldInt("doc_id",filed_options);
-	
-
-	options.fields.doc_id = field;
-
-			
 	var filed_options = {};
-	filed_options.primaryKey = true;
+	filed_options.primaryKey = true;	
+	options.fields.line_number = new FieldInt("line_number",filed_options);
 	
+				
 	
-	var field = new FieldInt("line_number",filed_options);
-	
-
-	options.fields.line_number = field;
-
-			
 	var filed_options = {};
-	filed_options.primaryKey = false;
+	filed_options.primaryKey = false;	
+	filed_options.alias = 'Материал';options.fields.material_id = new FieldInt("material_id",filed_options);
+	options.fields.material_id.getValidator().setRequired(true);
 	
-	filed_options.alias = 'Материал';
+				
 	
-	var field = new FieldInt("material_id",filed_options);
-	
-		field.getValidator().setRequired(true);
-	
-
-	options.fields.material_id = field;
-			
-			
 	var filed_options = {};
-	filed_options.primaryKey = false;
+	filed_options.primaryKey = false;	
+	filed_options.alias = 'Количество';options.fields.quant = new FieldFloat("quant",filed_options);
+	options.fields.quant.getValidator().setMaxLength('19');
 	
-	filed_options.alias = 'Количество';
+				
 	
-	var field = new FieldFloat("quant",filed_options);
-	
-		field.getValidator().setMaxLength('19');
-	
-
-	options.fields.quant = field;
-			
-			
 	var filed_options = {};
-	filed_options.primaryKey = false;
+	filed_options.primaryKey = false;	
+	filed_options.alias = 'Цена';options.fields.price = new FieldFloat("price",filed_options);
+	options.fields.price.getValidator().setMaxLength('19');
 	
-	filed_options.alias = 'Цена';
+				
 	
-	var field = new FieldFloat("price",filed_options);
-	
-		field.getValidator().setMaxLength('19');
-	
-
-	options.fields.price = field;
-
-			
 	var filed_options = {};
-	filed_options.primaryKey = false;
+	filed_options.primaryKey = false;	
+	filed_options.alias = 'Сумма';options.fields.total = new FieldFloat("total",filed_options);
+	options.fields.total.getValidator().setMaxLength('19');
 	
-	filed_options.alias = 'Сумма';
-	
-	var field = new FieldFloat("total",filed_options);
-	
-		field.getValidator().setMaxLength('19');
-	
-
-	options.fields.total = field;
-									
 		DOCMaterialProcurementDOCTFMaterial_Model.superclass.constructor.call(this,id,options);
 }
 extend(DOCMaterialProcurementDOCTFMaterial_Model,ModelXML);

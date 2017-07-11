@@ -7,57 +7,67 @@ class MainMenu_Model_cashier extends Model{
 		
 <menuItem
 
-descr="Продажи"
+descr="Журнал продаж"
 
->
-<menuItem
+c="DOCSale_Controller"
 
-viewId="SaleProduct_View"
+f="get_list"
 
-descr="Текущая продажа"
+t="DOCSaleList"
 
-default="TRUE"
-
-></menuItem>
-
-<menuItem
-
-viewId="DOCSaleList_View"
-
-descr="Журнал документов"
+limit="TRUE"
 
 ></menuItem>
 
 <menuItem
-
-viewId="ProductBalanceList_View"
 
 descr="Остатки"
 
-></menuItem>
-
-<menuItem
-
-viewId="CashRegisterOper_View"
-
-descr="ККМ"
-
-></menuItem>
-</menuItem>
-
-<menuItem
-
-descr="Администрирование"
-
 >
 <menuItem
 
-viewId="UserNewPassword_View"
+descr="Остатки букетов"
 
-descr="Сменить свой пароль"
+c="Product_Controller"
+
+f="get_list_with_balance"
+
+t="ProductBalanceList"
+
+></menuItem>
+
+<menuItem
+
+descr="Остатки материалов"
+
+c="Material_Controller"
+
+f="get_list_with_balance"
+
+t="MaterialBalanceList"
 
 ></menuItem>
 </menuItem>
+
+<menuItem
+
+descr="Заказы покупателей"
+
+c="DOCClientOrder_Controller"
+
+f="get_list"
+
+t="DOCClientOrderList"
+
+></menuItem>
+
+<menuItem
+
+descr="Операции с ККМ"
+
+t="CashRegisterOper"
+
+></menuItem>
 
 		</model>';
 	}

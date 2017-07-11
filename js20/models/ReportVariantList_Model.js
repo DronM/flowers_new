@@ -22,28 +22,19 @@ function ReportVariantList_Model(options){
 	
 	options.fields = {};
 	
-			
+				
+	
 	var filed_options = {};
-	filed_options.primaryKey = true;
+	filed_options.primaryKey = true;	
+	options.fields.id = new FieldInt("id",filed_options);
+	options.fields.id.getValidator().setRequired(true);
 	
+				
 	
-	var field = new FieldInt("id",filed_options);
-	
-		field.getValidator().setRequired(true);
-	
-
-	options.fields.id = field;
-
-			
 	var filed_options = {};
-	filed_options.primaryKey = false;
+	filed_options.primaryKey = false;	
+	options.fields.name = new FieldText("name",filed_options);
 	
-	
-	var field = new FieldText("name",filed_options);
-	
-
-	options.fields.name = field;
-
 		ReportVariantList_Model.superclass.constructor.call(this,id,options);
 }
 extend(ReportVariantList_Model,ModelXML);

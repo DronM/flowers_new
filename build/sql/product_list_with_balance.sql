@@ -11,9 +11,12 @@ CREATE OR REPLACE FUNCTION product_list_with_balance(IN in_store_id integer)
   	total numeric,
   	quant numeric,
   	order_quant numeric,
-  	quant_descr text,
-  	ord_quant_descr text,
-  	after_production_time text
+  	after_production_time text,
+  	doc_production_id int,
+  	doc_production_date_time timestamp,
+  	doc_production_number text,
+  	store_id integer,
+  	store_descr text
   ) AS
 $BODY$
 	WITH data AS (
@@ -24,26 +27,24 @@ $BODY$
 		d_p.price AS price,
 		d_p.price*b_p.quant AS total,
 		b_p.quant AS quant,
-		b_ord.quant AS order_quant,
-		CASE 
-		WHEN b_p.quant IS NULL OR b_p.quant=0 THEN ''
-		ELSE round(b_p.quant)::text
-		END AS quant_descr,
-		CASE 
-		WHEN b_ord.quant IS NULL OR b_ord.quant=0 THEN ''
-		ELSE round(b_ord.quant)::text
-		END AS ord_quant_descr,
+		0::numeric AS order_quant,
 
 		--(SELECT product_current_fact_cost(d_p.id))  AS cost,
 		--(SELECT product_current_fact_cost(d_p.id))*b_p.quant  AS cost_total,
-		now()-d_p.date_time AS after_production_time
+		now()-d_p.date_time AS after_production_time,
+		
+		d_p.id AS doc_production_id,
+		d_p.date_time AS doc_production_date_time,
+		d_p.number::text AS doc_production_number,
+		
+		in_store_id AS store_id,
+		st.name::text AS store_descr
 
 	FROM products AS p
 	LEFT JOIN rg_products_balance(ARRAY[$1],'{}','{}') AS b_p
 	ON b_p.product_id=p.id
-	LEFT JOIN rg_product_orders_balance(ARRAY[$1],'{}','{}') AS b_ord
-	ON b_ord.product_id=p.id 
 	LEFT JOIN doc_productions AS d_p ON d_p.id=b_p.doc_production_id
+	LEFT JOIN stores AS st ON st.id=$1
 	WHERE p.for_sale=TRUE AND b_p.quant<>0
 	--ORDER BY p.name
 	)
@@ -55,12 +56,15 @@ $BODY$
 		data.total AS total,
 		data.quant,
 		data.order_quant,
-		data.quant_descr,
-		data.ord_quant_descr,
 
-		--format_money(data.cost),
-		--format_money(data.cost_total),
-		interval_descr(data.after_production_time)
+		interval_descr(data.after_production_time),
+		data.doc_production_id,
+		data.doc_production_date_time,
+		data.doc_production_number,
+		
+		data.store_id,
+		data.store_descr
+		
 	FROM data
 
 	UNION ALL
@@ -73,12 +77,14 @@ $BODY$
 		SUM(agg.total) AS total,
 		NULL,
 		NULL,
-		NULL,
-		NULL,
 
 		--NULL,
 		--format_money(SUM(agg.cost_total)),
-		interval_descr(AVG(agg.after_production_time))
+		interval_descr(AVG(agg.after_production_time)),
+		NULL,
+		NULL,
+		NULL,
+		NULL,NULL
 	FROM data AS agg;
 $BODY$
   LANGUAGE sql VOLATILE

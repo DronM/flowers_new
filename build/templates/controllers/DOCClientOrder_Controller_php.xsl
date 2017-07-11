@@ -17,9 +17,10 @@
 
 <xsl:template match="controller"><![CDATA[<?php]]>
 <xsl:call-template name="add_requirements"/>
+require_once(FRAME_WORK_PATH.'basic_classes/ControllerSQLDOC20.php');
 require_once(FRAME_WORK_PATH.'basic_classes/ParamsSQL.php');
 
-class <xsl:value-of select="@id"/>_Controller extends ControllerSQLDOC{
+class <xsl:value-of select="@id"/>_Controller extends ControllerSQLDOC20{
 	public function __construct($dbLinkMaster=NULL){
 		parent::__construct($dbLinkMaster);<xsl:apply-templates/>
 	}	
@@ -29,14 +30,55 @@ class <xsl:value-of select="@id"/>_Controller extends ControllerSQLDOC{
 </xsl:template>
 
 <xsl:template name="extra_methods">
+	public function set_state($pm){
+		$p = new ParamsSQL($pm,$this->getDbLink());
+		$p->addAll();
+		
+		$this->getDbLinkMaster()->query(sprintf(
+		"UPDATE doc_client_orders
+		SET client_order_state=%s
+		WHERE id=%d",
+		$p->getDbVal('state'),
+		$p->getDbVal('doc_id')
+		));
+	}
+
+	public function set_payed($pm){
+		$p = new ParamsSQL($pm,$this->getDbLink());
+		$p->addAll();
+		
+		$this->getDbLinkMaster()->query(sprintf(
+		"UPDATE doc_client_orders
+		SET payed=TRUE
+		WHERE id=%d",
+		$p->getDbVal('doc_id')
+		));
+	}
+	
 	public function get_print($pm){
 		$p = new ParamsSQL($pm,$this->getDbLink());
 		$p->set('doc_id',DT_INT,array('required'=>TRUE));
+		
 		$this->addNewModel(sprintf(
-			"SELECT * FROM doc_client_orders_list
+			"SELECT *,
+				get_date_str_rus(date_time::date) AS date_time_descr
+			FROM doc_client_orders_list
 			WHERE id=%d",
 		$p->getParamById('doc_id')),
 		'head');		
+		
+		$this->addNewModel(sprintf(
+			"SELECT * FROM doc_client_orders_t_materials_list
+			WHERE doc_id=%d",
+		$p->getParamById('doc_id')),
+		'materials');		
+		
+		$this->addNewModel(sprintf(
+			"SELECT * FROM doc_client_orders_t_products_list
+			WHERE doc_id=%d",
+		$p->getParamById('doc_id')),
+		'products');		
+		
 	}
 </xsl:template>
 

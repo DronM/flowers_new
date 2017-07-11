@@ -25,55 +25,53 @@ function CashRegister_Model(options){
 			
 				
 			
-			
+				
+	
 	var filed_options = {};
-	filed_options.primaryKey = true;
+	filed_options.primaryKey = true;	
+	options.fields.id = new FieldInt("id",filed_options);
+	options.fields.id.getValidator().setRequired(true);
 	
+				
 	
-	var field = new FieldInt("id",filed_options);
-	
-		field.getValidator().setRequired(true);
-	
-
-	options.fields.id = field;
-
-			
 	var filed_options = {};
-	filed_options.primaryKey = false;
+	filed_options.primaryKey = false;	
+	filed_options.alias = 'Наименование';options.fields.name = new FieldString("name",filed_options);
+	options.fields.name.getValidator().setRequired(true);
+	options.fields.name.getValidator().setMaxLength('200');
 	
-	filed_options.alias = 'Наименование';
+				
 	
-	var field = new FieldString("name",filed_options);
-	
-		field.getValidator().setRequired(true);
-	
-		field.getValidator().setMaxLength('200');
-	
-
-	options.fields.name = field;
-
-			
 	var filed_options = {};
-	filed_options.primaryKey = false;
+	filed_options.primaryKey = false;	
+	filed_options.alias = 'Порт оборудования';options.fields.port = new FieldInt("port",filed_options);
 	
-	filed_options.alias = 'Порт';
+				
 	
-	var field = new FieldInt("port",filed_options);
-	
-
-	options.fields.port = field;
-
-			
 	var filed_options = {};
-	filed_options.primaryKey = false;
+	filed_options.primaryKey = false;	
+	filed_options.alias = 'Скорость оборудования';options.fields.baud_rate = new FieldInt("baud_rate",filed_options);
 	
-	filed_options.alias = 'Скорость';
+				
 	
-	var field = new FieldInt("baud_rate",filed_options);
+	var filed_options = {};
+	filed_options.primaryKey = false;	
+	filed_options.alias = 'Сервер';options.fields.eq_server = new FieldString("eq_server",filed_options);
+	options.fields.eq_server.getValidator().setMaxLength('20');
 	
-
-	options.fields.baud_rate = field;
-
+				
+	
+	var filed_options = {};
+	filed_options.primaryKey = false;	
+	filed_options.alias = 'Порт сервера';options.fields.eq_port = new FieldInt("eq_port",filed_options);
+	
+				
+	
+	var filed_options = {};
+	filed_options.primaryKey = false;	
+	filed_options.alias = 'Идентификатор оборуд.';options.fields.eq_id = new FieldString("eq_id",filed_options);
+	options.fields.eq_id.getValidator().setMaxLength('20');
+	
 		CashRegister_Model.superclass.constructor.call(this,id,options);
 }
 extend(CashRegister_Model,ModelXML);

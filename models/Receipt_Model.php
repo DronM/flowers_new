@@ -14,140 +14,113 @@ class Receipt_Model extends ModelSQL{
 		$this->setDbName("public");
 		
 		$this->setTableName("receipts");
+			
+		//*** Field user_id ***
+		$f_opts = array();
+		$f_opts['primaryKey'] = TRUE;
+		$f_opts['id']="user_id";
 		
-		$f_user_id=new FieldSQlInt($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"user_id"
-		,array(
-		
-			'primaryKey'=>TRUE,
-			'id'=>"user_id"
-				
-		
-		));
+		$f_user_id=new FieldSQLInt($this->getDbLink(),$this->getDbName(),$this->getTableName(),"user_id",$f_opts);
 		$this->addField($f_user_id);
-
-		$f_item_id=new FieldSQlInt($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"item_id"
-		,array(
+		//********************
+	
+		//*** Field item_id ***
+		$f_opts = array();
+		$f_opts['primaryKey'] = TRUE;
+		$f_opts['id']="item_id";
 		
-			'primaryKey'=>TRUE,
-			'id'=>"item_id"
-				
-		
-		));
+		$f_item_id=new FieldSQLInt($this->getDbLink(),$this->getDbName(),$this->getTableName(),"item_id",$f_opts);
 		$this->addField($f_item_id);
-
-		$f_item_type=new FieldSQlInt($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"item_type"
-		,array(
+		//********************
+	
+		//*** Field item_type ***
+		$f_opts = array();
+		$f_opts['primaryKey'] = TRUE;
+		$f_opts['id']="item_type";
 		
-			'primaryKey'=>TRUE,
-			'id'=>"item_type"
-				
-		
-		));
+		$f_item_type=new FieldSQLInt($this->getDbLink(),$this->getDbName(),$this->getTableName(),"item_type",$f_opts);
 		$this->addField($f_item_type);
-
-		$f_doc_production_id=new FieldSQlInt($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"doc_production_id"
-		,array(
+		//********************
+	
+		//*** Field doc_production_id ***
+		$f_opts = array();
+		$f_opts['id']="doc_production_id";
 		
-			'id'=>"doc_production_id"
-				
-		
-		));
+		$f_doc_production_id=new FieldSQLInt($this->getDbLink(),$this->getDbName(),$this->getTableName(),"doc_production_id",$f_opts);
 		$this->addField($f_doc_production_id);
-
-		$f_item_name=new FieldSQlString($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"item_name"
-		,array(
+		//********************
+	
+		//*** Field item_name ***
+		$f_opts = array();
+		$f_opts['length']=100;
+		$f_opts['id']="item_name";
 		
-			'length'=>100,
-			'id'=>"item_name"
-				
-		
-		));
+		$f_item_name=new FieldSQLString($this->getDbLink(),$this->getDbName(),$this->getTableName(),"item_name",$f_opts);
 		$this->addField($f_item_name);
-
-		$f_quant=new FieldSQlFloat($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"quant"
-		,array(
+		//********************
+	
+		//*** Field quant ***
+		$f_opts = array();
+		$f_opts['length']=19;
+		$f_opts['id']="quant";
 		
-			'length'=>19,
-			'id'=>"quant"
-				
-		
-		));
+		$f_quant=new FieldSQLFloat($this->getDbLink(),$this->getDbName(),$this->getTableName(),"quant",$f_opts);
 		$this->addField($f_quant);
-
-		$f_price=new FieldSQlFloat($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"price"
-		,array(
+		//********************
+	
+		//*** Field price ***
+		$f_opts = array();
+		$f_opts['length']=15;
+		$f_opts['id']="price";
 		
-			'length'=>15,
-			'id'=>"price"
-				
-		
-		));
+		$f_price=new FieldSQLFloat($this->getDbLink(),$this->getDbName(),$this->getTableName(),"price",$f_opts);
 		$this->addField($f_price);
-
-		$f_total=new FieldSQlFloat($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"total"
-		,array(
+		//********************
+	
+		//*** Field total ***
+		$f_opts = array();
+		$f_opts['length']=15;
+		$f_opts['id']="total";
 		
-			'length'=>15,
-			'id'=>"total"
-				
-		
-		));
+		$f_total=new FieldSQLFloat($this->getDbLink(),$this->getDbName(),$this->getTableName(),"total",$f_opts);
 		$this->addField($f_total);
-
-		$f_ord=new FieldSQlTime($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"ord"
-		,array(
+		//********************
+	
+		//*** Field ord ***
+		$f_opts = array();
+		$f_opts['id']="ord";
 		
-			'id'=>"ord"
-				
-		
-		));
+		$f_ord=new FieldSQLTime($this->getDbLink(),$this->getDbName(),$this->getTableName(),"ord",$f_opts);
 		$this->addField($f_ord);
-
-		$f_total_no_disc=new FieldSQlFloat($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"total_no_disc"
-		,array(
+		//********************
+	
+		//*** Field total_no_disc ***
+		$f_opts = array();
+		$f_opts['length']=15;
+		$f_opts['id']="total_no_disc";
 		
-			'length'=>15,
-			'id'=>"total_no_disc"
-				
-		
-		));
+		$f_total_no_disc=new FieldSQLFloat($this->getDbLink(),$this->getDbName(),$this->getTableName(),"total_no_disc",$f_opts);
 		$this->addField($f_total_no_disc);
-
-		$f_price_no_disc=new FieldSQlFloat($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"price_no_disc"
-		,array(
+		//********************
+	
+		//*** Field price_no_disc ***
+		$f_opts = array();
+		$f_opts['length']=15;
+		$f_opts['id']="price_no_disc";
 		
-			'length'=>15,
-			'id'=>"price_no_disc"
-				
-		
-		));
+		$f_price_no_disc=new FieldSQLFloat($this->getDbLink(),$this->getDbName(),$this->getTableName(),"price_no_disc",$f_opts);
 		$this->addField($f_price_no_disc);
-
-		$f_disc_percent=new FieldSQlFloat($this->getDbLink(),$this->getDbName(),$this->getTableName()
-		,"disc_percent"
-		,array(
+		//********************
+	
+		//*** Field disc_percent ***
+		$f_opts = array();
+		$f_opts['length']=15;
+		$f_opts['id']="disc_percent";
 		
-			'length'=>15,
-			'id'=>"disc_percent"
-				
-		
-		));
+		$f_disc_percent=new FieldSQLFloat($this->getDbLink(),$this->getDbName(),$this->getTableName(),"disc_percent",$f_opts);
 		$this->addField($f_disc_percent);
-
-		
-		
-		
+		//********************
+$this->setLimitConstant('doc_per_page_count');
 	}
 
 }

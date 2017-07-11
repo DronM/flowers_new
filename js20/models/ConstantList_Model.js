@@ -25,49 +25,42 @@ function ConstantList_Model(options){
 			
 				
 			
-			
+				
+	
 	var filed_options = {};
-	filed_options.primaryKey = true;
+	filed_options.primaryKey = true;	
+	options.fields.id = new FieldString("id",filed_options);
 	
+				
 	
-	var field = new FieldString("id",filed_options);
-	
-
-	options.fields.id = field;
-
-			
 	var filed_options = {};
-	filed_options.primaryKey = false;
+	filed_options.primaryKey = false;	
+	filed_options.alias = 'Наименование';options.fields.name = new FieldString("name",filed_options);
 	
-	filed_options.alias = 'Наименование';
+				
 	
-	var field = new FieldString("name",filed_options);
-	
-
-	options.fields.name = field;
-
-			
 	var filed_options = {};
-	filed_options.primaryKey = false;
+	filed_options.primaryKey = false;	
+	filed_options.alias = 'Описание';options.fields.descr = new FieldText("descr",filed_options);
 	
-	filed_options.alias = 'Описание';
+				
 	
-	var field = new FieldText("descr",filed_options);
-	
-
-	options.fields.descr = field;
-
-			
 	var filed_options = {};
-	filed_options.primaryKey = false;
+	filed_options.primaryKey = false;	
+	filed_options.alias = 'Значение';options.fields.val_descr = new FieldText("val_descr",filed_options);
 	
-	filed_options.alias = 'Значение';
+				
 	
-	var field = new FieldText("val_descr",filed_options);
+	var filed_options = {};
+	filed_options.primaryKey = false;	
+	filed_options.alias = 'Имя значения';options.fields.val_type = new FieldText("val_type",filed_options);
 	
-
-	options.fields.val_descr = field;
-
+				
+	
+	var filed_options = {};
+	filed_options.primaryKey = false;	
+	options.fields.val_id = new FieldInt("val_id",filed_options);
+	
 		ConstantList_Model.superclass.constructor.call(this,id,options);
 }
 extend(ConstantList_Model,ModelXML);

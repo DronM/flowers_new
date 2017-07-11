@@ -13,6 +13,18 @@
 			
 <xsl:template match="/">
 	<xsl:apply-templates select="metadata/controllers/controller[@id=$CONTROLLER_ID]"/>
+	
+Material_Controller.prototype.getPrintList = function(){
+	return  [
+		new PrintObj({
+			"caption":"Этикетка",
+			"publicMethod":this.getPublicMethod("print_barcode"),
+			"templ":"MaterialBarcode",
+			"publicMethodKeyIds":["material_id"]
+		})
+	];
+}
+	
 </xsl:template>
 
 </xsl:stylesheet>

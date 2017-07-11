@@ -35,24 +35,22 @@ BEGIN
 			doct.quant,
 			m.name,
 			coalesce(b.balance,0) AS balance
-		FROM doc_sales_t_materials AS doct
+		FROM '|| v_material_table ||' AS doct
 		LEFT JOIN (SELECT
 					subb.material_id,
 					SUM(subb.quant) AS balance
 				FROM rg_materials_balance(
 					ARRAY['|| in_store_id ||'],
-					ARRAY[''main''::stock_types],
 					ARRAY(SELECT t.material_id
 						FROM '|| v_material_table ||' t
 						WHERE t.doc_id='|| in_doc_id ||'
-					),
-					''{}''
+					)
 				) AS subb
 				GROUP BY subb.material_id					
 			) AS b
 			ON b.material_id=doct.material_id
 		LEFT JOIN materials AS m ON m.id=doct.material_id
-		WHERE doct.doc_id='|| in_doc_id ||' AND coalesce(b.balance,0)-doct.quant<0';			
+		WHERE doct.doc_id='|| in_doc_id ||' AND coalesce(b.balance,0)<0';			
 	ELSE
 		v_sql = 
 		'SELECT
@@ -68,25 +66,28 @@ BEGIN
 					'''||in_doc_type||'''::doc_types,
 					'|| in_doc_id ||',
 					ARRAY['|| in_store_id ||'],
-					ARRAY[''main''::stock_types],
 					ARRAY(SELECT t.material_id
 						FROM '|| v_material_table ||' t
 						WHERE t.doc_id='|| in_doc_id ||'
-					),
-					''{}''
+					)
 				) AS subb
 				GROUP BY subb.material_id					
 			) AS b
 			ON b.material_id=doct.material_id
 		LEFT JOIN materials AS m ON m.id=doct.material_id
-		WHERE doct.doc_id='|| in_doc_id ||' AND coalesce(b.balance,0)-doct.quant<0';					
+		WHERE doct.doc_id='|| in_doc_id ||' AND coalesce(b.balance,0)<0';					
 	END IF;
 	
+	--RAISE '%',in_operative_processing;
+	
+	v_error = '';
+	
 	FOR item_row IN EXECUTE v_sql LOOP
+		--RAISE '%',item_row.balance;
 		IF v_error<>'' THEN
 			v_error = v_error || ', ';
 		END IF;
-		v_error = v_error || 'материал: ' || item_row.name || ' остаток: ' || item_row.balance || ' затребовано ' || item_row.quant;
+		v_error = v_error || 'материал: ' || item_row.name || ' остаток: ' || (item_row.balance+item_row.quant) || ' затребовано ' || item_row.quant;
 	END LOOP;
 	
 	IF v_error<>'' THEN

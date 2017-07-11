@@ -24,7 +24,7 @@ function Login_View(id,options){
 	};
 					
 	this.addElement(new EditString(id+":user",{				
-		"placeholder":this.CTRL_USER_LAB[options.app.getLang()],
+		"placeholder":this.CTRL_USER_LAB,
 		"editContClassName":"form-group",
 		"focus":true,
 		"cmdClear":false,
@@ -33,7 +33,7 @@ function Login_View(id,options){
 	}));	
 	
 	this.addElement(new EditPassword(id+":pwd",{
-		"placeholder":this.CTRL_PWD_LAB[options.app.getLang()],
+		"placeholder":this.CTRL_PWD_LAB,
 		"editContClassName":"form-group",
 		"events":{"keydown":check_for_enter},
 		"app":options.app
@@ -53,7 +53,7 @@ function Login_View(id,options){
 	this.addCommand(new Command("login",{
 		"publicMethod":pm,
 		"control":this.getElement("submit_login"),
-		"async":true,
+		"async":false,
 		"bindings":[
 			new DataBinding({"field":pm.getField("name"),"control":this.getElement("user")}),
 			new DataBinding({"field":pm.getField("pwd"),"control":this.getElement("pwd")})
@@ -69,16 +69,17 @@ Login_View.prototype.setError = function(s){
 
 Login_View.prototype.login = function(){
 	var self = this;
-	this.execCommand("login",function(){
-		document.location.href = self.getApp().getHost();
-	},
-	function(resp,errCode,errStr){
-		if (errCode==100){
-			self.setError(self.ER_LOGIN[self.getApp().getLang()]);
+	this.execCommand("login",
+		function(){
+			document.location.href = self.getApp().getHost();
+		},
+		function(resp,errCode,errStr){
+			if (errCode==100){
+				self.setError(self.ER_LOGIN);
+			}
+			else{
+				self.setError((errCode!=undefined)? (errCode+" "+errStr):errStr);
+			}
 		}
-		else{
-			self.setError(errCode+" "+errStr);
-		}
-	}
 	);
 }

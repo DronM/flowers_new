@@ -22,51 +22,31 @@ function ProductList_Model(options){
 	
 	options.fields = {};
 	
-			
+				
+	
 	var filed_options = {};
-	filed_options.primaryKey = true;
+	filed_options.primaryKey = true;	
+	options.fields.id = new FieldInt("id",filed_options);
 	
+				
 	
-	var field = new FieldInt("id",filed_options);
-	
-
-	options.fields.id = field;
-
-			
 	var filed_options = {};
-	filed_options.primaryKey = false;
+	filed_options.primaryKey = false;	
+	filed_options.alias = 'Наименование';options.fields.name = new FieldString("name",filed_options);
 	
-	filed_options.alias = 'Наименование';
+				
 	
-	var field = new FieldString("name",filed_options);
-	
-
-	options.fields.name = field;
-
-			
 	var filed_options = {};
-	filed_options.primaryKey = false;
+	filed_options.primaryKey = false;	
+	filed_options.alias = 'Розничная цена';options.fields.price = new FieldFloat("price",filed_options);
+	options.fields.price.getValidator().setMaxLength('15');
 	
-	filed_options.alias = 'Розничная цена';
+				
 	
-	var field = new FieldFloat("price",filed_options);
-	
-		field.getValidator().setMaxLength('15');
-	
-
-	options.fields.price = field;
-
-			
 	var filed_options = {};
-	filed_options.primaryKey = false;
+	filed_options.primaryKey = false;	
+	filed_options.alias = 'Для продажи';options.fields.for_sale = new FieldBool("for_sale",filed_options);
 	
-	filed_options.alias = 'Для продажи';
-	
-	var field = new FieldBool("for_sale",filed_options);
-	
-
-	options.fields.for_sale = field;
-
 		ProductList_Model.superclass.constructor.call(this,id,options);
 }
 extend(ProductList_Model,ModelXML);

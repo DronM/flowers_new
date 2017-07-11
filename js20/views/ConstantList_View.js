@@ -15,31 +15,76 @@ function ConstantList_View(id,options){
 	var model = new ConstantList_Model({"data":options.modelDataStr});
 	var contr = new Constant_Controller(options.app);
 	
-	this.addElement(new GridAjx(id+":grid",{
+	var popup_menu = new PopUpMenu();
+	
+	var ctrlColumnClasses = {
+		"def_store":{
+			"ctrlClass":StoreSelect,
+			"ctrlOptions":{
+				"labelCaption":"",
+				"keyIds":["val_id"],
+				"ctrlBindFieldId":"val_id"				
+			}
+		},
+		"cel_phone_for_sms":{"ctrlClass":EditPhone,"columnClass":GridColumnPhone},
+		"def_material_group":{"ctrlClass":MaterialGroupSelect},
+		"def_payment_type_for_sale":{"ctrlClass":PaymentTypeForSaleSelect},
+		"def_client":{"ctrlClass":ClientEditRef},
+		"def_discount":{"ctrlClass":DiscountSelect}
+	};			
+	
+	//
+	this.addElement(new ConstantGrid(id+":grid",{
 		"model":model,
 		"controller":contr,
 		"editInline":true,
 		"editWinClass":null,
-		"commands":new GridCommandsAjx(id+"-gridcmd",{"app":options.app}),
-		"head":new GridHead(id+"-grid:head",{
+		"keyIds":["id"],		
+		"commands":new GridCommandsAjx(id+"-gridcmd",{
+			"cmdInsert":false,
+			"cmdCopy":false,
+			"cmdDelete":false,
+			"popUpMenu":popup_menu,
+			"app":options.app
+		}),
+		//"popUpMenu":popup_menu,
+		
+		"updatePublicMethod":contr.getPublicMethod("set_value"),
+		"ctrlColumnClasses":ctrlColumnClasses,
+		//"editViewClass":ConstantEditInlineAjx,
+		"editViewOptions":{
+			"ctrlColumnClasses":ctrlColumnClasses			
+		},	
+			
+		"head":new GridHead(id+":grid:head",{
 			"elements":[
-				new GridRow(id+":grid:head:row0",{
+				new GridRow(id+":grid:head:0",{
 					"elements":[
-						new GridCellHead(id+":grid:head:name",{
+						new GridCellHead(id+":grid:head:0:name",{
 							"columns":[
-								new GridColumn({"field":model.getField("name")})
+								new GridColumn("name",{"field":model.getField("name"),
+								"ctrlOptions":{
+									"enabled":false,
+									"cmdClear":false
+									}
+								})
 							],
 							"sortable":true,
 							"sort":"asc"							
 						}),
-						new GridCellHead(id+":grid:head:descr",{
+						new GridCellHead(id+":grid:head:0:descr",{
 							"columns":[
-								new GridColumn({"field":model.getField("descr")})
+								new GridColumn("descr",{"field":model.getField("descr"),
+								"ctrlOptions":{
+									"enabled":false,
+									"cmdClear":false
+									}
+								})
 							]
 						}),
-						new GridCellHead(id+":grid:head:val_descr",{
+						new GridCellHead(id+":grid:head:0:val_descr",{
 							"columns":[
-								new GridColumn({"field":model.getField("val_descr")})
+								new GridColumn("val_descr",{"field":model.getField("val_descr")})
 							]
 						})						
 					]
